@@ -5,9 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daily Prayer - Catholic Youth Society</title>
 
+    <!-- PWA & Mobile Home Screen Tags -->
     <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" sizes="192x192" href="logo-192.png">
     <link rel="icon" type="image/png" sizes="192x192" href="logo-192.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="theme-color" content="#121b2d">
 
     <style>
@@ -114,8 +117,14 @@
             font-weight: 700;
             cursor: pointer;
             margin-top: 1rem;
+            transition: opacity 0.2s;
         }
 
+        .btn-bead:active {
+            opacity: 0.85;
+        }
+
+        /* Bottom Nav Bar */
         .bottom-nav {
             position: fixed;
             bottom: 0;
@@ -157,6 +166,7 @@
             <button class="tab-btn" id="btn-prayersTab" onclick="switchTab('prayersTab', this)">🙏 Prayers</button>
         </div>
 
+        <!-- Gospel Tab -->
         <div id="gospelTab" class="tab-content active">
             <div class="card" style="border-left: 4px solid var(--gold-primary);">
                 <div class="section-title">Scripture of the Day</div>
@@ -168,16 +178,29 @@
             </div>
         </div>
 
+        <!-- Rosary Tab -->
         <div id="rosaryTab" class="tab-content">
             <div class="card rosary-display">
                 <div class="section-title">Interactive Rosary Companion</div>
-                <h2 style="color: var(--gold-light);">Sorrowful Mysteries</h2>
+                <h2 style="color: var(--gold-light);">Joyful Mysteries (Mondays & Saturdays)</h2>
+
+                <!-- Audio element pointing to your uploaded audio file -->
+                <audio id="rosaryAudio" src="audio/Virtual%20Rosary%20-%20The%20Joyful%20Mysteries%20%20(Mondays%20%26%20Saturdays).mp3" preload="metadata"></audio>
+
+                <!-- Audio Play/Pause Button -->
+                <div style="margin: 1.25rem 0;">
+                    <button class="btn-bead" id="rosaryPlayBtn" onclick="toggleRosaryAudio()" style="padding: 0.65rem 1.6rem; font-size: 0.95rem;">
+                        ▶ Play Joyful Mysteries
+                    </button>
+                </div>
+
                 <div class="bead-count" id="beadDisplay">0 / 10</div>
                 <div style="font-size: 1.1rem; font-weight: 600; margin-bottom: 1.5rem;" id="beadText">Begin with the Our Father</div>
                 <button class="btn-bead" onclick="countBead()">Tap Bead</button>
             </div>
         </div>
 
+        <!-- Prayers Tab -->
         <div id="prayersTab" class="tab-content">
             <div class="card">
                 <div class="section-title">Morning Prayer</div>
@@ -207,6 +230,12 @@
     </nav>
 
     <script>
+        // Register Service Worker for PWA Home Screen Installation
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js');
+        }
+
+        // Tab Switching Logic
         function switchTab(tabId, btn) {
             document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -214,10 +243,30 @@
             if (btn) btn.classList.add('active');
         }
 
+        // Check if coming from home screen deep link (#rosary)
         if (window.location.hash === '#rosary') {
             switchTab('rosaryTab', document.getElementById('btn-rosaryTab'));
         }
 
+        // --- Rosary Audio Logic ---
+        const rosaryAudio = document.getElementById('rosaryAudio');
+        const rosaryPlayBtn = document.getElementById('rosaryPlayBtn');
+
+        function toggleRosaryAudio() {
+            if (rosaryAudio.paused) {
+                rosaryAudio.play();
+                rosaryPlayBtn.innerText = "❚❚ Pause Joyful Mysteries";
+            } else {
+                rosaryAudio.pause();
+                rosaryPlayBtn.innerText = "▶ Play Joyful Mysteries";
+            }
+        }
+
+        rosaryAudio.addEventListener('ended', () => {
+            rosaryPlayBtn.innerText = "▶ Play Joyful Mysteries";
+        });
+
+        // --- Interactive Bead Counter Logic ---
         let beadCount = 0;
         function countBead() {
             if (beadCount < 10) {
