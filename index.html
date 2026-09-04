@@ -27,7 +27,7 @@
             color: var(--text-white);
             background-color: var(--navy-dark);
             line-height: 1.6;
-            padding-bottom: 3rem;
+            padding-bottom: 5rem;
         }
 
         .container {
@@ -204,6 +204,42 @@
             color: var(--navy-dark);
         }
 
+        /* Bottom Nav Bar */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: var(--navy-card);
+            border-top: 1px solid var(--border-gold);
+            display: flex;
+            justify-content: space-around;
+            padding: 0.6rem 0;
+            z-index: 1000;
+            box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .nav-item .nav-icon {
+            font-size: 1.25rem;
+            margin-bottom: 0.15rem;
+        }
+
+        .nav-item.active,
+        .nav-item:hover {
+            color: var(--gold-primary);
+        }
+
         @media (max-width: 768px) {
             .grid-4 { grid-template-columns: 1fr 1fr; }
             .grid-2 { grid-template-columns: 1fr; }
@@ -311,6 +347,26 @@
         </div>
 
     </main>
+
+    <!-- Bottom Navigation Bar -->
+    <nav class="bottom-nav">
+        <a href="index.html" class="nav-item active">
+            <span class="nav-icon">🏠</span>
+            <span>Home</span>
+        </a>
+        <a href="daily-prayer.html" class="nav-item">
+            <span class="nav-icon">📖</span>
+            <span>Prayers</span>
+        </a>
+        <a href="prayer-wall.html" class="nav-item">
+            <span class="nav-icon">🙏</span>
+            <span>Prayer Wall</span>
+        </a>
+        <a href="events.html" class="nav-item">
+            <span class="nav-icon">📅</span>
+            <span>Events</span>
+        </a>
+    </nav>
 
     <script>
         // Dynamic Time Greeting
