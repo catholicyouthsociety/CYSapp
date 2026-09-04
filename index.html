@@ -4,6 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catholic Youth Society - Dashboard</title>
+
+    <!-- PWA & Mobile Home Screen Tags -->
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" sizes="192x192" href="logo-192.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="logo-192.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#121b2d">
+
     <style>
         :root {
             --navy-dark: #080d1a;
@@ -27,13 +36,26 @@
             color: var(--text-white);
             background-color: var(--navy-dark);
             line-height: 1.6;
-            padding-bottom: 5rem;
+            padding-top: env(safe-area-inset-top);
+            padding-bottom: calc(5rem + env(safe-area-inset-bottom));
         }
 
         .container {
-            padding: 2rem 5%;
+            padding: 1.5rem 5%;
             max-width: 1100px;
             margin: 0 auto;
+        }
+
+        .app-header-logo {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .app-header-logo img {
+            width: 90px;
+            height: auto;
+            border-radius: 12px;
+            margin-bottom: 0.5rem;
         }
 
         .section-title {
@@ -59,12 +81,11 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
         }
 
-        /* Top Header Stats Banner */
         .user-welcome-banner {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             flex-wrap: wrap;
             gap: 1rem;
         }
@@ -81,7 +102,6 @@
             color: var(--gold-light);
         }
 
-        /* Liturgical Season Ribbon */
         .liturgical-bar {
             background: linear-gradient(90deg, #1e2d4a 0%, #121b2d 100%);
             border-left: 4px solid var(--gold-primary);
@@ -94,7 +114,6 @@
             color: var(--gold-light);
         }
 
-        /* Hero Daily Gospel Card */
         .hero-verse-card {
             background: linear-gradient(135deg, #18243b 0%, #0d1424 100%);
             position: relative;
@@ -115,31 +134,6 @@
             font-size: 0.9rem;
         }
 
-        .audio-player-controls {
-            margin-top: 1.25rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding-top: 1rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .btn-play {
-            background: var(--gold-primary);
-            color: var(--navy-dark);
-            border: none;
-            width: 42px;
-            height: 42px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.1rem;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        /* Feature Cards Grid */
         .grid-4 {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -168,12 +162,6 @@
             transform: translateY(-3px);
         }
 
-        .icon-circle {
-            font-size: 1.6rem;
-            margin-bottom: 0.2rem;
-        }
-
-        /* Two Column Layout */
         .grid-2 {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -204,7 +192,6 @@
             color: var(--navy-dark);
         }
 
-        /* Bottom Nav Bar */
         .bottom-nav {
             position: fixed;
             bottom: 0;
@@ -217,6 +204,7 @@
             padding: 0.6rem 0;
             z-index: 1000;
             box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.5);
+            padding-bottom: max(0.6rem, env(safe-area-inset-bottom));
         }
 
         .nav-item {
@@ -227,16 +215,9 @@
             color: var(--text-muted);
             font-size: 0.75rem;
             font-weight: 600;
-            transition: color 0.2s;
         }
 
-        .nav-item .nav-icon {
-            font-size: 1.25rem;
-            margin-bottom: 0.15rem;
-        }
-
-        .nav-item.active,
-        .nav-item:hover {
+        .nav-item.active, .nav-item:hover {
             color: var(--gold-primary);
         }
 
@@ -250,7 +231,10 @@
 
     <main class="container">
 
-        <!-- Welcome Banner & Dynamic Streak Tracker -->
+        <div class="app-header-logo">
+            <img src="logo-192.png" alt="Logo">
+        </div>
+
         <div class="user-welcome-banner">
             <div>
                 <div class="section-title" id="timeGreeting">Good Day</div>
@@ -261,54 +245,40 @@
             </div>
         </div>
 
-        <!-- Liturgical Calendar Status Bar -->
         <div class="liturgical-bar">
-            <span>📅 Ordinary Time • Friday</span>
+            <span>📅 Ordinary Time</span>
             <span>Saint of the Day: St. Teresa of Calcutta</span>
         </div>
 
-        <!-- Featured Daily Gospel & Audio Meditation -->
         <div class="card hero-verse-card">
             <div class="section-title">Today's Gospel Meditation</div>
             <div class="verse-body">
                 "Let no one have contempt for your youth, but set an example for those who believe, in speech, conduct, love, faith, and purity."
             </div>
             <div class="verse-ref">— 1 Timothy 4:12</div>
-
-            <div class="audio-player-controls">
-                <button class="btn-play" onclick="toggleAudio()" id="playBtn">▶</button>
-                <div>
-                    <div style="font-size: 0.85rem; font-weight: 700;">Listen to 3-Min Daily Reflection</div>
-                    <div style="font-size: 0.75rem; color: var(--text-muted);" id="audioStatus">Tap play to listen</div>
-                </div>
-            </div>
         </div>
 
-        <!-- Quick Access Navigation -->
         <div class="section-title">Daily Spiritual Tools</div>
         <div class="grid-4">
             <a href="daily-prayer.html" class="quick-action-card">
-                <span class="icon-circle">📖</span>
+                <span style="font-size: 1.6rem;">📖</span>
                 <span style="font-size: 0.9rem; font-weight: 600;">Daily Prayer</span>
             </a>
             <a href="daily-prayer.html#rosary" class="quick-action-card">
-                <span class="icon-circle">📿</span>
+                <span style="font-size: 1.6rem;">📿</span>
                 <span style="font-size: 0.9rem; font-weight: 600;">Audio Rosary</span>
             </a>
             <a href="prayer-wall.html" class="quick-action-card">
-                <span class="icon-circle">🙏</span>
+                <span style="font-size: 1.6rem;">🙏</span>
                 <span style="font-size: 0.9rem; font-weight: 600;">Prayer Wall</span>
             </a>
             <a href="events.html" class="quick-action-card">
-                <span class="icon-circle">📅</span>
+                <span style="font-size: 1.6rem;">📅</span>
                 <span style="font-size: 0.9rem; font-weight: 600;">Youth Events</span>
             </a>
         </div>
 
-        <!-- Two Column Interactive Widgets -->
         <div class="grid-2">
-
-            <!-- Community Intentions Widget -->
             <div class="card">
                 <div class="section-title">Community Intentions</div>
                 <h3 style="margin-bottom: 1rem; font-size: 1.2rem;">Pray for Others Today</h3>
@@ -322,104 +292,69 @@
                     <span style="font-size: 0.85rem;">For peace in families and youth mental health.</span>
                     <button class="btn-pray-sm" onclick="prayFor(this)">🙏 Pray</button>
                 </div>
-
-                <div style="margin-top: 1rem; text-align: center;">
-                    <a href="prayer-wall.html" style="color: var(--gold-primary); text-decoration: none; font-size: 0.85rem; font-weight: 600;">View All Requests &rarr;</a>
-                </div>
             </div>
 
-            <!-- Youth Group Announcements -->
             <div class="card">
                 <div class="section-title">Youth Society Updates</div>
                 <h3 style="margin-bottom: 1rem; font-size: 1.2rem;">National Gatherings</h3>
 
                 <div style="padding-bottom: 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.08);">
-                    <div style="font-size: 0.75rem; color: var(--gold-primary); font-weight: 700;">THIS FRIDAY • 8 PM EST</div>
+                    <div style="font-size: 0.75rem; color: var(--gold-primary); font-weight: 700;">WEEKLY EVENT</div>
                     <div style="font-size: 0.95rem; font-weight: 600;">National Virtual Rosary & Gathering</div>
                 </div>
-
-                <div style="padding-top: 0.75rem;">
-                    <div style="font-size: 0.75rem; color: var(--gold-primary); font-weight: 700;">FEATURED RESOURCE</div>
-                    <div style="font-size: 0.95rem; font-weight: 600;">How to Pray the Divine Mercy Chaplet Guide</div>
-                </div>
             </div>
-
         </div>
 
     </main>
 
-    <!-- Bottom Navigation Bar -->
     <nav class="bottom-nav">
         <a href="index.html" class="nav-item active">
-            <span class="nav-icon">🏠</span>
+            <span style="font-size: 1.25rem;">🏠</span>
             <span>Home</span>
         </a>
         <a href="daily-prayer.html" class="nav-item">
-            <span class="nav-icon">📖</span>
+            <span style="font-size: 1.25rem;">📖</span>
             <span>Prayers</span>
         </a>
         <a href="prayer-wall.html" class="nav-item">
-            <span class="nav-icon">🙏</span>
+            <span style="font-size: 1.25rem;">🙏</span>
             <span>Prayer Wall</span>
         </a>
         <a href="events.html" class="nav-item">
-            <span class="nav-icon">📅</span>
+            <span style="font-size: 1.25rem;">📅</span>
             <span>Events</span>
         </a>
     </nav>
 
     <script>
-        // Dynamic Time Greeting
+        // Register Service Worker for PWA Home Screen Installation
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js');
+        }
+
         const hour = new Date().getHours();
         let greeting = "Good Evening";
         if (hour < 12) greeting = "Good Morning";
         else if (hour < 18) greeting = "Good Afternoon";
         document.getElementById('timeGreeting').innerText = greeting;
 
-        // User-Specific Unique Streak Logic
         function updateStreak() {
             const lastPrayedDate = localStorage.getItem('lastPrayedDate');
             let currentStreak = parseInt(localStorage.getItem('prayerStreak') || '0', 10);
-            
             const today = new Date().toDateString();
             const yesterday = new Date(Date.now() - 86400000).toDateString();
 
-            if (lastPrayedDate === yesterday) {
-                // User maintained streak from yesterday
-            } else if (lastPrayedDate !== today) {
-                // Streak broken if not prayed yesterday or today
+            if (lastPrayedDate !== yesterday && lastPrayedDate !== today) {
                 currentStreak = 0;
             }
-
             document.getElementById('streakCount').innerText = currentStreak;
         }
-
-        // Call streak handler on load
         updateStreak();
 
-        // Audio Toggle Simulation
-        let isPlaying = false;
-        function toggleAudio() {
-            isPlaying = !isPlaying;
-            document.getElementById('playBtn').innerText = isPlaying ? "❚❚" : "▶";
-            document.getElementById('audioStatus').innerText = isPlaying ? "Playing reflection audio..." : "Paused";
-            
-            // Mark user prayer active for today when playing meditation
-            const today = new Date().toDateString();
-            if (localStorage.getItem('lastPrayedDate') !== today) {
-                let currentStreak = parseInt(localStorage.getItem('prayerStreak') || '0', 10) + 1;
-                localStorage.setItem('prayerStreak', currentStreak);
-                localStorage.setItem('lastPrayedDate', today);
-                document.getElementById('streakCount').innerText = currentStreak;
-            }
-        }
-
-        // Community Prayer Button
         function prayFor(btn) {
             btn.classList.add('prayed');
             btn.innerText = "✓ Prayed";
         }
     </script>
-
 </body>
 </html>
