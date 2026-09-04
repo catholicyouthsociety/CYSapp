@@ -30,47 +30,6 @@
             padding-bottom: 3rem;
         }
 
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 5%;
-            background-color: rgba(8, 13, 26, 0.95);
-            border-bottom: 1px solid var(--border-gold);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .logo-text {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--gold-primary);
-            text-decoration: none;
-        }
-
-        nav {
-            display: flex;
-            align-items: center;
-            gap: 1.25rem;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: var(--text-white);
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        .btn-join {
-            background-color: var(--gold-primary);
-            color: var(--navy-dark);
-            padding: 0.4rem 1rem;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 700;
-        }
-
         .container {
             padding: 2rem 5%;
             max-width: 900px;
@@ -173,27 +132,9 @@
             margin-top: 0.25rem;
             transform: scale(1.2);
         }
-
-        @media (max-width: 768px) {
-            header { flex-direction: column; gap: 1rem; }
-        }
     </style>
 </head>
 <body>
-
-    <header>
-        <a href="index.html" class="logo-text">Catholic Youth Society</a>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="about.html">About</a>
-            <a href="daily-prayer.html">Daily Prayer</a>
-            <a href="prayer-wall.html">Prayer Wall</a>
-            <a href="events.html">Events</a>
-            <a href="resources.html">Resources</a>
-            <a href="contact.html">Contact</a>
-            <a href="get-involved.html" class="btn-join">Join Us</a>
-        </nav>
-    </header>
 
     <main class="container">
 
@@ -307,15 +248,26 @@
         }
         loadReading();
 
-        // Rosary Logic
+        // Rosary Logic with Individual Streak Recording
         let beadCount = 0;
         function countBead() {
             if (beadCount < 10) {
                 beadCount++;
                 document.getElementById('beadDisplay').innerText = beadCount + " / 10";
                 document.getElementById('beadText').innerText = beadCount === 10 ? "Decade Complete! Pray Glory Be." : "Hail Mary (Bead " + beadCount + ")";
+                
+                // When decade completed, record user streak
+                if (beadCount === 10) {
+                    const today = new Date().toDateString();
+                    if (localStorage.getItem('lastPrayedDate') !== today) {
+                        let currentStreak = parseInt(localStorage.getItem('prayerStreak') || '0', 10) + 1;
+                        localStorage.setItem('prayerStreak', currentStreak);
+                        localStorage.setItem('lastPrayedDate', today);
+                    }
+                }
             }
         }
+
         function resetRosary() {
             beadCount = 0;
             document.getElementById('beadDisplay').innerText = "0 / 10";
