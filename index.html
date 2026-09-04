@@ -6,13 +6,14 @@
     <title>Catholic Youth Society</title>
     <style>
         :root {
-            --primary-blue: #1e3a8a;
-            --accent-gold: #b45309;
-            --text-dark: #1f2937;
-            --text-muted: #4b5563;
-            --bg-light: #f9fafb;
-            --bg-white: #ffffff;
-            --border-color: #d1d5db;
+            --navy-dark: #0a1128;
+            --navy-card: #1c2541;
+            --navy-accent: #1e3a8a;
+            --gold-primary: #d4af37;
+            --gold-light: #f3e5ab;
+            --text-white: #ffffff;
+            --text-muted: #a0aec0;
+            --border-gold: rgba(212, 175, 55, 0.3);
         }
 
         * {
@@ -23,9 +24,10 @@
         }
 
         body {
-            color: var(--text-dark);
-            background-color: var(--bg-white);
+            color: var(--text-white);
+            background-color: var(--navy-dark);
             line-height: 1.6;
+            padding-bottom: 2rem;
         }
 
         /* Navigation Bar */
@@ -34,65 +36,57 @@
             justify-content: space-between;
             align-items: center;
             padding: 1rem 5%;
-            background-color: var(--bg-white);
-            border-bottom: 1px solid #e5e7eb;
+            background-color: var(--navy-dark);
+            border-bottom: 1px solid var(--border-gold);
             position: sticky;
             top: 0;
             z-index: 1000;
         }
 
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
         .logo-text {
             font-size: 1.25rem;
             font-weight: 700;
-            color: var(--primary-blue);
+            color: var(--gold-primary);
+            text-decoration: none;
+            letter-spacing: 0.5px;
         }
 
         nav {
             display: flex;
             align-items: center;
-            gap: 1.5rem;
+            gap: 1.25rem;
         }
 
         nav a {
             text-decoration: none;
-            color: var(--text-dark);
-            font-size: 0.95rem;
+            color: var(--text-white);
+            font-size: 0.9rem;
             font-weight: 500;
+            transition: color 0.2s;
         }
 
         nav a:hover {
-            color: var(--primary-blue);
+            color: var(--gold-primary);
         }
 
         .btn-join {
-            background-color: var(--primary-blue);
-            color: white;
-            padding: 0.5rem 1.25rem;
+            background-color: var(--gold-primary);
+            color: var(--navy-dark);
+            padding: 0.4rem 1rem;
             border-radius: 4px;
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 700;
         }
 
-        /* Hero / Our Mission Section */
-        .section {
-            padding: 4rem 10%;
+        /* Dashboard Container */
+        .dashboard {
+            padding: 2rem 5%;
+            max-width: 1100px;
+            margin: 0 auto;
         }
 
-        .hero {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .section-label {
-            color: var(--accent-gold);
+        .section-title {
+            color: var(--gold-primary);
             font-size: 0.85rem;
             font-weight: 700;
             letter-spacing: 1.5px;
@@ -101,110 +95,120 @@
         }
 
         h1, h2 {
-            font-size: 2.25rem;
-            color: var(--primary-blue);
-            margin-bottom: 1rem;
             font-family: Georgia, serif;
+            color: var(--text-white);
+            margin-bottom: 1rem;
         }
 
-        p {
-            color: var(--text-muted);
+        /* Cards Layout */
+        .card {
+            background-color: var(--navy-card);
+            border: 1px solid var(--border-gold);
+            border-radius: 12px;
+            padding: 1.5rem;
             margin-bottom: 1.5rem;
-            font-size: 1rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         }
 
-        .btn-primary {
-            display: inline-block;
-            background-color: var(--primary-blue);
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 4px;
-            text-decoration: none;
+        /* Daily Verse Card */
+        .verse-card {
+            border-left: 4px solid var(--gold-primary);
+            background: linear-gradient(135deg, var(--navy-card) 0%, #111a33 100%);
+        }
+
+        .verse-text {
+            font-size: 1.15rem;
+            font-style: italic;
+            color: var(--gold-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .verse-ref {
             font-weight: 600;
-            border: none;
-            cursor: pointer;
+            color: var(--text-muted);
+            font-size: 0.9rem;
         }
 
-        .hero-image-container img {
-            width: 100%;
+        /* Quick Links Grid */
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .quick-link-btn {
+            background-color: var(--navy-card);
+            border: 1px solid var(--border-gold);
             border-radius: 8px;
-            object-fit: cover;
-        }
-
-        /* Studies and Meetings Section */
-        .bg-light {
-            background-color: var(--bg-light);
-        }
-
-        .center-text {
+            padding: 1rem;
             text-align: center;
-            max-width: 800px;
-            margin: 0 auto 3rem auto;
+            text-decoration: none;
+            color: var(--text-white);
+            font-weight: 600;
+            transition: all 0.2s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        .cards-grid {
+        .quick-link-btn:hover {
+            border-color: var(--gold-primary);
+            background-color: var(--navy-accent);
+        }
+
+        .quick-link-icon {
+            font-size: 1.5rem;
+        }
+
+        /* Updates & Events Grid */
+        .grid-2 {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            max-width: 1000px;
-            margin: 0 auto;
+            gap: 1.5rem;
         }
 
-        .card {
-            background: var(--bg-white);
-            padding: 2rem;
-            border-radius: 8px;
-            border: 1px solid #e5e7eb;
+        .update-item {
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .card h3 {
-            color: var(--accent-gold);
-            font-family: Georgia, serif;
-            font-size: 1.5rem;
-            margin-bottom: 0.75rem;
+        .update-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
         }
 
-        /* Contact Form */
-        .contact-section {
-            max-width: 600px;
-            margin: 0 auto;
+        .update-date {
+            font-size: 0.75rem;
+            color: var(--gold-primary);
+            font-weight: 700;
+            text-transform: uppercase;
         }
 
-        .form-group {
-            margin-bottom: 1.25rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
+        .update-title {
             font-weight: 600;
-            color: var(--text-dark);
+            margin: 0.2rem 0;
         }
 
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            background-color: var(--bg-light);
-            font-size: 1rem;
+        .update-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
         }
 
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        /* Responsive Adjustments */
         @media (max-width: 768px) {
             header {
                 flex-direction: column;
                 gap: 1rem;
             }
 
-            .hero, .cards-grid {
+            .grid-4 {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .grid-2 {
                 grid-template-columns: 1fr;
             }
         }
@@ -212,87 +216,98 @@
 </head>
 <body>
 
+    <!-- Header Navigation -->
     <header>
-        <div class="logo-container">
-            <span class="logo-text">Catholic Youth Society</span>
-        </div>
+        <a href="index.html" class="logo-text">Catholic Youth Society</a>
         <nav>
-            <a href="#home">Home</a>
-            <a href="#about">About Us</a>
-            <a href="#events">Events</a>
-            <a href="#chapter">National Chapter</a>
-            <a href="#involved">Get Involved</a>
-            <a href="#contact">Contact Us</a>
-            <a href="#join" class="btn-join">Join Us</a>
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="daily-prayer.html">Daily Prayer</a>
+            <a href="prayer-wall.html">Prayer Wall</a>
+            <a href="events.html">Events</a>
+            <a href="resources.html">Resources</a>
+            <a href="contact.html">Contact</a>
+            <a href="get-involved.html" class="btn-join">Join Us</a>
         </nav>
     </header>
 
-    <section class="section hero">
-        <div>
-            <div class="section-label">Our Mission</div>
-            <h1>Growing in Faith and Friendship</h1>
-            <p>Guided by the patronage of Saint Carlo Acutis, the Catholic Youth Society reaches across every distance to form a joyful, nationwide family centered on Jesus Christ. Rooted in the Eucharist and united in faith, we work to heal community divides, encourage deep prayer, and build lasting friendships—empowering young people to live with hope, conviction, and holiness wherever they are.</p>
-            <a href="#about" class="btn-primary">&rarr; Learn More</a>
-        </div>
-        <div class="hero-image-container">
-            <img src="https://via.placeholder.com/600x450" alt="Saint Carlo Acutis Patron">
-        </div>
-    </section>
+    <!-- Dashboard Container -->
+    <main class="dashboard">
 
-    <section class="section bg-light">
-        <div class="center-text">
-            <div class="section-label">Studies and Meetings</div>
-            <h2>Studies and Meetings</h2>
-            <p>The Catholic Youth Society brings teens together nationwide through our vibrant virtual chapter—our central home for faith, prayer, and community. We gather weekly for scripture studies and live rosaries, host engaging monthly chapter meetings, and offer online events that help young people encounter Christ, deepen their faith, and build lasting friendships from anywhere in the country.</p>
+        <!-- Header Welcome -->
+        <div style="margin-bottom: 1.5rem;">
+            <div class="section-title">Welcome Back</div>
+            <h1>Youth Dashboard</h1>
         </div>
 
-        <div class="cards-grid">
+        <!-- Daily Verse Card -->
+        <div class="card verse-card">
+            <div class="section-title">Daily Gospel Verse</div>
+            <div class="verse-text">"Let no one have contempt for your youth, but set an example for those who believe, in speech, conduct, love, faith, and purity."</div>
+            <div class="verse-ref">1 Timothy 4:12</div>
+        </div>
+
+        <!-- Quick Action Links -->
+        <div class="section-title">Quick Actions</div>
+        <div class="grid-4">
+            <a href="daily-prayer.html" class="quick-link-btn">
+                <span class="quick-link-icon">📖</span>
+                <span>Daily Prayer</span>
+            </a>
+            <a href="prayer-wall.html" class="quick-link-btn">
+                <span class="quick-link-icon">🙏</span>
+                <span>Prayer Wall</span>
+            </a>
+            <a href="events.html" class="quick-link-btn">
+                <span class="quick-link-icon">📅</span>
+                <span>Events</span>
+            </a>
+            <a href="resources.html" class="quick-link-btn">
+                <span class="quick-link-icon">📚</span>
+                <span>Resources</span>
+            </a>
+        </div>
+
+        <!-- Updates & Community Events Grid -->
+        <div class="grid-2">
+            
+            <!-- Community Updates -->
             <div class="card">
-                <h3>Studies</h3>
-                <p>The CYS hosts regular studies where youth can pray, ask questions, and better understand the Catholic faith in a Christ-centered setting.</p>
-                <a href="#events" class="btn-primary">See Upcoming Studies &rarr;</a>
+                <div class="section-title">Community Updates</div>
+                
+                <div class="update-item">
+                    <div class="update-date">Today</div>
+                    <div class="update-title">Weekly Scripture Study</div>
+                    <div class="update-desc">Join us online tonight at 7:00 PM EST for our live Gospel reflection session.</div>
+                </div>
+
+                <div class="update-item">
+                    <div class="update-date">Yesterday</div>
+                    <div class="update-title">New Study Guide Uploaded</div>
+                    <div class="update-desc">Check the Resources section for our new printable prayer guide.</div>
+                </div>
             </div>
+
+            <!-- Upcoming Events Summary -->
             <div class="card">
-                <h3>Monthly Meetings</h3>
-                <p>Our monthly chapter meetings bring teens together from across the country for interactive games, lively discussions, and joyful Catholic fellowship—all from the comfort of home.</p>
-                <a href="#events" class="btn-primary">See Upcoming Meetings &rarr;</a>
+                <div class="section-title">Upcoming Meetings</div>
+
+                <div class="update-item">
+                    <div class="update-date">This Friday • 8:00 PM</div>
+                    <div class="update-title">National Rosary & Game Night</div>
+                    <div class="update-desc">Virtual gathering for teens nationwide. Links sent via push notification.</div>
+                </div>
+
+                <div class="update-item">
+                    <div class="update-date">Next Month</div>
+                    <div class="update-title">Monthly Chapter Gathering</div>
+                    <div class="update-desc">Monthly national meeting with guest speakers and interactive break-outs.</div>
+                </div>
             </div>
-        </div>
-    </section>
 
-    <section class="section center-text">
-        <div class="section-label">Upcoming Events</div>
-        <h2>Join Our Next Meeting</h2>
-        <p>From virtual game nights to online rosaries and guest speaker sessions, our interactive gatherings offer teens nationwide a fun and meaningful way to build community in Christ.</p>
-        <div style="display: flex; gap: 1rem; justify-content: center;">
-            <a href="#events" class="btn-primary">View Events &rarr;</a>
-            <a href="#contact" class="btn-primary" style="background-color: var(--primary-blue);">Contact Us</a>
         </div>
-    </section>
 
-    <section class="section bg-light">
-        <div class="contact-section">
-            <div class="section-label">Get Connected</div>
-            <h2>Get in Touch</h2>
-            <p>Ready to get involved? Reach out today and learn more about our growing Catholic group where youth are welcomed, encouraged, and invited to take part.</p>
-
-            <form action="#" method="POST">
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" placeholder="Your name">
-                </div>
-                <div class="form-group">
-                    <label for="email">Email *</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="message">Message *</label>
-                    <textarea id="message" name="message" placeholder="Tell us a little about your interest in Catholic Youth Society" required></textarea>
-                </div>
-                <button type="submit" class="btn-primary">Send Message</button>
-            </form>
-        </div>
-    </section>
+    </main>
 
 </body>
 </html>
