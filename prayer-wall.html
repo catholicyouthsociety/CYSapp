@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prayer Wall - Catholic Youth Society</title>
+    <style>
+        :root {
+            --navy-dark: #080d1a;
+            --navy-card: #121b2d;
+            --navy-accent: #1e2d4a;
+            --gold-primary: #d4af37;
+            --gold-light: #f3e5ab;
+            --text-white: #ffffff;
+            --text-muted: #8c9ba5;
+            --border-gold: rgba(212, 175, 55, 0.25);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            color: var(--text-white);
+            background-color: var(--navy-dark);
+            line-height: 1.6;
+            padding-bottom: 3rem;
+        }
+
+        .container {
+            padding: 2rem 5%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            color: var(--gold-primary);
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        h1, h2, h3 {
+            font-family: Georgia, serif;
+            color: var(--text-white);
+        }
+
+        .card {
+            background-color: var(--navy-card);
+            border: 1px solid var(--border-gold);
+            border-radius: 14px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        label {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--gold-light);
+            margin-bottom: 0.4rem;
+            font-weight: 600;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            background-color: rgba(8, 13, 26, 0.6);
+            border: 1px solid var(--border-gold);
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            color: var(--text-white);
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        input[type="text"]:focus,
+        textarea:focus {
+            border-color: var(--gold-primary);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 90px;
+        }
+
+        .btn-submit {
+            background-color: var(--gold-primary);
+            color: var(--navy-dark);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            width: 100%;
+        }
+
+        .btn-submit:hover {
+            background-color: var(--gold-light);
+        }
+
+        /* Feed & Request Cards */
+        .prayer-card {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            transition: border-color 0.2s;
+        }
+
+        .prayer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .prayer-author {
+            font-weight: 700;
+            color: var(--gold-light);
+            font-size: 0.95rem;
+        }
+
+        .prayer-time {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .prayer-body {
+            font-size: 1rem;
+            color: var(--text-white);
+            line-height: 1.5;
+        }
+
+        .prayer-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 0.75rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            margin-top: 0.25rem;
+        }
+
+        .pray-count {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .btn-pray {
+            background: transparent;
+            border: 1px solid var(--gold-primary);
+            color: var(--gold-primary);
+            padding: 0.4rem 1.1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .btn-pray:hover,
+        .btn-pray.prayed {
+            background: var(--gold-primary);
+            color: var(--navy-dark);
+        }
+
+        /* Navigation Links */
+        .nav-back {
+            display: inline-block;
+            color: var(--gold-primary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .nav-back:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <main class="container">
+
+        <a href="index.html" class="nav-back">&larr; Back to Dashboard</a>
+
+        <div style="margin-bottom: 1.5rem;">
+            <div class="section-title">Community Intentions</div>
+            <h1 style="font-size: 2rem;">Prayer Wall</h1>
+            <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.25rem;">
+                Share your intentions with the youth community and pray for fellow members.
+            </p>
+        </div>
+
+        <!-- Submit Prayer Form -->
+        <div class="card">
+            <div class="section-title">Request Prayers</div>
+            <h3 style="margin-bottom: 1rem; font-size: 1.2rem;">Post an Intention</h3>
+            
+            <form id="prayerForm" onsubmit="handleFormSubmit(event)">
+                <div class="form-group">
+                    <label for="authorInput">Your Name (or Anonymous)</label>
+                    <input type="text" id="authorInput" placeholder="e.g., Maria, Student, or Anonymous" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="intentionInput">Prayer Request</label>
+                    <textarea id="intentionInput" placeholder="What would you like the community to pray for?" required></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit">Post Prayer Intention</button>
+            </form>
+        </div>
+
+        <!-- Prayer Feed -->
+        <div class="section-title" style="margin-top: 2rem;">Community Requests</div>
+        <div id="prayerFeed">
+            <!-- Dynamic items rendered via JS -->
+        </div>
+
+    </main>
+
+    <script>
+        // Default starter prayers if storage is empty
+        const defaultPrayers = [
+            {
+                id: 1,
+                author: "Sarah M.",
+                time: "2 hours ago",
+                text: "Please pray for my grandmother who is in the hospital having surgery this morning.",
+                prays: 14,
+                prayedByUser: false
+            },
+            {
+                id: 2,
+                author: "Anonymous Youth",
+                time: "5 hours ago",
+                text: "Asking for prayers for guidance and clarity as I make decisions about college applications and my future.",
+                prays: 22,
+                prayedByUser: false
+            },
+            {
+                id: 3,
+                author: "David K.",
+                time: "Yesterday",
+                text: "Prayers for peace in our local community and strength for students dealing with anxiety.",
+                prays: 31,
+                prayedByUser: false
+            }
+        ];
+
+        // Load prayers from localStorage or seed defaults
+        function getPrayers() {
+            const stored = localStorage.getItem('cys_prayer_wall');
+            if (!stored) {
+                localStorage.setItem('cys_prayer_wall', JSON.stringify(defaultPrayers));
+                return defaultPrayers;
+            }
+            return JSON.parse(stored);
+        }
+
+        // Save prayers array back to localStorage
+        function savePrayers(prayers) {
+            localStorage.setItem('cys_prayer_wall', JSON.stringify(prayers));
+        }
+
+        // Render feed dynamically
+        function renderFeed() {
+            const prayers = getPrayers();
+            const feedElement = document.getElementById('prayerFeed');
+            feedElement.innerHTML = '';
+
+            prayers.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'card prayer-card';
+                card.innerHTML = `
+                    <div class="prayer-header">
+                        <span class="prayer-author">${escapeHtml(item.author)}</span>
+                        <span class="prayer-time">${item.time}</span>
+                    </div>
+                    <div class="prayer-body">${escapeHtml(item.text)}</div>
+                    <div class="prayer-footer">
+                        <span class="pray-count" id="count-${item.id}">${item.prays} ${item.prays === 1 ? 'person prayed' : 'people prayed'}</span>
+                        <button class="btn-pray ${item.prayedByUser ? 'prayed' : ''}" onclick="togglePray(${item.id})">
+                            ${item.prayedByUser ? '✓ Prayed' : '🙏 I Prayed'}
+                        </button>
+                    </div>
+                `;
+                feedElement.appendChild(card);
+            });
+        }
+
+        // Handle "I Prayed" button tap
+        function togglePray(id) {
+            const prayers = getPrayers();
+            const target = prayers.find(p => p.id === id);
+
+            if (target) {
+                if (target.prayedByUser) {
+                    target.prays -= 1;
+                    target.prayedByUser = false;
+                } else {
+                    target.prays += 1;
+                    target.prayedByUser = true;
+                    
+                    // Increment overall user prayer streak tracking
+                    const today = new Date().toDateString();
+                    if (localStorage.getItem('lastPrayedDate') !== today) {
+                        let currentStreak = parseInt(localStorage.getItem('prayerStreak') || '0', 10) + 1;
+                        localStorage.setItem('prayerStreak', currentStreak);
+                        localStorage.setItem('lastPrayedDate', today);
+                    }
+                }
+                savePrayers(prayers);
+                renderFeed();
+            }
+        }
+
+        // Handle Form Submission for new intention
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const author = document.getElementById('authorInput').value.trim();
+            const text = document.getElementById('intentionInput').value.trim();
+
+            if (!author || !text) return;
+
+            const prayers = getPrayers();
+            const newPrayer = {
+                id: Date.now(),
+                author: author,
+                time: "Just now",
+                text: text,
+                prays: 1,
+                prayedByUser: true
+            };
+
+            prayers.unshift(newPrayer);
+            savePrayers(prayers);
+
+            // Clear inputs and re-render
+            document.getElementById('authorInput').value = '';
+            document.getElementById('intentionInput').value = '';
+            renderFeed();
+        }
+
+        // Prevent XSS security issues with text input
+        function escapeHtml(str) {
+            return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+        }
+
+        // Initial rendering on page load
+        renderFeed();
+    </script>
+
+</body>
+</html>
