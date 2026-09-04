@@ -3,7 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daily Prayer & Rosary - Catholic Youth Society</title>
+    <title>Daily Prayer - Catholic Youth Society</title>
+
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" sizes="192x192" href="logo-192.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="logo-192.png">
+    <meta name="theme-color" content="#121b2d">
+
     <style>
         :root {
             --navy-dark: #080d1a;
@@ -27,11 +33,12 @@
             color: var(--text-white);
             background-color: var(--navy-dark);
             line-height: 1.6;
-            padding-bottom: 5rem;
+            padding-top: env(safe-area-inset-top);
+            padding-bottom: calc(5rem + env(safe-area-inset-bottom));
         }
 
         .container {
-            padding: 2rem 5%;
+            padding: 1.5rem 5%;
             max-width: 900px;
             margin: 0 auto;
         }
@@ -45,7 +52,6 @@
             margin-bottom: 0.5rem;
         }
 
-        /* Tab Switcher Bar */
         .tab-bar {
             display: flex;
             gap: 0.5rem;
@@ -67,7 +73,6 @@
             border-radius: 6px;
             cursor: pointer;
             white-space: nowrap;
-            transition: all 0.2s;
         }
 
         .tab-btn.active {
@@ -76,13 +81,8 @@
             border: 1px solid var(--border-gold);
         }
 
-        .tab-content {
-            display: none;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
 
         .card {
             background-color: var(--navy-card);
@@ -92,7 +92,6 @@
             margin-bottom: 1.5rem;
         }
 
-        /* Rosary Counter Card */
         .rosary-display {
             text-align: center;
             padding: 2rem 1rem;
@@ -115,25 +114,8 @@
             font-weight: 700;
             cursor: pointer;
             margin-top: 1rem;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
         }
 
-        /* Checklist style for Examination of Conscience */
-        .check-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 0.75rem;
-            padding: 0.75rem 0;
-            border-bottom: 1px solid rgba(255,255,255,0.08);
-        }
-
-        .check-item input {
-            accent-color: var(--gold-primary);
-            margin-top: 0.25rem;
-            transform: scale(1.2);
-        }
-
-        /* Bottom Nav Bar */
         .bottom-nav {
             position: fixed;
             bottom: 0;
@@ -145,7 +127,7 @@
             justify-content: space-around;
             padding: 0.6rem 0;
             z-index: 1000;
-            box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.5);
+            padding-bottom: max(0.6rem, env(safe-area-inset-bottom));
         }
 
         .nav-item {
@@ -156,131 +138,75 @@
             color: var(--text-muted);
             font-size: 0.75rem;
             font-weight: 600;
-            transition: color 0.2s;
         }
 
-        .nav-item .nav-icon {
-            font-size: 1.25rem;
-            margin-bottom: 0.15rem;
-        }
-
-        .nav-item.active,
-        .nav-item:hover {
-            color: var(--gold-primary);
-        }
+        .nav-item.active, .nav-item:hover { color: var(--gold-primary); }
     </style>
 </head>
 <body>
 
     <main class="container">
-
         <div style="margin-bottom: 1.5rem;">
             <div class="section-title">Prayer Suite</div>
             <h1 style="font-family: Georgia, serif;">Daily Spiritual Life</h1>
         </div>
 
-        <!-- Navigation Tabs -->
         <div class="tab-bar">
             <button class="tab-btn active" id="btn-gospelTab" onclick="switchTab('gospelTab', this)">📖 Gospel</button>
             <button class="tab-btn" id="btn-rosaryTab" onclick="switchTab('rosaryTab', this)">📿 Rosary</button>
             <button class="tab-btn" id="btn-prayersTab" onclick="switchTab('prayersTab', this)">🙏 Prayers</button>
-            <button class="tab-btn" id="btn-examTab" onclick="switchTab('examTab', this)">🌙 Examination</button>
         </div>
 
-        <!-- TAB 1: DAILY GOSPEL & SCRIPTURE -->
         <div id="gospelTab" class="tab-content active">
             <div class="card" style="border-left: 4px solid var(--gold-primary);">
                 <div class="section-title">Scripture of the Day</div>
-                <h2 style="margin: 0.5rem 0; font-size: 1.5rem;" id="scriptureTitle">Gospel Reading</h2>
-                <div style="font-size: 1.1rem; font-style: italic; color: var(--gold-light); margin-bottom: 1rem;" id="scriptureText">
-                    Loading daily reading...
+                <h2 style="margin: 0.5rem 0; font-size: 1.5rem;">Gospel Reading</h2>
+                <div style="font-size: 1.1rem; font-style: italic; color: var(--gold-light); margin-bottom: 1rem;">
+                    "I am the light of the world. Whoever follows me will not walk in darkness, but will have the light of life."
                 </div>
-                <div style="font-weight: 700; color: var(--text-muted);" id="scriptureRef">
-                    Loading reference...
-                </div>
+                <div style="font-weight: 700; color: var(--text-muted);">— John 8:12</div>
             </div>
         </div>
 
-        <!-- TAB 2: INTERACTIVE ROSARY -->
         <div id="rosaryTab" class="tab-content">
             <div class="card rosary-display">
                 <div class="section-title">Interactive Rosary Companion</div>
-                <h2 id="mysteryTitle" style="color: var(--gold-light);">Sorrowful Mysteries</h2>
-                <p style="font-size: 0.85rem; color: var(--text-muted);">Recommended for Tuesday & Friday</p>
-
+                <h2 style="color: var(--gold-light);">Sorrowful Mysteries</h2>
                 <div class="bead-count" id="beadDisplay">0 / 10</div>
                 <div style="font-size: 1.1rem; font-weight: 600; margin-bottom: 1.5rem;" id="beadText">Begin with the Our Father</div>
-
                 <button class="btn-bead" onclick="countBead()">Tap Bead</button>
-                <br>
-                <button onclick="resetRosary()" style="background: transparent; border: 1px solid var(--text-muted); color: var(--text-muted); padding: 0.3rem 1rem; border-radius: 20px; font-size: 0.8rem; margin-top: 1.5rem; cursor: pointer;">Reset Rosary</button>
             </div>
         </div>
 
-        <!-- TAB 3: TRADITIONAL PRAYERS -->
         <div id="prayersTab" class="tab-content">
             <div class="card">
                 <div class="section-title">Morning Prayer</div>
                 <h3 style="color: var(--gold-light); margin-bottom: 0.5rem;">Morning Offering</h3>
-                <p style="color: var(--text-muted);">O Jesus, through the Immaculate Heart of Mary, I offer You my prayers, works, joys, and sufferings of this day for all the intentions of Your Sacred Heart.</p>
-            </div>
-
-            <div class="card">
-                <div class="section-title">Protection</div>
-                <h3 style="color: var(--gold-light); margin-bottom: 0.5rem;">Prayer to St. Michael</h3>
-                <p style="color: var(--text-muted);">Saint Michael the Archangel, defend us in battle. Be our protection against the wickedness and snares of the devil. May God rebuke him, we humbly pray...</p>
+                <p style="color: var(--text-muted);">O Jesus, through the Immaculate Heart of Mary, I offer You my prayers, works, joys, and sufferings of this day.</p>
             </div>
         </div>
-
-        <!-- TAB 4: NIGHTLY EXAMINATION OF CONSCIENCE -->
-        <div id="examTab" class="tab-content">
-            <div class="card">
-                <div class="section-title">Nightly Reflection</div>
-                <h2 style="margin-bottom: 1rem;">Examination of Conscience</h2>
-
-                <div class="check-item">
-                    <input type="checkbox">
-                    <span>Did I make time for God in prayer today?</span>
-                </div>
-                <div class="check-item">
-                    <input type="checkbox">
-                    <span>Was I kind, patient, and respectful to my family and peers?</span>
-                </div>
-                <div class="check-item">
-                    <input type="checkbox">
-                    <span>Did I guard my speech against gossip and negative talk?</span>
-                </div>
-                <div class="check-item">
-                    <input type="checkbox">
-                    <span>Did I use my time and phone wisely today?</span>
-                </div>
-            </div>
-        </div>
-
     </main>
 
-    <!-- Bottom Navigation Bar -->
     <nav class="bottom-nav">
         <a href="index.html" class="nav-item">
-            <span class="nav-icon">🏠</span>
+            <span style="font-size: 1.25rem;">🏠</span>
             <span>Home</span>
         </a>
         <a href="daily-prayer.html" class="nav-item active">
-            <span class="nav-icon">📖</span>
+            <span style="font-size: 1.25rem;">📖</span>
             <span>Prayers</span>
         </a>
         <a href="prayer-wall.html" class="nav-item">
-            <span class="nav-icon">🙏</span>
+            <span style="font-size: 1.25rem;">🙏</span>
             <span>Prayer Wall</span>
         </a>
         <a href="events.html" class="nav-item">
-            <span class="nav-icon">📅</span>
+            <span style="font-size: 1.25rem;">📅</span>
             <span>Events</span>
         </a>
     </nav>
 
     <script>
-        // Tab Switcher Function
         function switchTab(tabId, btn) {
             document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -288,53 +214,18 @@
             if (btn) btn.classList.add('active');
         }
 
-        // Handle direct deep-linking via URL hash (e.g., daily-prayer.html#rosary)
         if (window.location.hash === '#rosary') {
             switchTab('rosaryTab', document.getElementById('btn-rosaryTab'));
         }
 
-        // Auto-rotating Gospel Scripture
-        const dailyReadings = [
-            { text: '"I am the light of the world. Whoever follows me will not walk in darkness, but will have the light of life."', ref: '— John 8:12' },
-            { text: '"For where two or three gather in my name, there am I with them."', ref: '— Matthew 18:20' },
-            { text: '"I can do all this through him who gives me strength."', ref: '— Philippians 4:13' },
-            { text: '"Peace I leave with you; my peace I give you. Do not let your hearts be troubled."', ref: '— John 14:27' }
-        ];
-
-        function loadReading() {
-            const dayOfYear = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 0)) / 86400000);
-            const index = dayOfYear % dailyReadings.length;
-            document.getElementById('scriptureText').innerText = dailyReadings[index].text;
-            document.getElementById('scriptureRef').innerText = dailyReadings[index].ref;
-        }
-        loadReading();
-
-        // Rosary Logic with Individual Streak Recording
         let beadCount = 0;
         function countBead() {
             if (beadCount < 10) {
                 beadCount++;
                 document.getElementById('beadDisplay').innerText = beadCount + " / 10";
-                document.getElementById('beadText').innerText = beadCount === 10 ? "Decade Complete! Pray Glory Be." : "Hail Mary (Bead " + beadCount + ")";
-                
-                // When decade completed, record user streak
-                if (beadCount === 10) {
-                    const today = new Date().toDateString();
-                    if (localStorage.getItem('lastPrayedDate') !== today) {
-                        let currentStreak = parseInt(localStorage.getItem('prayerStreak') || '0', 10) + 1;
-                        localStorage.setItem('prayerStreak', currentStreak);
-                        localStorage.setItem('lastPrayedDate', today);
-                    }
-                }
+                document.getElementById('beadText').innerText = beadCount === 10 ? "Decade Complete!" : "Hail Mary (Bead " + beadCount + ")";
             }
         }
-
-        function resetRosary() {
-            beadCount = 0;
-            document.getElementById('beadDisplay').innerText = "0 / 10";
-            document.getElementById('beadText').innerText = "Begin with the Our Father";
-        }
     </script>
-
 </body>
 </html>
