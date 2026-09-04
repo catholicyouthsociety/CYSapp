@@ -14,8 +14,6 @@
             --text-white: #ffffff;
             --text-muted: #8c9ba5;
             --border-gold: rgba(212, 175, 55, 0.25);
-            --tag-virtual: #2563eb;
-            --tag-inperson: #059669;
         }
 
         * {
@@ -47,7 +45,7 @@
             margin-bottom: 0.5rem;
         }
 
-        h1, h2, h3 {
+        h1, h2, h3, h4 {
             font-family: Georgia, serif;
             color: var(--text-white);
         }
@@ -83,18 +81,9 @@
             border-radius: 12px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-        }
-
-        .badge-virtual {
-            background-color: rgba(37, 99, 235, 0.2);
-            color: #60a5fa;
-            border: 1px solid rgba(37, 99, 235, 0.4);
-        }
-
-        .badge-inperson {
-            background-color: rgba(5, 150, 105, 0.2);
-            color: #34d399;
-            border: 1px solid rgba(5, 150, 105, 0.4);
+            background-color: rgba(212, 175, 55, 0.15);
+            color: var(--gold-light);
+            border: 1px solid var(--border-gold);
         }
 
         .event-meta {
@@ -113,9 +102,11 @@
             padding-top: 0.75rem;
             border-top: 1px solid rgba(255, 255, 255, 0.08);
             margin-top: 0.5rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
         }
 
-        .btn-sync {
+        .btn-action {
             background: transparent;
             border: 1px solid var(--gold-primary);
             color: var(--gold-primary);
@@ -125,13 +116,12 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.2s;
-            text-decoration: none;
             display: inline-flex;
             align-items: center;
             gap: 0.4rem;
         }
 
-        .btn-sync:hover {
+        .btn-action:hover, .btn-action.active {
             background: var(--gold-primary);
             color: var(--navy-dark);
         }
@@ -146,9 +136,9 @@
             cursor: pointer;
         }
 
-        /* Form Controls */
+        /* Forms */
         .admin-panel {
-            display: none; /* Hidden by default for regular users */
+            display: none;
             border-left: 4px solid var(--gold-primary);
         }
 
@@ -164,7 +154,10 @@
             font-weight: 600;
         }
 
-        input, select, textarea {
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        textarea {
             width: 100%;
             background-color: rgba(8, 13, 26, 0.6);
             border: 1px solid var(--border-gold);
@@ -191,6 +184,21 @@
             font-size: 0.95rem;
             cursor: pointer;
             width: 100%;
+        }
+
+        /* RSVP Collapsible Section */
+        .rsvp-section {
+            display: none;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px dashed rgba(212, 175, 55, 0.3);
+            background: rgba(8, 13, 26, 0.4);
+            padding: 1rem;
+            border-radius: 8px;
+        }
+
+        .rsvp-section.open {
+            display: block;
         }
 
         .admin-toggle-link {
@@ -269,11 +277,8 @@
 
                 <div class="grid-2-form">
                     <div class="form-group">
-                        <label for="typeInput">Event Type</label>
-                        <select id="typeInput">
-                            <option value="virtual">Virtual (Zoom/Discord)</option>
-                            <option value="in-person">In-Person</option>
-                        </select>
+                        <label for="typeInput">Event Category / Type</label>
+                        <input type="text" id="typeInput" placeholder="e.g., Virtual, In-Person, Retreat, Service" required>
                     </div>
 
                     <div class="form-group">
@@ -283,7 +288,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="locationInput">Location / Meeting Link</label>
+                    <label for="locationInput">Location / Meeting Details</label>
                     <input type="text" id="locationInput" placeholder="e.g., Parish Youth Center or Zoom Link" required>
                 </div>
 
@@ -328,15 +333,13 @@
     </nav>
 
     <script>
-        // Master Admin Passcode
         const ADMIN_PASSCODE = "722005";
 
-        // Default events seed data
         const defaultEvents = [
             {
                 id: 1,
                 title: "National Youth Virtual Rosary",
-                type: "virtual",
+                type: "Virtual",
                 dateStr: "Friday, Sept 11 • 8:00 PM EST",
                 location: "Zoom ID: 842 1920 4410",
                 description: "Join youth from across the country for our weekly online Rosary and small group discussion."
@@ -344,22 +347,13 @@
             {
                 id: 2,
                 title: "Game Night & Pizza Social",
-                type: "in-person",
+                type: "In-Person",
                 dateStr: "Saturday, Sept 19 • 6:00 PM EST",
                 location: "St. Joseph Youth Center Hall",
                 description: "Board games, multiplayer video games, and free pizza! Bring a friend along."
-            },
-            {
-                id: 3,
-                title: "Gospel Bible Study: Gospel of Mark",
-                type: "virtual",
-                dateStr: "Wednesday, Sept 23 • 7:30 PM EST",
-                location: "Discord Voice Channel",
-                description: "An interactive scripture study focusing on discipleship and faith in action."
             }
         ];
 
-        // Retrieve stored events or initialize default list
         function getEvents() {
             const stored = localStorage.getItem('cys_events');
             if (!stored) {
@@ -373,12 +367,10 @@
             localStorage.setItem('cys_events', JSON.stringify(events));
         }
 
-        // Check if current device has unlocked Admin status
         function isAdmin() {
             return localStorage.getItem('cys_admin_logged_in') === 'true';
         }
 
-        // Render Events Feed
         function renderEvents() {
             const events = getEvents();
             const feed = document.getElementById('eventsFeed');
@@ -389,12 +381,15 @@
             events.forEach(item => {
                 const card = document.createElement('div');
                 card.className = 'card event-card';
+                
+                // Retrieve RSVPs for this event
+                const rsvpKey = `cys_rsvp_${item.id}`;
+                const userRsvp = localStorage.getItem(rsvpKey);
+                
                 card.innerHTML = `
                     <div class="event-header">
                         <h3>${escapeHtml(item.title)}</h3>
-                        <span class="badge ${item.type === 'virtual' ? 'badge-virtual' : 'badge-inperson'}">
-                            ${item.type === 'virtual' ? '🌐 Virtual' : '📍 In-Person'}
-                        </span>
+                        <span class="badge">📍 ${escapeHtml(item.type)}</span>
                     </div>
 
                     <div class="event-meta">
@@ -407,21 +402,65 @@
                     </p>
 
                     <div class="event-actions">
-                        <button class="btn-sync" onclick="downloadICS('${escapeJs(item.title)}', '${escapeJs(item.dateStr)}', '${escapeJs(item.location)}', '${escapeJs(item.description)}')">
+                        <button class="btn-action ${userRsvp ? 'active' : ''}" onclick="toggleRsvpForm(${item.id})">
+                            ${userRsvp ? '✓ RSVP Submitted' : '✍️ RSVP Now'}
+                        </button>
+                        <button class="btn-action" onclick="downloadICS('${escapeJs(item.title)}', '${escapeJs(item.dateStr)}', '${escapeJs(item.location)}', '${escapeJs(item.description)}')">
                             📅 Add to Calendar
                         </button>
                         ${adminLoggedIn ? `<button class="btn-delete" onclick="deleteEvent(${item.id})">Delete Event</button>` : ''}
+                    </div>
+
+                    <!-- RSVP Form Collapsible Section -->
+                    <div class="rsvp-section" id="rsvp-section-${item.id}">
+                        <h4 style="margin-bottom: 0.75rem; font-size: 1rem; color: var(--gold-light);">Contact Information for RSVP</h4>
+                        ${userRsvp ? `
+                            <p style="color: #34d399; font-size: 0.85rem; margin-bottom: 0.5rem;">✓ You have registered for this event with: ${escapeHtml(JSON.parse(userRsvp).email)}</p>
+                        ` : ''}
+                        <form onsubmit="handleRSVPSubmit(event, ${item.id})">
+                            <div class="form-group">
+                                <label>Full Name</label>
+                                <input type="text" id="rsvp-name-${item.id}" placeholder="e.g. John Doe" required>
+                            </div>
+                            <div class="grid-2-form">
+                                <div class="form-group">
+                                    <label>Email Address</label>
+                                    <input type="email" id="rsvp-email-${item.id}" placeholder="john@example.com" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Phone Number</label>
+                                    <input type="tel" id="rsvp-phone-${item.id}" placeholder="(555) 000-0000" required>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn-submit" style="margin-top: 0.5rem;">Confirm RSVP</button>
+                        </form>
                     </div>
                 `;
                 feed.appendChild(card);
             });
 
-            // Toggle admin panel visibility
             document.getElementById('adminPanel').style.display = adminLoggedIn ? 'block' : 'none';
             document.getElementById('adminAuthBtn').innerText = adminLoggedIn ? '🔒 Log Out of Admin Mode' : '🔑 Admin Access (Post Events)';
         }
 
-        // Handle Admin Authentication
+        function toggleRsvpForm(eventId) {
+            const targetSection = document.getElementById(`rsvp-section-${eventId}`);
+            targetSection.classList.toggle('open');
+        }
+
+        function handleRSVPSubmit(event, eventId) {
+            event.preventDefault();
+            const name = document.getElementById(`rsvp-name-${eventId}`).value.trim();
+            const email = document.getElementById(`rsvp-email-${eventId}`).value.trim();
+            const phone = document.getElementById(`rsvp-phone-${eventId}`).value.trim();
+
+            const rsvpData = { name, email, phone, timestamp: new Date().toISOString() };
+            localStorage.setItem(`cys_rsvp_${eventId}`, JSON.stringify(rsvpData));
+
+            alert(`Thank you, ${name}! Your RSVP has been recorded.`);
+            renderEvents();
+        }
+
         function toggleAdminPrompt() {
             if (isAdmin()) {
                 localStorage.setItem('cys_admin_logged_in', 'false');
@@ -438,7 +477,6 @@
             renderEvents();
         }
 
-        // Event Creation (Admin Only)
         function handleCreateEvent(event) {
             event.preventDefault();
             if (!isAdmin()) return;
@@ -447,7 +485,7 @@
             const newEvent = {
                 id: Date.now(),
                 title: document.getElementById('titleInput').value.trim(),
-                type: document.getElementById('typeInput').value,
+                type: document.getElementById('typeInput').value.trim(),
                 dateStr: document.getElementById('dateInput').value.trim(),
                 location: document.getElementById('locationInput').value.trim(),
                 description: document.getElementById('descInput').value.trim()
@@ -456,12 +494,10 @@
             events.unshift(newEvent);
             saveEvents(events);
 
-            // Reset form fields
             document.getElementById('eventForm').reset();
             renderEvents();
         }
 
-        // Delete Event (Admin Only)
         function deleteEvent(id) {
             if (!isAdmin()) return;
             if (confirm('Are you sure you want to delete this event?')) {
@@ -471,7 +507,6 @@
             }
         }
 
-        // Generate and download .ics calendar file
         function downloadICS(title, dateStr, location, desc) {
             const icsContent = 
 `BEGIN:VCALENDAR
@@ -494,7 +529,6 @@ END:VCALENDAR`;
             document.body.removeChild(link);
         }
 
-        // XSS Helper functions
         function escapeHtml(str) {
             return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
         }
@@ -502,7 +536,6 @@ END:VCALENDAR`;
             return str.replace(/'/g, "\\'").replace(/"/g, '\\"');
         }
 
-        // Initialize page
         renderEvents();
     </script>
 
