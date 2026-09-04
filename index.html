@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daily Prayer & Rosary - Catholic Youth Society</title>
+    <title>Catholic Youth Society - Dashboard</title>
     <style>
         :root {
-            --navy-dark: #0a1128;
-            --navy-card: #1c2541;
-            --navy-accent: #1e3a8a;
+            --navy-dark: #080d1a;
+            --navy-card: #121b2d;
+            --navy-accent: #1e2d4a;
             --gold-primary: #d4af37;
             --gold-light: #f3e5ab;
             --text-white: #ffffff;
-            --text-muted: #a0aec0;
-            --border-gold: rgba(212, 175, 55, 0.3);
+            --text-muted: #8c9ba5;
+            --border-gold: rgba(212, 175, 55, 0.25);
         }
 
         * {
@@ -27,20 +27,20 @@
             color: var(--text-white);
             background-color: var(--navy-dark);
             line-height: 1.6;
-            padding-bottom: 2rem;
+            padding-bottom: 3rem;
         }
 
-        /* Navigation Bar */
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 1rem 5%;
-            background-color: var(--navy-dark);
+            background-color: rgba(8, 13, 26, 0.95);
             border-bottom: 1px solid var(--border-gold);
             position: sticky;
             top: 0;
             z-index: 1000;
+            backdrop-filter: blur(10px);
         }
 
         .logo-text {
@@ -73,12 +73,11 @@
             background-color: var(--gold-primary);
             color: var(--navy-dark);
             padding: 0.4rem 1rem;
-            border-radius: 4px;
+            border-radius: 6px;
             text-decoration: none;
             font-weight: 700;
         }
 
-        /* Main Layout */
         .container {
             padding: 2rem 5%;
             max-width: 1100px;
@@ -87,7 +86,7 @@
 
         .section-title {
             color: var(--gold-primary);
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 700;
             letter-spacing: 1.5px;
             text-transform: uppercase;
@@ -97,134 +96,171 @@
         h1, h2, h3 {
             font-family: Georgia, serif;
             color: var(--text-white);
-            margin-bottom: 1rem;
         }
 
         .card {
             background-color: var(--navy-card);
             border: 1px solid var(--border-gold);
-            border-radius: 12px;
+            border-radius: 14px;
             padding: 1.5rem;
             margin-bottom: 1.5rem;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
         }
 
+        /* Top Header Stats Banner */
+        .user-welcome-banner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .streak-badge {
+            background: rgba(212, 175, 55, 0.15);
+            border: 1px solid var(--border-gold);
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 700;
+            color: var(--gold-light);
+        }
+
+        /* Liturgical Season Ribbon */
+        .liturgical-bar {
+            background: linear-gradient(90deg, #1e2d4a 0%, #121b2d 100%);
+            border-left: 4px solid var(--gold-primary);
+            padding: 0.75rem 1.25rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: var(--gold-light);
+        }
+
+        /* Hero Daily Gospel Card */
+        .hero-verse-card {
+            background: linear-gradient(135deg, #18243b 0%, #0d1424 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .verse-body {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: var(--gold-light);
+            margin: 1rem 0;
+            line-height: 1.7;
+        }
+
+        .verse-ref {
+            font-weight: 700;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .audio-player-controls {
+            margin-top: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-play {
+            background: var(--gold-primary);
+            color: var(--navy-dark);
+            border: none;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* Feature Cards Grid */
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .quick-action-card {
+            background-color: var(--navy-card);
+            border: 1px solid var(--border-gold);
+            border-radius: 12px;
+            padding: 1.25rem 1rem;
+            text-align: center;
+            text-decoration: none;
+            color: var(--text-white);
+            transition: all 0.25s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .quick-action-card:hover {
+            border-color: var(--gold-primary);
+            background-color: var(--navy-accent);
+            transform: translateY(-3px);
+        }
+
+        .icon-circle {
+            font-size: 1.6rem;
+            margin-bottom: 0.2rem;
+        }
+
+        /* Two Column Layout */
         .grid-2 {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 1.5rem;
         }
 
-        /* Daily Reading Card */
-        .scripture-card {
-            border-left: 4px solid var(--gold-primary);
-            background: linear-gradient(135deg, var(--navy-card) 0%, #111a33 100%);
+        .community-prayer-box {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
 
-        .verse-body {
-            font-size: 1.05rem;
-            color: var(--text-white);
-            margin-bottom: 1rem;
-            font-style: italic;
-        }
-
-        .verse-ref {
-            font-weight: 700;
-            color: var(--gold-primary);
-        }
-
-        /* Structured Prayers */
-        .prayer-box {
-            padding-bottom: 1rem;
-            margin-bottom: 1rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .prayer-box:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
-        }
-
-        .prayer-title {
-            font-weight: 700;
-            color: var(--gold-light);
-            margin-bottom: 0.3rem;
-        }
-
-        .prayer-text {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-
-        /* Interactive Rosary Guide */
-        .rosary-tracker {
-            text-align: center;
-            padding: 2rem 1rem;
-        }
-
-        .counter-display {
-            font-size: 3rem;
-            font-weight: 800;
-            color: var(--gold-primary);
-            margin: 0.5rem 0;
-            font-family: Georgia, serif;
-        }
-
-        .bead-label {
-            font-size: 1.1rem;
-            color: var(--gold-light);
-            margin-bottom: 1.5rem;
-        }
-
-        .btn-gold {
-            background-color: var(--gold-primary);
-            color: var(--navy-dark);
-            border: none;
-            padding: 0.8rem 2rem;
-            border-radius: 30px;
-            font-size: 1rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .btn-gold:hover {
-            background-color: var(--gold-light);
-            transform: translateY(-2px);
-        }
-
-        .btn-reset {
+        .btn-pray-sm {
             background: transparent;
-            color: var(--text-muted);
-            border: 1px solid var(--text-muted);
-            padding: 0.4rem 1rem;
+            border: 1px solid var(--gold-primary);
+            color: var(--gold-primary);
+            padding: 0.3rem 0.8rem;
             border-radius: 20px;
             font-size: 0.8rem;
+            font-weight: 600;
             cursor: pointer;
-            margin-top: 1rem;
         }
 
-        .btn-reset:hover {
-            color: var(--text-white);
-            border-color: var(--text-white);
+        .btn-pray-sm.prayed {
+            background: var(--gold-primary);
+            color: var(--navy-dark);
         }
 
         @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .grid-2 {
-                grid-template-columns: 1fr;
-            }
+            header { flex-direction: column; gap: 1rem; }
+            .grid-4 { grid-template-columns: 1fr 1fr; }
+            .grid-2 { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Header Navigation -->
     <header>
         <a href="index.html" class="logo-text">Catholic Youth Society</a>
         <nav>
@@ -241,62 +277,98 @@
 
     <main class="container">
 
-        <div style="margin-bottom: 1.5rem;">
-            <div class="section-title">Daily Spiritual Practice</div>
-            <h1>Scripture & Prayer</h1>
-        </div>
-
-        <!-- Dynamic Daily Gospel Reading -->
-        <div class="card scripture-card">
-            <div class="section-title">Today's Scripture Reading</div>
-            <h3>Gospel Reflection</h3>
-            <div class="verse-body" id="dailyVerse">
-                Loading today's verse...
+        <!-- Welcome Banner & Prayer Streak Tracker -->
+        <div class="user-welcome-banner">
+            <div>
+                <div class="section-title" id="timeGreeting">Good Day</div>
+                <h1 style="font-size: 1.8rem;">Welcome to Youth Prayer</h1>
             </div>
-            <div class="verse-ref" id="dailyRef">
-                Loading reference...
+            <div class="streak-badge">
+                🔥 <span id="streakCount">5</span> Day Prayer Streak
             </div>
         </div>
 
+        <!-- Liturgical Calendar Status Bar -->
+        <div class="liturgical-bar">
+            <span>📅 Ordinary Time • Friday</span>
+            <span>Saint of the Day: St. Teresa of Calcutta</span>
+        </div>
+
+        <!-- Featured Daily Gospel & Audio Meditation -->
+        <div class="card hero-verse-card">
+            <div class="section-title">Today's Gospel Meditation</div>
+            <div class="verse-body">
+                "Let no one have contempt for your youth, but set an example for those who believe, in speech, conduct, love, faith, and purity."
+            </div>
+            <div class="verse-ref">— 1 Timothy 4:12</div>
+
+            <div class="audio-player-controls">
+                <button class="btn-play" onclick="toggleAudio()" id="playBtn">▶</button>
+                <div>
+                    <div style="font-size: 0.85rem; font-weight: 700;">Listen to 3-Min Daily Reflection</div>
+                    <div style="font-size: 0.75rem; color: var(--text-muted);" id="audioStatus">Tap play to listen</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Access Navigation -->
+        <div class="section-title">Daily Spiritual Tools</div>
+        <div class="grid-4">
+            <a href="daily-prayer.html" class="quick-action-card">
+                <span class="icon-circle">📖</span>
+                <span style="font-size: 0.9rem; font-weight: 600;">Daily Prayer</span>
+            </a>
+            <a href="daily-prayer.html#rosary" class="quick-action-card">
+                <span class="icon-circle">📿</span>
+                <span style="font-size: 0.9rem; font-weight: 600;">Audio Rosary</span>
+            </a>
+            <a href="prayer-wall.html" class="quick-action-card">
+                <span class="icon-circle">🙏</span>
+                <span style="font-size: 0.9rem; font-weight: 600;">Prayer Wall</span>
+            </a>
+            <a href="events.html" class="quick-action-card">
+                <span class="icon-circle">📅</span>
+                <span style="font-size: 0.9rem; font-weight: 600;">Youth Events</span>
+            </a>
+        </div>
+
+        <!-- Two Column Interactive Widgets -->
         <div class="grid-2">
 
-            <!-- Structured Daily Prayers -->
+            <!-- Community Intentions Widget -->
             <div class="card">
-                <div class="section-title">Daily Prayers</div>
+                <div class="section-title">Community Intentions</div>
+                <h3 style="margin-bottom: 1rem; font-size: 1.2rem;">Pray for Others Today</h3>
 
-                <div class="prayer-box">
-                    <div class="prayer-title">Morning Offering</div>
-                    <div class="prayer-text">
-                        O Jesus, through the Immaculate Heart of Mary, I offer You my prayers, works, joys, and sufferings of this day for all the intentions of Your Sacred Heart. Amen.
-                    </div>
+                <div class="community-prayer-box">
+                    <span style="font-size: 0.85rem;">For all students starting a new school year.</span>
+                    <button class="btn-pray-sm" onclick="prayFor(this)">🙏 Pray</button>
                 </div>
 
-                <div class="prayer-box">
-                    <div class="prayer-title">Prayer to St. Michael</div>
-                    <div class="prayer-text">
-                        Saint Michael the Archangel, defend us in battle. Be our protection against the wickedness and snares of the devil. May God rebuke him, we humbly pray... Amen.
-                    </div>
+                <div class="community-prayer-box">
+                    <span style="font-size: 0.85rem;">For peace in families and youth mental health.</span>
+                    <button class="btn-pray-sm" onclick="prayFor(this)">🙏 Pray</button>
                 </div>
 
-                <div class="prayer-box">
-                    <div class="prayer-title">Act of Contrition</div>
-                    <div class="prayer-text">
-                        O my God, I am heartily sorry for having offended Thee, and I detest all my sins because of Thy just punishments... Amen.
-                    </div>
+                <div style="margin-top: 1rem; text-align: center;">
+                    <a href="prayer-wall.html" style="color: var(--gold-primary); text-decoration: none; font-size: 0.85rem; font-weight: 600;">View All Requests &rarr;</a>
                 </div>
             </div>
 
-            <!-- Interactive Rosary Counter -->
-            <div class="card rosary-tracker">
-                <div class="section-title">Interactive Rosary Guide</div>
-                <h3>Decade Counter</h3>
-                
-                <div class="counter-display" id="beadCount">0 / 10</div>
-                <div class="bead-label" id="beadName">Begin with Our Father</div>
+            <!-- Youth Group Announcements -->
+            <div class="card">
+                <div class="section-title">Youth Society Updates</div>
+                <h3 style="margin-bottom: 1rem; font-size: 1.2rem;">National Gatherings</h3>
 
-                <button class="btn-gold" onclick="nextBead()">Tap Bead</button>
-                <br>
-                <button class="btn-reset" onclick="resetRosary()">Reset Counter</button>
+                <div style="padding-bottom: 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.08);">
+                    <div style="font-size: 0.75rem; color: var(--gold-primary); font-weight: 700;">THIS FRIDAY • 8 PM EST</div>
+                    <div style="font-size: 0.95rem; font-weight: 600;">National Virtual Rosary & Gathering</div>
+                </div>
+
+                <div style="padding-top: 0.75rem;">
+                    <div style="font-size: 0.75rem; color: var(--gold-primary); font-weight: 700;">FEATURED RESOURCE</div>
+                    <div style="font-size: 0.95rem; font-weight: 600;">How to Pray the Divine Mercy Chaplet Guide</div>
+                </div>
             </div>
 
         </div>
@@ -304,56 +376,25 @@
     </main>
 
     <script>
-        // Array of Gospel verses to rotate daily
-        const verses = [
-            { text: '"I am the light of the world. Whoever follows me will not walk in darkness, but will have the light of life."', ref: '— John 8:12' },
-            { text: '"For where two or three gather in my name, there am I with them."', ref: '— Matthew 18:20' },
-            { text: '"Peace I leave with you; my peace I give you. I do not give to you as the world gives. Do not let your hearts be troubled and do not be afraid."', ref: '— John 14:27' },
-            { text: '"I can do all this through him who gives me strength."', ref: '— Philippians 4:13' },
-            { text: '"Ask and it will be given to you; seek and you will find; knock and the door will be opened to you."', ref: '— Matthew 7:7' },
-            { text: '"Be strong and courageous. Do not be afraid; do not be discouraged, for the Lord your God will be with you wherever you go."', ref: '— Joshua 1:9' },
-            { text: '"Trust in the Lord with all your heart and lean not on your own understanding; in all your ways submit to him, and he will make your paths straight."', ref: '— Proverbs 3:5-6' }
-        ];
+        // Set Greeting dynamically
+        const hour = new Date().getHours();
+        let greeting = "Good Evening";
+        if (hour < 12) greeting = "Good Morning";
+        else if (hour < 18) greeting = "Good Afternoon";
+        document.getElementById('timeGreeting').innerText = greeting;
 
-        // Function to select a verse based on the current day of the year
-        function loadDailyVerse() {
-            const now = new Date();
-            const start = new Date(now.getFullYear(), 0, 0);
-            const diff = now - start;
-            const oneDay = 1000 * 60 * 60 * 24;
-            const dayOfYear = Math.floor(diff / oneDay);
-
-            // Get index using remainder to cycle through array endlessly
-            const verseIndex = dayOfYear % verses.length;
-            
-            document.getElementById('dailyVerse').innerText = verses[verseIndex].text;
-            document.getElementById('dailyRef').innerText = verses[verseIndex].ref;
+        // Audio Toggle Simulation
+        let isPlaying = false;
+        function toggleAudio() {
+            isPlaying = !isPlaying;
+            document.getElementById('playBtn').innerText = isPlaying ? "❚❚" : "▶";
+            document.getElementById('audioStatus').innerText = isPlaying ? "Playing reflection audio..." : "Paused";
         }
 
-        // Run when page loads
-        loadDailyVerse();
-
-        // Interactive Rosary Counter Code
-        let count = 0;
-
-        function nextBead() {
-            if (count < 10) {
-                count++;
-                document.getElementById('beadCount').innerText = count + ' / 10';
-                if (count === 1) {
-                    document.getElementById('beadName').innerText = "Hail Mary (First Bead)";
-                } else if (count === 10) {
-                    document.getElementById('beadName').innerText = "Decade Complete! Pray Glory Be";
-                } else {
-                    document.getElementById('beadName').innerText = "Hail Mary (Bead " + count + ")";
-                }
-            }
-        }
-
-        function resetRosary() {
-            count = 0;
-            document.getElementById('beadCount').innerText = '0 / 10';
-            document.getElementById('beadName').innerText = 'Begin with Our Father';
+        // Prayer counter button
+        function prayFor(btn) {
+            btn.classList.add('prayed');
+            btn.innerText = "✓ Prayed";
         }
     </script>
 
