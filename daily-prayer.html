@@ -27,7 +27,7 @@
             color: var(--text-white);
             background-color: var(--navy-dark);
             line-height: 1.6;
-            padding-bottom: 3rem;
+            padding-bottom: 5rem;
         }
 
         .container {
@@ -132,6 +132,42 @@
             margin-top: 0.25rem;
             transform: scale(1.2);
         }
+
+        /* Bottom Nav Bar */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: var(--navy-card);
+            border-top: 1px solid var(--border-gold);
+            display: flex;
+            justify-content: space-around;
+            padding: 0.6rem 0;
+            z-index: 1000;
+            box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .nav-item .nav-icon {
+            font-size: 1.25rem;
+            margin-bottom: 0.15rem;
+        }
+
+        .nav-item.active,
+        .nav-item:hover {
+            color: var(--gold-primary);
+        }
     </style>
 </head>
 <body>
@@ -145,10 +181,10 @@
 
         <!-- Navigation Tabs -->
         <div class="tab-bar">
-            <button class="tab-btn active" onclick="switchTab('gospelTab', this)">📖 Gospel</button>
-            <button class="tab-btn" onclick="switchTab('rosaryTab', this)">📿 Rosary</button>
-            <button class="tab-btn" onclick="switchTab('prayersTab', this)">🙏 Prayers</button>
-            <button class="tab-btn" onclick="switchTab('examTab', this)">🌙 Examination</button>
+            <button class="tab-btn active" id="btn-gospelTab" onclick="switchTab('gospelTab', this)">📖 Gospel</button>
+            <button class="tab-btn" id="btn-rosaryTab" onclick="switchTab('rosaryTab', this)">📿 Rosary</button>
+            <button class="tab-btn" id="btn-prayersTab" onclick="switchTab('prayersTab', this)">🙏 Prayers</button>
+            <button class="tab-btn" id="btn-examTab" onclick="switchTab('examTab', this)">🌙 Examination</button>
         </div>
 
         <!-- TAB 1: DAILY GOSPEL & SCRIPTURE -->
@@ -223,13 +259,38 @@
 
     </main>
 
+    <!-- Bottom Navigation Bar -->
+    <nav class="bottom-nav">
+        <a href="index.html" class="nav-item">
+            <span class="nav-icon">🏠</span>
+            <span>Home</span>
+        </a>
+        <a href="daily-prayer.html" class="nav-item active">
+            <span class="nav-icon">📖</span>
+            <span>Prayers</span>
+        </a>
+        <a href="prayer-wall.html" class="nav-item">
+            <span class="nav-icon">🙏</span>
+            <span>Prayer Wall</span>
+        </a>
+        <a href="events.html" class="nav-item">
+            <span class="nav-icon">📅</span>
+            <span>Events</span>
+        </a>
+    </nav>
+
     <script>
         // Tab Switcher Function
         function switchTab(tabId, btn) {
             document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
             document.getElementById(tabId).classList.add('active');
-            btn.classList.add('active');
+            if (btn) btn.classList.add('active');
+        }
+
+        // Handle direct deep-linking via URL hash (e.g., daily-prayer.html#rosary)
+        if (window.location.hash === '#rosary') {
+            switchTab('rosaryTab', document.getElementById('btn-rosaryTab'));
         }
 
         // Auto-rotating Gospel Scripture
