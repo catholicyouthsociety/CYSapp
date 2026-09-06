@@ -1,0 +1,3529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+<meta
+    name="theme-color"
+    content="#06132c">
+
+<meta
+    name="apple-mobile-web-app-capable"
+    content="yes">
+
+<meta
+    name="apple-mobile-web-app-status-bar-style"
+    content="black-translucent">
+
+<title>Community • Catholic Youth Society</title>
+
+<style>
+
+:root {
+
+    --navy: #06132c;
+    --navy-2: #091b3b;
+    --navy-3: #102956;
+
+    --gold: #d7b66d;
+    --gold-light: #f1d99b;
+
+    --cream: #fffaf0;
+    --white: #ffffff;
+
+    --text: #f9f8f4;
+
+    --muted:
+        rgba(255,255,255,.67);
+
+    --muted-2:
+        rgba(255,255,255,.46);
+
+    --glass:
+        rgba(255,255,255,.075);
+
+    --glass-hover:
+        rgba(255,255,255,.105);
+
+    --glass-border:
+        rgba(255,255,255,.125);
+
+    --gold-glass:
+        rgba(215,182,109,.11);
+
+    --shadow:
+        0 20px 60px rgba(0,0,0,.25);
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+
+    box-sizing: border-box;
+
+    margin: 0;
+
+    padding: 0;
+
+}
+
+
+html {
+
+    scroll-behavior: smooth;
+
+}
+
+
+body {
+
+    min-height: 100vh;
+
+    overflow-x: hidden;
+
+    color: var(--text);
+
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "SF Pro Display",
+        "SF Pro Text",
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+
+    background:
+
+        radial-gradient(
+            circle at 8% -5%,
+            rgba(215,182,109,.16),
+            transparent 29%
+        ),
+
+        radial-gradient(
+            circle at 93% 8%,
+            rgba(60,100,190,.22),
+            transparent 32%
+        ),
+
+        radial-gradient(
+            circle at 50% 55%,
+            rgba(25,55,110,.16),
+            transparent 42%
+        ),
+
+        linear-gradient(
+            180deg,
+            var(--navy),
+            var(--navy-2) 55%,
+            #071631
+        );
+
+    padding-bottom:
+        calc(115px + env(safe-area-inset-bottom));
+
+}
+
+
+body::before {
+
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: -1;
+
+    opacity: .025;
+
+    background-image:
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+
+}
+
+
+a {
+
+    color: inherit;
+
+    text-decoration: none;
+
+}
+
+
+button,
+input,
+textarea,
+select {
+
+    font: inherit;
+
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+header {
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 100;
+
+    padding:
+        calc(14px + env(safe-area-inset-top))
+        18px
+        14px;
+
+    background:
+        rgba(6,19,44,.63);
+
+    border-bottom:
+        1px solid rgba(255,255,255,.075);
+
+    backdrop-filter:
+        blur(26px)
+        saturate(160%);
+
+    -webkit-backdrop-filter:
+        blur(26px)
+        saturate(160%);
+
+}
+
+
+.header-inner {
+
+    width:
+        min(1180px, 100%);
+
+    margin: 0 auto;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+}
+
+
+.brand {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+}
+
+
+.brand-mark {
+
+    width: 42px;
+
+    height: 42px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(241,217,155,.26),
+            rgba(215,182,109,.07)
+        );
+
+    border:
+        1px solid rgba(241,217,155,.25);
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,.22),
+        inset 0 1px 0 rgba(255,255,255,.16);
+
+    font-size: 20px;
+
+}
+
+
+.brand-text strong {
+
+    display: block;
+
+    font-size: 15px;
+
+    letter-spacing: -.2px;
+
+}
+
+
+.brand-text span {
+
+    display: block;
+
+    margin-top: 2px;
+
+    color: var(--muted-2);
+
+    font-size: 10px;
+
+    letter-spacing: .35px;
+
+}
+
+
+.header-actions {
+
+    display: flex;
+
+    gap: 8px;
+
+}
+
+
+.icon-button {
+
+    width: 40px;
+
+    height: 40px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 13px;
+
+    border:
+        1px solid var(--glass-border);
+
+    background:
+        rgba(255,255,255,.065);
+
+    color: white;
+
+    cursor: pointer;
+
+    backdrop-filter:
+        blur(15px);
+
+    -webkit-backdrop-filter:
+        blur(15px);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.08);
+
+    transition:
+        transform .2s ease,
+        background .2s ease;
+
+}
+
+
+.icon-button:hover {
+
+    background:
+        rgba(255,255,255,.12);
+
+}
+
+
+.icon-button:active {
+
+    transform:
+        scale(.91);
+
+}
+
+
+/* =========================================================
+   PAGE
+========================================================= */
+
+.container {
+
+    width:
+        min(1180px, calc(100% - 36px));
+
+    margin:
+        0 auto;
+
+}
+
+
+/* =========================================================
+   COMMUNITY HERO
+========================================================= */
+
+.community-hero {
+
+    position: relative;
+
+    margin-top: 34px;
+
+    padding: 42px;
+
+    overflow: hidden;
+
+    border-radius: 34px;
+
+    background:
+
+        radial-gradient(
+            circle at 84% 22%,
+            rgba(215,182,109,.18),
+            transparent 31%
+        ),
+
+        radial-gradient(
+            circle at 60% 90%,
+            rgba(44,83,160,.17),
+            transparent 35%
+        ),
+
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.095),
+            rgba(255,255,255,.035)
+        );
+
+    border:
+        1px solid rgba(255,255,255,.13);
+
+    box-shadow:
+        0 25px 75px rgba(0,0,0,.28);
+
+    backdrop-filter:
+        blur(25px);
+
+    -webkit-backdrop-filter:
+        blur(25px);
+
+}
+
+
+.community-hero::after {
+
+    content: "✝";
+
+    position: absolute;
+
+    right: 30px;
+
+    bottom: -68px;
+
+    font-size: 260px;
+
+    color:
+        rgba(241,217,155,.045);
+
+    font-weight: 200;
+
+    pointer-events: none;
+
+}
+
+
+.eyebrow {
+
+    color:
+        var(--gold-light);
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 2.3px;
+
+    text-transform: uppercase;
+
+}
+
+
+.community-hero h1 {
+
+    max-width: 760px;
+
+    margin-top: 13px;
+
+    font-size:
+        clamp(43px, 7vw, 76px);
+
+    line-height: .96;
+
+    letter-spacing: -3.5px;
+
+}
+
+
+.community-hero h1 span {
+
+    color:
+        var(--gold-light);
+
+}
+
+
+.community-hero p {
+
+    max-width: 710px;
+
+    margin-top: 21px;
+
+    color:
+        var(--muted);
+
+    font-size: 15px;
+
+    line-height: 1.7;
+
+}
+
+
+.hero-actions {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    margin-top: 27px;
+
+}
+
+
+.primary-button,
+.secondary-button {
+
+    min-height: 46px;
+
+    padding:
+        0 18px;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 14px;
+
+    cursor: pointer;
+
+    font-size: 12px;
+
+    font-weight: 750;
+
+    transition:
+        transform .2s ease,
+        background .2s ease;
+
+}
+
+
+.primary-button {
+
+    color:
+        #211a0d;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--gold-light),
+            var(--gold)
+        );
+
+    box-shadow:
+        0 12px 30px rgba(215,182,109,.16);
+
+}
+
+
+.secondary-button {
+
+    color: white;
+
+    background:
+        rgba(255,255,255,.065);
+
+    border:
+        1px solid var(--glass-border);
+
+}
+
+
+.primary-button:hover,
+.secondary-button:hover {
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+.primary-button:active,
+.secondary-button:active {
+
+    transform:
+        scale(.97);
+
+}
+
+
+/* =========================================================
+   COMMUNITY STATS
+========================================================= */
+
+.community-stats {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap: 10px;
+
+    margin-top: 15px;
+
+}
+
+
+.stat-card {
+
+    padding: 20px;
+
+    border-radius: 21px;
+
+    background:
+        rgba(255,255,255,.055);
+
+    border:
+        1px solid rgba(255,255,255,.085);
+
+    text-align: center;
+
+}
+
+
+.stat-number {
+
+    display: block;
+
+    color:
+        var(--gold-light);
+
+    font-size: 25px;
+
+    font-weight: 750;
+
+    letter-spacing: -.7px;
+
+}
+
+
+.stat-label {
+
+    display: block;
+
+    margin-top: 4px;
+
+    color:
+        var(--muted-2);
+
+    font-size: 10px;
+
+}
+
+
+/* =========================================================
+   SECTION
+========================================================= */
+
+section {
+
+    margin-top: 48px;
+
+}
+
+
+.section-heading {
+
+    display: flex;
+
+    align-items: end;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    margin-bottom: 16px;
+
+}
+
+
+.section-heading h2 {
+
+    font-size: 24px;
+
+    letter-spacing: -.7px;
+
+}
+
+
+.section-heading p {
+
+    color:
+        var(--muted-2);
+
+    font-size: 11px;
+
+}
+
+
+/* =========================================================
+   COMMUNITY HUB
+========================================================= */
+
+.hub-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0,1fr));
+
+    gap: 11px;
+
+}
+
+
+.hub-card {
+
+    min-height: 165px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    padding: 21px;
+
+    border-radius: 23px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.08),
+            rgba(255,255,255,.035)
+        );
+
+    border:
+        1px solid var(--glass-border);
+
+    box-shadow:
+        0 13px 40px rgba(0,0,0,.14);
+
+    transition:
+        transform .22s ease,
+        background .22s ease;
+
+}
+
+
+.hub-card::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 100px;
+
+    height: 100px;
+
+    right: -40px;
+
+    bottom: -45px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(215,182,109,.08);
+
+    filter: blur(6px);
+
+}
+
+
+.hub-card:hover {
+
+    transform:
+        translateY(-3px);
+
+    background:
+        var(--glass-hover);
+
+}
+
+
+.hub-icon {
+
+    font-size: 25px;
+
+}
+
+
+.hub-card h3 {
+
+    margin-top: 23px;
+
+    font-size: 16px;
+
+    letter-spacing: -.3px;
+
+}
+
+
+.hub-card p {
+
+    margin-top: 6px;
+
+    color:
+        var(--muted-2);
+
+    font-size: 11px;
+
+    line-height: 1.5;
+
+}
+
+
+/* =========================================================
+   NATIONAL COMMUNITY
+========================================================= */
+
+.national-card {
+
+    position: relative;
+
+    overflow: hidden;
+
+    padding: 30px;
+
+    border-radius: 27px;
+
+    background:
+
+        radial-gradient(
+            circle at 85% 25%,
+            rgba(215,182,109,.13),
+            transparent 32%
+        ),
+
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.085),
+            rgba(255,255,255,.035)
+        );
+
+    border:
+        1px solid var(--glass-border);
+
+    box-shadow:
+        var(--shadow);
+
+}
+
+
+.national-card h2 {
+
+    max-width: 650px;
+
+    font-size: 28px;
+
+    letter-spacing: -1px;
+
+}
+
+
+.national-card p {
+
+    max-width: 720px;
+
+    margin-top: 11px;
+
+    color:
+        var(--muted);
+
+    font-size: 14px;
+
+    line-height: 1.65;
+
+}
+
+
+.national-points {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap: 10px;
+
+    margin-top: 23px;
+
+}
+
+
+.national-point {
+
+    padding: 16px;
+
+    border-radius: 17px;
+
+    background:
+        rgba(0,0,0,.13);
+
+    border:
+        1px solid rgba(255,255,255,.06);
+
+}
+
+
+.national-point strong {
+
+    display: block;
+
+    font-size: 12px;
+
+}
+
+
+.national-point span {
+
+    display: block;
+
+    margin-top: 5px;
+
+    color:
+        var(--muted-2);
+
+    font-size: 10px;
+
+    line-height: 1.45;
+
+}
+
+
+/* =========================================================
+   PRAYER WALL
+========================================================= */
+
+.prayer-layout {
+
+    display: grid;
+
+    grid-template-columns:
+        .9fr 1.4fr;
+
+    gap: 13px;
+
+}
+
+
+.prayer-compose,
+.prayer-wall {
+
+    padding: 24px;
+
+    border-radius: 25px;
+
+    background:
+        rgba(255,255,255,.06);
+
+    border:
+        1px solid var(--glass-border);
+
+}
+
+
+.prayer-compose h3,
+.prayer-wall h3 {
+
+    font-size: 19px;
+
+    letter-spacing: -.5px;
+
+}
+
+
+.prayer-compose p {
+
+    margin-top: 8px;
+
+    color:
+        var(--muted-2);
+
+    font-size: 11px;
+
+    line-height: 1.55;
+
+}
+
+
+.prayer-input {
+
+    width: 100%;
+
+    min-height: 135px;
+
+    margin-top: 17px;
+
+    padding: 14px;
+
+    resize: vertical;
+
+    outline: none;
+
+    color: white;
+
+    border-radius: 15px;
+
+    border:
+        1px solid rgba(255,255,255,.1);
+
+    background:
+        rgba(0,0,0,.17);
+
+}
+
+
+.prayer-input:focus {
+
+    border-color:
+        rgba(215,182,109,.5);
+
+}
+
+
+.prayer-options {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    margin-top: 10px;
+
+    color:
+        var(--muted);
+
+    font-size: 10px;
+
+}
+
+
+.prayer-options input {
+
+    accent-color:
+        var(--gold);
+
+}
+
+
+.post-prayer {
+
+    width: 100%;
+
+    margin-top: 12px;
+
+    min-height: 43px;
+
+    border: 0;
+
+    border-radius: 13px;
+
+    cursor: pointer;
+
+    color:
+        #211a0d;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--gold-light),
+            var(--gold)
+        );
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+}
+
+
+.prayer-feed {
+
+    display: grid;
+
+    gap: 9px;
+
+    margin-top: 15px;
+
+    max-height: 470px;
+
+    overflow-y: auto;
+
+    padding-right: 3px;
+
+}
+
+
+.prayer-item {
+
+    padding: 16px;
+
+    border-radius: 17px;
+
+    background:
+        rgba(0,0,0,.13);
+
+    border:
+        1px solid rgba(255,255,255,.065);
+
+}
+
+
+.prayer-item-top {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+}
+
+
+.prayer-anonymous {
+
+    color:
+        var(--gold-light);
+
+    font-size: 10px;
+
+    font-weight: 750;
+
+}
+
+
+.prayer-time {
+
+    color:
+        var(--muted-2);
+
+    font-size: 9px;
+
+}
+
+
+.prayer-item p {
+
+    margin-top: 9px;
+
+    color:
+        rgba(255,255,255,.75);
+
+    font-size: 12px;
+
+    line-height: 1.6;
+
+}
+
+
+.prayer-actions {
+
+    display: flex;
+
+    gap: 7px;
+
+    margin-top: 11px;
+
+}
+
+
+.prayer-action {
+
+    padding:
+        7px 10px;
+
+    border-radius: 9px;
+
+    border:
+        1px solid rgba(255,255,255,.07);
+
+    background:
+        rgba(255,255,255,.045);
+
+    color:
+        var(--muted);
+
+    cursor: pointer;
+
+    font-size: 9px;
+
+}
+
+
+.prayer-empty {
+
+    padding: 30px 10px;
+
+    text-align: center;
+
+    color:
+        var(--muted-2);
+
+    font-size: 11px;
+
+}
+
+
+/* =========================================================
+   GROUPS
+========================================================= */
+
+.groups-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap: 12px;
+
+}
+
+
+.group-card {
+
+    padding: 23px;
+
+    border-radius: 23px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.075),
+            rgba(255,255,255,.035)
+        );
+
+    border:
+        1px solid var(--glass-border);
+
+}
+
+
+.group-symbol {
+
+    width: 42px;
+
+    height: 42px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 13px;
+
+    background:
+        rgba(215,182,109,.1);
+
+    border:
+        1px solid rgba(215,182,109,.15);
+
+    color:
+        var(--gold-light);
+
+    font-size: 18px;
+
+}
+
+
+.group-card h3 {
+
+    margin-top: 17px;
+
+    font-size: 17px;
+
+}
+
+
+.group-card p {
+
+    margin-top: 7px;
+
+    color:
+        var(--muted-2);
+
+    font-size: 11px;
+
+    line-height: 1.55;
+
+}
+
+
+.group-button {
+
+    display: inline-flex;
+
+    margin-top: 17px;
+
+    padding:
+        8px 11px;
+
+    border-radius: 10px;
+
+    background:
+        rgba(255,255,255,.055);
+
+    border:
+        1px solid rgba(255,255,255,.075);
+
+    color:
+        var(--gold-light);
+
+    font-size: 9px;
+
+    font-weight: 750;
+
+}
+
+
+/* =========================================================
+   CHAPTERS
+========================================================= */
+
+.chapter-card {
+
+    padding: 27px;
+
+    border-radius: 26px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(42,77,143,.14),
+            rgba(255,255,255,.04)
+        );
+
+    border:
+        1px solid rgba(255,255,255,.1);
+
+}
+
+
+.chapter-card h2 {
+
+    font-size: 24px;
+
+}
+
+
+.chapter-card > p {
+
+    max-width: 700px;
+
+    margin-top: 9px;
+
+    color:
+        var(--muted);
+
+    font-size: 13px;
+
+    line-height: 1.6;
+
+}
+
+
+.chapter-search {
+
+    display: flex;
+
+    gap: 8px;
+
+    margin-top: 20px;
+
+}
+
+
+.chapter-search input {
+
+    flex: 1;
+
+    min-height: 44px;
+
+    padding:
+        0 13px;
+
+    border-radius: 13px;
+
+    border:
+        1px solid rgba(255,255,255,.1);
+
+    outline: none;
+
+    background:
+        rgba(0,0,0,.16);
+
+    color: white;
+
+}
+
+
+.chapter-search button {
+
+    min-width: 90px;
+
+    border: 0;
+
+    border-radius: 13px;
+
+    color:
+        #211a0d;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--gold-light),
+            var(--gold)
+        );
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+}
+
+
+.chapter-result {
+
+    display: none;
+
+    margin-top: 12px;
+
+    padding: 15px;
+
+    border-radius: 15px;
+
+    background:
+        rgba(0,0,0,.14);
+
+    color:
+        var(--muted);
+
+    font-size: 11px;
+
+    line-height: 1.5;
+
+}
+
+
+/* =========================================================
+   SERVICE
+========================================================= */
+
+.service-card {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 25px;
+
+    padding: 29px;
+
+    border-radius: 26px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(215,182,109,.1),
+            rgba(255,255,255,.04)
+        );
+
+    border:
+        1px solid rgba(215,182,109,.16);
+
+}
+
+
+.service-card h2 {
+
+    font-size: 24px;
+
+}
+
+
+.service-card p {
+
+    max-width: 690px;
+
+    margin-top: 9px;
+
+    color:
+        var(--muted);
+
+    font-size: 13px;
+
+    line-height: 1.6;
+
+}
+
+
+/* =========================================================
+   ANNOUNCEMENT
+========================================================= */
+
+.announcement {
+
+    display: grid;
+
+    grid-template-columns:
+        auto 1fr;
+
+    gap: 15px;
+
+    padding: 22px;
+
+    border-radius: 23px;
+
+    background:
+        rgba(255,255,255,.055);
+
+    border:
+        1px solid rgba(255,255,255,.09);
+
+}
+
+
+.announcement-icon {
+
+    width: 44px;
+
+    height: 44px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 14px;
+
+    background:
+        rgba(215,182,109,.1);
+
+    color:
+        var(--gold-light);
+
+    font-size: 19px;
+
+}
+
+
+.announcement h3 {
+
+    font-size: 16px;
+
+}
+
+
+.announcement p {
+
+    margin-top: 6px;
+
+    color:
+        var(--muted-2);
+
+    font-size: 11px;
+
+    line-height: 1.55;
+
+}
+
+
+/* =========================================================
+   SAFETY
+========================================================= */
+
+.safety-card {
+
+    padding: 27px;
+
+    border-radius: 26px;
+
+    background:
+        rgba(255,255,255,.045);
+
+    border:
+        1px solid rgba(255,255,255,.08);
+
+}
+
+
+.safety-top {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+}
+
+
+.safety-icon {
+
+    width: 43px;
+
+    height: 43px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 14px;
+
+    background:
+        rgba(215,182,109,.09);
+
+    color:
+        var(--gold-light);
+
+}
+
+
+.safety-top h2 {
+
+    font-size: 20px;
+
+}
+
+
+.safety-card > p {
+
+    max-width: 750px;
+
+    margin-top: 13px;
+
+    color:
+        var(--muted);
+
+    font-size: 12px;
+
+    line-height: 1.65;
+
+}
+
+
+.safety-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap: 10px;
+
+    margin-top: 19px;
+
+}
+
+
+.safety-item {
+
+    padding: 15px;
+
+    border-radius: 15px;
+
+    background:
+        rgba(0,0,0,.12);
+
+}
+
+
+.safety-item strong {
+
+    display: block;
+
+    font-size: 11px;
+
+}
+
+
+.safety-item span {
+
+    display: block;
+
+    margin-top: 5px;
+
+    color:
+        var(--muted-2);
+
+    font-size: 9px;
+
+    line-height: 1.45;
+
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+
+    margin-top: 62px;
+
+    padding:
+        30px 18px
+        calc(28px + env(safe-area-inset-bottom));
+
+    text-align: center;
+
+    color:
+        var(--muted-2);
+
+    font-size: 10px;
+
+    border-top:
+        1px solid rgba(255,255,255,.06);
+
+}
+
+
+footer strong {
+
+    color:
+        rgba(241,217,155,.68);
+
+}
+
+
+/* =========================================================
+   BOTTOM NAV
+========================================================= */
+
+.bottom-nav {
+
+    position: fixed;
+
+    z-index: 200;
+
+    left: 50%;
+
+    bottom:
+        calc(12px + env(safe-area-inset-bottom));
+
+    transform:
+        translateX(-50%);
+
+    width:
+        min(650px, calc(100% - 24px));
+
+    padding: 8px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(5,1fr);
+
+    gap: 4px;
+
+    border-radius: 24px;
+
+    background:
+        rgba(8,22,49,.58);
+
+    border:
+        1px solid rgba(255,255,255,.13);
+
+    box-shadow:
+        0 22px 60px rgba(0,0,0,.35),
+        inset 0 1px 0 rgba(255,255,255,.08);
+
+    backdrop-filter:
+        blur(30px)
+        saturate(170%);
+
+    -webkit-backdrop-filter:
+        blur(30px)
+        saturate(170%);
+
+}
+
+
+.nav-item {
+
+    min-height: 58px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 4px;
+
+    border-radius: 17px;
+
+    color:
+        rgba(255,255,255,.53);
+
+    font-size: 9px;
+
+    font-weight: 650;
+
+    transition:
+        background .2s ease,
+        color .2s ease;
+
+}
+
+
+.nav-icon {
+
+    font-size: 18px;
+
+    line-height: 1;
+
+}
+
+
+.nav-item.active {
+
+    color:
+        var(--gold-light);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(215,182,109,.15),
+            rgba(255,255,255,.045)
+        );
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.08);
+
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .hub-grid {
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+    }
+
+    .prayer-layout {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+    .groups-grid {
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .community-hero {
+
+        padding: 30px 23px;
+
+        border-radius: 27px;
+
+    }
+
+    .community-hero h1 {
+
+        letter-spacing: -2.6px;
+
+    }
+
+    .national-points,
+    .safety-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+    .service-card {
+
+        align-items:
+            flex-start;
+
+        flex-direction:
+            column;
+
+    }
+
+}
+
+
+@media (max-width: 540px) {
+
+    .container {
+
+        width:
+            calc(100% - 24px);
+
+    }
+
+    .brand-text span {
+
+        display: none;
+
+    }
+
+    .community-hero {
+
+        margin-top: 24px;
+
+    }
+
+    .community-hero h1 {
+
+        font-size: 46px;
+
+    }
+
+    .community-stats {
+
+        gap: 7px;
+
+    }
+
+    .stat-card {
+
+        padding:
+            16px 8px;
+
+    }
+
+    .stat-number {
+
+        font-size: 21px;
+
+    }
+
+    .hub-grid,
+    .groups-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+    .chapter-search {
+
+        flex-direction:
+            column;
+
+    }
+
+    .chapter-search button {
+
+        min-height: 43px;
+
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =======================================================
+     HEADER
+======================================================== -->
+
+<header>
+
+    <div class="header-inner">
+
+        <a
+            href="index.html"
+            class="brand">
+
+            <div class="brand-mark">
+                ✝
+            </div>
+
+            <div class="brand-text">
+
+                <strong>
+                    Catholic Youth Society
+                </strong>
+
+                <span>
+                    Faith • Community • Friendship
+                </span>
+
+            </div>
+
+        </a>
+
+
+        <div class="header-actions">
+
+            <button
+                class="icon-button"
+                aria-label="Notifications"
+                onclick="window.location.href='notifications.html'">
+
+                🔔
+
+            </button>
+
+
+            <button
+                class="icon-button"
+                aria-label="Profile"
+                onclick="window.location.href='profile.html'">
+
+                👤
+
+            </button>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<main class="container">
+
+
+<!-- =======================================================
+     COMMUNITY HERO
+======================================================== -->
+
+<section class="community-hero">
+
+    <div class="eyebrow">
+        The CYS Community
+    </div>
+
+    <h1>
+        You're part of something
+        <span>bigger.</span>
+    </h1>
+
+    <p>
+        Catholic Youth Society is a national community
+        where young Catholics can pray together, grow in
+        faith, serve others, and build authentic friendships
+        centered on Christ.
+    </p>
+
+    <div class="hero-actions">
+
+        <a
+            href="#prayer"
+            class="primary-button">
+
+            🙏 Share a Prayer
+
+        </a>
+
+        <a
+            href="#groups"
+            class="secondary-button">
+
+            Explore Groups
+
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<!-- =======================================================
+     COMMUNITY STATS
+======================================================== -->
+
+<div class="community-stats">
+
+    <div class="stat-card">
+
+        <span
+            class="stat-number"
+            id="prayerCount">
+
+            0
+
+        </span>
+
+        <span class="stat-label">
+            Community Prayers
+        </span>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <span class="stat-number">
+            11–18
+        </span>
+
+        <span class="stat-label">
+            Ages We Serve
+        </span>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <span class="stat-number">
+            🇺🇸
+        </span>
+
+        <span class="stat-label">
+            Nationwide
+        </span>
+
+    </div>
+
+</div>
+
+
+
+<!-- =======================================================
+     COMMUNITY HUB
+======================================================== -->
+
+<section>
+
+    <div class="section-heading">
+
+        <div>
+
+            <h2>
+                Community Hub
+            </h2>
+
+        </div>
+
+        <p>
+            Find your place in CYS
+        </p>
+
+    </div>
+
+
+    <div class="hub-grid">
+
+
+        <a
+            href="#prayer"
+            class="hub-card">
+
+            <div class="hub-icon">
+                🙏
+            </div>
+
+            <h3>
+                Prayer Wall
+            </h3>
+
+            <p>
+                Lift up your intentions and
+                pray for fellow CYS members.
+            </p>
+
+        </a>
+
+
+        <a
+            href="#groups"
+            class="hub-card">
+
+            <div class="hub-icon">
+                ◉
+            </div>
+
+            <h3>
+                Youth Groups
+            </h3>
+
+            <p>
+                Find communities built around
+                faith, interests, and formation.
+            </p>
+
+        </a>
+
+
+        <a
+            href="#chapters"
+            class="hub-card">
+
+            <div class="hub-icon">
+                📍
+            </div>
+
+            <h3>
+                Chapters
+            </h3>
+
+            <p>
+                Discover Catholic youth communities
+                near you.
+            </p>
+
+        </a>
+
+
+        <a
+            href="#service"
+            class="hub-card">
+
+            <div class="hub-icon">
+                ❤️
+            </div>
+
+            <h3>
+                Serve
+            </h3>
+
+            <p>
+                Put your faith into action by
+                serving others.
+            </p>
+
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<!-- =======================================================
+     NATIONAL COMMUNITY
+======================================================== -->
+
+<section>
+
+    <div class="national-card">
+
+        <div class="eyebrow">
+            One Church • One Community
+        </div>
+
+        <h2>
+            Catholic youth from across
+            the country, connected by Christ.
+        </h2>
+
+        <p>
+            CYS isn't about where you live. Whether you're
+            in a large city, a small town, or somewhere in
+            between, you can belong to a Catholic community
+            that prays, learns, serves, and grows together.
+        </p>
+
+
+        <div class="national-points">
+
+
+            <div class="national-point">
+
+                <strong>
+                    Prayer
+                </strong>
+
+                <span>
+                    Bring your intentions to a
+                    community that will pray with you.
+                </span>
+
+            </div>
+
+
+            <div class="national-point">
+
+                <strong>
+                    Formation
+                </strong>
+
+                <span>
+                    Grow deeper in your relationship
+                    with Jesus and His Church.
+                </span>
+
+            </div>
+
+
+            <div class="national-point">
+
+                <strong>
+                    Friendship
+                </strong>
+
+                <span>
+                    Build authentic friendships with
+                    Catholic youth who share your faith.
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =======================================================
+     PRAYER WALL
+======================================================== -->
+
+<section id="prayer">
+
+    <div class="section-heading">
+
+        <div>
+
+            <h2>
+                Prayer Wall
+            </h2>
+
+        </div>
+
+        <p>
+            Pray with one another
+        </p>
+
+    </div>
+
+
+    <div class="prayer-layout">
+
+
+        <!-- COMPOSE -->
+
+        <div class="prayer-compose">
+
+            <h3>
+                What can we pray for?
+            </h3>
+
+            <p>
+                Share a prayer intention with the
+                CYS community. You can keep it anonymous.
+            </p>
+
+
+            <textarea
+                id="prayerInput"
+                class="prayer-input"
+                maxlength="500"
+                placeholder="Write your prayer intention..."></textarea>
+
+
+            <label class="prayer-options">
+
+                <input
+                    id="anonymousPrayer"
+                    type="checkbox"
+                    checked>
+
+                Share anonymously
+
+            </label>
+
+
+            <button
+                class="post-prayer"
+                onclick="postPrayer()">
+
+                Post Prayer Intention
+
+            </button>
+
+        </div>
+
+
+        <!-- FEED -->
+
+        <div class="prayer-wall">
+
+            <h3>
+                Prayers from the community
+            </h3>
+
+
+            <div
+                id="prayerFeed"
+                class="prayer-feed">
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =======================================================
+     GROUPS
+======================================================== -->
+
+<section id="groups">
+
+    <div class="section-heading">
+
+        <div>
+
+            <h2>
+                Youth Groups
+            </h2>
+
+        </div>
+
+        <p>
+            Find people who share your interests
+        </p>
+
+    </div>
+
+
+    <div class="groups-grid">
+
+
+        <div class="group-card">
+
+            <div class="group-symbol">
+                ✝
+            </div>
+
+            <h3>
+                Catholic Life
+            </h3>
+
+            <p>
+                Talk about prayer, the Sacraments,
+                Scripture, saints, and living your
+                Catholic faith.
+            </p>
+
+            <a
+                href="#"
+                class="group-button"
+                onclick="joinGroup(event,'Catholic Life')">
+
+                Join Group
+
+            </a>
+
+        </div>
+
+
+        <div class="group-card">
+
+            <div class="group-symbol">
+                📖
+            </div>
+
+            <h3>
+                Bible & Scripture
+            </h3>
+
+            <p>
+                Explore Scripture together and
+                discover how God's Word speaks
+                to everyday life.
+            </p>
+
+            <a
+                href="#"
+                class="group-button"
+                onclick="joinGroup(event,'Bible & Scripture')">
+
+                Join Group
+
+            </a>
+
+        </div>
+
+
+        <div class="group-card">
+
+            <div class="group-symbol">
+                🎵
+            </div>
+
+            <h3>
+                Catholic Music
+            </h3>
+
+            <p>
+                Discover worship music, hymns,
+                Catholic artists, and songs that
+                help you pray.
+            </p>
+
+            <a
+                href="#"
+                class="group-button"
+                onclick="joinGroup(event,'Catholic Music')">
+
+                Join Group
+
+            </a>
+
+        </div>
+
+
+        <div class="group-card">
+
+            <div class="group-symbol">
+                ❤️
+            </div>
+
+            <h3>
+                Service & Charity
+            </h3>
+
+            <p>
+                Find ways to serve your parish,
+                community, and people in need.
+            </p>
+
+            <a
+                href="#"
+                class="group-button"
+                onclick="joinGroup(event,'Service & Charity')">
+
+                Join Group
+
+            </a>
+
+        </div>
+
+
+        <div class="group-card">
+
+            <div class="group-symbol">
+                🌎
+            </div>
+
+            <h3>
+                Catholic Culture
+            </h3>
+
+            <p>
+                Celebrate the beauty, traditions,
+                history, and culture of Catholic life.
+            </p>
+
+            <a
+                href="#"
+                class="group-button"
+                onclick="joinGroup(event,'Catholic Culture')">
+
+                Join Group
+
+            </a>
+
+        </div>
+
+
+        <div class="group-card">
+
+            <div class="group-symbol">
+                ⭐
+            </div>
+
+            <h3>
+                Faith & Life
+            </h3>
+
+            <p>
+                A place to talk about school,
+                friendships, challenges, goals,
+                and following Christ through it all.
+            </p>
+
+            <a
+                href="#"
+                class="group-button"
+                onclick="joinGroup(event,'Faith & Life')">
+
+                Join Group
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =======================================================
+     CHAPTERS
+======================================================== -->
+
+<section id="chapters">
+
+    <div class="section-heading">
+
+        <div>
+
+            <h2>
+                Find Your Chapter
+            </h2>
+
+        </div>
+
+        <p>
+            Local connection
+        </p>
+
+    </div>
+
+
+    <div class="chapter-card">
+
+        <div class="eyebrow">
+            Nationwide
+        </div>
+
+        <h2>
+            Find Catholic youth near you.
+        </h2>
+
+        <p>
+            CYS can connect the national community
+            with local Catholic youth groups, parish
+            communities, and state chapters.
+        </p>
+
+
+        <div class="chapter-search">
+
+            <input
+                id="chapterInput"
+                type="text"
+                placeholder="Enter your state or city...">
+
+            <button
+                onclick="findChapter()">
+
+                Search
+
+            </button>
+
+        </div>
+
+
+        <div
+            id="chapterResult"
+            class="chapter-result">
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =======================================================
+     SERVICE
+======================================================== -->
+
+<section id="service">
+
+    <div class="service-card">
+
+        <div>
+
+            <div class="eyebrow">
+                Faith in Action
+            </div>
+
+            <h2>
+                Serve beyond yourself.
+            </h2>
+
+            <p>
+                Catholic faith isn't meant to stay inside
+                the app. Discover service opportunities,
+                charitable projects, and ways to make a
+                real difference in your community.
+            </p>
+
+        </div>
+
+
+        <a
+            href="events.html"
+            class="primary-button">
+
+            Find Opportunities
+
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<!-- =======================================================
+     ANNOUNCEMENT
+======================================================== -->
+
+<section>
+
+    <div class="section-heading">
+
+        <div>
+
+            <h2>
+                From CYS
+            </h2>
+
+        </div>
+
+        <p>
+            Community updates
+        </p>
+
+    </div>
+
+
+    <div class="announcement">
+
+        <div class="announcement-icon">
+            📣
+        </div>
+
+        <div>
+
+            <h3>
+                Welcome to the CYS Community
+            </h3>
+
+            <p>
+                This is a place to encourage one another,
+                pray for one another, and help each other
+                grow closer to Christ. Treat every person
+                here with the dignity and charity they deserve.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =======================================================
+     SAFETY
+======================================================== -->
+
+<section>
+
+    <div class="safety-card">
+
+        <div class="safety-top">
+
+            <div class="safety-icon">
+                🛡️
+            </div>
+
+            <div>
+
+                <div class="eyebrow">
+                    Community Safety
+                </div>
+
+                <h2>
+                    A community built with care.
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <p>
+            CYS is designed around the safety, dignity,
+            privacy, and well-being of young people.
+            Community features should always be carefully
+            moderated and never require members to share
+            unnecessary personal information.
+        </p>
+
+
+        <div class="safety-grid">
+
+
+            <div class="safety-item">
+
+                <strong>
+                    Respect
+                </strong>
+
+                <span>
+                    Treat every member with
+                    Christian charity and dignity.
+                </span>
+
+            </div>
+
+
+            <div class="safety-item">
+
+                <strong>
+                    Privacy
+                </strong>
+
+                <span>
+                    Don't share private information
+                    publicly or request it from others.
+                </span>
+
+            </div>
+
+
+            <div class="safety-item">
+
+                <strong>
+                    Moderation
+                </strong>
+
+                <span>
+                    Community content should be
+                    reviewed and moderated appropriately.
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+</main>
+
+
+
+<!-- =======================================================
+     FOOTER
+======================================================== -->
+
+<footer>
+
+    <strong>
+        Catholic Youth Society
+    </strong>
+
+    <div style="margin-top:7px;">
+        A National Virtual Catholic Youth Group
+    </div>
+
+    <div style="margin-top:12px;">
+        © 2026 Catholic Youth Society
+    </div>
+
+</footer>
+
+
+
+<!-- =======================================================
+     BOTTOM NAVIGATION
+======================================================== -->
+
+<nav
+    class="bottom-nav"
+    aria-label="Main navigation">
+
+
+    <a
+        href="index.html"
+        class="nav-item">
+
+        <span class="nav-icon">
+            ⌂
+        </span>
+
+        <span>
+            Home
+        </span>
+
+    </a>
+
+
+    <a
+        href="faith.html"
+        class="nav-item">
+
+        <span class="nav-icon">
+            ✝
+        </span>
+
+        <span>
+            Faith
+        </span>
+
+    </a>
+
+
+    <a
+        href="events.html"
+        class="nav-item">
+
+        <span class="nav-icon">
+            ◫
+        </span>
+
+        <span>
+            Events
+        </span>
+
+    </a>
+
+
+    <a
+        href="community.html"
+        class="nav-item active">
+
+        <span class="nav-icon">
+            ◉
+        </span>
+
+        <span>
+            Community
+        </span>
+
+    </a>
+
+
+    <a
+        href="cys.html"
+        class="nav-item">
+
+        <span class="nav-icon">
+            •••
+        </span>
+
+        <span>
+            More
+        </span>
+
+    </a>
+
+</nav>
+
+
+
+<script>
+
+/* =========================================================
+   STORAGE
+========================================================= */
+
+const PRAYER_STORAGE_KEY =
+    "cys_prayer_intentions";
+
+
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
+
+function escapeHTML(value) {
+
+    return String(value ?? "")
+
+        .replace(/&/g, "&amp;")
+
+        .replace(/</g, "&lt;")
+
+        .replace(/>/g, "&gt;")
+
+        .replace(/"/g, "&quot;")
+
+        .replace(/'/g, "&#039;");
+
+}
+
+
+/* =========================================================
+   LOAD PRAYERS
+========================================================= */
+
+function loadPrayers() {
+
+    try {
+
+        const saved =
+            localStorage.getItem(
+                PRAYER_STORAGE_KEY
+            );
+
+        if (!saved) {
+
+            return [];
+
+        }
+
+        const parsed =
+            JSON.parse(saved);
+
+        return Array.isArray(parsed)
+            ? parsed
+            : [];
+
+    } catch {
+
+        return [];
+
+    }
+
+}
+
+
+/* =========================================================
+   SAVE PRAYERS
+========================================================= */
+
+function savePrayers(prayers) {
+
+    localStorage.setItem(
+        PRAYER_STORAGE_KEY,
+        JSON.stringify(prayers)
+    );
+
+}
+
+
+/* =========================================================
+   TIME AGO
+========================================================= */
+
+function timeAgo(timestamp) {
+
+    const difference =
+        Date.now() -
+        new Date(timestamp).getTime();
+
+    const minutes =
+        Math.floor(
+            difference / 60000
+        );
+
+    if (minutes < 1) {
+
+        return "Just now";
+
+    }
+
+    if (minutes < 60) {
+
+        return `${minutes}m ago`;
+
+    }
+
+    const hours =
+        Math.floor(minutes / 60);
+
+    if (hours < 24) {
+
+        return `${hours}h ago`;
+
+    }
+
+    const days =
+        Math.floor(hours / 24);
+
+    if (days === 1) {
+
+        return "Yesterday";
+
+    }
+
+    return `${days}d ago`;
+
+}
+
+
+/* =========================================================
+   RENDER PRAYERS
+========================================================= */
+
+function renderPrayers() {
+
+    const feed =
+        document.getElementById(
+            "prayerFeed"
+        );
+
+    const prayers =
+        loadPrayers();
+
+
+    document.getElementById(
+        "prayerCount"
+    ).textContent =
+        prayers.length;
+
+
+    if (prayers.length === 0) {
+
+        feed.innerHTML = `
+
+            <div class="prayer-empty">
+
+                <div
+                    style="
+                        font-size:24px;
+                        margin-bottom:9px;
+                    ">
+
+                    🙏
+
+                </div>
+
+                No prayer intentions yet.
+
+                <br>
+
+                Be the first to ask
+                the CYS community to pray.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    const newest =
+        [...prayers]
+            .sort(
+                (a,b) =>
+                    new Date(b.createdAt) -
+                    new Date(a.createdAt)
+            );
+
+
+    feed.innerHTML =
+        newest
+            .map(
+                prayer => {
+
+                    return `
+
+                        <div
+                            class="prayer-item"
+                            data-id="${escapeHTML(prayer.id)}">
+
+                            <div class="prayer-item-top">
+
+                                <span class="prayer-anonymous">
+
+                                    ${
+                                        prayer.anonymous
+                                            ? "Anonymous CYS Member"
+                                            : "CYS Member"
+                                    }
+
+                                </span>
+
+                                <span class="prayer-time">
+
+                                    ${timeAgo(prayer.createdAt)}
+
+                                </span>
+
+                            </div>
+
+
+                            <p>
+                                ${escapeHTML(prayer.text)}
+                            </p>
+
+
+                            <div class="prayer-actions">
+
+                                <button
+                                    class="prayer-action"
+                                    onclick="prayFor('${escapeHTML(prayer.id)}')">
+
+                                    🙏 I prayed
+
+                                    ${
+                                        prayer.prayers
+                                            ? ` · ${prayer.prayers}`
+                                            : ""
+                                    }
+
+                                </button>
+
+
+                                <button
+                                    class="prayer-action"
+                                    onclick="reportPrayer('${escapeHTML(prayer.id)}')">
+
+                                    Report
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    `;
+
+                }
+            )
+            .join("");
+
+}
+
+
+/* =========================================================
+   POST PRAYER
+========================================================= */
+
+function postPrayer() {
+
+    const input =
+        document.getElementById(
+            "prayerInput"
+        );
+
+    const anonymous =
+        document.getElementById(
+            "anonymousPrayer"
+        ).checked;
+
+
+    const text =
+        input.value.trim();
+
+
+    if (!text) {
+
+        alert(
+            "Please write a prayer intention first."
+        );
+
+        return;
+
+    }
+
+
+    if (text.length < 5) {
+
+        alert(
+            "Please enter a little more detail."
+        );
+
+        return;
+
+    }
+
+
+    const prayers =
+        loadPrayers();
+
+
+    prayers.push({
+
+        id:
+            Date.now().toString(36) +
+            Math.random()
+                .toString(36)
+                .substring(2,7),
+
+        text,
+
+        anonymous,
+
+        prayers: 0,
+
+        createdAt:
+            new Date().toISOString()
+
+    });
+
+
+    savePrayers(prayers);
+
+
+    input.value = "";
+
+
+    renderPrayers();
+
+
+    alert(
+        "Your prayer intention has been shared with the community."
+    );
+
+}
+
+
+/* =========================================================
+   PRAY FOR INTENTION
+========================================================= */
+
+function prayFor(id) {
+
+    const prayers =
+        loadPrayers();
+
+
+    const updated =
+        prayers.map(
+            prayer => {
+
+                if (prayer.id !== id) {
+
+                    return prayer;
+
+                }
+
+
+                return {
+
+                    ...prayer,
+
+                    prayers:
+                        (prayer.prayers || 0) + 1
+
+                };
+
+            }
+        );
+
+
+    savePrayers(updated);
+
+    renderPrayers();
+
+}
+
+
+/* =========================================================
+   REPORT
+========================================================= */
+
+function reportPrayer(id) {
+
+    const confirmed =
+        window.confirm(
+            "Report this prayer intention to the CYS moderators?"
+        );
+
+
+    if (!confirmed) {
+
+        return;
+
+    }
+
+
+    alert(
+        "Thank you. The intention has been flagged for review."
+    );
+
+}
+
+
+/* =========================================================
+   GROUP JOIN
+========================================================= */
+
+function joinGroup(event, groupName) {
+
+    event.preventDefault();
+
+
+    const joined =
+        JSON.parse(
+            localStorage.getItem(
+                "cys_joined_groups"
+            ) || "[]"
+        );
+
+
+    if (!joined.includes(groupName)) {
+
+        joined.push(groupName);
+
+        localStorage.setItem(
+            "cys_joined_groups",
+            JSON.stringify(joined)
+        );
+
+        alert(
+            `You're interested in joining ${groupName}.`
+        );
+
+    } else {
+
+        alert(
+            `You're already connected to ${groupName}.`
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   CHAPTER SEARCH
+========================================================= */
+
+function findChapter() {
+
+    const input =
+        document.getElementById(
+            "chapterInput"
+        );
+
+    const result =
+        document.getElementById(
+            "chapterResult"
+        );
+
+
+    const location =
+        input.value.trim();
+
+
+    if (!location) {
+
+        result.style.display =
+            "block";
+
+        result.textContent =
+            "Enter a city or state to search for a CYS community.";
+
+        return;
+
+    }
+
+
+    result.style.display =
+        "block";
+
+
+    result.innerHTML = `
+
+        <strong
+            style="
+                display:block;
+                color:var(--gold-light);
+                margin-bottom:5px;
+            ">
+
+            Searching CYS communities
+
+        </strong>
+
+        We're looking for Catholic youth
+        communities connected with
+        <strong>${escapeHTML(location)}</strong>.
+
+        <br><br>
+
+        Chapter discovery will become
+        fully connected when the CYS
+        community database is enabled.
+
+    `;
+
+}
+
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        renderPrayers();
+
+    }
+);
+
+</script>
+
+
+</body>
+</html>
