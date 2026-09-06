@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -14,21 +15,16 @@
     --navy:#06132c;
     --navy-2:#091b3b;
     --navy-3:#102956;
-
     --gold:#d7b66d;
     --gold-light:#f1d99b;
-
     --cream:#fffaf0;
     --white:#ffffff;
-
     --text:#f9f8f4;
     --muted:rgba(255,255,255,.67);
     --muted-2:rgba(255,255,255,.46);
-
     --glass:rgba(255,255,255,.075);
     --glass-hover:rgba(255,255,255,.105);
     --glass-border:rgba(255,255,255,.125);
-
     --shadow:0 20px 60px rgba(0,0,0,.25);
 }
 
@@ -45,7 +41,6 @@ html {
 body {
     min-height:100vh;
     overflow-x:hidden;
-
     color:var(--text);
 
     font-family:
@@ -58,45 +53,21 @@ body {
         sans-serif;
 
     background:
-        radial-gradient(
-            circle at 8% -5%,
-            rgba(215,182,109,.16),
-            transparent 29%
-        ),
-        radial-gradient(
-            circle at 93% 8%,
-            rgba(60,100,190,.22),
-            transparent 32%
-        ),
-        radial-gradient(
-            circle at 50% 55%,
-            rgba(25,55,110,.16),
-            transparent 42%
-        ),
-        linear-gradient(
-            180deg,
-            var(--navy),
-            var(--navy-2) 55%,
-            #071631
-        );
+        radial-gradient(circle at 8% -5%,rgba(215,182,109,.16),transparent 29%),
+        radial-gradient(circle at 93% 8%,rgba(60,100,190,.22),transparent 32%),
+        radial-gradient(circle at 50% 55%,rgba(25,55,110,.16),transparent 42%),
+        linear-gradient(180deg,var(--navy),var(--navy-2) 55%,#071631);
 
     padding-bottom:
-        calc(
-            115px +
-            env(safe-area-inset-bottom)
-        );
+        calc(115px + env(safe-area-inset-bottom));
 }
 
 body::before {
     content:"";
-
     position:fixed;
     inset:0;
-
     pointer-events:none;
-
     z-index:-1;
-
     opacity:.025;
 
     background-image:url(
@@ -111,7 +82,8 @@ a {
 
 button,
 input,
-select {
+select,
+textarea {
     font:inherit;
 }
 
@@ -120,7 +92,6 @@ select {
 header {
     position:sticky;
     top:0;
-
     z-index:100;
 
     padding:
@@ -144,21 +115,16 @@ header {
 
 .header-inner {
     width:min(1180px,100%);
-
     margin:0 auto;
 
     display:flex;
-
     align-items:center;
-
     justify-content:space-between;
 }
 
 .brand {
     display:flex;
-
     align-items:center;
-
     gap:12px;
 }
 
@@ -190,27 +156,20 @@ header {
 
 .brand-text strong {
     display:block;
-
     font-size:15px;
-
     letter-spacing:-.2px;
 }
 
 .brand-text span {
     display:block;
-
     margin-top:2px;
-
     color:var(--muted-2);
-
     font-size:10px;
-
     letter-spacing:.35px;
 }
 
 .header-actions {
     display:flex;
-
     gap:8px;
 }
 
@@ -230,11 +189,9 @@ header {
         rgba(255,255,255,.065);
 
     color:white;
-
     cursor:pointer;
 
     backdrop-filter:blur(15px);
-
     -webkit-backdrop-filter:blur(15px);
 
     box-shadow:
@@ -246,8 +203,7 @@ header {
 }
 
 .icon-button:hover {
-    background:
-        rgba(255,255,255,.12);
+    background:rgba(255,255,255,.12);
 }
 
 .icon-button:active {
@@ -257,11 +213,7 @@ header {
 /* MAIN */
 
 .container {
-    width:min(
-        1050px,
-        calc(100% - 36px)
-    );
-
+    width:min(1050px,calc(100% - 36px));
     margin:0 auto;
 }
 
@@ -271,7 +223,6 @@ header {
     position:relative;
 
     margin-top:34px;
-
     padding:34px;
 
     overflow:hidden;
@@ -302,7 +253,6 @@ header {
         0 25px 75px rgba(0,0,0,.28);
 
     backdrop-filter:blur(25px);
-
     -webkit-backdrop-filter:blur(25px);
 }
 
@@ -318,21 +268,17 @@ header {
 
     font-weight:200;
 
-    color:
-        rgba(241,217,155,.045);
+    color:rgba(241,217,155,.045);
 
     pointer-events:none;
 }
 
 .profile-main {
     position:relative;
-
     z-index:2;
 
     display:flex;
-
     align-items:center;
-
     gap:25px;
 }
 
@@ -343,7 +289,6 @@ header {
     flex-shrink:0;
 
     display:grid;
-
     place-items:center;
 
     border-radius:31px;
@@ -368,8 +313,7 @@ header {
 
     cursor:pointer;
 
-    transition:
-        transform .2s ease;
+    transition:transform .2s ease;
 }
 
 .avatar:hover {
@@ -384,19 +328,15 @@ header {
     color:var(--gold-light);
 
     font-size:10px;
-
     font-weight:800;
-
     letter-spacing:2px;
-
     text-transform:uppercase;
 }
 
 .profile-info h1 {
     margin-top:7px;
 
-    font-size:
-        clamp(30px,5vw,48px);
+    font-size:clamp(30px,5vw,48px);
 
     line-height:1;
 
@@ -409,30 +349,23 @@ header {
     color:var(--muted);
 
     font-size:13px;
-
     line-height:1.55;
 }
 
 .profile-actions {
     display:flex;
-
     flex-wrap:wrap;
-
     gap:9px;
-
     margin-top:17px;
 }
 
 .primary-button,
 .secondary-button {
     min-height:42px;
-
     padding:0 15px;
 
     display:inline-flex;
-
     align-items:center;
-
     justify-content:center;
 
     border-radius:13px;
@@ -440,7 +373,6 @@ header {
     cursor:pointer;
 
     font-size:10px;
-
     font-weight:800;
 
     transition:
@@ -450,7 +382,6 @@ header {
 
 .primary-button {
     color:#211a0d;
-
     border:0;
 
     background:
@@ -484,20 +415,16 @@ header {
     transform:scale(.97);
 }
 
-/* MEMBER BADGE */
+/* ACCOUNT STATUS */
 
-.member-badge {
+.account-status {
     position:absolute;
-
     top:25px;
     right:25px;
-
     z-index:3;
 
     display:flex;
-
     align-items:center;
-
     gap:6px;
 
     padding:8px 10px;
@@ -505,28 +432,23 @@ header {
     border-radius:11px;
 
     background:
-        rgba(215,182,109,.11);
+        rgba(255,255,255,.06);
 
     border:
-        1px solid rgba(215,182,109,.18);
+        1px solid rgba(255,255,255,.10);
 
-    color:var(--gold-light);
+    color:var(--muted);
 
     font-size:9px;
-
-    font-weight:800;
+    font-weight:750;
 }
 
 /* STATS */
 
 .profile-stats {
     display:grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
+    grid-template-columns:repeat(3,1fr);
     gap:10px;
-
     margin-top:14px;
 }
 
@@ -550,7 +472,6 @@ header {
     color:var(--gold-light);
 
     font-size:23px;
-
     letter-spacing:-.5px;
 }
 
@@ -572,29 +493,87 @@ section {
 
 .section-heading {
     display:flex;
-
     align-items:end;
-
     justify-content:space-between;
-
     gap:20px;
-
     margin-bottom:14px;
 }
 
 .section-heading h2 {
     font-size:22px;
-
     letter-spacing:-.7px;
 }
 
 .section-heading p {
     color:var(--muted-2);
-
     font-size:10px;
 }
 
-/* FAITH PROFILE */
+/* EMPTY CARD */
+
+.empty-card {
+    padding:30px 24px;
+
+    text-align:center;
+
+    border-radius:25px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.075),
+            rgba(255,255,255,.035)
+        );
+
+    border:
+        1px solid var(--glass-border);
+}
+
+.empty-icon {
+    width:52px;
+    height:52px;
+
+    margin:0 auto;
+
+    display:grid;
+    place-items:center;
+
+    border-radius:16px;
+
+    background:
+        rgba(215,182,109,.09);
+
+    border:
+        1px solid rgba(215,182,109,.14);
+
+    color:var(--gold-light);
+
+    font-size:21px;
+}
+
+.empty-card h3 {
+    margin-top:15px;
+
+    font-size:17px;
+}
+
+.empty-card p {
+    max-width:530px;
+
+    margin:7px auto 0;
+
+    color:var(--muted-2);
+
+    font-size:11px;
+
+    line-height:1.6;
+}
+
+.empty-card .secondary-button {
+    margin-top:16px;
+}
+
+/* FAITH INTERESTS */
 
 .faith-card {
     padding:24px;
@@ -617,9 +596,7 @@ section {
 
 .faith-header {
     display:flex;
-
     align-items:center;
-
     gap:13px;
 }
 
@@ -628,7 +605,6 @@ section {
     height:44px;
 
     display:grid;
-
     place-items:center;
 
     border-radius:14px;
@@ -658,11 +634,8 @@ section {
 
 .tag-list {
     display:flex;
-
     flex-wrap:wrap;
-
     gap:8px;
-
     margin-top:19px;
 }
 
@@ -672,12 +645,12 @@ section {
     border-radius:11px;
 
     background:
-        rgba(255,255,255,.055);
+        rgba(255,255,255,.045);
 
     border:
         1px solid rgba(255,255,255,.08);
 
-    color:rgba(255,255,255,.72);
+    color:var(--muted);
 
     font-size:9px;
 
@@ -703,7 +676,7 @@ section {
         rgba(215,182,109,.24);
 }
 
-/* ACTIVITY GRID */
+/* ACTIVITY */
 
 .activity-grid {
     display:grid;
@@ -738,9 +711,7 @@ section {
 
 .activity-card:hover {
     transform:translateY(-3px);
-
-    background:
-        var(--glass-hover);
+    background:var(--glass-hover);
 }
 
 .activity-icon {
@@ -749,7 +720,6 @@ section {
 
 .activity-card h3 {
     margin-top:20px;
-
     font-size:15px;
 }
 
@@ -777,82 +747,21 @@ section {
         1px solid var(--glass-border);
 }
 
-.group-row {
-    display:flex;
+.group-empty {
+    padding:18px;
 
-    align-items:center;
+    text-align:center;
 
-    justify-content:space-between;
-
-    gap:15px;
-
-    padding:15px 0;
-
-    border-bottom:
-        1px solid rgba(255,255,255,.065);
-}
-
-.group-row:first-child {
-    padding-top:0;
-}
-
-.group-row:last-child {
-    padding-bottom:0;
-
-    border-bottom:0;
-}
-
-.group-left {
-    display:flex;
-
-    align-items:center;
-
-    gap:12px;
-}
-
-.group-symbol {
-    width:39px;
-    height:39px;
-
-    display:grid;
-
-    place-items:center;
-
-    flex-shrink:0;
-
-    border-radius:12px;
+    border-radius:17px;
 
     background:
-        rgba(215,182,109,.09);
-
-    color:var(--gold-light);
-
-    border:
-        1px solid rgba(215,182,109,.13);
-}
-
-.group-left strong {
-    display:block;
-
-    font-size:11px;
-}
-
-.group-left span {
-    display:block;
-
-    margin-top:3px;
+        rgba(0,0,0,.11);
 
     color:var(--muted-2);
 
-    font-size:9px;
-}
+    font-size:11px;
 
-.group-status {
-    color:var(--gold-light);
-
-    font-size:9px;
-
-    font-weight:750;
+    line-height:1.55;
 }
 
 /* EVENTS */
@@ -886,20 +795,8 @@ section {
         1px solid var(--glass-border);
 }
 
-.event-date {
-    color:var(--gold-light);
-
-    font-size:9px;
-
-    font-weight:800;
-
-    letter-spacing:1.2px;
-
-    text-transform:uppercase;
-}
-
 .event-card h3 {
-    margin-top:9px;
+    margin-top:10px;
 
     font-size:16px;
 
@@ -907,7 +804,7 @@ section {
 }
 
 .event-card p {
-    margin-top:6px;
+    margin-top:7px;
 
     color:var(--muted-2);
 
@@ -986,7 +883,6 @@ section {
     height:35px;
 
     display:grid;
-
     place-items:center;
 
     border-radius:11px;
@@ -1017,14 +913,13 @@ section {
 
 .setting-arrow {
     color:var(--muted-2);
-
     font-size:15px;
 }
 
-/* ACCOUNT NOTICE */
+/* ACCOUNT */
 
 .account-card {
-    padding:25px;
+    padding:27px;
 
     border-radius:25px;
 
@@ -1040,15 +935,17 @@ section {
 }
 
 .account-card h2 {
-    font-size:21px;
+    margin-top:6px;
 
-    letter-spacing:-.5px;
+    font-size:23px;
+
+    letter-spacing:-.7px;
 }
 
 .account-card p {
     max-width:680px;
 
-    margin-top:8px;
+    margin-top:9px;
 
     color:var(--muted);
 
@@ -1059,12 +956,9 @@ section {
 
 .account-actions {
     display:flex;
-
     flex-wrap:wrap;
-
     gap:9px;
-
-    margin-top:17px;
+    margin-top:18px;
 }
 
 /* FOOTER */
@@ -1074,10 +968,7 @@ footer {
 
     padding:
         30px 18px
-        calc(
-            28px +
-            env(safe-area-inset-bottom)
-        );
+        calc(28px + env(safe-area-inset-bottom));
 
     text-align:center;
 
@@ -1090,11 +981,10 @@ footer {
 }
 
 footer strong {
-    color:
-        rgba(241,217,155,.68);
+    color:rgba(241,217,155,.68);
 }
 
-/* BOTTOM NAV */
+/* NAV */
 
 .bottom-nav {
     position:fixed;
@@ -1102,18 +992,13 @@ footer strong {
     z-index:200;
 
     left:50%;
+
     bottom:
-        calc(
-            12px +
-            env(safe-area-inset-bottom)
-        );
+        calc(12px + env(safe-area-inset-bottom));
 
     transform:translateX(-50%);
 
-    width:min(
-        650px,
-        calc(100% - 24px)
-    );
+    width:min(650px,calc(100% - 24px));
 
     padding:8px;
 
@@ -1160,8 +1045,7 @@ footer strong {
 
     border-radius:17px;
 
-    color:
-        rgba(255,255,255,.53);
+    color:rgba(255,255,255,.53);
 
     font-size:9px;
 
@@ -1174,7 +1058,6 @@ footer strong {
 
 .nav-icon {
     font-size:18px;
-
     line-height:1;
 }
 
@@ -1211,13 +1094,11 @@ footer strong {
 
     .profile-main {
         align-items:flex-start;
-
         flex-direction:column;
-
         gap:17px;
     }
 
-    .member-badge {
+    .account-status {
         top:18px;
         right:18px;
     }
@@ -1244,8 +1125,7 @@ footer strong {
 @media(max-width:540px) {
 
     .container {
-        width:
-            calc(100% - 24px);
+        width:calc(100% - 24px);
     }
 
     .brand-text span {
@@ -1254,7 +1134,6 @@ footer strong {
 
     .profile-hero {
         margin-top:24px;
-
         border-radius:27px;
     }
 
@@ -1289,844 +1168,788 @@ footer strong {
 
 }
 </style>
+
 </head>
 
 <body>
 
 <header>
 
-    <div class="header-inner">
 
-        <a href="index.html" class="brand">
+<div class="header-inner">
 
-            <div class="brand-mark">
-                ✝
-            </div>
+    <a href="index.html" class="brand">
 
-            <div class="brand-text">
+        <div class="brand-mark">
+            ✝
+        </div>
 
-                <strong>
-                    Catholic Youth Society
-                </strong>
+        <div class="brand-text">
 
-                <span>
-                    Faith • Community • Friendship
-                </span>
+            <strong>
+                Catholic Youth Society
+            </strong>
 
-            </div>
-
-        </a>
-
-        <div class="header-actions">
-
-            <button
-                class="icon-button"
-                aria-label="Notifications"
-                onclick="window.location.href='notifications.html'"
-            >
-                🔔
-            </button>
-
-            <button
-                class="icon-button"
-                aria-label="Profile"
-                onclick="window.location.href='profile.html'"
-            >
-                👤
-            </button>
+            <span>
+                Faith • Community • Friendship
+            </span>
 
         </div>
 
-    </div>
+    </a>
 
-</header>
+    <div class="header-actions">
 
+        <button
+            class="icon-button"
+            aria-label="Notifications"
+            onclick="window.location.href='notifications.html'"
+        >
+            🔔
+        </button>
 
-<main class="container">
-
-
-<!-- PROFILE HERO -->
-
-<section class="profile-hero">
-
-    <div class="member-badge">
-        ✦ CYS MEMBER
-    </div>
-
-    <div class="profile-main">
-
-        <div
-            class="avatar"
-            onclick="changeAvatar()"
-            title="Change profile photo"
+        <button
+            class="icon-button"
+            aria-label="Profile"
+            onclick="window.location.href='profile.html'"
         >
             👤
-        </div>
-
-        <div class="profile-info">
-
-            <div class="profile-eyebrow">
-                My CYS Profile
-            </div>
-
-            <h1 id="profileName">
-                CYS Member
-            </h1>
-
-            <p id="profileBio">
-                Growing in faith. Building friendships.
-                Following Christ.
-            </p>
-
-            <div class="profile-actions">
-
-                <button
-                    class="primary-button"
-                    onclick="editProfile()"
-                >
-                    Edit Profile
-                </button>
-
-                <a
-                    href="community.html"
-                    class="secondary-button"
-                >
-                    Community
-                </a>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- STATS -->
-
-<div class="profile-stats">
-
-    <div class="stat">
-
-        <strong id="prayerStat">
-            0
-        </strong>
-
-        <span>
-            Prayers Shared
-        </span>
-
-    </div>
-
-    <div class="stat">
-
-        <strong id="groupStat">
-            0
-        </strong>
-
-        <span>
-            Groups
-        </span>
-
-    </div>
-
-    <div class="stat">
-
-        <strong id="eventStat">
-            0
-        </strong>
-
-        <span>
-            Events
-        </span>
+        </button>
 
     </div>
 
 </div>
 
 
-<!-- FAITH INTERESTS -->
+</header>
 
-<section>
+<main class="container">
 
-    <div class="section-heading">
+<!-- PROFILE -->
 
-        <div>
-            <h2>
-                My Faith
-            </h2>
-        </div>
+<section class="profile-hero">
 
-        <p>
-            Personalize your CYS experience
-        </p>
 
+<div class="account-status">
+    ○ Not signed in
+</div>
+
+<div class="profile-main">
+
+    <div
+        class="avatar"
+        onclick="showAccountMessage()"
+        aria-label="Profile photo"
+    >
+        👤
     </div>
 
-    <div class="faith-card">
-
-        <div class="faith-header">
-
-            <div class="faith-icon">
-                ✝
-            </div>
-
-            <div>
-
-                <h3>
-                    Faith Interests
-                </h3>
-
-                <p>
-                    Choose the topics that matter most to you.
-                </p>
-
-            </div>
-
-        </div>
-
-        <div class="tag-list">
-
-            <button class="tag" onclick="toggleInterest(this)">
-                Daily Prayer
-            </button>
-
-            <button class="tag" onclick="toggleInterest(this)">
-                Scripture
-            </button>
-
-            <button class="tag" onclick="toggleInterest(this)">
-                Mass
-            </button>
-
-            <button class="tag" onclick="toggleInterest(this)">
-                Saints
-            </button>
-
-            <button class="tag" onclick="toggleInterest(this)">
-                Eucharist
-            </button>
-
-            <button class="tag" onclick="toggleInterest(this)">
-                Catholic Teaching
-            </button>
-
-            <button class="tag" onclick="toggleInterest(this)">
-                Service
-            </button>
-
-            <button class="tag" onclick="toggleInterest(this)">
-                Apologetics
-            </button>
-
-            <button class="tag" onclick="toggleInterest(this)">
-                Vocations
-            </button>
-
-            <button class="tag" onclick="toggleInterest(this)">
-                Catholic Music
-            </button>
-
-            <button class="tag" onclick="toggleInterest(this)">
-                Catholic Culture
-            </button>
-
-            <button class="tag" onclick="toggleInterest(this)">
-                Faith & Life
-            </button>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ACTIVITY -->
-
-<section>
-
-    <div class="section-heading">
-
-        <div>
-            <h2>
-                My Activity
-            </h2>
-        </div>
-
-        <p>
-            Your CYS journey
-        </p>
-
-    </div>
-
-    <div class="activity-grid">
-
-        <a
-            href="faith.html"
-            class="activity-card"
-        >
-
-            <div class="activity-icon">
-                📖
-            </div>
-
-            <h3>
-                Daily Faith
-            </h3>
-
-            <p>
-                Continue growing through Scripture,
-                prayer, and the life of the Church.
-            </p>
-
-        </a>
-
-
-        <a
-            href="events.html"
-            class="activity-card"
-        >
-
-            <div class="activity-icon">
-                ◫
-            </div>
-
-            <h3>
-                My Events
-            </h3>
-
-            <p>
-                See events you're interested in
-                and discover what's coming next.
-            </p>
-
-        </a>
-
-
-        <a
-            href="community.html"
-            class="activity-card"
-        >
-
-            <div class="activity-icon">
-                🙏
-            </div>
-
-            <h3>
-                Prayer Wall
-            </h3>
-
-            <p>
-                Share intentions and pray with
-                the CYS community.
-            </p>
-
-        </a>
-
-
-        <a
-            href="community.html#groups"
-            class="activity-card"
-        >
-
-            <div class="activity-icon">
-                ◉
-            </div>
-
-            <h3>
-                My Groups
-            </h3>
-
-            <p>
-                Stay connected with Catholic youth
-                who share your interests.
-            </p>
-
-        </a>
-
-
-        <a
-            href="community.html#chapters"
-            class="activity-card"
-        >
-
-            <div class="activity-icon">
-                📍
-            </div>
-
-            <h3>
-                My Chapter
-            </h3>
-
-            <p>
-                Connect with Catholic youth and
-                communities near you.
-            </p>
-
-        </a>
-
-
-        <a
-            href="community.html#service"
-            class="activity-card"
-        >
-
-            <div class="activity-icon">
-                ❤️
-            </div>
-
-            <h3>
-                Service
-            </h3>
-
-            <p>
-                Put your faith into action and
-                serve others.
-            </p>
-
-        </a>
-
-    </div>
-
-</section>
-
-
-<!-- MY GROUPS -->
-
-<section>
-
-    <div class="section-heading">
-
-        <div>
-            <h2>
-                My Groups
-            </h2>
-        </div>
-
-        <p>
-            Communities you're connected to
-        </p>
-
-    </div>
-
-    <div class="groups-card" id="groupsList">
-
-        <div class="group-row">
-
-            <div class="group-left">
-
-                <div class="group-symbol">
-                    ✝
-                </div>
-
-                <div>
-
-                    <strong>
-                        Catholic Life
-                    </strong>
-
-                    <span>
-                        Faith & formation
-                    </span>
-
-                </div>
-
-            </div>
-
-            <div class="group-status">
-                Connected
-            </div>
-
-        </div>
-
-
-        <div class="group-row">
-
-            <div class="group-left">
-
-                <div class="group-symbol">
-                    📖
-                </div>
-
-                <div>
-
-                    <strong>
-                        Bible & Scripture
-                    </strong>
-
-                    <span>
-                        Scripture & reflection
-                    </span>
-
-                </div>
-
-            </div>
-
-            <div class="group-status">
-                Explore
-            </div>
-
-        </div>
-
-
-        <div class="group-row">
-
-            <div class="group-left">
-
-                <div class="group-symbol">
-                    ❤️
-                </div>
-
-                <div>
-
-                    <strong>
-                        Service & Charity
-                    </strong>
-
-                    <span>
-                        Faith in action
-                    </span>
-
-                </div>
-
-            </div>
-
-            <div class="group-status">
-                Explore
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- EVENTS -->
-
-<section>
-
-    <div class="section-heading">
-
-        <div>
-            <h2>
-                My Events
-            </h2>
-        </div>
-
-        <p>
-            Upcoming CYS experiences
-        </p>
-
-    </div>
-
-    <div class="event-grid">
-
-        <div class="event-card">
-
-            <div class="event-date">
-                Upcoming
-            </div>
-
-            <h3>
-                Discover CYS Events
-            </h3>
-
-            <p>
-                Explore upcoming virtual gatherings,
-                faith experiences, service opportunities,
-                and community events.
-            </p>
-
-            <a
-                href="events.html"
-                class="event-link"
-            >
-                View Events →
-            </a>
-
-        </div>
-
-
-        <div class="event-card">
-
-            <div class="event-date">
-                Your Calendar
-            </div>
-
-            <h3>
-                Keep Your Faith Journey Moving
-            </h3>
-
-            <p>
-                Events you join or save will eventually
-                appear here as your CYS account becomes
-                connected.
-            </p>
-
-            <a
-                href="events.html"
-                class="event-link"
-            >
-                Explore Events →
-            </a>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ACCOUNT -->
-
-<section>
-
-    <div class="section-heading">
-
-        <div>
-            <h2>
-                Account
-            </h2>
-        </div>
-
-        <p>
-            Your CYS settings
-        </p>
-
-    </div>
-
-    <div class="settings-card">
-
-
-        <div
-            class="setting-row"
-            onclick="editProfile()"
-        >
-
-            <div class="setting-left">
-
-                <div class="setting-icon">
-                    ✎
-                </div>
-
-                <div>
-
-                    <strong>
-                        Edit Profile
-                    </strong>
-
-                    <span>
-                        Update your name and profile information
-                    </span>
-
-                </div>
-
-            </div>
-
-            <div class="setting-arrow">
-                ›
-            </div>
-
-        </div>
-
-
-        <div
-            class="setting-row"
-            onclick="notificationSettings()"
-        >
-
-            <div class="setting-left">
-
-                <div class="setting-icon">
-                    🔔
-                </div>
-
-                <div>
-
-                    <strong>
-                        Notifications
-                    </strong>
-
-                    <span>
-                        Manage CYS reminders and updates
-                    </span>
-
-                </div>
-
-            </div>
-
-            <div class="setting-arrow">
-                ›
-            </div>
-
-        </div>
-
-
-        <div
-            class="setting-row"
-            onclick="privacySettings()"
-        >
-
-            <div class="setting-left">
-
-                <div class="setting-icon">
-                    🔒
-                </div>
-
-                <div>
-
-                    <strong>
-                        Privacy
-                    </strong>
-
-                    <span>
-                        Control what information you share
-                    </span>
-
-                </div>
-
-            </div>
-
-            <div class="setting-arrow">
-                ›
-            </div>
-
-        </div>
-
-
-        <div
-            class="setting-row"
-            onclick="safetySettings()"
-        >
-
-            <div class="setting-left">
-
-                <div class="setting-icon">
-                    🛡️
-                </div>
-
-                <div>
-
-                    <strong>
-                        Safety & Community
-                    </strong>
-
-                    <span>
-                        Learn about CYS community standards
-                    </span>
-
-                </div>
-
-            </div>
-
-            <div class="setting-arrow">
-                ›
-            </div>
-
-        </div>
-
-
-        <div
-            class="setting-row"
-            onclick="accountInfo()"
-        >
-
-            <div class="setting-left">
-
-                <div class="setting-icon">
-                    ℹ️
-                </div>
-
-                <div>
-
-                    <strong>
-                        Account Information
-                    </strong>
-
-                    <span>
-                        Your future CYS account details
-                    </span>
-
-                </div>
-
-            </div>
-
-            <div class="setting-arrow">
-                ›
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ACCOUNT CONNECTION -->
-
-<section>
-
-    <div class="account-card">
+    <div class="profile-info">
 
         <div class="profile-eyebrow">
-            CYS Account
+            CYS Profile
         </div>
 
-        <h2>
-            Your CYS journey, all in one place.
-        </h2>
+        <h1>
+            Your CYS Profile
+        </h1>
 
         <p>
-            When CYS accounts are connected, your profile,
-            groups, events, prayer activity, preferences,
-            and community participation can follow you
-            across the app.
+            Create an account to personalize your CYS
+            experience, connect with your community,
+            and keep track of your faith journey.
         </p>
 
-        <div class="account-actions">
+        <div class="profile-actions">
 
             <button
                 class="primary-button"
-                onclick="accountComingSoon()"
+                onclick="showAccountMessage()"
             >
                 Create / Sign In
             </button>
 
             <a
-                href="cys.html"
+                href="community.html"
                 class="secondary-button"
             >
-                Learn About CYS
+                Explore Community
             </a>
 
         </div>
 
     </div>
 
+</div>
+
+
+</section>
+
+<!-- STATS -->
+
+<div class="profile-stats">
+
+
+<div class="stat">
+
+    <strong>
+        —
+    </strong>
+
+    <span>
+        Prayers Shared
+    </span>
+
+</div>
+
+<div class="stat">
+
+    <strong>
+        —
+    </strong>
+
+    <span>
+        Groups
+    </span>
+
+</div>
+
+<div class="stat">
+
+    <strong>
+        —
+    </strong>
+
+    <span>
+        Events
+    </span>
+
+</div>
+
+</div>
+
+<!-- FAITH -->
+
+<section>
+
+
+<div class="section-heading">
+
+    <div>
+        <h2>
+            My Faith
+        </h2>
+    </div>
+
+    <p>
+        Personalize your experience
+    </p>
+
+</div>
+
+<div class="faith-card">
+
+    <div class="faith-header">
+
+        <div class="faith-icon">
+            ✝
+        </div>
+
+        <div>
+
+            <h3>
+                Faith Interests
+            </h3>
+
+            <p>
+                Select topics you'd like CYS to personalize
+                around once your account is connected.
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="tag-list">
+
+        <button class="tag" onclick="toggleInterest(this)">
+            Daily Prayer
+        </button>
+
+        <button class="tag" onclick="toggleInterest(this)">
+            Scripture
+        </button>
+
+        <button class="tag" onclick="toggleInterest(this)">
+            Mass
+        </button>
+
+        <button class="tag" onclick="toggleInterest(this)">
+            Saints
+        </button>
+
+        <button class="tag" onclick="toggleInterest(this)">
+            Eucharist
+        </button>
+
+        <button class="tag" onclick="toggleInterest(this)">
+            Catholic Teaching
+        </button>
+
+        <button class="tag" onclick="toggleInterest(this)">
+            Service
+        </button>
+
+        <button class="tag" onclick="toggleInterest(this)">
+            Apologetics
+        </button>
+
+        <button class="tag" onclick="toggleInterest(this)">
+            Vocations
+        </button>
+
+        <button class="tag" onclick="toggleInterest(this)">
+            Catholic Music
+        </button>
+
+        <button class="tag" onclick="toggleInterest(this)">
+            Catholic Culture
+        </button>
+
+        <button class="tag" onclick="toggleInterest(this)">
+            Faith & Life
+        </button>
+
+    </div>
+
+</div>
+```
+
+</section>
+
+<!-- ACTIVITY -->
+
+<section>
+
+```
+<div class="section-heading">
+
+    <div>
+        <h2>
+            My Activity
+        </h2>
+    </div>
+
+    <p>
+        Your CYS journey
+    </p>
+
+</div>
+
+<div class="activity-grid">
+
+    <a
+        href="faith.html"
+        class="activity-card"
+    >
+
+        <div class="activity-icon">
+            📖
+        </div>
+
+        <h3>
+            Daily Faith
+        </h3>
+
+        <p>
+            Explore Scripture, Catholic teaching,
+            prayer, saints, and the life of the Church.
+        </p>
+
+    </a>
+
+
+    <a
+        href="events.html"
+        class="activity-card"
+    >
+
+        <div class="activity-icon">
+            ◫
+        </div>
+
+        <h3>
+            My Events
+        </h3>
+
+        <p>
+            Events you save or join will appear here
+            once your CYS account is connected.
+        </p>
+
+    </a>
+
+
+    <a
+        href="community.html#prayer"
+        class="activity-card"
+    >
+
+        <div class="activity-icon">
+            🙏
+        </div>
+
+        <h3>
+            Prayer Wall
+        </h3>
+
+        <p>
+            Share prayer intentions and pray with
+            the CYS community.
+        </p>
+
+    </a>
+
+
+    <a
+        href="community.html#groups"
+        class="activity-card"
+    >
+
+        <div class="activity-icon">
+            ◉
+        </div>
+
+        <h3>
+            My Groups
+        </h3>
+
+        <p>
+            Join Catholic communities centered around
+            faith, interests, and formation.
+        </p>
+
+    </a>
+
+
+    <a
+        href="community.html#chapters"
+        class="activity-card"
+    >
+
+        <div class="activity-icon">
+            📍
+        </div>
+
+        <h3>
+            My Chapter
+        </h3>
+
+        <p>
+            Connect with Catholic youth communities
+            near you.
+        </p>
+
+    </a>
+
+
+    <a
+        href="community.html#service"
+        class="activity-card"
+    >
+
+        <div class="activity-icon">
+            ❤️
+        </div>
+
+        <h3>
+            Service
+        </h3>
+
+        <p>
+            Discover ways to put your faith into
+            action and serve others.
+        </p>
+
+    </a>
+
+</div>
+
+
+</section>
+
+<!-- GROUPS -->
+
+<section>
+
+
+<div class="section-heading">
+
+    <div>
+        <h2>
+            My Groups
+        </h2>
+    </div>
+
+    <p>
+        Your communities
+    </p>
+
+</div>
+
+<div class="groups-card">
+
+    <div class="group-empty">
+
+        You haven't joined any CYS groups yet.
+
+        <br><br>
+
+        Explore the community to discover groups
+        centered around Catholic life, Scripture,
+        music, service, culture, and faith.
+
+        <br><br>
+
+        <a
+            href="community.html#groups"
+            class="primary-button"
+        >
+            Explore Groups
+        </a>
+
+    </div>
+
+</div>
+
+
+</section>
+
+<!-- EVENTS -->
+
+<section>
+
+
+<div class="section-heading">
+
+    <div>
+        <h2>
+            My Events
+        </h2>
+    </div>
+
+    <p>
+        Your upcoming experiences
+    </p>
+
+</div>
+
+<div class="event-grid">
+
+    <div class="event-card">
+
+        <div class="profile-eyebrow">
+            Saved Events
+        </div>
+
+        <h3>
+            No saved events yet.
+        </h3>
+
+        <p>
+            When you save an event, it will appear
+            here for quick access.
+        </p>
+
+        <a
+            href="events.html"
+            class="event-link"
+        >
+            Explore Events →
+        </a>
+
+    </div>
+
+
+    <div class="event-card">
+
+        <div class="profile-eyebrow">
+            Joined Events
+        </div>
+
+        <h3>
+            No joined events yet.
+        </h3>
+
+        <p>
+            Events you join will appear here once
+            CYS accounts and event registration are enabled.
+        </p>
+
+        <a
+            href="events.html"
+            class="event-link"
+        >
+            View Events →
+        </a>
+
+    </div>
+
+</div>
+
+
+</section>
+
+<!-- ACCOUNT SETTINGS -->
+
+<section>
+
+
+<div class="section-heading">
+
+    <div>
+        <h2>
+            Account
+        </h2>
+    </div>
+
+    <p>
+        Manage your CYS experience
+    </p>
+
+</div>
+
+<div class="settings-card">
+
+
+    <div
+        class="setting-row"
+        onclick="showAccountMessage()"
+    >
+
+        <div class="setting-left">
+
+            <div class="setting-icon">
+                ✎
+            </div>
+
+            <div>
+
+                <strong>
+                    Edit Profile
+                </strong>
+
+                <span>
+                    Add your profile information after signing in
+                </span>
+
+            </div>
+
+        </div>
+
+        <div class="setting-arrow">
+            ›
+        </div>
+
+    </div>
+
+
+    <div
+        class="setting-row"
+        onclick="window.location.href='notifications.html'"
+    >
+
+        <div class="setting-left">
+
+            <div class="setting-icon">
+                🔔
+            </div>
+
+            <div>
+
+                <strong>
+                    Notifications
+                </strong>
+
+                <span>
+                    Manage CYS notifications and reminders
+                </span>
+
+            </div>
+
+        </div>
+
+        <div class="setting-arrow">
+            ›
+        </div>
+
+    </div>
+
+
+    <div
+        class="setting-row"
+        onclick="showPrivacyMessage()"
+    >
+
+        <div class="setting-left">
+
+            <div class="setting-icon">
+                🔒
+            </div>
+
+            <div>
+
+                <strong>
+                    Privacy
+                </strong>
+
+                <span>
+                    Manage what information you share
+                </span>
+
+            </div>
+
+        </div>
+
+        <div class="setting-arrow">
+            ›
+        </div>
+
+    </div>
+
+
+    <div
+        class="setting-row"
+        onclick="window.location.href='community.html'"
+    >
+
+        <div class="setting-left">
+
+            <div class="setting-icon">
+                🛡️
+            </div>
+
+            <div>
+
+                <strong>
+                    Safety & Community
+                </strong>
+
+                <span>
+                    CYS community standards and safety
+                </span>
+
+            </div>
+
+        </div>
+
+        <div class="setting-arrow">
+            ›
+        </div>
+
+    </div>
+
+
+    <div
+        class="setting-row"
+        onclick="showAccountMessage()"
+    >
+
+        <div class="setting-left">
+
+            <div class="setting-icon">
+                ℹ️
+            </div>
+
+            <div>
+
+                <strong>
+                    Account Information
+                </strong>
+
+                <span>
+                    Available after creating a CYS account
+                </span>
+
+            </div>
+
+        </div>
+
+        <div class="setting-arrow">
+            ›
+        </div>
+
+    </div>
+
+</div>
+
+
+</section>
+
+<!-- ACCOUNT CTA -->
+
+<section>
+
+
+<div class="account-card">
+
+    <div class="profile-eyebrow">
+        CYS ACCOUNT
+    </div>
+
+    <h2>
+        Make CYS your own.
+    </h2>
+
+    <p>
+        A CYS account will eventually let you save events,
+        personalize your faith experience, join communities,
+        manage your profile, and participate in the CYS
+        community.
+    </p>
+
+    <div class="account-actions">
+
+        <button
+            class="primary-button"
+            onclick="showAccountMessage()"
+        >
+            Create / Sign In
+        </button>
+
+        <a
+            href="cys.html"
+            class="secondary-button"
+        >
+            Learn About CYS
+        </a>
+
+    </div>
+
+</div>
+
+
 </section>
 
 </main>
 
-
 <footer>
 
-    <strong>
-        Catholic Youth Society
-    </strong>
 
-    <div style="margin-top:7px;">
-        A National Virtual Catholic Youth Group
-    </div>
+<strong>
+    Catholic Youth Society
+</strong>
 
-    <div style="margin-top:12px;">
-        © 2026 Catholic Youth Society
-    </div>
+<div style="margin-top:7px;">
+    A National Virtual Catholic Youth Group
+</div>
+
+<div style="margin-top:12px;">
+    © 2026 Catholic Youth Society
+</div>
+
 
 </footer>
-
 
 <!-- BOTTOM NAV -->
 
@@ -2135,206 +1958,94 @@ footer strong {
     aria-label="Main navigation"
 >
 
-    <a
-        href="index.html"
-        class="nav-item"
-    >
-        <span class="nav-icon">⌂</span>
-        <span>Home</span>
-    </a>
+
+<a
+    href="index.html"
+    class="nav-item"
+>
+    <span class="nav-icon">⌂</span>
+    <span>Home</span>
+</a>
 
 
-    <a
-        href="faith.html"
-        class="nav-item"
-    >
-        <span class="nav-icon">✝</span>
-        <span>Faith</span>
-    </a>
+<a
+    href="faith.html"
+    class="nav-item"
+>
+    <span class="nav-icon">✝</span>
+    <span>Faith</span>
+</a>
 
 
-    <a
-        href="events.html"
-        class="nav-item"
-    >
-        <span class="nav-icon">◫</span>
-        <span>Events</span>
-    </a>
+<a
+    href="events.html"
+    class="nav-item"
+>
+    <span class="nav-icon">◫</span>
+    <span>Events</span>
+</a>
 
 
-    <a
-        href="community.html"
-        class="nav-item"
-    >
-        <span class="nav-icon">◉</span>
-        <span>Community</span>
-    </a>
+<a
+    href="community.html"
+    class="nav-item"
+>
+    <span class="nav-icon">◉</span>
+    <span>Community</span>
+</a>
 
 
-    <a
-        href="cys.html"
-        class="nav-item"
-    >
-        <span class="nav-icon">•••</span>
-        <span>More</span>
-    </a>
+<a
+    href="cys.html"
+    class="nav-item"
+>
+    <span class="nav-icon">•••</span>
+    <span>More</span>
+</a>
+
 
 </nav>
 
-
 <script>
 
-/* --------------------------------
-   PROFILE STORAGE
--------------------------------- */
+/*
+    PROFILE PAGE
 
-const PROFILE_KEY = "cys_profile";
+    This page intentionally contains NO mock member data.
 
-const defaultProfile = {
-    name:"CYS Member",
-    bio:"Growing in faith. Building friendships. Following Christ."
-};
+    Until the CYS account/backend system is connected,
+    member-specific information remains empty.
+*/
 
 
 /* --------------------------------
-   LOAD PROFILE
+   FAITH INTERESTS
+
+   These selections are only stored
+   locally as UI preferences for now.
+   No fake interests are preselected.
 -------------------------------- */
 
-function loadProfile() {
-
-    try {
-
-        const saved =
-            localStorage.getItem(PROFILE_KEY);
-
-        if (!saved) {
-            return defaultProfile;
-        }
-
-        const parsed =
-            JSON.parse(saved);
-
-        return {
-            ...defaultProfile,
-            ...parsed
-        };
-
-    } catch {
-
-        return defaultProfile;
-
-    }
-
-}
-
-
-/* --------------------------------
-   SAVE PROFILE
--------------------------------- */
-
-function saveProfile(profile) {
-
-    localStorage.setItem(
-        PROFILE_KEY,
-        JSON.stringify(profile)
-    );
-
-}
-
-
-/* --------------------------------
-   RENDER PROFILE
--------------------------------- */
-
-function renderProfile() {
-
-    const profile =
-        loadProfile();
-
-    document.getElementById(
-        "profileName"
-    ).textContent =
-        profile.name;
-
-    document.getElementById(
-        "profileBio"
-    ).textContent =
-        profile.bio;
-
-}
-
-
-/* --------------------------------
-   EDIT PROFILE
--------------------------------- */
-
-function editProfile() {
-
-    const profile =
-        loadProfile();
-
-    const name =
-        window.prompt(
-            "What should we call you?",
-            profile.name
-        );
-
-    if (name === null) {
-        return;
-    }
-
-    const cleanName =
-        name.trim();
-
-    if (!cleanName) {
-        alert(
-            "Please enter a name."
-        );
-
-        return;
-    }
-
-    const bio =
-        window.prompt(
-            "Tell the CYS community a little about yourself.",
-            profile.bio
-        );
-
-    if (bio === null) {
-        return;
-    }
-
-    profile.name =
-        cleanName;
-
-    profile.bio =
-        bio.trim() ||
-        defaultProfile.bio;
-
-    saveProfile(profile);
-
-    renderProfile();
-
-}
-
-
-/* --------------------------------
-   INTERESTS
--------------------------------- */
-
-const INTEREST_KEY =
-    "cys_faith_interests";
+const INTEREST_KEY = "cys_faith_interests";
 
 
 function loadInterests() {
 
     try {
 
-        return JSON.parse(
-            localStorage.getItem(
-                INTEREST_KEY
-            ) || "[]"
-        );
+        const saved =
+            localStorage.getItem(INTEREST_KEY);
+
+        if (!saved) {
+            return [];
+        }
+
+        const parsed =
+            JSON.parse(saved);
+
+        return Array.isArray(parsed)
+            ? parsed
+            : [];
 
     } catch {
 
@@ -2372,9 +2083,7 @@ function toggleInterest(button) {
 
         saveInterests(updated);
 
-        button.classList.remove(
-            "selected"
-        );
+        button.classList.remove("selected");
 
     } else {
 
@@ -2382,9 +2091,7 @@ function toggleInterest(button) {
 
         saveInterests(interests);
 
-        button.classList.add(
-            "selected"
-        );
+        button.classList.add("selected");
 
     }
 
@@ -2400,15 +2107,12 @@ function renderInterests() {
         .querySelectorAll(".tag")
         .forEach(button => {
 
-            if (
-                interests.includes(
-                    button.textContent.trim()
-                )
-            ) {
+            const name =
+                button.textContent.trim();
 
-                button.classList.add(
-                    "selected"
-                );
+            if (interests.includes(name)) {
+
+                button.classList.add("selected");
 
             }
 
@@ -2418,156 +2122,24 @@ function renderInterests() {
 
 
 /* --------------------------------
-   GROUP COUNT
+   ACCOUNT PLACEHOLDER
+
+   No fake account is created.
 -------------------------------- */
 
-function renderGroupCount() {
-
-    try {
-
-        const groups =
-            JSON.parse(
-                localStorage.getItem(
-                    "cys_joined_groups"
-                ) || "[]"
-            );
-
-        document.getElementById(
-            "groupStat"
-        ).textContent =
-            groups.length;
-
-    } catch {
-
-        document.getElementById(
-            "groupStat"
-        ).textContent =
-            "0";
-
-    }
-
-}
-
-
-/* --------------------------------
-   PRAYER COUNT
--------------------------------- */
-
-function renderPrayerCount() {
-
-    try {
-
-        const prayers =
-            JSON.parse(
-                localStorage.getItem(
-                    "cys_prayer_intentions"
-                ) || "[]"
-            );
-
-        document.getElementById(
-            "prayerStat"
-        ).textContent =
-            prayers.length;
-
-    } catch {
-
-        document.getElementById(
-            "prayerStat"
-        ).textContent =
-            "0";
-
-    }
-
-}
-
-
-/* --------------------------------
-   EVENT COUNT
--------------------------------- */
-
-function renderEventCount() {
-
-    try {
-
-        const events =
-            JSON.parse(
-                localStorage.getItem(
-                    "cys_events"
-                ) || "[]"
-            );
-
-        document.getElementById(
-            "eventStat"
-        ).textContent =
-            events.length;
-
-    } catch {
-
-        document.getElementById(
-            "eventStat"
-        ).textContent =
-            "0";
-
-    }
-
-}
-
-
-/* --------------------------------
-   AVATAR
--------------------------------- */
-
-function changeAvatar() {
+function showAccountMessage() {
 
     alert(
-        "Profile photos will be available when CYS accounts are connected."
+        "CYS accounts are not connected yet. This profile is ready for account integration."
     );
 
 }
 
 
-/* --------------------------------
-   SETTINGS
--------------------------------- */
-
-function notificationSettings() {
-
-    window.location.href =
-        "notifications.html";
-
-}
-
-
-function privacySettings() {
+function showPrivacyMessage() {
 
     alert(
-        "Privacy controls will be connected when CYS accounts are enabled."
-    );
-
-}
-
-
-function safetySettings() {
-
-    window.location.href =
-        "community.html#safety";
-
-}
-
-
-function accountInfo() {
-
-    alert(
-        "Account information will appear here once CYS accounts are connected."
-    );
-
-}
-
-
-function accountComingSoon() {
-
-    alert(
-        "CYS accounts are coming soon. This page is already prepared for account integration."
+        "Privacy controls will become available when CYS accounts are connected."
     );
 
 }
@@ -2581,15 +2153,7 @@ document.addEventListener(
     "DOMContentLoaded",
     function() {
 
-        renderProfile();
-
         renderInterests();
-
-        renderGroupCount();
-
-        renderPrayerCount();
-
-        renderEventCount();
 
     }
 );
@@ -2598,3 +2162,6 @@ document.addEventListener(
 
 </body>
 </html>
+
+
+This version has **zero fabricated member activity**. The only persistent data it can currently store is an interest that the actual visitor deliberately selects. Everything else is an honest empty state until we connect the backend.
