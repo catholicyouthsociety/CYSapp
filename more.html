@@ -1,0 +1,1877 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#06132c">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<title>More • Catholic Youth Society</title>
+
+<style>
+:root{
+  --navy:#06132c;
+  --navy-2:#091b3b;
+  --navy-3:#102956;
+  --gold:#d7b66d;
+  --gold-light:#f1d99b;
+  --cream:#fffaf0;
+  --white:#fff;
+  --text:#f9f8f4;
+  --muted:rgba(255,255,255,.68);
+  --muted-2:rgba(255,255,255,.45);
+  --glass:rgba(255,255,255,.075);
+  --glass-hover:rgba(255,255,255,.105);
+  --glass-border:rgba(255,255,255,.125);
+  --shadow:0 20px 60px rgba(0,0,0,.25);
+}
+
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  min-height:100vh;
+  color:var(--text);
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Display",
+    "SF Pro Text",
+    "Segoe UI",
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
+
+  background:
+    radial-gradient(circle at 10% 0%,rgba(215,182,109,.13),transparent 30%),
+    radial-gradient(circle at 90% 12%,rgba(38,85,160,.26),transparent 34%),
+    radial-gradient(circle at 50% 75%,rgba(30,61,115,.22),transparent 42%),
+    linear-gradient(145deg,#040d20 0%,#06132c 45%,#081a38 100%);
+
+  overflow-x:hidden;
+  padding-bottom:125px;
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  opacity:.025;
+  z-index:-1;
+
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+button{
+  font:inherit;
+}
+
+.container{
+  width:min(1050px,calc(100% - 32px));
+  margin:0 auto;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.top-header{
+  position:relative;
+  z-index:50;
+
+  width:min(1050px,calc(100% - 32px));
+  margin:0 auto;
+
+  padding:
+    calc(20px + env(safe-area-inset-top))
+    0
+    12px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.brand-mark{
+  width:43px;
+  height:43px;
+
+  border-radius:14px;
+
+  display:grid;
+  place-items:center;
+
+  color:var(--gold-light);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(215,182,109,.19),
+      rgba(255,255,255,.05)
+    );
+
+  border:1px solid rgba(215,182,109,.28);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.1),
+    0 10px 30px rgba(0,0,0,.18);
+
+  font-size:20px;
+}
+
+.brand-copy{
+  display:flex;
+  flex-direction:column;
+  line-height:1.05;
+}
+
+.brand-title{
+  font-size:15px;
+  font-weight:750;
+  letter-spacing:-.2px;
+}
+
+.brand-subtitle{
+  margin-top:4px;
+  color:var(--muted-2);
+  font-size:10px;
+  letter-spacing:1.2px;
+  text-transform:uppercase;
+}
+
+.header-actions{
+  display:flex;
+  gap:8px;
+}
+
+.icon-button{
+  width:42px;
+  height:42px;
+
+  border:1px solid var(--glass-border);
+  border-radius:14px;
+
+  color:var(--text);
+  background:rgba(255,255,255,.065);
+
+  backdrop-filter:blur(18px) saturate(160%);
+  -webkit-backdrop-filter:blur(18px) saturate(160%);
+
+  display:grid;
+  place-items:center;
+
+  cursor:pointer;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.08),
+    0 10px 30px rgba(0,0,0,.14);
+
+  transition:.2s ease;
+}
+
+.icon-button:hover{
+  background:var(--glass-hover);
+  transform:translateY(-1px);
+}
+
+.icon-button:active{
+  transform:scale(.95);
+}
+
+/* =========================
+   PAGE INTRO
+========================= */
+
+.page-intro{
+  padding:32px 0 25px;
+}
+
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+
+  color:var(--gold-light);
+
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:1.8px;
+  text-transform:uppercase;
+}
+
+.eyebrow::before{
+  content:"";
+  width:25px;
+  height:1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--gold),
+      transparent
+    );
+}
+
+.page-intro h1{
+  margin:12px 0 9px;
+
+  font-size:clamp(38px,8vw,62px);
+  line-height:.96;
+  letter-spacing:-2.8px;
+}
+
+.page-intro p{
+  max-width:620px;
+
+  margin:0;
+
+  color:var(--muted);
+
+  font-size:15px;
+  line-height:1.65;
+}
+
+/* =========================
+   ACCOUNT CARD
+========================= */
+
+.account-card{
+  position:relative;
+  overflow:hidden;
+
+  display:flex;
+  align-items:center;
+  gap:17px;
+
+  padding:20px;
+
+  margin-bottom:30px;
+
+  border-radius:25px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.115),
+      rgba(255,255,255,.045)
+    );
+
+  border:1px solid rgba(255,255,255,.15);
+
+  box-shadow:
+    var(--shadow),
+    inset 0 1px 0 rgba(255,255,255,.08);
+
+  backdrop-filter:blur(28px) saturate(165%);
+  -webkit-backdrop-filter:blur(28px) saturate(165%);
+}
+
+.account-card::after{
+  content:"";
+  position:absolute;
+
+  width:190px;
+  height:190px;
+
+  right:-80px;
+  top:-100px;
+
+  border-radius:50%;
+
+  background:rgba(215,182,109,.12);
+  filter:blur(20px);
+
+  pointer-events:none;
+}
+
+.account-avatar{
+  width:58px;
+  height:58px;
+
+  flex:0 0 58px;
+
+  border-radius:19px;
+
+  display:grid;
+  place-items:center;
+
+  color:var(--gold-light);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(215,182,109,.22),
+      rgba(255,255,255,.06)
+    );
+
+  border:1px solid rgba(215,182,109,.32);
+
+  font-size:25px;
+}
+
+.account-info{
+  min-width:0;
+  flex:1;
+}
+
+.account-title{
+  font-size:17px;
+  font-weight:750;
+}
+
+.account-subtitle{
+  margin-top:5px;
+
+  color:var(--muted);
+
+  font-size:13px;
+  line-height:1.4;
+}
+
+.account-arrow{
+  color:var(--muted-2);
+  font-size:24px;
+}
+
+/* =========================
+   SECTION
+========================= */
+
+.section{
+  margin-top:30px;
+}
+
+.section-heading{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+
+  margin:0 4px 11px;
+}
+
+.section-title{
+  margin:0;
+
+  font-size:13px;
+  font-weight:800;
+
+  color:var(--gold-light);
+
+  letter-spacing:1.3px;
+  text-transform:uppercase;
+}
+
+.section-caption{
+  color:var(--muted-2);
+  font-size:11px;
+}
+
+/* =========================
+   MENU
+========================= */
+
+.menu-card{
+  overflow:hidden;
+
+  border-radius:22px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.085),
+      rgba(255,255,255,.045)
+    );
+
+  border:1px solid var(--glass-border);
+
+  box-shadow:
+    0 18px 50px rgba(0,0,0,.18),
+    inset 0 1px 0 rgba(255,255,255,.055);
+
+  backdrop-filter:blur(24px) saturate(155%);
+  -webkit-backdrop-filter:blur(24px) saturate(155%);
+}
+
+.menu-item{
+  position:relative;
+
+  width:100%;
+
+  min-height:70px;
+
+  padding:13px 17px;
+
+  display:flex;
+  align-items:center;
+  gap:14px;
+
+  background:transparent;
+
+  border:0;
+
+  color:var(--text);
+
+  text-align:left;
+
+  cursor:pointer;
+
+  transition:
+    background .18s ease,
+    transform .18s ease;
+}
+
+.menu-item + .menu-item::before{
+  content:"";
+
+  position:absolute;
+
+  left:66px;
+  right:17px;
+  top:0;
+
+  height:1px;
+
+  background:rgba(255,255,255,.065);
+}
+
+.menu-item:hover{
+  background:rgba(255,255,255,.055);
+}
+
+.menu-item:active{
+  transform:scale(.995);
+}
+
+.menu-icon{
+  width:39px;
+  height:39px;
+
+  flex:0 0 39px;
+
+  display:grid;
+  place-items:center;
+
+  border-radius:13px;
+
+  color:var(--gold-light);
+
+  background:rgba(215,182,109,.09);
+
+  border:1px solid rgba(215,182,109,.14);
+
+  font-size:18px;
+}
+
+.menu-content{
+  min-width:0;
+  flex:1;
+}
+
+.menu-name{
+  font-size:14px;
+  font-weight:700;
+}
+
+.menu-description{
+  margin-top:3px;
+
+  color:var(--muted-2);
+
+  font-size:11px;
+  line-height:1.35;
+}
+
+.menu-arrow{
+  color:rgba(255,255,255,.35);
+  font-size:20px;
+}
+
+/* =========================
+   LEADERSHIP
+========================= */
+
+.leadership-intro{
+  padding:24px;
+
+  border-radius:25px;
+
+  background:
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(215,182,109,.13),
+      transparent 42%
+    ),
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.085),
+      rgba(255,255,255,.04)
+    );
+
+  border:1px solid var(--glass-border);
+
+  box-shadow:
+    var(--shadow),
+    inset 0 1px 0 rgba(255,255,255,.06);
+
+  backdrop-filter:blur(24px);
+  -webkit-backdrop-filter:blur(24px);
+}
+
+.leadership-kicker{
+  color:var(--gold-light);
+
+  font-size:10px;
+  font-weight:850;
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
+
+.leadership-intro h2{
+  margin:8px 0 11px;
+
+  font-size:28px;
+  letter-spacing:-1.2px;
+}
+
+.leadership-intro p{
+  margin:0;
+
+  color:var(--muted);
+
+  font-size:14px;
+  line-height:1.7;
+}
+
+.verse{
+  margin-top:21px;
+  padding-top:18px;
+
+  border-top:1px solid rgba(255,255,255,.09);
+}
+
+.verse-text{
+  font-family:Georgia,"Times New Roman",serif;
+
+  color:var(--cream);
+
+  font-size:17px;
+  line-height:1.55;
+}
+
+.verse-reference{
+  margin-top:8px;
+
+  color:var(--gold-light);
+
+  font-size:12px;
+  font-weight:700;
+}
+
+/* TEAM */
+
+.team-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:14px;
+}
+
+.team-department{
+  grid-column:1/-1;
+
+  margin-top:13px;
+
+  color:var(--gold-light);
+
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+}
+
+.team-card{
+  padding:20px;
+
+  border-radius:22px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.075),
+      rgba(255,255,255,.035)
+    );
+
+  border:1px solid var(--glass-border);
+
+  box-shadow:
+    0 15px 40px rgba(0,0,0,.16),
+    inset 0 1px 0 rgba(255,255,255,.05);
+
+  backdrop-filter:blur(22px);
+  -webkit-backdrop-filter:blur(22px);
+}
+
+.team-role{
+  color:var(--gold-light);
+
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:1.2px;
+  text-transform:uppercase;
+}
+
+.team-name{
+  margin-top:7px;
+
+  font-size:17px;
+  font-weight:750;
+}
+
+.team-bio{
+  margin-top:9px;
+
+  color:var(--muted);
+
+  font-size:12px;
+  line-height:1.55;
+}
+
+.team-contact{
+  display:inline-block;
+
+  margin-top:13px;
+
+  color:var(--gold-light);
+
+  font-size:11px;
+  font-weight:650;
+
+  word-break:break-word;
+}
+
+/* =========================
+   DEVELOPER CARD
+========================= */
+
+.developer-card{
+  position:relative;
+  overflow:hidden;
+
+  padding:23px;
+
+  border-radius:25px;
+
+  background:
+    radial-gradient(
+      circle at 90% 0%,
+      rgba(215,182,109,.15),
+      transparent 38%
+    ),
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.09),
+      rgba(255,255,255,.04)
+    );
+
+  border:1px solid rgba(215,182,109,.2);
+
+  box-shadow:
+    0 20px 55px rgba(0,0,0,.23),
+    inset 0 1px 0 rgba(255,255,255,.07);
+
+  backdrop-filter:blur(25px);
+  -webkit-backdrop-filter:blur(25px);
+}
+
+.developer-label{
+  color:var(--gold-light);
+
+  font-size:10px;
+  font-weight:850;
+  letter-spacing:1.7px;
+  text-transform:uppercase;
+}
+
+.developer-card h3{
+  margin:7px 0 8px;
+
+  font-size:22px;
+  letter-spacing:-.7px;
+}
+
+.developer-card p{
+  margin:0;
+
+  color:var(--muted);
+
+  font-size:13px;
+  line-height:1.6;
+}
+
+.developer-email{
+  display:inline-flex;
+
+  margin-top:15px;
+
+  padding:10px 13px;
+
+  border-radius:12px;
+
+  color:var(--cream);
+
+  background:rgba(215,182,109,.09);
+
+  border:1px solid rgba(215,182,109,.18);
+
+  font-size:12px;
+  font-weight:650;
+
+  word-break:break-all;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer{
+  margin-top:45px;
+  padding:30px 0 5px;
+
+  text-align:center;
+}
+
+.footer-logo{
+  color:var(--gold-light);
+
+  font-size:20px;
+  font-weight:800;
+
+  letter-spacing:-.4px;
+}
+
+.footer-tagline{
+  margin-top:7px;
+
+  color:var(--muted-2);
+
+  font-size:11px;
+  letter-spacing:.5px;
+}
+
+.footer-links{
+  margin-top:17px;
+
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:8px 18px;
+}
+
+.footer-links a{
+  color:rgba(255,255,255,.48);
+
+  font-size:10px;
+}
+
+.footer-version{
+  margin-top:20px;
+
+  color:rgba(255,255,255,.25);
+
+  font-size:9px;
+  letter-spacing:1px;
+}
+
+/* =========================
+   BOTTOM NAV
+========================= */
+
+.bottom-nav{
+  position:fixed;
+  z-index:200;
+
+  left:50%;
+  bottom:calc(12px + env(safe-area-inset-bottom));
+
+  transform:translateX(-50%);
+
+  width:min(650px,calc(100% - 24px));
+
+  padding:8px;
+
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:4px;
+
+  border-radius:24px;
+
+  background:rgba(8,22,49,.58);
+
+  border:1px solid rgba(255,255,255,.13);
+
+  box-shadow:
+    0 22px 60px rgba(0,0,0,.35),
+    inset 0 1px 0 rgba(255,255,255,.08);
+
+  backdrop-filter:blur(30px) saturate(170%);
+  -webkit-backdrop-filter:blur(30px) saturate(170%);
+}
+
+.nav-item{
+  min-width:0;
+
+  padding:8px 4px;
+
+  border-radius:17px;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:4px;
+
+  color:rgba(255,255,255,.52);
+
+  font-size:9px;
+  font-weight:650;
+
+  transition:.2s ease;
+}
+
+.nav-icon{
+  font-size:19px;
+  line-height:1;
+}
+
+.nav-item:hover{
+  color:rgba(255,255,255,.82);
+}
+
+.nav-item.active{
+  color:var(--gold-light);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(215,182,109,.13),
+      rgba(255,255,255,.045)
+    );
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.07);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:700px){
+
+  .container{
+    width:min(100% - 24px,1050px);
+  }
+
+  .top-header{
+    width:min(100% - 24px,1050px);
+  }
+
+  .page-intro{
+    padding-top:27px;
+  }
+
+  .page-intro h1{
+    letter-spacing:-2px;
+  }
+
+  .team-grid{
+    grid-template-columns:1fr;
+  }
+
+  .team-department{
+    grid-column:auto;
+  }
+
+  .leadership-intro{
+    padding:21px;
+  }
+
+  .leadership-intro h2{
+    font-size:25px;
+  }
+}
+
+@media(max-width:420px){
+
+  .brand-subtitle{
+    display:none;
+  }
+
+  .brand-mark{
+    width:40px;
+    height:40px;
+  }
+
+  .icon-button{
+    width:40px;
+    height:40px;
+  }
+
+  .account-card{
+    padding:16px;
+  }
+
+  .account-avatar{
+    width:52px;
+    height:52px;
+    flex-basis:52px;
+  }
+
+  .menu-item{
+    min-height:67px;
+  }
+
+  .menu-description{
+    max-width:210px;
+  }
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header class="top-header">
+
+  <a href="index.html" class="brand" aria-label="Catholic Youth Society Home">
+
+
+<div class="brand-mark">
+  ✝
+</div>
+
+<div class="brand-copy">
+  <div class="brand-title">
+    Catholic Youth Society
+  </div>
+
+  <div class="brand-subtitle">
+    A National Virtual Catholic Youth Group
+  </div>
+</div>
+
+
+  </a>
+
+  <div class="header-actions">
+
+
+<button
+  class="icon-button"
+  aria-label="Notifications"
+  onclick="window.location.href='notifications.html'">
+  🔔
+</button>
+
+<button
+  class="icon-button"
+  aria-label="Profile"
+  onclick="window.location.href='profile.html'">
+  👤
+</button>
+
+
+  </div>
+
+</header>
+
+<main class="container">
+
+  <!-- =========================
+       INTRO
+  ========================= -->
+
+  <section class="page-intro">
+
+
+<div class="eyebrow">
+  Catholic Youth Society
+</div>
+
+<h1>
+  More
+</h1>
+
+<p>
+  Everything else you need for your CYS experience,
+  from your account and app settings to support,
+  leadership, and ways to connect with us.
+</p>
+
+
+  </section>
+
+  <!-- =========================
+       ACCOUNT
+  ========================= -->
+
+  <a href="profile.html" class="account-card">
+
+
+<div class="account-avatar">
+  👤
+</div>
+
+<div class="account-info">
+
+  <div class="account-title">
+    Your Account
+  </div>
+
+  <div class="account-subtitle">
+    View and manage your CYS profile
+  </div>
+
+</div>
+
+<div class="account-arrow">
+  ›
+</div>
+
+    
+  </a>
+
+  <!-- =========================
+       ACCOUNT & APP
+  ========================= -->
+
+  <section class="section">
+
+```
+<div class="section-heading">
+  <h2 class="section-title">
+    Account & App
+  </h2>
+</div>
+
+<div class="menu-card">
+
+  <button
+    class="menu-item"
+    onclick="window.location.href='profile.html'">
+
+    <div class="menu-icon">
+      👤
+    </div>
+
+    <div class="menu-content">
+
+      <div class="menu-name">
+        Account
+      </div>
+
+      <div class="menu-description">
+        Manage your profile and account information
+      </div>
+
+    </div>
+
+    <div class="menu-arrow">
+      ›
+    </div>
+
+  </button>
+
+
+  <button
+    class="menu-item"
+    onclick="window.location.href='settings.html'">
+
+    <div class="menu-icon">
+      ⚙️
+    </div>
+
+    <div class="menu-content">
+
+      <div class="menu-name">
+        App Settings
+      </div>
+
+      <div class="menu-description">
+        Customize your CYS app experience
+      </div>
+
+    </div>
+
+    <div class="menu-arrow">
+      ›
+    </div>
+
+  </button>
+
+
+  <button
+    class="menu-item"
+    onclick="window.location.href='notifications.html'">
+
+    <div class="menu-icon">
+      🔔
+    </div>
+
+    <div class="menu-content">
+
+      <div class="menu-name">
+        Notifications
+      </div>
+
+      <div class="menu-description">
+        Manage your CYS notifications
+      </div>
+
+    </div>
+
+    <div class="menu-arrow">
+      ›
+    </div>
+
+  </button>
+
+</div>
+
+
+  </section>
+
+  <!-- =========================
+       HELP & CONTACT
+  ========================= -->
+
+  <section class="section">
+
+
+<div class="section-heading">
+  <h2 class="section-title">
+    Help & Contact
+  </h2>
+</div>
+
+<div class="menu-card">
+
+  <a
+    class="menu-item"
+    href="mailto:catholicyouthsocietyharford@gmail.com">
+
+    <div class="menu-icon">
+      ✉️
+    </div>
+
+    <div class="menu-content">
+
+      <div class="menu-name">
+        Contact CYS
+      </div>
+
+      <div class="menu-description">
+        Questions, suggestions, or general inquiries
+      </div>
+
+    </div>
+
+    <div class="menu-arrow">
+      ›
+    </div>
+
+  </a>
+
+
+  <a
+    class="menu-item"
+    href="mailto:xavierambrogiodeveloper@tutamail.com">
+
+    <div class="menu-icon">
+      💻
+    </div>
+
+    <div class="menu-content">
+
+      <div class="menu-name">
+        Contact Developer
+      </div>
+
+      <div class="menu-description">
+        Technical issues, bugs, or app feedback
+      </div>
+
+    </div>
+
+    <div class="menu-arrow">
+      ›
+    </div>
+
+  </a>
+
+
+  <a
+    class="menu-item"
+    href="mailto:catholicyouthsocietyharford@gmail.com?subject=Catholic%20Youth%20Society%20Support">
+
+    <div class="menu-icon">
+      🛟
+    </div>
+
+    <div class="menu-content">
+
+      <div class="menu-name">
+        Help & Support
+      </div>
+
+      <div class="menu-description">
+        Get help with your CYS experience
+      </div>
+
+    </div>
+
+    <div class="menu-arrow">
+      ›
+    </div>
+
+  </a>
+
+</div>
+
+
+  </section>
+
+  <!-- =========================
+       CYS INFORMATION
+  ========================= -->
+
+  <section class="section">
+
+
+<div class="section-heading">
+  <h2 class="section-title">
+    Catholic Youth Society
+  </h2>
+</div>
+
+<div class="menu-card">
+
+  <a
+    class="menu-item"
+    href="#leadership">
+
+    <div class="menu-icon">
+      ✝
+    </div>
+
+    <div class="menu-content">
+
+      <div class="menu-name">
+        Our Leadership
+      </div>
+
+      <div class="menu-description">
+        Meet the people serving the Catholic Youth Society
+      </div>
+
+    </div>
+
+    <div class="menu-arrow">
+      ›
+    </div>
+
+  </a>
+
+
+  <a
+    class="menu-item"
+    href="#about">
+
+    <div class="menu-icon">
+      ℹ️
+    </div>
+
+    <div class="menu-content">
+
+      <div class="menu-name">
+        About CYS
+      </div>
+
+      <div class="menu-description">
+        Our mission, purpose, and vision
+      </div>
+
+    </div>
+
+    <div class="menu-arrow">
+      ›
+    </div>
+
+  </a>
+
+
+  <a
+    class="menu-item"
+    href="#safety">
+
+    <div class="menu-icon">
+      🛡️
+    </div>
+
+    <div class="menu-content">
+
+      <div class="menu-name">
+        Safety & Privacy
+      </div>
+
+      <div class="menu-description">
+        Learn about safety, privacy, and responsible community use
+      </div>
+
+    </div>
+
+    <div class="menu-arrow">
+      ›
+    </div>
+
+  </a>
+
+</div>
+
+
+  </section>
+
+  <!-- =========================
+       ABOUT
+  ========================= -->
+
+  <section
+    class="section"
+    id="about">
+
+
+<div class="section-heading">
+  <h2 class="section-title">
+    About CYS
+  </h2>
+</div>
+
+<div class="leadership-intro">
+
+  <div class="leadership-kicker">
+    Catholic Youth Society
+  </div>
+
+  <h2>
+    Faith that connects.
+  </h2>
+
+  <p>
+    The Catholic Youth Society is a national virtual Catholic
+    youth group created to connect young people ages 11–18
+    through faith, friendship, prayer, service, and community.
+  </p>
+
+  <p style="margin-top:12px;">
+    CYS exists to help young Catholics encounter Christ,
+    grow deeper in their faith, and build authentic friendships
+    with other young people from across the country.
+  </p>
+
+</div>
+
+
+  </section>
+
+  <!-- =========================
+       LEADERSHIP
+  ========================= -->
+
+  <section
+    class="section"
+    id="leadership">
+
+
+<div class="section-heading">
+  <h2 class="section-title">
+    Leading With Faith
+  </h2>
+
+  <div class="section-caption">
+    Guided by purpose
+  </div>
+</div>
+
+
+<div class="leadership-intro">
+
+  <div class="leadership-kicker">
+    Guided By Purpose
+  </div>
+
+  <h2>
+    Leading with faith.
+  </h2>
+
+  <p>
+    At the Catholic Youth Society, our leaders are dedicated
+    to building a welcoming, vibrant, nationwide family where
+    every young person feels known, supported, and valued.
+    We believe that true leadership starts with serving others
+    and walking together on the path to holiness.
+  </p>
+
+  <p style="margin-top:12px;">
+    Inspired by the example of Saint Carlo Acutis, our team
+    is passionate about mentoring youth, fostering deep
+    friendships, and helping the next generation encounter
+    the love of Christ in their daily lives.
+  </p>
+
+
+  <div class="verse">
+
+    <div class="verse-text">
+      “Let no one have contempt for your youth, but set an
+      example for those who believe, in speech, conduct, love,
+      faith, and purity.”
+    </div>
+
+    <div class="verse-reference">
+      1 Timothy 4:12
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- TEAM -->
+
+<div style="margin-top:22px;">
+
+  <div class="section-heading">
+    <h2 class="section-title">
+      Meet Our Team
+    </h2>
+  </div>
+
+  <div class="team-grid">
+
+    <div class="team-department">
+      Executive Department
+    </div>
+
+
+    <div class="team-card">
+
+      <div class="team-role">
+        Founder & Executive Director
+      </div>
+
+      <div class="team-name">
+        Gryffen Atkinson
+      </div>
+
+      <div class="team-bio">
+        Gryffen’s Bio: This Bio is Coming Soon!
+      </div>
+
+      <a
+        class="team-contact"
+        href="mailto:catholicyouthsocietyharford@gmail.com">
+        Contact CYS →
+      </a>
+
+    </div>
+
+
+    <div class="team-card">
+
+      <div class="team-role">
+        Assistant Executive Director
+      </div>
+
+      <div class="team-name">
+        Genevieve Snyder
+      </div>
+
+      <div class="team-bio">
+        Genevieve’s Bio: This Bio is Coming Soon!
+      </div>
+
+      <a
+        class="team-contact"
+        href="mailto:catholicyouthsocietyharford@gmail.com">
+        Contact CYS →
+      </a>
+
+    </div>
+
+
+    <div class="team-department">
+      Outreach Department
+    </div>
+
+
+    <div class="team-card">
+
+      <div class="team-role">
+        Social Media Director
+      </div>
+
+      <div class="team-name">
+        Jean Velez
+      </div>
+
+      <div class="team-bio">
+        Jean’s Bio: This Bio is Coming Soon!
+      </div>
+
+      <a
+        class="team-contact"
+        href="mailto:catholicyouthsocietyharford@gmail.com">
+        Contact CYS →
+      </a>
+
+    </div>
+
+
+    <div class="team-department">
+      Finance Department
+    </div>
+
+
+    <div class="team-card">
+
+      <div class="team-role">
+        Finance Director
+      </div>
+
+      <div class="team-name">
+        Mr. Rob Dauses
+      </div>
+
+      <div class="team-bio">
+        Rob’s Bio: This Bio is Coming Soon!
+      </div>
+
+      <a
+        class="team-contact"
+        href="mailto:catholicyouthsocietyharford@gmail.com">
+        Contact CYS →
+      </a>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+  </section>
+
+  <!-- =========================
+       JOIN TEAM
+  ========================= -->
+
+  <section class="section">
+
+
+<div class="menu-card">
+
+  <a
+    class="menu-item"
+    href="mailto:catholicyouthsocietyharford@gmail.com?subject=Joining%20the%20Catholic%20Youth%20Society%20Team">
+
+    <div class="menu-icon">
+      🤝
+    </div>
+
+    <div class="menu-content">
+
+      <div class="menu-name">
+        Join Our Team
+      </div>
+
+      <div class="menu-description">
+        Interested in serving with the Catholic Youth Society?
+      </div>
+
+    </div>
+
+    <div class="menu-arrow">
+      ›
+    </div>
+
+  </a>
+
+</div>
+
+
+  </section>
+
+  <!-- =========================
+       DEVELOPER
+  ========================= -->
+
+  <section class="section">
+
+
+<div class="section-heading">
+  <h2 class="section-title">
+    Development
+  </h2>
+</div>
+
+<div class="developer-card">
+
+  <div class="developer-label">
+    App Developer
+  </div>
+
+  <h3>
+    Contact Developer
+  </h3>
+
+  <p>
+    Found a bug, have an idea, or need help with something
+    technical in the CYS app? You can contact the developer
+    directly.
+  </p>
+
+  <a
+    class="developer-email"
+    href="mailto:xavierambrogiodeveloper@tutamail.com">
+    xavierambrogiodeveloper@tutamail.com
+  </a>
+
+</div>
+
+
+  </section>
+
+  <!-- =========================
+       SAFETY
+  ========================= -->
+
+  <section
+    class="section"
+    id="safety">
+
+
+<div class="section-heading">
+  <h2 class="section-title">
+    Safety & Privacy
+  </h2>
+</div>
+
+<div class="menu-card">
+
+  <div class="menu-item">
+
+    <div class="menu-icon">
+      🛡️
+    </div>
+
+    <div class="menu-content">
+
+      <div class="menu-name">
+        A Safe Community
+      </div>
+
+      <div class="menu-description">
+        CYS is committed to creating a respectful,
+        welcoming environment for young Catholics.
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="menu-item">
+
+    <div class="menu-icon">
+      🔒
+    </div>
+
+    <div class="menu-content">
+
+      <div class="menu-name">
+        Privacy
+      </div>
+
+      <div class="menu-description">
+        Your personal information should be handled
+        responsibly and respectfully.
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="menu-item">
+
+    <div class="menu-icon">
+      🚩
+    </div>
+
+    <div class="menu-content">
+
+      <div class="menu-name">
+        Report a Concern
+      </div>
+
+      <div class="menu-description">
+        If something doesn't feel right, contact CYS
+        so the appropriate team can review it.
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+  </section>
+
+  <!-- =========================
+       FOOTER
+  ========================= -->
+
+  <footer class="footer">
+
+
+<div class="footer-logo">
+  Catholic Youth Society
+</div>
+
+<div class="footer-tagline">
+  Faith • Friendship • Community
+</div>
+
+<div class="footer-links">
+
+  <a href="#about">
+    About
+  </a>
+
+  <a href="#leadership">
+    Leadership
+  </a>
+
+  <a href="#safety">
+    Safety
+  </a>
+
+  <a href="mailto:catholicyouthsocietyharford@gmail.com">
+    Contact
+  </a>
+
+  <a href="mailto:xavierambrogiodeveloper@tutamail.com">
+    Developer
+  </a>
+
+</div>
+
+<div class="footer-version">
+  CATHOLIC YOUTH SOCIETY
+</div>
+
+
+  </footer>
+
+</main>
+
+<!-- =========================
+     BOTTOM NAV
+========================= -->
+
+<nav class="bottom-nav" aria-label="Main navigation">
+
+<a
+ class="nav-item"
+ href="index.html">
+
+
+<span class="nav-icon">⌂</span>
+<span>Home</span>
+
+
+  </a>
+
+<a
+ class="nav-item"
+ href="faith.html">
+
+
+<span class="nav-icon">✝</span>
+<span>Faith</span>
+
+
+  </a>
+
+<a
+ class="nav-item"
+ href="events.html">
+
+
+<span class="nav-icon">◫</span>
+<span>Events</span>
+
+
+  </a>
+
+<a
+ class="nav-item"
+ href="community.html">
+
+
+<span class="nav-icon">♧</span>
+<span>Community</span>
+
+
+  </a>
+
+<a
+ class="nav-item active"
+ href="cys.html">
+
+
+<span class="nav-icon">•••</span>
+<span>More</span>
+
+
+  </a>
+
+</nav>
+
+</body>
+</html>
