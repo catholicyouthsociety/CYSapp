@@ -1,360 +1,2208 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catholic Youth Society - Dashboard</title>
+  <meta charset="UTF-8">
 
-    <!-- PWA & Mobile Home Screen Tags -->
-    <link rel="manifest" href="manifest.json">
-    <link rel="apple-touch-icon" sizes="192x192" href="logo-192.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="logo-192.png">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="theme-color" content="#121b2d">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  >
 
-    <style>
-        :root {
-            --navy-dark: #080d1a;
-            --navy-card: #121b2d;
-            --navy-accent: #1e2d4a;
-            --gold-primary: #d4af37;
-            --gold-light: #f3e5ab;
-            --text-white: #ffffff;
-            --text-muted: #8c9ba5;
-            --border-gold: rgba(212, 175, 55, 0.25);
-        }
+  <meta name="theme-color" content="#07152F">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="CYS">
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        }
+  <meta
+    name="description"
+    content="Catholic Youth Society — A national virtual Catholic youth community."
+  >
 
-        body {
-            color: var(--text-white);
-            background-color: var(--navy-dark);
-            line-height: 1.6;
-            padding-top: env(safe-area-inset-top);
-            padding-bottom: calc(5rem + env(safe-area-inset-bottom));
-        }
+  <title>Catholic Youth Society</title>
 
-        .container {
-            padding: 1.5rem 5%;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
+  <link rel="manifest" href="manifest.json">
 
-        .app-header-logo {
-            text-align: center;
-            margin-bottom: 1.5rem;
-        }
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-        .app-header-logo img {
-            width: 90px;
-            height: auto;
-            border-radius: 12px;
-            margin-bottom: 0.5rem;
-        }
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap"
+    rel="stylesheet"
+  >
 
-        .section-title {
-            color: var(--gold-primary);
-            font-size: 0.8rem;
-            font-weight: 700;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            margin-bottom: 0.5rem;
-        }
+  <style>
+    /* =========================================================
+       CATHOLIC YOUTH SOCIETY
+       HOME — INDEX.HTML
+    ========================================================= */
 
-        h1, h2, h3 {
-            font-family: Georgia, serif;
-            color: var(--text-white);
-        }
+    :root {
+      --navy: #06132c;
+      --navy-2: #091b3b;
+      --navy-3: #102956;
 
-        .card {
-            background-color: var(--navy-card);
-            border: 1px solid var(--border-gold);
-            border-radius: 14px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-        }
+      --gold: #d7b66d;
+      --gold-light: #f1d99b;
 
-        .user-welcome-banner {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
+      --cream: #fffaf0;
+      --white: #ffffff;
 
-        .streak-badge {
-            background: rgba(212, 175, 55, 0.15);
-            border: 1px solid var(--border-gold);
-            padding: 0.5rem 1rem;
-            border-radius: 30px;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-weight: 700;
-            color: var(--gold-light);
-        }
+      --text: #f9f8f4;
+      --muted: rgba(255,255,255,.67);
+      --muted-2: rgba(255,255,255,.46);
 
-        .liturgical-bar {
-            background: linear-gradient(90deg, #1e2d4a 0%, #121b2d 100%);
-            border-left: 4px solid var(--gold-primary);
-            padding: 0.75rem 1.25rem;
-            border-radius: 8px;
-            margin-bottom: 1.5rem;
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.85rem;
-            color: var(--gold-light);
-        }
+      --glass: rgba(255,255,255,.075);
+      --glass-hover: rgba(255,255,255,.105);
+      --glass-border: rgba(255,255,255,.125);
 
-        .hero-verse-card {
-            background: linear-gradient(135deg, #18243b 0%, #0d1424 100%);
-            position: relative;
-            overflow: hidden;
-        }
+      --shadow: 0 24px 70px rgba(0,0,0,.28);
 
-        .verse-body {
-            font-size: 1.2rem;
-            font-style: italic;
-            color: var(--gold-light);
-            margin: 1rem 0;
-            line-height: 1.7;
-        }
+      --radius-xl: 32px;
+      --radius-lg: 25px;
+      --radius-md: 19px;
+    }
 
-        .verse-ref {
-            font-weight: 700;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
 
-        .grid-4 {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
+    html {
+      background: var(--navy);
+      scroll-behavior: smooth;
+    }
 
-        .quick-action-card {
-            background-color: var(--navy-card);
-            border: 1px solid var(--border-gold);
-            border-radius: 12px;
-            padding: 1.25rem 1rem;
-            text-align: center;
-            text-decoration: none;
-            color: var(--text-white);
-            transition: all 0.25s;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
-        }
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
 
-        .quick-action-card:hover {
-            border-color: var(--gold-primary);
-            background-color: var(--navy-accent);
-            transform: translateY(-3px);
-        }
+      color: var(--text);
 
-        .grid-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-        }
+      font-family: "DM Sans", sans-serif;
 
-        .community-prayer-box {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.8rem 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-        }
+      background:
+        radial-gradient(
+          circle at 8% -5%,
+          rgba(53,94,160,.48),
+          transparent 34%
+        ),
+        radial-gradient(
+          circle at 100% 8%,
+          rgba(215,182,109,.13),
+          transparent 29%
+        ),
+        radial-gradient(
+          circle at 50% 60%,
+          rgba(32,68,123,.22),
+          transparent 40%
+        ),
+        linear-gradient(
+          145deg,
+          #05122b 0%,
+          #081b3b 46%,
+          #06132c 100%
+        );
 
-        .btn-pray-sm {
-            background: transparent;
-            border: 1px solid var(--gold-primary);
-            color: var(--gold-primary);
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            cursor: pointer;
-        }
+      padding-bottom: calc(
+        104px + env(safe-area-inset-bottom)
+      );
+    }
 
-        .btn-pray-sm.prayed {
-            background: var(--gold-primary);
-            color: var(--navy-dark);
-        }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
 
-        .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background-color: var(--navy-card);
-            border-top: 1px solid var(--border-gold);
-            display: flex;
-            justify-content: space-around;
-            padding: 0.6rem 0;
-            z-index: 1000;
-            box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.5);
-            padding-bottom: max(0.6rem, env(safe-area-inset-bottom));
-        }
+      pointer-events: none;
+      z-index: 999;
 
-        .nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-decoration: none;
-            color: var(--text-muted);
-            font-size: 0.75rem;
-            font-weight: 600;
-        }
+      opacity: .035;
 
-        .nav-item.active, .nav-item:hover {
-            color: var(--gold-primary);
-        }
+      background-image:
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    }
 
-        @media (max-width: 768px) {
-            .grid-4 { grid-template-columns: 1fr 1fr; }
-            .grid-2 { grid-template-columns: 1fr; }
-        }
-    </style>
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .page {
+      width: min(1180px, 100%);
+      margin: auto;
+
+      padding:
+        max(18px, env(safe-area-inset-top))
+        20px
+        32px;
+    }
+
+    /* =========================================================
+       HEADER
+    ========================================================= */
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      padding: 14px 2px 20px;
+
+      animation: fadeDown .7s ease both;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-mark {
+      width: 46px;
+      height: 46px;
+
+      display: grid;
+      place-items: center;
+
+      border-radius: 15px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,255,255,.15),
+          rgba(255,255,255,.035)
+        );
+
+      border: 1px solid rgba(255,255,255,.14);
+
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.15),
+        0 10px 30px rgba(0,0,0,.18);
+
+      color: var(--gold-light);
+
+      font-size: 21px;
+    }
+
+    .brand-title {
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: -.02em;
+      line-height: 1.1;
+    }
+
+    .brand-subtitle {
+      margin-top: 3px;
+
+      color: var(--muted-2);
+
+      font-size: 10px;
+      font-weight: 500;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 9px;
+    }
+
+    .round-button {
+      width: 44px;
+      height: 44px;
+
+      display: grid;
+      place-items: center;
+
+      border-radius: 50%;
+
+      border: 1px solid var(--glass-border);
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,255,255,.12),
+          rgba(255,255,255,.035)
+        );
+
+      color: white;
+
+      cursor: pointer;
+
+      transition:
+        transform .2s ease,
+        background .2s ease;
+    }
+
+    .round-button:hover {
+      transform: translateY(-2px);
+      background: var(--glass-hover);
+    }
+
+    .round-button svg {
+      width: 19px;
+      height: 19px;
+    }
+
+    /* =========================================================
+       HERO
+    ========================================================= */
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+
+      min-height: 430px;
+
+      padding: 38px 34px;
+
+      display: flex;
+      align-items: flex-end;
+
+      border-radius: var(--radius-xl);
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(255,255,255,.115),
+          rgba(255,255,255,.035)
+        );
+
+      border: 1px solid var(--glass-border);
+
+      box-shadow: var(--shadow);
+
+      animation: rise .8s .05s ease both;
+    }
+
+    .hero::before {
+      content: "";
+
+      position: absolute;
+
+      width: 510px;
+      height: 510px;
+
+      right: -175px;
+      top: -220px;
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(215,182,109,.22),
+          rgba(215,182,109,.045) 48%,
+          transparent 72%
+        );
+
+      filter: blur(2px);
+    }
+
+    .hero::after {
+      content: "✦";
+
+      position: absolute;
+
+      right: 48px;
+      bottom: 26px;
+
+      font-family: Georgia, serif;
+
+      font-size: 185px;
+
+      line-height: 1;
+
+      color: rgba(241,217,155,.035);
+
+      transform: rotate(12deg);
+
+      pointer-events: none;
+    }
+
+    .hero-cross {
+      position: absolute;
+
+      right: 55px;
+      top: 62px;
+
+      width: 72px;
+      height: 94px;
+
+      opacity: .085;
+
+      pointer-events: none;
+    }
+
+    .hero-cross::before {
+      content: "";
+
+      position: absolute;
+
+      width: 16px;
+      height: 94px;
+
+      left: 28px;
+
+      background: var(--gold-light);
+
+      border-radius: 8px;
+    }
+
+    .hero-cross::after {
+      content: "";
+
+      position: absolute;
+
+      width: 72px;
+      height: 16px;
+
+      top: 25px;
+      left: 0;
+
+      background: var(--gold-light);
+
+      border-radius: 8px;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+
+      max-width: 700px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+
+      padding: 8px 12px;
+
+      border-radius: 999px;
+
+      background: rgba(215,182,109,.105);
+
+      border: 1px solid rgba(215,182,109,.19);
+
+      color: var(--gold-light);
+
+      font-size: 10px;
+      font-weight: 800;
+
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow-dot {
+      width: 6px;
+      height: 6px;
+
+      border-radius: 50%;
+
+      background: var(--gold-light);
+
+      box-shadow:
+        0 0 0 4px rgba(215,182,109,.08);
+    }
+
+    .hero h1 {
+      margin-top: 21px;
+
+      max-width: 720px;
+
+      font-family: "Playfair Display", serif;
+
+      font-size: clamp(45px, 8vw, 76px);
+
+      line-height: .97;
+
+      letter-spacing: -.045em;
+    }
+
+    .hero h1 span {
+      color: var(--gold-light);
+    }
+
+    .hero-copy {
+      max-width: 610px;
+
+      margin-top: 20px;
+
+      color: rgba(255,255,255,.69);
+
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+
+      gap: 10px;
+
+      margin-top: 27px;
+    }
+
+    .primary-button,
+    .secondary-button {
+      min-height: 47px;
+
+      padding: 0 17px;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+
+      border-radius: 15px;
+
+      font-size: 13px;
+      font-weight: 800;
+
+      transition:
+        transform .2s ease,
+        box-shadow .2s ease,
+        background .2s ease;
+    }
+
+    .primary-button {
+      color: #18223b;
+
+      background:
+        linear-gradient(
+          135deg,
+          #f0d895,
+          #c79e4f
+        );
+
+      box-shadow:
+        0 12px 28px rgba(215,182,109,.19);
+    }
+
+    .secondary-button {
+      color: white;
+
+      background: rgba(255,255,255,.075);
+
+      border: 1px solid rgba(255,255,255,.13);
+    }
+
+    .primary-button:hover,
+    .secondary-button:hover {
+      transform: translateY(-2px);
+    }
+
+    /* =========================================================
+       SECTION STRUCTURE
+    ========================================================= */
+
+    .section {
+      margin-top: 28px;
+
+      animation: rise .75s ease both;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+
+      margin-bottom: 13px;
+    }
+
+    .section-title {
+      font-size: 19px;
+      font-weight: 800;
+      letter-spacing: -.025em;
+    }
+
+    .section-kicker {
+      margin-bottom: 4px;
+
+      color: var(--gold-light);
+
+      font-size: 10px;
+      font-weight: 800;
+
+      letter-spacing: .11em;
+      text-transform: uppercase;
+    }
+
+    .view-all {
+      color: rgba(255,255,255,.55);
+
+      font-size: 11px;
+      font-weight: 700;
+
+      transition: color .2s ease;
+    }
+
+    .view-all:hover {
+      color: var(--gold-light);
+    }
+
+    /* =========================================================
+       FEATURED EVENT
+    ========================================================= */
+
+    .event-card {
+      position: relative;
+      overflow: hidden;
+
+      min-height: 230px;
+
+      display: grid;
+      grid-template-columns: 1fr auto;
+
+      gap: 20px;
+
+      padding: 27px;
+
+      border-radius: var(--radius-lg);
+
+      background:
+        linear-gradient(
+          125deg,
+          rgba(28,62,113,.88),
+          rgba(12,32,67,.83)
+        );
+
+      border: 1px solid rgba(255,255,255,.12);
+
+      box-shadow:
+        0 20px 55px rgba(0,0,0,.22);
+    }
+
+    .event-card::before {
+      content: "";
+
+      position: absolute;
+
+      width: 290px;
+      height: 290px;
+
+      right: -110px;
+      top: -120px;
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(215,182,109,.18),
+          transparent 67%
+        );
+    }
+
+    .event-left {
+      position: relative;
+      z-index: 2;
+    }
+
+    .event-label {
+      display: inline-flex;
+
+      padding: 7px 10px;
+
+      border-radius: 9px;
+
+      color: var(--gold-light);
+
+      background: rgba(215,182,109,.11);
+
+      border: 1px solid rgba(215,182,109,.17);
+
+      font-size: 9px;
+      font-weight: 800;
+
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .event-card h3 {
+      margin-top: 15px;
+
+      font-family: "Playfair Display", serif;
+
+      font-size: clamp(27px, 5vw, 39px);
+
+      line-height: 1.05;
+
+      letter-spacing: -.035em;
+    }
+
+    .event-description {
+      max-width: 570px;
+
+      margin-top: 11px;
+
+      color: var(--muted);
+
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .event-meta {
+      display: flex;
+      flex-wrap: wrap;
+
+      gap: 9px;
+
+      margin-top: 17px;
+    }
+
+    .meta-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+
+      padding: 7px 10px;
+
+      border-radius: 999px;
+
+      background: rgba(255,255,255,.065);
+
+      color: rgba(255,255,255,.73);
+
+      font-size: 10px;
+      font-weight: 600;
+    }
+
+    .event-date {
+      position: relative;
+      z-index: 2;
+
+      width: 92px;
+      height: 104px;
+
+      align-self: center;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 21px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,255,255,.13),
+          rgba(255,255,255,.045)
+        );
+
+      border: 1px solid rgba(255,255,255,.13);
+
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.13);
+    }
+
+    .event-date-month {
+      color: var(--gold-light);
+
+      font-size: 10px;
+      font-weight: 800;
+
+      letter-spacing: .12em;
+    }
+
+    .event-date-day {
+      margin-top: 2px;
+
+      font-family: "Playfair Display", serif;
+
+      font-size: 42px;
+      line-height: 1;
+    }
+
+    .event-date-weekday {
+      margin-top: 3px;
+
+      color: rgba(255,255,255,.5);
+
+      font-size: 9px;
+      font-weight: 700;
+    }
+
+    /* =========================================================
+       QUICK ACTIONS
+    ========================================================= */
+
+    .quick-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+
+      gap: 11px;
+    }
+
+    .quick-card {
+      min-height: 120px;
+
+      padding: 17px 15px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      border-radius: var(--radius-md);
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,255,255,.095),
+          rgba(255,255,255,.04)
+        );
+
+      border: 1px solid var(--glass-border);
+
+      box-shadow:
+        0 13px 35px rgba(0,0,0,.12);
+
+      transition:
+        transform .22s ease,
+        background .22s ease;
+    }
+
+    .quick-card:hover {
+      transform: translateY(-3px);
+      background: var(--glass-hover);
+    }
+
+    .quick-icon {
+      width: 39px;
+      height: 39px;
+
+      display: grid;
+      place-items: center;
+
+      border-radius: 12px;
+
+      background: rgba(215,182,109,.1);
+
+      color: var(--gold-light);
+
+      font-size: 18px;
+    }
+
+    .quick-name {
+      margin-top: 14px;
+
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .quick-small {
+      margin-top: 2px;
+
+      color: var(--muted-2);
+
+      font-size: 9px;
+    }
+
+    /* =========================================================
+       FAITH FEATURE
+    ========================================================= */
+
+    .faith-grid {
+      display: grid;
+      grid-template-columns: 1.35fr .65fr;
+
+      gap: 12px;
+    }
+
+    .scripture-card {
+      position: relative;
+      overflow: hidden;
+
+      min-height: 265px;
+
+      padding: 29px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      border-radius: var(--radius-lg);
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(255,250,240,.97),
+          rgba(246,238,218,.93)
+        );
+
+      color: #15213a;
+
+      box-shadow:
+        0 22px 55px rgba(0,0,0,.2);
+    }
+
+    .scripture-card::before {
+      content: "✝";
+
+      position: absolute;
+
+      right: 21px;
+      top: -12px;
+
+      font-family: Georgia, serif;
+
+      font-size: 145px;
+
+      color: rgba(143,110,45,.055);
+    }
+
+    .scripture-top {
+      position: relative;
+      z-index: 2;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .scripture-label {
+      color: #947133;
+
+      font-size: 9px;
+      font-weight: 900;
+
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+
+    .scripture-mark {
+      color: #b08a45;
+      font-size: 17px;
+    }
+
+    .scripture-text {
+      position: relative;
+      z-index: 2;
+
+      max-width: 700px;
+
+      margin-top: 20px;
+
+      font-family: "Playfair Display", serif;
+
+      font-size: clamp(23px, 4vw, 31px);
+
+      line-height: 1.23;
+
+      letter-spacing: -.025em;
+    }
+
+    .scripture-reference {
+      position: relative;
+      z-index: 2;
+
+      margin-top: 18px;
+
+      color: #83662e;
+
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .saint-card {
+      min-height: 265px;
+
+      padding: 25px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      border-radius: var(--radius-lg);
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,255,255,.10),
+          rgba(255,255,255,.045)
+        );
+
+      border: 1px solid var(--glass-border);
+
+      box-shadow:
+        0 18px 45px rgba(0,0,0,.16);
+    }
+
+    .saint-symbol {
+      width: 58px;
+      height: 58px;
+
+      display: grid;
+      place-items: center;
+
+      border-radius: 18px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(215,182,109,.19),
+          rgba(215,182,109,.055)
+        );
+
+      border: 1px solid rgba(215,182,109,.2);
+
+      color: var(--gold-light);
+
+      font-size: 26px;
+    }
+
+    .saint-label {
+      margin-top: 19px;
+
+      color: var(--gold-light);
+
+      font-size: 9px;
+      font-weight: 900;
+
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .saint-name {
+      margin-top: 6px;
+
+      font-family: "Playfair Display", serif;
+
+      font-size: 25px;
+
+      line-height: 1.05;
+    }
+
+    .saint-description {
+      margin-top: 9px;
+
+      color: var(--muted);
+
+      font-size: 11px;
+      line-height: 1.55;
+    }
+
+    .saint-link {
+      margin-top: 16px;
+
+      color: rgba(255,255,255,.55);
+
+      font-size: 10px;
+      font-weight: 800;
+    }
+
+    /* =========================================================
+       COMMUNITY
+    ========================================================= */
+
+    .community-card {
+      position: relative;
+      overflow: hidden;
+
+      min-height: 190px;
+
+      padding: 28px;
+
+      border-radius: var(--radius-lg);
+
+      background:
+        linear-gradient(
+          120deg,
+          rgba(20,51,95,.86),
+          rgba(8,26,55,.9)
+        );
+
+      border: 1px solid rgba(255,255,255,.11);
+
+      box-shadow:
+        0 20px 50px rgba(0,0,0,.2);
+    }
+
+    .community-card::before {
+      content: "";
+
+      position: absolute;
+
+      width: 360px;
+      height: 360px;
+
+      right: -150px;
+      top: -100px;
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(70,119,185,.25),
+          transparent 65%
+        );
+    }
+
+    .community-content {
+      position: relative;
+      z-index: 2;
+
+      max-width: 670px;
+    }
+
+    .community-card h3 {
+      font-family: "Playfair Display", serif;
+
+      font-size: 31px;
+
+      line-height: 1.05;
+
+      letter-spacing: -.03em;
+    }
+
+    .community-card p {
+      margin-top: 9px;
+
+      color: var(--muted);
+
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .community-stats {
+      position: relative;
+      z-index: 2;
+
+      display: flex;
+      flex-wrap: wrap;
+
+      gap: 9px;
+
+      margin-top: 20px;
+    }
+
+    .community-stat {
+      padding: 9px 12px;
+
+      border-radius: 12px;
+
+      background: rgba(255,255,255,.06);
+
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    .community-stat strong {
+      display: block;
+
+      color: var(--gold-light);
+
+      font-size: 15px;
+    }
+
+    .community-stat span {
+      display: block;
+
+      margin-top: 2px;
+
+      color: rgba(255,255,255,.48);
+
+      font-size: 8px;
+      font-weight: 700;
+
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    /* =========================================================
+       ANNOUNCEMENT
+    ========================================================= */
+
+    .announcement {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+
+      padding: 19px;
+
+      border-radius: var(--radius-md);
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(215,182,109,.11),
+          rgba(255,255,255,.045)
+        );
+
+      border: 1px solid rgba(215,182,109,.16);
+    }
+
+    .announcement-icon {
+      flex: 0 0 auto;
+
+      width: 45px;
+      height: 45px;
+
+      display: grid;
+      place-items: center;
+
+      border-radius: 14px;
+
+      background: rgba(215,182,109,.13);
+
+      color: var(--gold-light);
+
+      font-size: 18px;
+    }
+
+    .announcement-content {
+      flex: 1;
+    }
+
+    .announcement-label {
+      color: var(--gold-light);
+
+      font-size: 8px;
+      font-weight: 900;
+
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .announcement-title {
+      margin-top: 4px;
+
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .announcement-text {
+      margin-top: 3px;
+
+      color: var(--muted);
+
+      font-size: 10px;
+      line-height: 1.45;
+    }
+
+    .announcement-arrow {
+      color: rgba(255,255,255,.4);
+
+      font-size: 18px;
+    }
+
+    /* =========================================================
+       BOTTOM NAVIGATION
+    ========================================================= */
+
+    .bottom-nav-wrap {
+      position: fixed;
+
+      left: 0;
+      right: 0;
+      bottom: 0;
+
+      z-index: 500;
+
+      padding:
+        10px 12px
+        max(10px, env(safe-area-inset-bottom));
+    }
+
+    .bottom-nav {
+      width: min(620px, 100%);
+
+      margin: auto;
+
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+
+      gap: 3px;
+
+      padding: 7px;
+
+      border-radius: 24px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(13,30,60,.82),
+          rgba(6,17,37,.88)
+        );
+
+      border: 1px solid rgba(255,255,255,.13);
+
+      box-shadow:
+        0 20px 65px rgba(0,0,0,.4),
+        inset 0 1px 0 rgba(255,255,255,.08);
+
+      backdrop-filter: blur(30px) saturate(145%);
+      -webkit-backdrop-filter: blur(30px) saturate(145%);
+    }
+
+    .nav-item {
+      position: relative;
+
+      min-height: 57px;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      gap: 4px;
+
+      border-radius: 18px;
+
+      color: rgba(255,255,255,.48);
+
+      font-size: 9px;
+      font-weight: 700;
+
+      transition:
+        color .2s ease,
+        background .2s ease,
+        transform .2s ease;
+    }
+
+    .nav-item:hover {
+      color: rgba(255,255,255,.8);
+    }
+
+    .nav-item.active {
+      color: var(--gold-light);
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(215,182,109,.13),
+          rgba(215,182,109,.055)
+        );
+
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.07);
+    }
+
+    .nav-icon {
+      width: 20px;
+      height: 20px;
+
+      display: grid;
+      place-items: center;
+
+      font-size: 17px;
+    }
+
+    .nav-label {
+      line-height: 1;
+    }
+
+    /* =========================================================
+       FOOTER
+    ========================================================= */
+
+    .footer {
+      margin-top: 34px;
+
+      padding: 18px 4px;
+
+      text-align: center;
+
+      color: rgba(255,255,255,.28);
+
+      font-size: 9px;
+      line-height: 1.6;
+    }
+
+    .footer-cross {
+      display: block;
+
+      margin-bottom: 6px;
+
+      color: rgba(215,182,109,.42);
+
+      font-size: 15px;
+    }
+
+    /* =========================================================
+       RESPONSIVE
+    ========================================================= */
+
+    @media (max-width: 780px) {
+
+      .hero {
+        min-height: 430px;
+        padding: 31px 25px;
+      }
+
+      .hero-cross {
+        right: 27px;
+        top: 47px;
+        transform: scale(.75);
+        transform-origin: top right;
+      }
+
+      .quick-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .faith-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .saint-card {
+        min-height: 220px;
+      }
+    }
+
+    @media (max-width: 560px) {
+
+      .page {
+        padding-left: 15px;
+        padding-right: 15px;
+      }
+
+      .topbar {
+        padding-top: 10px;
+      }
+
+      .brand-mark {
+        width: 42px;
+        height: 42px;
+      }
+
+      .brand-title {
+        font-size: 13px;
+      }
+
+      .hero {
+        min-height: 455px;
+
+        padding:
+          30px 22px
+          27px;
+      }
+
+      .hero h1 {
+        font-size: 48px;
+      }
+
+      .hero-copy {
+        font-size: 14px;
+      }
+
+      .hero::after {
+        right: 10px;
+        bottom: 10px;
+        font-size: 135px;
+      }
+
+      .event-card {
+        grid-template-columns: 1fr;
+
+        padding: 23px;
+
+        min-height: auto;
+      }
+
+      .event-date {
+        position: absolute;
+
+        top: 20px;
+        right: 20px;
+
+        width: 72px;
+        height: 78px;
+
+        border-radius: 17px;
+      }
+
+      .event-date-day {
+        font-size: 31px;
+      }
+
+      .event-card h3 {
+        padding-right: 78px;
+
+        font-size: 28px;
+      }
+
+      .quick-grid {
+        gap: 9px;
+      }
+
+      .quick-card {
+        min-height: 112px;
+      }
+
+      .scripture-card {
+        min-height: 275px;
+
+        padding: 25px;
+      }
+
+      .scripture-text {
+        font-size: 24px;
+      }
+
+      .community-card {
+        padding: 24px;
+      }
+
+      .community-card h3 {
+        font-size: 28px;
+      }
+
+      .bottom-nav-wrap {
+        padding-left: 8px;
+        padding-right: 8px;
+      }
+
+      .bottom-nav {
+        border-radius: 22px;
+      }
+
+      .nav-item {
+        min-height: 55px;
+      }
+    }
+
+    /* =========================================================
+       ANIMATIONS
+    ========================================================= */
+
+    @keyframes rise {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-    <main class="container">
+  <main class="page">
 
-        <div class="app-header-logo">
-            <img src="logo-192.png" alt="Logo">
+    <!-- =======================================================
+         HEADER
+    ======================================================== -->
+
+    <header class="topbar">
+
+      <a href="index.html" class="brand">
+
+        <div class="brand-mark">
+          ✝
         </div>
 
-        <div class="user-welcome-banner">
-            <div>
-                <div class="section-title" id="timeGreeting">Good Day</div>
-                <h1 style="font-size: 1.8rem;">Catholic Youth Society</h1>
-            </div>
-            <div class="streak-badge">
-                🔥 <span id="streakCount">0</span> Day Streak
-            </div>
+        <div>
+          <div class="brand-title">
+            Catholic Youth Society
+          </div>
+
+          <div class="brand-subtitle">
+            A national Catholic youth community
+          </div>
         </div>
 
-        <div class="liturgical-bar">
-            <span>📅 Ordinary Time</span>
-            <span>Saint of the Day: St. Teresa of Calcutta</span>
+      </a>
+
+      <div class="header-actions">
+
+        <button
+          class="round-button"
+          aria-label="Notifications"
+          onclick="showComingSoon('Notifications')"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+          >
+            <path
+              d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"
+            />
+            <path d="M10 21h4"/>
+          </svg>
+        </button>
+
+        <button
+          class="round-button"
+          aria-label="Profile"
+          onclick="location.href='profile.html'"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+          >
+            <circle cx="12" cy="8" r="3.2"/>
+            <path d="M5.5 20c.8-4 3-6 6.5-6s5.7 2 6.5 6"/>
+          </svg>
+        </button>
+
+      </div>
+
+    </header>
+
+
+    <!-- =======================================================
+         HERO
+    ======================================================== -->
+
+    <section class="hero">
+
+      <div class="hero-cross"></div>
+
+      <div class="hero-content">
+
+        <div class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          Welcome to CYS
         </div>
 
-        <div class="card hero-verse-card">
-            <div class="section-title">Today's Gospel Meditation</div>
-            <div class="verse-body">
-                "Let no one have contempt for your youth, but set an example for those who believe, in speech, conduct, love, faith, and purity."
-            </div>
-            <div class="verse-ref">— 1 Timothy 4:12</div>
+        <h1>
+          Faith that
+          <span>connects.</span>
+        </h1>
+
+        <p class="hero-copy">
+          Welcome to the Catholic Youth Society — a national
+          community where young Catholics can encounter Christ,
+          grow in faith, and build authentic friendships.
+        </p>
+
+        <div class="hero-actions">
+
+          <a
+            href="events.html"
+            class="primary-button"
+          >
+            Explore Events
+            <span>→</span>
+          </a>
+
+          <a
+            href="faith.html"
+            class="secondary-button"
+          >
+            Grow in Faith
+            <span>✦</span>
+          </a>
+
         </div>
 
-        <div class="section-title">Daily Spiritual Tools</div>
-        <div class="grid-4">
-            <a href="daily-prayer.html" class="quick-action-card">
-                <span style="font-size: 1.6rem;">📖</span>
-                <span style="font-size: 0.9rem; font-weight: 600;">Daily Prayer</span>
-            </a>
-            <a href="daily-prayer.html#rosary" class="quick-action-card">
-                <span style="font-size: 1.6rem;">📿</span>
-                <span style="font-size: 0.9rem; font-weight: 600;">Audio Rosary</span>
-            </a>
-            <a href="prayer-wall.html" class="quick-action-card">
-                <span style="font-size: 1.6rem;">🙏</span>
-                <span style="font-size: 0.9rem; font-weight: 600;">Prayer Wall</span>
-            </a>
-            <a href="events.html" class="quick-action-card">
-                <span style="font-size: 1.6rem;">📅</span>
-                <span style="font-size: 0.9rem; font-weight: 600;">Youth Events</span>
-            </a>
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         FEATURED EVENT
+    ======================================================== -->
+
+    <section class="section">
+
+      <div class="section-heading">
+
+        <div>
+          <div class="section-kicker">
+            Coming Up
+          </div>
+
+          <div class="section-title">
+            Your next CYS moment
+          </div>
         </div>
 
-        <div class="grid-2">
-            <div class="card">
-                <div class="section-title">Community Intentions</div>
-                <h3 style="margin-bottom: 1rem; font-size: 1.2rem;">Pray for Others Today</h3>
-
-                <div class="community-prayer-box">
-                    <span style="font-size: 0.85rem;">For all students starting a new school year.</span>
-                    <button class="btn-pray-sm" onclick="prayFor(this)">🙏 Pray</button>
-                </div>
-
-                <div class="community-prayer-box">
-                    <span style="font-size: 0.85rem;">For peace in families and youth mental health.</span>
-                    <button class="btn-pray-sm" onclick="prayFor(this)">🙏 Pray</button>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="section-title">Youth Society Updates</div>
-                <h3 style="margin-bottom: 1rem; font-size: 1.2rem;">National Gatherings</h3>
-
-                <div style="padding-bottom: 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.08);">
-                    <div style="font-size: 0.75rem; color: var(--gold-primary); font-weight: 700;">WEEKLY EVENT</div>
-                    <div style="font-size: 0.95rem; font-weight: 600;">National Virtual Rosary & Gathering</div>
-                </div>
-            </div>
-        </div>
-
-    </main>
-
-    <nav class="bottom-nav">
-        <a href="index.html" class="nav-item active">
-            <span style="font-size: 1.25rem;">🏠</span>
-            <span>Home</span>
+        <a href="events.html" class="view-all">
+          View all →
         </a>
-        <a href="daily-prayer.html" class="nav-item">
-            <span style="font-size: 1.25rem;">📖</span>
-            <span>Prayers</span>
+
+      </div>
+
+
+      <a href="events.html" class="event-card">
+
+        <div class="event-left">
+
+          <div class="event-label">
+            Featured Event
+          </div>
+
+          <h3>
+            CYS National<br>
+            Gathering
+          </h3>
+
+          <p class="event-description">
+            Join Catholic youth from across the country for
+            an evening of prayer, fellowship, reflection,
+            and an encounter with Christ.
+          </p>
+
+          <div class="event-meta">
+
+            <span class="meta-pill">
+              ◷ 7:00 PM
+            </span>
+
+            <span class="meta-pill">
+              ◉ Online
+            </span>
+
+            <span class="meta-pill">
+              ✝ Prayer & Fellowship
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="event-date">
+
+          <span class="event-date-month">
+            SEP
+          </span>
+
+          <span class="event-date-day">
+            18
+          </span>
+
+          <span class="event-date-weekday">
+            FRIDAY
+          </span>
+
+        </div>
+
+      </a>
+
+    </section>
+
+
+    <!-- =======================================================
+         QUICK ACTIONS
+    ======================================================== -->
+
+    <section class="section">
+
+      <div class="section-heading">
+
+        <div>
+          <div class="section-kicker">
+            Explore
+          </div>
+
+          <div class="section-title">
+            Find your place
+          </div>
+        </div>
+
+      </div>
+
+
+      <div class="quick-grid">
+
+        <a href="faith.html" class="quick-card">
+
+          <div class="quick-icon">
+            ✝
+          </div>
+
+          <div>
+            <div class="quick-name">
+              Daily Faith
+            </div>
+
+            <div class="quick-small">
+              Scripture & reflection
+            </div>
+          </div>
+
         </a>
-        <a href="prayer-wall.html" class="nav-item">
-            <span style="font-size: 1.25rem;">🙏</span>
-            <span>Prayer Wall</span>
+
+
+        <a href="events.html" class="quick-card">
+
+          <div class="quick-icon">
+            ◷
+          </div>
+
+          <div>
+            <div class="quick-name">
+              Events
+            </div>
+
+            <div class="quick-small">
+              Gather, pray & serve
+            </div>
+          </div>
+
         </a>
-        <a href="events.html" class="nav-item">
-            <span style="font-size: 1.25rem;">📅</span>
-            <span>Events</span>
+
+
+        <a href="community.html" class="quick-card">
+
+          <div class="quick-icon">
+            ♡
+          </div>
+
+          <div>
+            <div class="quick-name">
+              Community
+            </div>
+
+            <div class="quick-small">
+              Connect with CYS
+            </div>
+          </div>
+
         </a>
+
+
+        <a href="cys.html" class="quick-card">
+
+          <div class="quick-icon">
+            ✦
+          </div>
+
+          <div>
+            <div class="quick-name">
+              About CYS
+            </div>
+
+            <div class="quick-small">
+              Our mission & story
+            </div>
+          </div>
+
+        </a>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         DAILY FAITH
+    ======================================================== -->
+
+    <section class="section">
+
+      <div class="section-heading">
+
+        <div>
+          <div class="section-kicker">
+            Today
+          </div>
+
+          <div class="section-title">
+            A moment with Christ
+          </div>
+        </div>
+
+        <a href="faith.html" class="view-all">
+          Open Faith →
+        </a>
+
+      </div>
+
+
+      <div class="faith-grid">
+
+
+        <a href="faith.html" class="scripture-card">
+
+          <div class="scripture-top">
+
+            <span class="scripture-label">
+              Scripture of the Day
+            </span>
+
+            <span class="scripture-mark">
+              ✦
+            </span>
+
+          </div>
+
+
+          <div>
+
+            <div class="scripture-text">
+              “Remain in me, as I remain in you.”
+            </div>
+
+            <div class="scripture-reference">
+              John 15:4
+            </div>
+
+          </div>
+
+        </a>
+
+
+        <a href="faith.html" class="saint-card">
+
+          <div>
+
+            <div class="saint-symbol">
+              ✝
+            </div>
+
+            <div class="saint-label">
+              Saint of the Day
+            </div>
+
+            <div class="saint-name">
+              St. Matthew
+            </div>
+
+            <p class="saint-description">
+              A reminder that Christ calls ordinary people
+              to extraordinary lives of discipleship.
+            </p>
+
+          </div>
+
+          <div class="saint-link">
+            Discover his story →
+          </div>
+
+        </a>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         NATIONAL COMMUNITY
+    ======================================================== -->
+
+    <section class="section">
+
+      <div class="section-heading">
+
+        <div>
+          <div class="section-kicker">
+            Together
+          </div>
+
+          <div class="section-title">
+            One Church. One community.
+          </div>
+        </div>
+
+        <a href="community.html" class="view-all">
+          Community →
+        </a>
+
+      </div>
+
+
+      <a href="community.html" class="community-card">
+
+        <div class="community-content">
+
+          <h3>
+            You're part of something bigger.
+          </h3>
+
+          <p>
+            Catholic youth from across the country are
+            coming together to pray, learn, serve, and
+            encourage one another in the faith.
+          </p>
+
+          <div class="community-stats">
+
+            <div class="community-stat">
+              <strong>11–18</strong>
+              <span>Youth</span>
+            </div>
+
+            <div class="community-stat">
+              <strong>USA</strong>
+              <span>Nationwide</span>
+            </div>
+
+            <div class="community-stat">
+              <strong>∞</strong>
+              <span>Friendships</span>
+            </div>
+
+          </div>
+
+        </div>
+
+      </a>
+
+    </section>
+
+
+    <!-- =======================================================
+         ANNOUNCEMENT
+    ======================================================== -->
+
+    <section class="section">
+
+      <a
+        href="cys.html"
+        class="announcement"
+      >
+
+        <div class="announcement-icon">
+          ✦
+        </div>
+
+        <div class="announcement-content">
+
+          <div class="announcement-label">
+            From Catholic Youth Society
+          </div>
+
+          <div class="announcement-title">
+            Welcome to the new CYS app.
+          </div>
+
+          <div class="announcement-text">
+            Stay connected with events, faith resources,
+            announcements, and your Catholic youth community.
+          </div>
+
+        </div>
+
+        <div class="announcement-arrow">
+          →
+        </div>
+
+      </a>
+
+    </section>
+
+
+    <footer class="footer">
+
+      <span class="footer-cross">✝</span>
+
+      Catholic Youth Society
+
+      <br>
+
+      Growing together in Christ.
+
+    </footer>
+
+  </main>
+
+
+  <!-- =========================================================
+       BOTTOM NAVIGATION
+  ========================================================== -->
+
+  <div class="bottom-nav-wrap">
+
+    <nav class="bottom-nav" aria-label="Main navigation">
+
+
+      <a
+        href="index.html"
+        class="nav-item active"
+        aria-current="page"
+      >
+
+        <div class="nav-icon">
+          ⌂
+        </div>
+
+        <div class="nav-label">
+          Home
+        </div>
+
+      </a>
+
+
+      <a
+        href="faith.html"
+        class="nav-item"
+      >
+
+        <div class="nav-icon">
+          ✝
+        </div>
+
+        <div class="nav-label">
+          Faith
+        </div>
+
+      </a>
+
+
+      <a
+        href="events.html"
+        class="nav-item"
+      >
+
+        <div class="nav-icon">
+          ◷
+        </div>
+
+        <div class="nav-label">
+          Events
+        </div>
+
+      </a>
+
+
+      <a
+        href="community.html"
+        class="nav-item"
+      >
+
+        <div class="nav-icon">
+          ♡
+        </div>
+
+        <div class="nav-label">
+          Community
+        </div>
+
+      </a>
+
+
+      <a
+        href="cys.html"
+        class="nav-item"
+      >
+
+        <div class="nav-icon">
+          •••
+        </div>
+
+        <div class="nav-label">
+          More
+        </div>
+
+      </a>
+
+
     </nav>
 
-    <script>
-        // Register Service Worker for PWA Home Screen Installation
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('sw.js');
-        }
+  </div>
 
-        const hour = new Date().getHours();
-        let greeting = "Good Evening";
-        if (hour < 12) greeting = "Good Morning";
-        else if (hour < 18) greeting = "Good Afternoon";
-        document.getElementById('timeGreeting').innerText = greeting;
 
-        function updateStreak() {
-            const lastPrayedDate = localStorage.getItem('lastPrayedDate');
-            let currentStreak = parseInt(localStorage.getItem('prayerStreak') || '0', 10);
-            const today = new Date().toDateString();
-            const yesterday = new Date(Date.now() - 86400000).toDateString();
+  <script>
 
-            if (lastPrayedDate !== yesterday && lastPrayedDate !== today) {
-                currentStreak = 0;
-            }
-            document.getElementById('streakCount').innerText = currentStreak;
-        }
-        updateStreak();
+    /* =========================================================
+       SMALL INTERACTION HELPERS
+    ========================================================= */
 
-        function prayFor(btn) {
-            btn.classList.add('prayed');
-            btn.innerText = "✓ Prayed";
-        }
-    </script>
+    function showComingSoon(feature) {
+
+      const existing = document.querySelector(".toast");
+
+      if (existing) {
+        existing.remove();
+      }
+
+      const toast = document.createElement("div");
+
+      toast.className = "toast";
+
+      toast.innerHTML = `
+        <strong>${feature}</strong>
+        <span>This feature is coming soon.</span>
+      `;
+
+      Object.assign(toast.style, {
+        position: "fixed",
+        left: "50%",
+        bottom: "105px",
+        transform: "translateX(-50%)",
+        zIndex: "1000",
+        padding: "12px 17px",
+        borderRadius: "15px",
+        background: "rgba(8,22,45,.94)",
+        border: "1px solid rgba(255,255,255,.13)",
+        boxShadow: "0 15px 45px rgba(0,0,0,.35)",
+        backdropFilter: "blur(20px)",
+        WebkitBackdropFilter: "blur(20px)",
+        color: "white",
+        textAlign: "center",
+        minWidth: "190px"
+      });
+
+      toast.querySelector("strong").style.display = "block";
+      toast.querySelector("strong").style.fontSize = "12px";
+
+      toast.querySelector("span").style.display = "block";
+      toast.querySelector("span").style.marginTop = "3px";
+      toast.querySelector("span").style.fontSize = "9px";
+      toast.querySelector("span").style.color =
+        "rgba(255,255,255,.55)";
+
+      document.body.appendChild(toast);
+
+      setTimeout(() => {
+        toast.style.opacity = "0";
+        toast.style.transition = "opacity .25s ease";
+
+        setTimeout(() => toast.remove(), 250);
+      }, 2200);
+    }
+
+
+    /* =========================================================
+       SERVICE WORKER
+    ========================================================= */
+
+    if ("serviceWorker" in navigator) {
+
+      window.addEventListener("load", () => {
+
+        navigator.serviceWorker
+          .register("service-worker.js")
+          .catch(() => {
+            // Service worker is optional during development.
+          });
+
+      });
+
+    }
+
+  </script>
+
 </body>
 </html>
