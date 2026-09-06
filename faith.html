@@ -1,0 +1,3413 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+
+>
+
+<meta
+name="theme-color"
+content="#06132c"
+
+>
+
+<meta
+name="apple-mobile-web-app-capable"
+content="yes"
+
+>
+
+<meta
+name="apple-mobile-web-app-status-bar-style"
+content="black-translucent"
+
+>
+
+<title>Faith • Catholic Youth Society</title>
+
+<style>
+
+:root {
+    --navy:#06132c;
+    --navy-2:#091b3b;
+    --navy-3:#102956;
+
+    --gold:#d7b66d;
+    --gold-light:#f1d99b;
+
+    --cream:#fffaf0;
+    --white:#ffffff;
+
+    --text:#f9f8f4;
+    --muted:rgba(255,255,255,.67);
+    --muted-2:rgba(255,255,255,.46);
+
+    --glass:rgba(255,255,255,.075);
+    --glass-hover:rgba(255,255,255,.105);
+    --glass-border:rgba(255,255,255,.125);
+
+    --shadow:0 20px 60px rgba(0,0,0,.25);
+}
+
+* {
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html {
+    scroll-behavior:smooth;
+}
+
+body {
+    min-height:100vh;
+    overflow-x:hidden;
+
+    color:var(--text);
+
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "SF Pro Display",
+        "SF Pro Text",
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+
+    background:
+        radial-gradient(
+            circle at 7% -5%,
+            rgba(215,182,109,.17),
+            transparent 29%
+        ),
+        radial-gradient(
+            circle at 95% 8%,
+            rgba(65,105,200,.22),
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at 45% 55%,
+            rgba(26,58,120,.17),
+            transparent 43%
+        ),
+        linear-gradient(
+            180deg,
+            var(--navy),
+            var(--navy-2) 55%,
+            #071631
+        );
+
+    padding-bottom:
+        calc(
+            115px +
+            env(safe-area-inset-bottom)
+        );
+}
+
+body::before {
+    content:"";
+
+    position:fixed;
+
+    inset:0;
+
+    pointer-events:none;
+
+    z-index:-1;
+
+    opacity:.025;
+
+    background-image:url(
+        "data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E"
+    );
+}
+
+a {
+    color:inherit;
+    text-decoration:none;
+}
+
+button {
+    font:inherit;
+}
+
+
+/* ========================================
+   HEADER
+======================================== */
+
+header {
+    position:sticky;
+
+    top:0;
+
+    z-index:100;
+
+    padding:
+        calc(14px + env(safe-area-inset-top))
+        18px
+        14px;
+
+    background:
+        rgba(6,19,44,.63);
+
+    border-bottom:
+        1px solid rgba(255,255,255,.075);
+
+    backdrop-filter:
+        blur(26px)
+        saturate(160%);
+
+    -webkit-backdrop-filter:
+        blur(26px)
+        saturate(160%);
+}
+
+.header-inner {
+    width:min(1180px,100%);
+
+    margin:0 auto;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+}
+
+.brand {
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+}
+
+.brand-mark {
+    width:42px;
+
+    height:42px;
+
+    display:grid;
+
+    place-items:center;
+
+    border-radius:14px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(241,217,155,.26),
+            rgba(215,182,109,.07)
+        );
+
+    border:
+        1px solid rgba(241,217,155,.25);
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,.22),
+        inset 0 1px 0 rgba(255,255,255,.16);
+
+    font-size:20px;
+}
+
+.brand-text strong {
+    display:block;
+
+    font-size:15px;
+
+    letter-spacing:-.2px;
+}
+
+.brand-text span {
+    display:block;
+
+    margin-top:2px;
+
+    color:var(--muted-2);
+
+    font-size:10px;
+
+    letter-spacing:.35px;
+}
+
+.header-actions {
+    display:flex;
+
+    gap:8px;
+}
+
+.icon-button {
+    width:40px;
+
+    height:40px;
+
+    display:grid;
+
+    place-items:center;
+
+    border-radius:13px;
+
+    border:
+        1px solid var(--glass-border);
+
+    background:
+        rgba(255,255,255,.065);
+
+    color:white;
+
+    cursor:pointer;
+
+    backdrop-filter:blur(15px);
+
+    -webkit-backdrop-filter:blur(15px);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.08);
+
+    transition:
+        transform .2s ease,
+        background .2s ease;
+}
+
+.icon-button:hover {
+    background:
+        rgba(255,255,255,.12);
+}
+
+.icon-button:active {
+    transform:scale(.91);
+}
+
+
+/* ========================================
+   MAIN
+======================================== */
+
+.container {
+    width:min(
+        1180px,
+        calc(100% - 36px)
+    );
+
+    margin:0 auto;
+}
+
+
+/* ========================================
+   HERO
+======================================== */
+
+.faith-hero {
+    position:relative;
+
+    overflow:hidden;
+
+    margin-top:34px;
+
+    padding:43px;
+
+    border-radius:34px;
+
+    background:
+        radial-gradient(
+            circle at 82% 20%,
+            rgba(215,182,109,.18),
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at 20% 100%,
+            rgba(48,91,180,.19),
+            transparent 38%
+        ),
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.10),
+            rgba(255,255,255,.035)
+        );
+
+    border:
+        1px solid rgba(255,255,255,.13);
+
+    box-shadow:
+        0 25px 75px rgba(0,0,0,.28);
+
+    backdrop-filter:blur(25px);
+
+    -webkit-backdrop-filter:blur(25px);
+}
+
+.faith-hero::after {
+    content:"✝";
+
+    position:absolute;
+
+    right:20px;
+
+    bottom:-90px;
+
+    font-size:300px;
+
+    color:
+        rgba(241,217,155,.045);
+
+    pointer-events:none;
+}
+
+.eyebrow {
+    color:var(--gold-light);
+
+    font-size:10px;
+
+    font-weight:800;
+
+    letter-spacing:2.3px;
+
+    text-transform:uppercase;
+}
+
+.faith-hero h1 {
+    position:relative;
+
+    z-index:2;
+
+    max-width:800px;
+
+    margin-top:13px;
+
+    font-size:
+        clamp(45px,7vw,76px);
+
+    line-height:.96;
+
+    letter-spacing:-3.7px;
+}
+
+.faith-hero h1 span {
+    color:var(--gold-light);
+}
+
+.faith-hero p {
+    position:relative;
+
+    z-index:2;
+
+    max-width:700px;
+
+    margin-top:20px;
+
+    color:var(--muted);
+
+    font-size:15px;
+
+    line-height:1.7;
+}
+
+.hero-actions {
+    position:relative;
+
+    z-index:2;
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:9px;
+
+    margin-top:26px;
+}
+
+.primary-button,
+.secondary-button {
+    min-height:45px;
+
+    padding:0 17px;
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:14px;
+
+    cursor:pointer;
+
+    font-size:10px;
+
+    font-weight:800;
+
+    transition:
+        transform .2s ease,
+        background .2s ease;
+}
+
+.primary-button {
+    color:#211a0d;
+
+    border:0;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--gold-light),
+            var(--gold)
+        );
+
+    box-shadow:
+        0 12px 30px
+        rgba(215,182,109,.16);
+}
+
+.secondary-button {
+    color:white;
+
+    border:
+        1px solid var(--glass-border);
+
+    background:
+        rgba(255,255,255,.06);
+}
+
+.primary-button:hover,
+.secondary-button:hover {
+    transform:translateY(-2px);
+}
+
+.primary-button:active,
+.secondary-button:active {
+    transform:scale(.97);
+}
+
+
+/* ========================================
+   TODAY BAR
+======================================== */
+
+.today-bar {
+    display:grid;
+
+    grid-template-columns:
+        1.2fr
+        .8fr
+        .8fr;
+
+    gap:10px;
+
+    margin-top:14px;
+}
+
+.today-stat {
+    padding:18px;
+
+    border-radius:20px;
+
+    background:
+        rgba(255,255,255,.055);
+
+    border:
+        1px solid rgba(255,255,255,.085);
+}
+
+.today-stat strong {
+    display:block;
+
+    color:var(--gold-light);
+
+    font-size:15px;
+}
+
+.today-stat span {
+    display:block;
+
+    margin-top:5px;
+
+    color:var(--muted-2);
+
+    font-size:9px;
+}
+
+
+/* ========================================
+   SECTION
+======================================== */
+
+section {
+    margin-top:48px;
+}
+
+.section-heading {
+    display:flex;
+
+    align-items:end;
+
+    justify-content:space-between;
+
+    gap:20px;
+
+    margin-bottom:16px;
+}
+
+.section-heading h2 {
+    font-size:25px;
+
+    letter-spacing:-.8px;
+}
+
+.section-heading p {
+    color:var(--muted-2);
+
+    font-size:10px;
+}
+
+
+/* ========================================
+   LOADING
+======================================== */
+
+.loading-card {
+    padding:40px;
+
+    text-align:center;
+
+    border-radius:27px;
+
+    background:
+        rgba(255,255,255,.055);
+
+    border:
+        1px solid var(--glass-border);
+}
+
+.spinner {
+    width:30px;
+
+    height:30px;
+
+    margin:0 auto;
+
+    border-radius:50%;
+
+    border:
+        2px solid rgba(255,255,255,.13);
+
+    border-top-color:
+        var(--gold-light);
+
+    animation:
+        spin .9s linear infinite;
+}
+
+@keyframes spin {
+
+    to {
+        transform:rotate(360deg);
+    }
+
+}
+
+
+/* ========================================
+   LITURGICAL CARD
+======================================== */
+
+.liturgy-card {
+    position:relative;
+
+    overflow:hidden;
+
+    padding:31px;
+
+    border-radius:28px;
+
+    background:
+        radial-gradient(
+            circle at 90% 20%,
+            rgba(215,182,109,.12),
+            transparent 31%
+        ),
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.085),
+            rgba(255,255,255,.035)
+        );
+
+    border:
+        1px solid var(--glass-border);
+
+    box-shadow:var(--shadow);
+}
+
+.liturgy-card::after {
+    content:"";
+
+    position:absolute;
+
+    width:220px;
+
+    height:220px;
+
+    right:-100px;
+
+    bottom:-130px;
+
+    border-radius:50%;
+
+    background:
+        rgba(215,182,109,.08);
+
+    filter:blur(12px);
+}
+
+.liturgy-top {
+    position:relative;
+
+    z-index:2;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:15px;
+}
+
+.season-pill {
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:6px;
+
+    padding:8px 11px;
+
+    border-radius:11px;
+
+    color:var(--gold-light);
+
+    background:
+        rgba(215,182,109,.10);
+
+    border:
+        1px solid rgba(215,182,109,.17);
+
+    font-size:9px;
+
+    font-weight:800;
+
+    letter-spacing:.5px;
+}
+
+.liturgy-date {
+    color:var(--muted-2);
+
+    font-size:10px;
+}
+
+.liturgy-card h3 {
+    position:relative;
+
+    z-index:2;
+
+    max-width:800px;
+
+    margin-top:20px;
+
+    font-size:
+        clamp(25px,4vw,39px);
+
+    letter-spacing:-1.2px;
+}
+
+.liturgy-description {
+    position:relative;
+
+    z-index:2;
+
+    max-width:750px;
+
+    margin-top:9px;
+
+    color:var(--muted);
+
+    font-size:12px;
+
+    line-height:1.65;
+}
+
+.liturgy-note {
+    position:relative;
+
+    z-index:2;
+
+    max-width:750px;
+
+    margin-top:12px;
+
+    color:var(--muted-2);
+
+    font-size:10px;
+
+    line-height:1.55;
+}
+
+
+/* ========================================
+   READINGS
+======================================== */
+
+.readings-grid {
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:11px;
+}
+
+.reading-card {
+    position:relative;
+
+    min-height:190px;
+
+    padding:23px;
+
+    border-radius:24px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.075),
+            rgba(255,255,255,.035)
+        );
+
+    border:
+        1px solid var(--glass-border);
+
+    transition:
+        transform .22s ease,
+        background .22s ease;
+}
+
+.reading-card:hover {
+    transform:translateY(-3px);
+
+    background:
+        var(--glass-hover);
+}
+
+.reading-number {
+    width:37px;
+
+    height:37px;
+
+    display:grid;
+
+    place-items:center;
+
+    border-radius:12px;
+
+    color:var(--gold-light);
+
+    background:
+        rgba(215,182,109,.09);
+
+    border:
+        1px solid rgba(215,182,109,.14);
+
+    font-size:13px;
+
+    font-weight:800;
+}
+
+.reading-card h3 {
+    margin-top:17px;
+
+    font-size:16px;
+}
+
+.reading-reference {
+    margin-top:7px;
+
+    color:var(--gold-light);
+
+    font-size:12px;
+
+    font-weight:700;
+
+    line-height:1.45;
+}
+
+.reading-description {
+    margin-top:9px;
+
+    color:var(--muted-2);
+
+    font-size:10px;
+
+    line-height:1.55;
+}
+
+.reading-link {
+    display:inline-flex;
+
+    margin-top:16px;
+
+    color:var(--gold-light);
+
+    font-size:9px;
+
+    font-weight:800;
+}
+
+
+/* ========================================
+   GOSPEL FEATURE
+======================================== */
+
+.gospel-card {
+    position:relative;
+
+    overflow:hidden;
+
+    padding:31px;
+
+    border-radius:29px;
+
+    background:
+        radial-gradient(
+            circle at 85% 15%,
+            rgba(215,182,109,.15),
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at 10% 100%,
+            rgba(42,83,164,.16),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.09),
+            rgba(255,255,255,.035)
+        );
+
+    border:
+        1px solid rgba(215,182,109,.16);
+
+    box-shadow:
+        0 20px 65px rgba(0,0,0,.22);
+}
+
+.gospel-symbol {
+    width:49px;
+
+    height:49px;
+
+    display:grid;
+
+    place-items:center;
+
+    border-radius:16px;
+
+    color:var(--gold-light);
+
+    background:
+        rgba(215,182,109,.10);
+
+    border:
+        1px solid rgba(215,182,109,.16);
+
+    font-size:20px;
+}
+
+.gospel-card h2 {
+    max-width:760px;
+
+    margin-top:18px;
+
+    font-size:
+        clamp(25px,4vw,37px);
+
+    letter-spacing:-1.2px;
+}
+
+.gospel-reference {
+    margin-top:9px;
+
+    color:var(--gold-light);
+
+    font-size:13px;
+
+    font-weight:750;
+}
+
+.gospel-text-note {
+    max-width:720px;
+
+    margin-top:13px;
+
+    color:var(--muted);
+
+    font-size:12px;
+
+    line-height:1.65;
+}
+
+.usccb-button {
+    display:inline-flex;
+
+    margin-top:19px;
+
+    min-height:42px;
+
+    padding:0 15px;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:13px;
+
+    color:#211a0d;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--gold-light),
+            var(--gold)
+        );
+
+    font-size:10px;
+
+    font-weight:800;
+}
+
+
+/* ========================================
+   SAINT
+======================================== */
+
+.saint-card {
+    display:grid;
+
+    grid-template-columns:
+        180px 1fr;
+
+    gap:25px;
+
+    overflow:hidden;
+
+    border-radius:28px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.075),
+            rgba(255,255,255,.035)
+        );
+
+    border:
+        1px solid var(--glass-border);
+}
+
+.saint-image {
+    min-height:230px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(215,182,109,.13),
+            transparent 55%
+        ),
+        rgba(0,0,0,.12);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    overflow:hidden;
+}
+
+.saint-image img {
+    width:100%;
+
+    height:100%;
+
+    min-height:230px;
+
+    object-fit:cover;
+
+    display:block;
+}
+
+.saint-placeholder {
+    width:64px;
+
+    height:64px;
+
+    display:grid;
+
+    place-items:center;
+
+    border-radius:20px;
+
+    background:
+        rgba(215,182,109,.10);
+
+    color:var(--gold-light);
+
+    font-size:27px;
+}
+
+.saint-content {
+    padding:29px 29px 29px 0;
+}
+
+.saint-content h2 {
+    margin-top:8px;
+
+    font-size:
+        clamp(23px,3.5vw,34px);
+
+    letter-spacing:-1px;
+}
+
+.saint-type {
+    display:inline-flex;
+
+    margin-top:11px;
+
+    padding:7px 9px;
+
+    border-radius:9px;
+
+    color:var(--gold-light);
+
+    background:
+        rgba(215,182,109,.09);
+
+    border:
+        1px solid rgba(215,182,109,.13);
+
+    font-size:8px;
+
+    font-weight:800;
+}
+
+.saint-description {
+    max-width:650px;
+
+    margin-top:14px;
+
+    color:var(--muted);
+
+    font-size:12px;
+
+    line-height:1.65;
+}
+
+.saint-quote {
+    margin-top:15px;
+
+    padding:14px;
+
+    border-left:
+        2px solid var(--gold);
+
+    background:
+        rgba(0,0,0,.11);
+
+    color:var(--muted-2);
+
+    font-size:11px;
+
+    line-height:1.55;
+}
+
+
+/* ========================================
+   PRAYER
+======================================== */
+
+.prayer-card {
+    display:grid;
+
+    grid-template-columns:
+        1fr .8fr;
+
+    gap:14px;
+}
+
+.prayer-panel {
+    padding:27px;
+
+    border-radius:25px;
+
+    background:
+        rgba(255,255,255,.055);
+
+    border:
+        1px solid var(--glass-border);
+}
+
+.prayer-panel h3 {
+    font-size:20px;
+
+    letter-spacing:-.5px;
+}
+
+.prayer-panel p {
+    margin-top:8px;
+
+    color:var(--muted-2);
+
+    font-size:11px;
+
+    line-height:1.6;
+}
+
+.prayer-options {
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:9px;
+
+    margin-top:18px;
+}
+
+.prayer-option {
+    min-height:47px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    padding:0 12px;
+
+    border-radius:13px;
+
+    border:
+        1px solid rgba(255,255,255,.08);
+
+    background:
+        rgba(255,255,255,.04);
+
+    color:var(--muted);
+
+    cursor:pointer;
+
+    font-size:9px;
+
+    transition:
+        background .2s ease,
+        border .2s ease;
+}
+
+.prayer-option:hover {
+    background:
+        rgba(255,255,255,.075);
+}
+
+.prayer-symbol {
+    color:var(--gold-light);
+
+    font-size:15px;
+}
+
+.prayer-display {
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    min-height:100%;
+
+    padding:27px;
+
+    border-radius:25px;
+
+    background:
+        radial-gradient(
+            circle at 70% 25%,
+            rgba(215,182,109,.12),
+            transparent 42%
+        ),
+        rgba(255,255,255,.045);
+
+    border:
+        1px solid rgba(215,182,109,.13);
+
+    text-align:center;
+}
+
+.prayer-display-symbol {
+    font-size:30px;
+}
+
+.prayer-display h3 {
+    margin-top:12px;
+
+    font-size:18px;
+}
+
+.prayer-display p {
+    margin-top:7px;
+
+    color:var(--muted-2);
+
+    font-size:10px;
+
+    line-height:1.55;
+}
+
+
+/* ========================================
+   FAITH RESOURCES
+======================================== */
+
+.resources-grid {
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:10px;
+}
+
+.resource-card {
+    min-height:145px;
+
+    padding:20px;
+
+    border-radius:21px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.075),
+            rgba(255,255,255,.035)
+        );
+
+    border:
+        1px solid var(--glass-border);
+
+    transition:
+        transform .2s ease,
+        background .2s ease;
+}
+
+.resource-card:hover {
+    transform:translateY(-3px);
+
+    background:
+        var(--glass-hover);
+}
+
+.resource-icon {
+    font-size:22px;
+}
+
+.resource-card h3 {
+    margin-top:18px;
+
+    font-size:14px;
+}
+
+.resource-card p {
+    margin-top:6px;
+
+    color:var(--muted-2);
+
+    font-size:9px;
+
+    line-height:1.5;
+}
+
+
+/* ========================================
+   ERROR
+======================================== */
+
+.error-card {
+    display:none;
+
+    padding:27px;
+
+    border-radius:25px;
+
+    background:
+        rgba(255,255,255,.055);
+
+    border:
+        1px solid rgba(255,255,255,.10);
+
+    color:var(--muted);
+
+    font-size:11px;
+
+    line-height:1.6;
+}
+
+.error-card strong {
+    color:var(--gold-light);
+}
+
+
+/* ========================================
+   FOOTER
+======================================== */
+
+footer {
+    margin-top:62px;
+
+    padding:
+        30px 18px
+        calc(28px + env(safe-area-inset-bottom));
+
+    text-align:center;
+
+    color:var(--muted-2);
+
+    font-size:10px;
+
+    border-top:
+        1px solid rgba(255,255,255,.06);
+}
+
+footer strong {
+    color:
+        rgba(241,217,155,.68);
+}
+
+
+/* ========================================
+   BOTTOM NAV
+======================================== */
+
+.bottom-nav {
+    position:fixed;
+
+    z-index:200;
+
+    left:50%;
+
+    bottom:
+        calc(
+            12px +
+            env(safe-area-inset-bottom)
+        );
+
+    transform:translateX(-50%);
+
+    width:min(
+        650px,
+        calc(100% - 24px)
+    );
+
+    padding:8px;
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(5,1fr);
+
+    gap:4px;
+
+    border-radius:24px;
+
+    background:
+        rgba(8,22,49,.58);
+
+    border:
+        1px solid rgba(255,255,255,.13);
+
+    box-shadow:
+        0 22px 60px rgba(0,0,0,.35),
+        inset 0 1px 0 rgba(255,255,255,.08);
+
+    backdrop-filter:
+        blur(30px)
+        saturate(170%);
+
+    -webkit-backdrop-filter:
+        blur(30px)
+        saturate(170%);
+}
+
+.nav-item {
+    min-height:58px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:4px;
+
+    border-radius:17px;
+
+    color:
+        rgba(255,255,255,.53);
+
+    font-size:9px;
+
+    font-weight:650;
+
+    transition:
+        background .2s ease,
+        color .2s ease;
+}
+
+.nav-icon {
+    font-size:18px;
+
+    line-height:1;
+}
+
+.nav-item.active {
+    color:var(--gold-light);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(215,182,109,.15),
+            rgba(255,255,255,.045)
+        );
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.08);
+}
+
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media(max-width:900px) {
+
+    .resources-grid {
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .prayer-card {
+        grid-template-columns:1fr;
+    }
+
+}
+
+@media(max-width:700px) {
+
+    .faith-hero {
+        padding:30px 23px;
+
+        border-radius:27px;
+    }
+
+    .faith-hero h1 {
+        letter-spacing:-2.7px;
+    }
+
+    .today-bar {
+        grid-template-columns:
+            1fr;
+    }
+
+    .readings-grid {
+        grid-template-columns:1fr;
+    }
+
+    .saint-card {
+        grid-template-columns:1fr;
+    }
+
+    .saint-image {
+        min-height:260px;
+    }
+
+    .saint-image img {
+        min-height:260px;
+    }
+
+    .saint-content {
+        padding:0 25px 25px;
+    }
+
+}
+
+@media(max-width:540px) {
+
+    .container {
+        width:
+            calc(100% - 24px);
+    }
+
+    .brand-text span {
+        display:none;
+    }
+
+    .faith-hero {
+        margin-top:24px;
+    }
+
+    .faith-hero h1 {
+        font-size:47px;
+    }
+
+    .resources-grid {
+        grid-template-columns:1fr;
+    }
+
+    .prayer-options {
+        grid-template-columns:1fr;
+    }
+
+    .liturgy-card,
+    .gospel-card {
+        padding:24px;
+    }
+
+    .liturgy-top {
+        align-items:flex-start;
+
+        flex-direction:column;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- ========================================
+     HEADER
+======================================== -->
+
+<header>
+
+```
+<div class="header-inner">
+
+    <a
+        href="index.html"
+        class="brand"
+    >
+
+        <div class="brand-mark">
+            ✝
+        </div>
+
+        <div class="brand-text">
+
+            <strong>
+                Catholic Youth Society
+            </strong>
+
+            <span>
+                Faith • Community • Friendship
+            </span>
+
+        </div>
+
+    </a>
+
+
+    <div class="header-actions">
+
+        <button
+            class="icon-button"
+            aria-label="Notifications"
+            onclick="window.location.href='notifications.html'"
+        >
+            🔔
+        </button>
+
+        <button
+            class="icon-button"
+            aria-label="Profile"
+            onclick="window.location.href='profile.html'"
+        >
+            👤
+        </button>
+
+    </div>
+
+</div>
+```
+
+</header>
+
+<main class="container">
+
+<!-- ========================================
+     HERO
+======================================== -->
+
+<section class="faith-hero">
+
+```
+<div class="eyebrow">
+    Catholic Youth Society • Faith
+</div>
+
+<h1>
+    Grow deeper in your <span>faith.</span>
+</h1>
+
+<p>
+    Encounter Christ through the Scriptures,
+    the life of the Church, the saints,
+    prayer, and the beauty of Catholic faith.
+</p>
+
+<div class="hero-actions">
+
+    <a
+        href="#readings"
+        class="primary-button"
+    >
+        📖 Today's Readings
+    </a>
+
+    <a
+        href="#prayer"
+        class="secondary-button"
+    >
+        🙏 Pray
+    </a>
+
+</div>
+```
+
+</section>
+
+<!-- ========================================
+     TODAY SUMMARY
+======================================== -->
+
+<div class="today-bar">
+
+```
+<div class="today-stat">
+
+    <strong id="todayDate">
+        Loading today's date…
+    </strong>
+
+    <span>
+        Today's liturgical celebration
+    </span>
+
+</div>
+
+
+<div class="today-stat">
+
+    <strong id="todaySeason">
+        Loading…
+    </strong>
+
+    <span>
+        Liturgical season
+    </span>
+
+</div>
+
+
+<div class="today-stat">
+
+    <strong>
+        Daily Faith
+    </strong>
+
+    <span>
+        Scripture • Prayer • Church
+    </span>
+
+</div>
+```
+
+</div>
+
+<!-- ========================================
+     LITURGICAL CELEBRATION
+======================================== -->
+
+<section>
+
+```
+<div class="section-heading">
+
+    <div>
+        <h2>
+            Today in the Church
+        </h2>
+    </div>
+
+    <p>
+        Real liturgical data
+    </p>
+
+</div>
+
+
+<div id="liturgyLoading" class="loading-card">
+
+    <div class="spinner"></div>
+
+    <p style="margin-top:13px;color:var(--muted-2);font-size:11px;">
+        Loading today's Catholic calendar…
+    </p>
+
+</div>
+
+
+<div
+    id="liturgyCard"
+    class="liturgy-card"
+    style="display:none;"
+>
+
+    <div class="liturgy-top">
+
+        <div
+            id="seasonPill"
+            class="season-pill"
+        >
+            ✝ Liturgical Season
+        </div>
+
+        <div
+            id="liturgyDate"
+            class="liturgy-date"
+        >
+            —
+        </div>
+
+    </div>
+
+
+    <h3 id="celebrationName">
+        —
+    </h3>
+
+
+    <p
+        id="celebrationDescription"
+        class="liturgy-description"
+    >
+    </p>
+
+
+    <p
+        id="liturgicalNote"
+        class="liturgy-note"
+    >
+    </p>
+
+</div>
+
+
+<div
+    id="liturgyError"
+    class="error-card"
+>
+
+    <strong>
+        Catholic calendar unavailable right now.
+    </strong>
+
+    <br>
+
+    We couldn't load today's liturgical information.
+    Please try again shortly.
+
+</div>
+```
+
+</section>
+
+<!-- ========================================
+     READINGS
+======================================== -->
+
+<section id="readings">
+
+```
+<div class="section-heading">
+
+    <div>
+        <h2>
+            Today's Readings
+        </h2>
+    </div>
+
+    <p>
+        Daily Mass Scripture
+    </p>
+
+</div>
+
+
+<div
+    id="readingsLoading"
+    class="loading-card"
+>
+
+    <div class="spinner"></div>
+
+    <p style="margin-top:13px;color:var(--muted-2);font-size:11px;">
+        Loading today's readings…
+    </p>
+
+</div>
+
+
+<div
+    id="readingsGrid"
+    class="readings-grid"
+    style="display:none;"
+>
+
+    <article class="reading-card">
+
+        <div class="reading-number">
+            I
+        </div>
+
+        <h3>
+            First Reading
+        </h3>
+
+        <div
+            id="firstReading"
+            class="reading-reference"
+        >
+            —
+        </div>
+
+        <p class="reading-description">
+            The first reading of today's Mass.
+        </p>
+
+        <a
+            id="firstReadingLink"
+            class="reading-link"
+            href="#"
+            target="_blank"
+            rel="noopener"
+        >
+            Read on USCCB →
+        </a>
+
+    </article>
+
+
+    <article class="reading-card">
+
+        <div class="reading-number">
+            P
+        </div>
+
+        <h3>
+            Responsorial Psalm
+        </h3>
+
+        <div
+            id="psalm"
+            class="reading-reference"
+        >
+            —
+        </div>
+
+        <p class="reading-description">
+            Pray today's responsorial psalm.
+        </p>
+
+        <a
+            id="psalmLink"
+            class="reading-link"
+            href="#"
+            target="_blank"
+            rel="noopener"
+        >
+            Read on USCCB →
+        </a>
+
+    </article>
+
+
+    <article class="reading-card">
+
+        <div class="reading-number">
+            II
+        </div>
+
+        <h3>
+            Second Reading
+        </h3>
+
+        <div
+            id="secondReading"
+            class="reading-reference"
+        >
+            —
+        </div>
+
+        <p class="reading-description">
+            The second reading when appointed
+            for today's liturgy.
+        </p>
+
+        <a
+            id="secondReadingLink"
+            class="reading-link"
+            href="#"
+            target="_blank"
+            rel="noopener"
+        >
+            Read on USCCB →
+        </a>
+
+    </article>
+
+
+    <article class="reading-card">
+
+        <div class="reading-number">
+            G
+        </div>
+
+        <h3>
+            Gospel
+        </h3>
+
+        <div
+            id="gospelReference"
+            class="reading-reference"
+        >
+            —
+        </div>
+
+        <p class="reading-description">
+            Hear the Gospel of Jesus Christ.
+        </p>
+
+        <a
+            id="gospelLink"
+            class="reading-link"
+            href="#"
+            target="_blank"
+            rel="noopener"
+        >
+            Read on USCCB →
+        </a>
+
+    </article>
+
+</div>
+
+
+<div
+    id="readingsError"
+    class="error-card"
+>
+
+    <strong>
+        Today's readings couldn't be loaded.
+    </strong>
+
+    <br>
+
+    Please try again later. The readings will
+    never be replaced with invented content.
+
+</div>
+```
+
+</section>
+
+<!-- ========================================
+     GOSPEL
+======================================== -->
+
+<section>
+
+```
+<div class="section-heading">
+
+    <div>
+        <h2>
+            The Gospel
+        </h2>
+    </div>
+
+    <p>
+        Encounter Christ
+    </p>
+
+</div>
+
+
+<div
+    id="gospelCard"
+    class="gospel-card"
+>
+
+    <div class="gospel-symbol">
+        ✝
+    </div>
+
+    <h2>
+        Today's Gospel
+    </h2>
+
+    <div
+        id="gospelFeatureReference"
+        class="gospel-reference"
+    >
+        Loading…
+    </div>
+
+    <p class="gospel-text-note">
+        The full Scripture text is not reproduced here.
+        Open the official USCCB reading to read today's
+        Gospel in full.
+    </p>
+
+    <a
+        id="gospelFeatureLink"
+        href="#"
+        target="_blank"
+        rel="noopener"
+        class="usccb-button"
+    >
+        Read Today's Gospel
+    </a>
+
+</div>
+```
+
+</section>
+
+<!-- ========================================
+     SAINT OF THE DAY
+======================================== -->
+
+<section>
+
+```
+<div class="section-heading">
+
+    <div>
+        <h2>
+            Today's Saint
+        </h2>
+    </div>
+
+    <p>
+        Witnesses of holiness
+    </p>
+
+</div>
+
+
+<div
+    id="saintLoading"
+    class="loading-card"
+>
+
+    <div class="spinner"></div>
+
+    <p style="margin-top:13px;color:var(--muted-2);font-size:11px;">
+        Loading today's celebration…
+    </p>
+
+</div>
+
+
+<article
+    id="saintCard"
+    class="saint-card"
+    style="display:none;"
+>
+
+    <div
+        id="saintImageContainer"
+        class="saint-image"
+    >
+    </div>
+
+
+    <div class="saint-content">
+
+        <div class="eyebrow">
+            Today's Celebration
+        </div>
+
+        <h2 id="saintName">
+            —
+        </h2>
+
+        <div
+            id="saintType"
+            class="saint-type"
+        >
+            —
+        </div>
+
+        <p
+            id="saintDescription"
+            class="saint-description"
+        >
+        </p>
+
+        <div
+            id="saintQuote"
+            class="saint-quote"
+            style="display:none;"
+        >
+        </div>
+
+    </div>
+
+</article>
+
+
+<div
+    id="saintError"
+    class="error-card"
+>
+
+    <strong>
+        Today's celebration couldn't be loaded.
+    </strong>
+
+    <br>
+
+    The Catholic calendar service is temporarily
+    unavailable.
+
+</div>
+```
+
+</section>
+
+<!-- ========================================
+     PRAYER
+======================================== -->
+
+<section id="prayer">
+
+```
+<div class="section-heading">
+
+    <div>
+        <h2>
+            Make Time for Prayer
+        </h2>
+    </div>
+
+    <p>
+        Be still with God
+    </p>
+
+</div>
+
+
+<div class="prayer-card">
+
+
+    <div class="prayer-panel">
+
+        <h3>
+            Where do you want to begin?
+        </h3>
+
+        <p>
+            Choose a prayer tradition or moment of
+            reflection. CYS will eventually be able
+            to personalize this space around your
+            faith journey.
+        </p>
+
+
+        <div class="prayer-options">
+
+            <button
+                class="prayer-option"
+                onclick="selectPrayer('Morning Prayer')"
+            >
+
+                <span class="prayer-symbol">
+                    ☀
+                </span>
+
+                Morning Prayer
+
+            </button>
+
+
+            <button
+                class="prayer-option"
+                onclick="selectPrayer('Night Prayer')"
+            >
+
+                <span class="prayer-symbol">
+                    ☾
+                </span>
+
+                Night Prayer
+
+            </button>
+
+
+            <button
+                class="prayer-option"
+                onclick="selectPrayer('Rosary')"
+            >
+
+                <span class="prayer-symbol">
+                    📿
+                </span>
+
+                Rosary
+
+            </button>
+
+
+            <button
+                class="prayer-option"
+                onclick="selectPrayer('Divine Mercy')"
+            >
+
+                <span class="prayer-symbol">
+                    ❤️
+                </span>
+
+                Divine Mercy
+
+            </button>
+
+
+            <button
+                class="prayer-option"
+                onclick="selectPrayer('Adoration')"
+            >
+
+                <span class="prayer-symbol">
+                    ✝
+                </span>
+
+                Eucharistic Prayer
+
+            </button>
+
+
+            <button
+                class="prayer-option"
+                onclick="selectPrayer('Personal Prayer')"
+            >
+
+                <span class="prayer-symbol">
+                    🙏
+                </span>
+
+                Personal Prayer
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="prayer-display">
+
+        <div
+            id="prayerDisplaySymbol"
+            class="prayer-display-symbol"
+        >
+            🙏
+        </div>
+
+        <h3 id="prayerDisplayTitle">
+            A moment with God
+        </h3>
+
+        <p id="prayerDisplayText">
+            Choose a prayer above to begin.
+        </p>
+
+    </div>
+
+</div>
+```
+
+</section>
+
+<!-- ========================================
+     FAITH RESOURCES
+======================================== -->
+
+<section>
+
+```
+<div class="section-heading">
+
+    <div>
+        <h2>
+            Explore Your Faith
+        </h2>
+    </div>
+
+    <p>
+        Go deeper
+    </p>
+
+</div>
+
+
+<div class="resources-grid">
+
+
+    <a
+        href="#readings"
+        class="resource-card"
+    >
+
+        <div class="resource-icon">
+            📖
+        </div>
+
+        <h3>
+            Scripture
+        </h3>
+
+        <p>
+            Explore the daily Mass readings and
+            encounter God's Word.
+        </p>
+
+    </a>
+
+
+    <a
+        href="#saint"
+        class="resource-card"
+        onclick="document.getElementById('saintCard').scrollIntoView({behavior:'smooth'});return false;"
+    >
+
+        <div class="resource-icon">
+            ✨
+        </div>
+
+        <h3>
+            Saints
+        </h3>
+
+        <p>
+            Discover the witnesses who show us
+            how to follow Christ.
+        </p>
+
+    </a>
+
+
+    <a
+        href="community.html"
+        class="resource-card"
+    >
+
+        <div class="resource-icon">
+            🙏
+        </div>
+
+        <h3>
+            Pray Together
+        </h3>
+
+        <p>
+            Bring your intentions to the wider
+            CYS community.
+        </p>
+
+    </a>
+
+
+    <a
+        href="events.html"
+        class="resource-card"
+    >
+
+        <div class="resource-icon">
+            ⛪
+        </div>
+
+        <h3>
+            Live Your Faith
+        </h3>
+
+        <p>
+            Find CYS events, service opportunities,
+            and ways to connect.
+        </p>
+
+    </a>
+
+</div>
+```
+
+</section>
+
+</main>
+
+<footer>
+
+```
+<strong>
+    Catholic Youth Society
+</strong>
+
+<div style="margin-top:7px;">
+    A National Virtual Catholic Youth Group
+</div>
+
+<div style="margin-top:12px;">
+    © 2026 Catholic Youth Society
+</div>
+```
+
+</footer>
+
+<!-- ========================================
+     BOTTOM NAV
+======================================== -->
+
+<nav
+    class="bottom-nav"
+    aria-label="Main navigation"
+>
+
+```
+<a
+    href="index.html"
+    class="nav-item"
+>
+
+    <span class="nav-icon">
+        ⌂
+    </span>
+
+    <span>
+        Home
+    </span>
+
+</a>
+
+
+<a
+    href="faith.html"
+    class="nav-item active"
+>
+
+    <span class="nav-icon">
+        ✝
+    </span>
+
+    <span>
+        Faith
+    </span>
+
+</a>
+
+
+<a
+    href="events.html"
+    class="nav-item"
+>
+
+    <span class="nav-icon">
+        ◫
+    </span>
+
+    <span>
+        Events
+    </span>
+
+</a>
+
+
+<a
+    href="community.html"
+    class="nav-item"
+>
+
+    <span class="nav-icon">
+        ◉
+    </span>
+
+    <span>
+        Community
+    </span>
+
+</a>
+
+
+<a
+    href="cys.html"
+    class="nav-item"
+>
+
+    <span class="nav-icon">
+        •••
+    </span>
+
+    <span>
+        More
+    </span>
+
+</a>
+```
+
+</nav>
+
+<script>
+
+/* =========================================================
+   CATHOLIC YOUTH SOCIETY — FAITH
+   =========================================================
+
+   REAL DATA ONLY
+
+   This page uses the Catholic Readings API:
+
+   https://cpbjr.github.io/catholic-readings-api/
+
+   No fake readings, saints, feast days, or celebrations
+   are inserted into the page.
+
+========================================================= */
+
+
+/* ========================================
+   API
+======================================== */
+
+const API_BASE =
+    "https://cpbjr.github.io/catholic-readings-api";
+
+
+/* ========================================
+   DATE
+======================================== */
+
+function getTodayParts() {
+
+    const now = new Date();
+
+    const year =
+        now.getFullYear();
+
+    const month =
+        String(
+            now.getMonth() + 1
+        ).padStart(2,"0");
+
+    const day =
+        String(
+            now.getDate()
+        ).padStart(2,"0");
+
+    return {
+        year,
+        month,
+        day,
+        monthDay:
+            `${month}-${day}`
+    };
+
+}
+
+
+function formatDate(dateString) {
+
+    const date =
+        new Date(
+            `${dateString}T12:00:00`
+        );
+
+    return date.toLocaleDateString(
+        undefined,
+        {
+            weekday:"long",
+            month:"long",
+            day:"numeric",
+            year:"numeric"
+        }
+    );
+
+}
+
+
+/* ========================================
+   SAFE TEXT
+======================================== */
+
+function safeText(value) {
+
+    if (
+        value === undefined ||
+        value === null ||
+        value === ""
+    ) {
+        return "";
+    }
+
+    return String(value);
+
+}
+
+
+/* ========================================
+   FETCH JSON
+======================================== */
+
+async function fetchJSON(url) {
+
+    const response =
+        await fetch(
+            url,
+            {
+                method:"GET",
+                headers:{
+                    "Accept":"application/json"
+                },
+                cache:"no-store"
+            }
+        );
+
+    if (!response.ok) {
+
+        throw new Error(
+            `Request failed: ${response.status}`
+        );
+
+    }
+
+    return response.json();
+
+}
+
+
+/* ========================================
+   USCCB LINK
+======================================== */
+
+function buildUSCCBLink(date) {
+
+    const clean =
+        date.replaceAll("-","");
+
+    const month =
+        clean.substring(4,6);
+
+    const day =
+        clean.substring(6,8);
+
+    const year =
+        clean.substring(2,4);
+
+    return `https://bible.usccb.org/bible/readings/${month}${day}${year}.cfm`;
+
+}
+
+
+/* ========================================
+   LOAD READINGS
+======================================== */
+
+async function loadReadings() {
+
+    const parts =
+        getTodayParts();
+
+    const url =
+        `${API_BASE}/readings/${parts.year}/${parts.monthDay}.json`;
+
+    try {
+
+        const data =
+            await fetchJSON(url);
+
+
+        /* DATE */
+
+        const actualDate =
+            safeText(data.date) ||
+            `${parts.year}-${parts.monthDay}`;
+
+        document.getElementById(
+            "todayDate"
+        ).textContent =
+            formatDate(actualDate);
+
+        document.getElementById(
+            "liturgyDate"
+        ).textContent =
+            formatDate(actualDate);
+
+
+        /* SEASON */
+
+        const season =
+            safeText(data.season) ||
+            "Liturgical Calendar";
+
+        document.getElementById(
+            "todaySeason"
+        ).textContent =
+            season;
+
+        document.getElementById(
+            "seasonPill"
+        ).textContent =
+            `✝ ${season}`;
+
+
+        /* READINGS */
+
+        const readings =
+            data.readings || {};
+
+
+        const first =
+            safeText(
+                readings.firstReading
+            );
+
+        const psalm =
+            safeText(
+                readings.psalm
+            );
+
+        const second =
+            safeText(
+                readings.secondReading
+            );
+
+        const gospel =
+            safeText(
+                readings.gospel
+            );
+
+
+        document.getElementById(
+            "firstReading"
+        ).textContent =
+            first || "Not listed";
+
+
+        document.getElementById(
+            "psalm"
+        ).textContent =
+            psalm || "Not listed";
+
+
+        document.getElementById(
+            "secondReading"
+        ).textContent =
+            second || "Not listed";
+
+
+        document.getElementById(
+            "gospelReference"
+        ).textContent =
+            gospel || "Not listed";
+
+
+        /* LINKS */
+
+        const usccb =
+            safeText(
+                data.usccbLink
+            ) ||
+            buildUSCCBLink(
+                actualDate
+            );
+
+
+        setLink(
+            "firstReadingLink",
+            usccb,
+            Boolean(first)
+        );
+
+        setLink(
+            "psalmLink",
+            usccb,
+            Boolean(psalm)
+        );
+
+        setLink(
+            "secondReadingLink",
+            usccb,
+            Boolean(second)
+        );
+
+        setLink(
+            "gospelLink",
+            usccb,
+            Boolean(gospel)
+        );
+
+
+        /* GOSPEL FEATURE */
+
+        document.getElementById(
+            "gospelFeatureReference"
+        ).textContent =
+            gospel ||
+            "Today's Gospel";
+
+
+        document.getElementById(
+            "gospelFeatureLink"
+        ).href =
+            usccb;
+
+
+        /* SHOW */
+
+        document.getElementById(
+            "readingsLoading"
+        ).style.display =
+            "none";
+
+        document.getElementById(
+            "readingsGrid"
+        ).style.display =
+            "grid";
+
+
+        loadCelebration(
+            parts.year,
+            parts.monthDay,
+            actualDate,
+            season
+        );
+
+    } catch(error) {
+
+        console.error(
+            "Readings error:",
+            error
+        );
+
+        document.getElementById(
+            "readingsLoading"
+        ).style.display =
+            "none";
+
+        document.getElementById(
+            "readingsError"
+        ).style.display =
+            "block";
+
+        loadCelebration(
+            parts.year,
+            parts.monthDay,
+            null,
+            null
+        );
+
+    }
+
+}
+
+
+/* ========================================
+   SET LINK
+======================================== */
+
+function setLink(
+    id,
+    href,
+    available
+) {
+
+    const element =
+        document.getElementById(id);
+
+    if (!available) {
+
+        element.style.opacity =
+            ".4";
+
+        element.style.pointerEvents =
+            "none";
+
+        element.removeAttribute(
+            "href"
+        );
+
+        return;
+
+    }
+
+    element.href =
+        href;
+
+}
+
+
+/* ========================================
+   LOAD CELEBRATION
+======================================== */
+
+async function loadCelebration(
+    year,
+    monthDay,
+    actualDate,
+    fallbackSeason
+) {
+
+    const url =
+        `${API_BASE}/liturgical-calendar/${year}/${monthDay}.json`;
+
+    try {
+
+        const data =
+            await fetchJSON(url);
+
+
+        const celebration =
+            data.celebration || {};
+
+
+        const season =
+            safeText(
+                data.season
+            ) ||
+            fallbackSeason ||
+            "Liturgical Calendar";
+
+
+        const name =
+            safeText(
+                celebration.name
+            );
+
+
+        document.getElementById(
+            "todaySeason"
+        ).textContent =
+            season;
+
+
+        document.getElementById(
+            "seasonPill"
+        ).textContent =
+            `✝ ${season}`;
+
+
+        document.getElementById(
+            "celebrationName"
+        ).textContent =
+            name ||
+            "Today's Catholic celebration";
+
+
+        document.getElementById(
+            "celebrationDescription"
+        ).textContent =
+            safeText(
+                celebration.description
+            );
+
+
+        const note =
+            safeText(
+                data.liturgicalNote
+            ) ||
+            safeText(
+                data.historicalNote
+            );
+
+
+        document.getElementById(
+            "liturgicalNote"
+        ).textContent =
+            note;
+
+
+        if (!note) {
+
+            document.getElementById(
+                "liturgicalNote"
+            ).style.display =
+                "none";
+
+        }
+
+
+        document.getElementById(
+            "liturgyLoading"
+        ).style.display =
+            "none";
+
+
+        document.getElementById(
+            "liturgyCard"
+        ).style.display =
+            "block";
+
+
+        loadSaint(
+            celebration
+        );
+
+
+    } catch(error) {
+
+        console.error(
+            "Celebration error:",
+            error
+        );
+
+
+        document.getElementById(
+            "liturgyLoading"
+        ).style.display =
+            "none";
+
+
+        document.getElementById(
+            "liturgyError"
+        ).style.display =
+            "block";
+
+
+        loadSaint(
+            null
+        );
+
+    }
+
+}
+
+
+/* ========================================
+   SAINT
+======================================== */
+
+async function loadSaint(
+    celebration
+) {
+
+    const saintName =
+        safeText(
+            celebration &&
+            celebration.name
+        );
+
+    const saintDescription =
+        safeText(
+            celebration &&
+            celebration.description
+        );
+
+    const saintQuote =
+        safeText(
+            celebration &&
+            celebration.quote
+        );
+
+    const saintImage =
+        safeText(
+            celebration &&
+            celebration.image
+        );
+
+    const saintType =
+        safeText(
+            celebration &&
+            celebration.type
+        );
+
+
+    if (
+        !saintName &&
+        !saintDescription
+    ) {
+
+        document.getElementById(
+            "saintLoading"
+        ).style.display =
+            "none";
+
+        document.getElementById(
+            "saintError"
+        ).style.display =
+            "block";
+
+        return;
+
+    }
+
+
+    document.getElementById(
+        "saintName"
+    ).textContent =
+        saintName ||
+        "Today's celebration";
+
+
+    document.getElementById(
+        "saintType"
+    ).textContent =
+        saintType ||
+        "CELEBRATION";
+
+
+    document.getElementById(
+        "saintDescription"
+    ).textContent =
+        saintDescription ||
+        "";
+
+
+    if (saintQuote) {
+
+        const quote =
+            document.getElementById(
+                "saintQuote"
+            );
+
+        quote.textContent =
+            `“${saintQuote}”`;
+
+        quote.style.display =
+            "block";
+
+    }
+
+
+    const imageContainer =
+        document.getElementById(
+            "saintImageContainer"
+        );
+
+
+    if (saintImage) {
+
+        const image =
+            document.createElement(
+                "img"
+            );
+
+        image.src =
+            saintImage;
+
+        image.alt =
+            saintName ||
+            "Catholic saint";
+
+        image.loading =
+            "lazy";
+
+        image.onerror =
+            function() {
+
+                imageContainer.innerHTML = `
+                    <div class="saint-placeholder">
+                        ✝
+                    </div>
+                `;
+
+            };
+
+
+        imageContainer.appendChild(
+            image
+        );
+
+    } else {
+
+        imageContainer.innerHTML = `
+            <div class="saint-placeholder">
+                ✝
+            </div>
+        `;
+
+    }
+
+
+    document.getElementById(
+        "saintLoading"
+    ).style.display =
+        "none";
+
+
+    document.getElementById(
+        "saintCard"
+    ).style.display =
+        "grid";
+
+}
+
+
+/* ========================================
+   PRAYER UI
+======================================== */
+
+const prayerData = {
+
+    "Morning Prayer": {
+        symbol:"☀",
+        title:"Begin the day with God",
+        text:
+            "Offer the day to God. Ask Him for the grace to recognize His presence, love the people around you, and follow His will."
+    },
+
+    "Night Prayer": {
+        symbol:"☾",
+        title:"End the day with God",
+        text:
+            "Give thanks for the blessings of today, ask forgiveness for your sins, and place tomorrow into God's hands."
+    },
+
+    "Rosary": {
+        symbol:"📿",
+        title:"Pray the Rosary",
+        text:
+            "Meditate on the mysteries of Christ with Mary. Let the Rosary become a quiet place to contemplate the life of Jesus."
+    },
+
+    "Divine Mercy": {
+        symbol:"❤️",
+        title:"Trust in God's mercy",
+        text:
+            "Place your trust in the mercy of Jesus and pray for yourself, your loved ones, and the whole world."
+    },
+
+    "Adoration": {
+        symbol:"✝",
+        title:"Be with Jesus",
+        text:
+            "Spend time in the presence of Christ. You do not need perfect words. Simply be present, listen, and adore Him."
+    },
+
+    "Personal Prayer": {
+        symbol:"🙏",
+        title:"Speak with God",
+        text:
+            "Bring God whatever is on your heart. Give thanks, ask for help, listen in silence, and remember that He is near."
+    }
+
+};
+
+
+function selectPrayer(
+    prayer
+) {
+
+    const data =
+        prayerData[prayer];
+
+    if (!data) {
+        return;
+    }
+
+
+    document.getElementById(
+        "prayerDisplaySymbol"
+    ).textContent =
+        data.symbol;
+
+
+    document.getElementById(
+        "prayerDisplayTitle"
+    ).textContent =
+        data.title;
+
+
+    document.getElementById(
+        "prayerDisplayText"
+    ).textContent =
+        data.text;
+
+}
+
+
+/* ========================================
+   START
+======================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        loadReadings();
+
+    }
+);
+
+</script>
+
+</body>
+</html>
+```
+
+### What this page includes
+
+* **Real daily Mass readings**
+* First Reading
+* Responsorial Psalm
+* Second Reading
+* Gospel
+* Direct links to the **official USCCB reading**
+* Current liturgical season
+* Today's liturgical celebration
+* Liturgical notes when supplied by the API
+* **Saint/celebration section**
+* Saint image when the API provides one
+* Saint description
+* Saint quote when available
+* Morning Prayer
+* Night Prayer
+* Rosary
+* Divine Mercy
+* Eucharistic prayer/adoration
+* Personal prayer
+* Faith resources
+* Community connection
+* Events connection
+* Premium CYS glass design
+* Mobile/iPhone safe-area support
+* Same header and bottom navigation as the other pages
+* Loading and error states
+* **No fabricated readings, saints, feast days, or member activity**
+
+The API itself documents the readings endpoint as `/readings/YYYY/MM-DD.json` and the liturgical calendar endpoint as `/liturgical-calendar/YYYY/MM-DD.json`, including 2026 data.
+
+One intentional limitation: the page **doesn't reproduce the full Bible passage itself**. It displays the real Scripture references and sends the user to the official USCCB reading page for the full text. That keeps this implementation much cleaner from a licensing standpoint while still making the daily readings genuinely useful.
