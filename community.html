@@ -22,6 +22,12 @@
 
 <title>Community • Catholic Youth Society</title>
 
+<!-- =========================================================
+     EMAILJS
+========================================================= -->
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
 <style>
 
 :root {
@@ -1188,6 +1194,16 @@ section {
     cursor: pointer;
 
     font-size: 9px;
+
+}
+
+
+.prayer-action:disabled {
+
+    opacity: .45;
+
+    cursor:
+        wait;
 
 }
 
@@ -2625,6 +2641,52 @@ footer strong {
 <script>
 
 /* =========================================================
+   EMAILJS CONFIGURATION
+========================================================= */
+
+/*
+   Replace these three values with your EmailJS details.
+
+   EMAILJS_PUBLIC_KEY:
+   Your EmailJS public key
+
+   EMAILJS_SERVICE_ID:
+   Your EmailJS email service ID
+
+   EMAILJS_TEMPLATE_ID:
+   Your EmailJS email template ID
+*/
+
+const EMAILJS_PUBLIC_KEY =
+    "YOUR_EMAILJS_PUBLIC_KEY";
+
+const EMAILJS_SERVICE_ID =
+    "YOUR_EMAILJS_SERVICE_ID";
+
+const EMAILJS_TEMPLATE_ID =
+    "YOUR_EMAILJS_TEMPLATE_ID";
+
+
+/* =========================================================
+   INITIALIZE EMAILJS
+========================================================= */
+
+if (
+    typeof emailjs !== "undefined" &&
+    EMAILJS_PUBLIC_KEY !== "YOUR_EMAILJS_PUBLIC_KEY"
+) {
+
+    emailjs.init({
+
+        publicKey:
+            EMAILJS_PUBLIC_KEY
+
+    });
+
+}
+
+
+/* =========================================================
    STORAGE
 ========================================================= */
 
@@ -3014,27 +3076,230 @@ function prayFor(id) {
 
 
 /* =========================================================
-   REPORT
+   REPORT PRAYER
 ========================================================= */
 
-function reportPrayer(id) {
+async function reportPrayer(id) {
 
-    const confirmed =
-        window.confirm(
-            "Report this prayer intention to the CYS moderators?"
+    const prayers =
+        loadPrayers();
+
+
+    const prayer =
+        prayers.find(
+            item => item.id === id
         );
 
 
-    if (!confirmed) {
+    if (!prayer) {
+
+        alert(
+            "Sorry, we couldn't find that prayer intention."
+        );
 
         return;
 
     }
 
 
-    alert(
-        "Thank you. The intention has been flagged for review."
+    /*
+       Ask the user why they are reporting it.
+    */
+
+    const reason =
+        window.prompt(
+            "Why are you reporting this prayer intention?\n\nPlease describe the issue so the CYS moderators can review it."
+        );
+
+
+    /*
+       User pressed Cancel.
+    */
+
+    if (reason === null) {
+
+        return;
+
+    }
+
+
+    const trimmedReason =
+        reason.trim();
+
+
+    /*
+       Don't allow an empty report.
+    */
+
+    if (!trimmedReason) {
+
+        alert(
+            "Please describe why you are reporting this prayer intention."
+        );
+
+        return;
+
+    }
+
+
+    /*
+       Require a little detail.
+    */
+
+    if (trimmedReason.length < 5) {
+
+        alert(
+            "Please provide a little more detail about why you are reporting it."
+        );
+
+        return;
+
+    }
+
+
+    /*
+       Make sure EmailJS is configured.
+    */
+
+    if (
+        typeof emailjs === "undefined" ||
+        EMAILJS_PUBLIC_KEY === "YOUR_EMAILJS_PUBLIC_KEY" ||
+        EMAILJS_SERVICE_ID === "YOUR_EMAILJS_SERVICE_ID" ||
+        EMAILJS_TEMPLATE_ID === "YOUR_EMAILJS_TEMPLATE_ID"
+    ) {
+
+        console.error(
+            "EmailJS has not been configured."
+        );
+
+        alert(
+            "The reporting system is not configured yet. Please try again later."
+        );
+
+        return;
+
+    }
+
+
+    /*
+       Disable Report buttons while
+       the report is being sent.
+    */
+
+    const reportButtons =
+        document.querySelectorAll(
+            ".prayer-action"
+        );
+
+
+    reportButtons.forEach(
+        button => {
+
+            if (
+                button.textContent
+                    .trim()
+                    .startsWith("Report")
+            ) {
+
+                button.disabled = true;
+
+            }
+
+        }
     );
+
+
+    try {
+
+        /*
+           Send report immediately.
+        */
+
+        await emailjs.send(
+
+            EMAILJS_SERVICE_ID,
+
+            EMAILJS_TEMPLATE_ID,
+
+            {
+
+                /*
+                   This is the address that
+                   receives the report.
+                */
+
+                to_email:
+                    "xavierambrogiodeveloper@tutamail.com",
+
+                /*
+                   Prayer information
+                */
+
+                prayer_intention:
+                    prayer.text,
+
+                report_reason:
+                    trimmedReason,
+
+                /*
+                   Additional moderation information
+                */
+
+                submitted_at:
+                    new Date()
+                        .toLocaleString(),
+
+                prayer_id:
+                    prayer.id,
+
+                anonymous:
+                    prayer.anonymous
+                        ? "Yes"
+                        : "No"
+
+            }
+
+        );
+
+
+        /*
+           Only tell the user it was sent
+           after EmailJS confirms success.
+        */
+
+        alert(
+            "Thank you. Your report has been sent to the CYS moderators for review."
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            "Prayer report failed:",
+            error
+        );
+
+
+        alert(
+            "We couldn't send your report right now. Please try again in a moment."
+        );
+
+
+    } finally {
+
+        /*
+           Re-enable Report buttons.
+        */
+
+        reportButtons.forEach(
+            button => {
+
+                button.disabled = false;
+
+            }
+        );
+
+    }
 
 }
 
