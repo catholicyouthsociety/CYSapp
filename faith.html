@@ -3277,38 +3277,3 @@ document.addEventListener(
 
 </body>
 </html>
-```
-
-### What this page includes
-
-* **Real daily Mass readings**
-* First Reading
-* Responsorial Psalm
-* Second Reading
-* Gospel
-* Direct links to the **official USCCB reading**
-* Current liturgical season
-* Today's liturgical celebration
-* Liturgical notes when supplied by the API
-* **Saint/celebration section**
-* Saint image when the API provides one
-* Saint description
-* Saint quote when available
-* Morning Prayer
-* Night Prayer
-* Rosary
-* Divine Mercy
-* Eucharistic prayer/adoration
-* Personal prayer
-* Faith resources
-* Community connection
-* Events connection
-* Premium CYS glass design
-* Mobile/iPhone safe-area support
-* Same header and bottom navigation as the other pages
-* Loading and error states
-* **No fabricated readings, saints, feast days, or member activity**
-
-The API itself documents the readings endpoint as `/readings/YYYY/MM-DD.json` and the liturgical calendar endpoint as `/liturgical-calendar/YYYY/MM-DD.json`, including 2026 data.
-
-One intentional limitation: the page **doesn't reproduce the full Bible passage itself**. It displays the real Scripture references and sends the user to the official USCCB reading page for the full text. That keeps this implementation much cleaner from a licensing standpoint while still making the daily readings genuinely useful.
