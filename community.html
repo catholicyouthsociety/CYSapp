@@ -1117,6 +1117,14 @@ section {
 }
 
 
+.prayer-item.flagged {
+
+    border-color:
+        rgba(215,182,109,.42);
+
+}
+
+
 .prayer-item-top {
 
     display: flex;
@@ -1218,6 +1226,565 @@ section {
         var(--muted-2);
 
     font-size: 11px;
+
+}
+
+
+/* =========================================================
+   ADMINISTRATION BUTTON
+========================================================= */
+
+.admin-access {
+
+    display: flex;
+
+    justify-content: center;
+
+    margin-top: 10px;
+
+}
+
+
+.admin-access button {
+
+    border: 0;
+
+    padding: 3px 5px;
+
+    background: transparent;
+
+    color:
+        rgba(255,255,255,.16);
+
+    font-size: 7px;
+
+    letter-spacing: .2px;
+
+    cursor: pointer;
+
+    opacity: .45;
+
+    transition:
+        opacity .2s ease,
+        color .2s ease;
+
+}
+
+
+.admin-access button:hover {
+
+    opacity: .9;
+
+    color:
+        rgba(241,217,155,.7);
+
+}
+
+
+/* =========================================================
+   ADMIN OVERLAY
+========================================================= */
+
+.admin-overlay {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 1000;
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+
+    background:
+        rgba(2,7,18,.72);
+
+    backdrop-filter:
+        blur(22px)
+        saturate(140%);
+
+    -webkit-backdrop-filter:
+        blur(22px)
+        saturate(140%);
+
+}
+
+
+.admin-overlay.open {
+
+    display: flex;
+
+}
+
+
+.admin-modal {
+
+    width:
+        min(850px, 100%);
+
+    max-height:
+        min(88vh, 850px);
+
+    overflow-y: auto;
+
+    padding: 25px;
+
+    border-radius: 27px;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(16,41,86,.94),
+            rgba(6,19,44,.96)
+        );
+
+    border:
+        1px solid rgba(255,255,255,.14);
+
+    box-shadow:
+        0 30px 100px rgba(0,0,0,.5),
+        inset 0 1px 0 rgba(255,255,255,.08);
+
+}
+
+
+.admin-login {
+
+    width:
+        min(390px, 100%);
+
+}
+
+
+.admin-header {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin-bottom: 20px;
+
+}
+
+
+.admin-header h2 {
+
+    font-size: 22px;
+
+    letter-spacing: -.6px;
+
+}
+
+
+.admin-close {
+
+    width: 35px;
+
+    height: 35px;
+
+    border-radius: 11px;
+
+    border:
+        1px solid rgba(255,255,255,.1);
+
+    background:
+        rgba(255,255,255,.055);
+
+    color: white;
+
+    cursor: pointer;
+
+}
+
+
+.admin-description {
+
+    color:
+        var(--muted-2);
+
+    font-size: 11px;
+
+    line-height: 1.55;
+
+}
+
+
+.admin-password {
+
+    width: 100%;
+
+    height: 46px;
+
+    margin-top: 15px;
+
+    padding:
+        0 13px;
+
+    border-radius: 13px;
+
+    border:
+        1px solid rgba(255,255,255,.1);
+
+    outline: none;
+
+    background:
+        rgba(0,0,0,.2);
+
+    color: white;
+
+}
+
+
+.admin-password:focus {
+
+    border-color:
+        rgba(215,182,109,.5);
+
+}
+
+
+.admin-login-button {
+
+    width: 100%;
+
+    min-height: 44px;
+
+    margin-top: 10px;
+
+    border: 0;
+
+    border-radius: 13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--gold-light),
+            var(--gold)
+        );
+
+    color:
+        #211a0d;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+}
+
+
+.admin-error {
+
+    min-height: 15px;
+
+    margin-top: 8px;
+
+    color:
+        rgba(255,160,160,.9);
+
+    font-size: 10px;
+
+}
+
+
+.admin-summary {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap: 8px;
+
+    margin-bottom: 15px;
+
+}
+
+
+.admin-stat {
+
+    padding: 13px;
+
+    border-radius: 14px;
+
+    background:
+        rgba(255,255,255,.045);
+
+    border:
+        1px solid rgba(255,255,255,.07);
+
+}
+
+
+.admin-stat strong {
+
+    display: block;
+
+    color:
+        var(--gold-light);
+
+    font-size: 18px;
+
+}
+
+
+.admin-stat span {
+
+    display: block;
+
+    margin-top: 3px;
+
+    color:
+        var(--muted-2);
+
+    font-size: 8px;
+
+}
+
+
+.admin-list {
+
+    display: grid;
+
+    gap: 9px;
+
+}
+
+
+.admin-prayer {
+
+    padding: 15px;
+
+    border-radius: 16px;
+
+    background:
+        rgba(0,0,0,.16);
+
+    border:
+        1px solid rgba(255,255,255,.07);
+
+}
+
+
+.admin-prayer.flagged {
+
+    border-color:
+        rgba(215,182,109,.45);
+
+}
+
+
+.admin-prayer.blocked {
+
+    opacity: .7;
+
+    border-color:
+        rgba(255,110,110,.28);
+
+}
+
+
+.admin-prayer-top {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 10px;
+
+}
+
+
+.admin-prayer-status {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 5px;
+
+}
+
+
+.admin-badge {
+
+    display: inline-flex;
+
+    padding:
+        4px 7px;
+
+    border-radius: 7px;
+
+    font-size: 7px;
+
+    font-weight: 800;
+
+    letter-spacing: .3px;
+
+    text-transform: uppercase;
+
+}
+
+
+.admin-badge.flag {
+
+    color:
+        var(--gold-light);
+
+    background:
+        rgba(215,182,109,.12);
+
+}
+
+
+.admin-badge.block {
+
+    color:
+        rgba(255,170,170,.95);
+
+    background:
+        rgba(255,100,100,.1);
+
+}
+
+
+.admin-badge.report {
+
+    color:
+        rgba(255,255,255,.7);
+
+    background:
+        rgba(255,255,255,.07);
+
+}
+
+
+.admin-prayer-time {
+
+    color:
+        var(--muted-2);
+
+    font-size: 8px;
+
+}
+
+
+.admin-prayer-text {
+
+    margin-top: 9px;
+
+    color:
+        rgba(255,255,255,.76);
+
+    font-size: 11px;
+
+    line-height: 1.55;
+
+}
+
+
+.admin-report {
+
+    margin-top: 9px;
+
+    padding: 9px;
+
+    border-radius: 10px;
+
+    background:
+        rgba(215,182,109,.055);
+
+    color:
+        var(--muted-2);
+
+    font-size: 9px;
+
+    line-height: 1.5;
+
+}
+
+
+.admin-report strong {
+
+    color:
+        rgba(241,217,155,.8);
+
+}
+
+
+.admin-actions {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 6px;
+
+    margin-top: 11px;
+
+}
+
+
+.admin-action {
+
+    padding:
+        7px 9px;
+
+    border-radius: 9px;
+
+    border:
+        1px solid rgba(255,255,255,.08);
+
+    background:
+        rgba(255,255,255,.045);
+
+    color:
+        var(--muted);
+
+    cursor: pointer;
+
+    font-size: 8px;
+
+}
+
+
+.admin-action:hover {
+
+    background:
+        rgba(255,255,255,.09);
+
+}
+
+
+.admin-action.danger {
+
+    color:
+        rgba(255,170,170,.9);
+
+}
+
+
+.admin-empty {
+
+    padding: 30px;
+
+    text-align: center;
+
+    color:
+        var(--muted-2);
+
+    font-size: 10px;
 
 }
 
@@ -1920,6 +2487,13 @@ footer strong {
 
     }
 
+    .admin-summary {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
 }
 
 
@@ -1987,6 +2561,14 @@ footer strong {
     .chapter-search button {
 
         min-height: 43px;
+
+    }
+
+    .admin-modal {
+
+        padding: 19px;
+
+        border-radius: 22px;
 
     }
 
@@ -2428,7 +3010,191 @@ footer strong {
 
     </div>
 
+
+    <!-- ===================================================
+         TINY ADMINISTRATION ACCESS
+    ==================================================== -->
+
+    <div class="admin-access">
+
+        <button
+            type="button"
+            onclick="openAdminLogin()"
+            aria-label="Administration">
+
+            Administration
+
+        </button>
+
+    </div>
+
 </section>
+
+
+
+<!-- =======================================================
+     ADMINISTRATION MODAL
+======================================================== -->
+
+<div
+    id="adminOverlay"
+    class="admin-overlay"
+    onclick="handleAdminOverlayClick(event)">
+
+    <!-- LOGIN -->
+
+    <div
+        id="adminLoginModal"
+        class="admin-modal admin-login">
+
+        <div class="admin-header">
+
+            <div>
+
+                <div class="eyebrow">
+                    CYS Administration
+                </div>
+
+                <h2>
+                    Moderator Sign In
+                </h2>
+
+            </div>
+
+            <button
+                class="admin-close"
+                onclick="closeAdmin()"
+                aria-label="Close">
+
+                ×
+
+            </button>
+
+        </div>
+
+
+        <p class="admin-description">
+
+            This area is restricted to authorized
+            CYS moderators.
+
+        </p>
+
+
+        <input
+            id="adminPassword"
+            class="admin-password"
+            type="password"
+            inputmode="numeric"
+            autocomplete="off"
+            maxlength="20"
+            placeholder="Moderator access code"
+            onkeydown="if(event.key === 'Enter') adminLogin()">
+
+
+        <button
+            class="admin-login-button"
+            onclick="adminLogin()">
+
+            Sign In
+
+        </button>
+
+
+        <div
+            id="adminError"
+            class="admin-error">
+
+        </div>
+
+    </div>
+
+
+    <!-- DASHBOARD -->
+
+    <div
+        id="adminDashboard"
+        class="admin-modal"
+        style="display:none;">
+
+        <div class="admin-header">
+
+            <div>
+
+                <div class="eyebrow">
+                    CYS Administration
+                </div>
+
+                <h2>
+                    Prayer Moderation
+                </h2>
+
+            </div>
+
+            <button
+                class="admin-close"
+                onclick="closeAdmin()"
+                aria-label="Close">
+
+                ×
+
+            </button>
+
+        </div>
+
+
+        <div class="admin-summary">
+
+            <div class="admin-stat">
+
+                <strong id="adminTotal">
+                    0
+                </strong>
+
+                <span>
+                    Total Prayers
+                </span>
+
+            </div>
+
+
+            <div class="admin-stat">
+
+                <strong id="adminFlagged">
+                    0
+                </strong>
+
+                <span>
+                    Flagged
+                </span>
+
+            </div>
+
+
+            <div class="admin-stat">
+
+                <strong id="adminBlocked">
+                    0
+                </strong>
+
+                <span>
+                    Blocked
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div
+            id="adminPrayerList"
+            class="admin-list">
+
+        </div>
+
+    </div>
+
+</div>
 
 
 
@@ -2638,24 +3404,12 @@ footer strong {
 </footer>
 
 
+
 <script>
 
 /* =========================================================
    EMAILJS CONFIGURATION
 ========================================================= */
-
-/*
-   Replace these three values with your EmailJS details.
-
-   EMAILJS_PUBLIC_KEY:
-   Your EmailJS public key
-
-   EMAILJS_SERVICE_ID:
-   Your EmailJS email service ID
-
-   EMAILJS_TEMPLATE_ID:
-   Your EmailJS email template ID
-*/
 
 const EMAILJS_PUBLIC_KEY =
     "-7XncFkbBJVPDLSVn";
@@ -2665,6 +3419,36 @@ const EMAILJS_SERVICE_ID =
 
 const EMAILJS_TEMPLATE_ID =
     "template_z1hnlzi";
+
+
+/* =========================================================
+   ADMIN CONFIGURATION
+========================================================= */
+
+/*
+   IMPORTANT:
+
+   This is only a temporary client-side moderator gate.
+
+   Because this page is static, the access code is visible
+   to anyone who inspects the JavaScript.
+
+   A real production moderator system should move
+   authentication and moderation to a secure backend.
+
+   Requested moderator code:
+   722005
+*/
+
+const ADMIN_ACCESS_CODE =
+    "722005";
+
+
+/* =========================================================
+   ADMIN SESSION
+========================================================= */
+
+let adminAuthenticated = false;
 
 
 /* =========================================================
@@ -2692,6 +3476,10 @@ if (
 
 const PRAYER_STORAGE_KEY =
     "cys_prayer_intentions";
+
+
+const REPORT_STORAGE_KEY =
+    "cys_prayer_reports";
 
 
 /* =========================================================
@@ -2765,6 +3553,55 @@ function savePrayers(prayers) {
 
 
 /* =========================================================
+   LOAD REPORTS
+========================================================= */
+
+function loadReports() {
+
+    try {
+
+        const saved =
+            localStorage.getItem(
+                REPORT_STORAGE_KEY
+            );
+
+        if (!saved) {
+
+            return [];
+
+        }
+
+        const parsed =
+            JSON.parse(saved);
+
+        return Array.isArray(parsed)
+            ? parsed
+            : [];
+
+    } catch {
+
+        return [];
+
+    }
+
+}
+
+
+/* =========================================================
+   SAVE REPORTS
+========================================================= */
+
+function saveReports(reports) {
+
+    localStorage.setItem(
+        REPORT_STORAGE_KEY,
+        JSON.stringify(reports)
+    );
+
+}
+
+
+/* =========================================================
    TIME AGO
 ========================================================= */
 
@@ -2829,13 +3666,20 @@ function renderPrayers() {
         loadPrayers();
 
 
+    const visiblePrayers =
+        prayers.filter(
+            prayer =>
+                !prayer.blocked
+        );
+
+
     document.getElementById(
         "prayerCount"
     ).textContent =
-        prayers.length;
+        visiblePrayers.length;
 
 
-    if (prayers.length === 0) {
+    if (visiblePrayers.length === 0) {
 
         feed.innerHTML = `
 
@@ -2868,7 +3712,7 @@ function renderPrayers() {
 
 
     const newest =
-        [...prayers]
+        [...visiblePrayers]
             .sort(
                 (a,b) =>
                     new Date(b.createdAt) -
@@ -2884,7 +3728,11 @@ function renderPrayers() {
                     return `
 
                         <div
-                            class="prayer-item"
+                            class="prayer-item ${
+                                prayer.flagged
+                                    ? "flagged"
+                                    : ""
+                            }"
                             data-id="${escapeHTML(prayer.id)}">
 
                             <div class="prayer-item-top">
@@ -3012,6 +3860,10 @@ function postPrayer() {
 
         prayers: 0,
 
+        flagged: false,
+
+        blocked: false,
+
         createdAt:
             new Date().toISOString()
 
@@ -3102,19 +3954,11 @@ async function reportPrayer(id) {
     }
 
 
-    /*
-       Ask the user why they are reporting it.
-    */
-
     const reason =
         window.prompt(
             "Why are you reporting this prayer intention?\n\nPlease describe the issue so the CYS moderators can review it."
         );
 
-
-    /*
-       User pressed Cancel.
-    */
 
     if (reason === null) {
 
@@ -3127,10 +3971,6 @@ async function reportPrayer(id) {
         reason.trim();
 
 
-    /*
-       Don't allow an empty report.
-    */
-
     if (!trimmedReason) {
 
         alert(
@@ -3141,10 +3981,6 @@ async function reportPrayer(id) {
 
     }
 
-
-    /*
-       Require a little detail.
-    */
 
     if (trimmedReason.length < 5) {
 
@@ -3158,8 +3994,38 @@ async function reportPrayer(id) {
 
 
     /*
-       Make sure EmailJS is configured.
+       Store the report locally as well.
+
+       This allows the temporary local Administration
+       dashboard to see reports associated with prayers.
     */
+
+    const reports =
+        loadReports();
+
+
+    reports.push({
+
+        id:
+            Date.now().toString(36) +
+            Math.random()
+                .toString(36)
+                .substring(2,7),
+
+        prayerId:
+            prayer.id,
+
+        reason:
+            trimmedReason,
+
+        createdAt:
+            new Date().toISOString()
+
+    });
+
+
+    saveReports(reports);
+
 
     if (
         typeof emailjs === "undefined" ||
@@ -3180,11 +4046,6 @@ async function reportPrayer(id) {
 
     }
 
-
-    /*
-       Disable Report buttons while
-       the report is being sent.
-    */
 
     const reportButtons =
         document.querySelectorAll(
@@ -3211,10 +4072,6 @@ async function reportPrayer(id) {
 
     try {
 
-        /*
-           Send report immediately.
-        */
-
         await emailjs.send(
 
             EMAILJS_SERVICE_ID,
@@ -3223,27 +4080,14 @@ async function reportPrayer(id) {
 
             {
 
-                /*
-                   This is the address that
-                   receives the report.
-                */
-
                 to_email:
                     "xavierambrogiodeveloper@tutamail.com",
-
-                /*
-                   Prayer information
-                */
 
                 prayer_intention:
                     prayer.text,
 
                 report_reason:
                     trimmedReason,
-
-                /*
-                   Additional moderation information
-                */
 
                 submitted_at:
                     new Date()
@@ -3262,14 +4106,21 @@ async function reportPrayer(id) {
         );
 
 
-        /*
-           Only tell the user it was sent
-           after EmailJS confirms success.
-        */
-
         alert(
             "Thank you. Your report has been sent to the CYS moderators for review."
         );
+
+
+        /*
+           Refresh the admin dashboard if it happens
+           to be open.
+        */
+
+        if (adminAuthenticated) {
+
+            renderAdminDashboard();
+
+        }
 
 
     } catch (error) {
@@ -3287,10 +4138,6 @@ async function reportPrayer(id) {
 
     } finally {
 
-        /*
-           Re-enable Report buttons.
-        */
-
         reportButtons.forEach(
             button => {
 
@@ -3300,6 +4147,672 @@ async function reportPrayer(id) {
         );
 
     }
+
+}
+
+
+/* =========================================================
+   ADMINISTRATION — OPEN LOGIN
+========================================================= */
+
+function openAdminLogin() {
+
+    const overlay =
+        document.getElementById(
+            "adminOverlay"
+        );
+
+    const login =
+        document.getElementById(
+            "adminLoginModal"
+        );
+
+    const dashboard =
+        document.getElementById(
+            "adminDashboard"
+        );
+
+
+    overlay.classList.add("open");
+
+
+    if (adminAuthenticated) {
+
+        login.style.display =
+            "none";
+
+        dashboard.style.display =
+            "block";
+
+        renderAdminDashboard();
+
+        return;
+
+    }
+
+
+    login.style.display =
+        "block";
+
+    dashboard.style.display =
+        "none";
+
+
+    const password =
+        document.getElementById(
+            "adminPassword"
+        );
+
+
+    password.value = "";
+
+    document.getElementById(
+        "adminError"
+    ).textContent = "";
+
+
+    setTimeout(
+        () => password.focus(),
+        100
+    );
+
+}
+
+
+/* =========================================================
+   ADMINISTRATION — LOGIN
+========================================================= */
+
+function adminLogin() {
+
+    const input =
+        document.getElementById(
+            "adminPassword"
+        );
+
+
+    const error =
+        document.getElementById(
+            "adminError"
+        );
+
+
+    const entered =
+        input.value.trim();
+
+
+    if (
+        entered === ADMIN_ACCESS_CODE
+    ) {
+
+        adminAuthenticated =
+            true;
+
+
+        document.getElementById(
+            "adminLoginModal"
+        ).style.display =
+            "none";
+
+
+        document.getElementById(
+            "adminDashboard"
+        ).style.display =
+            "block";
+
+
+        error.textContent = "";
+
+
+        renderAdminDashboard();
+
+
+        return;
+
+    }
+
+
+    error.textContent =
+        "Incorrect moderator access code.";
+
+
+    input.value = "";
+
+    input.focus();
+
+}
+
+
+/* =========================================================
+   ADMINISTRATION — CLOSE
+========================================================= */
+
+function closeAdmin() {
+
+    adminAuthenticated =
+        false;
+
+
+    document.getElementById(
+        "adminOverlay"
+    ).classList.remove("open");
+
+
+    document.getElementById(
+        "adminLoginModal"
+    ).style.display =
+        "block";
+
+
+    document.getElementById(
+        "adminDashboard"
+    ).style.display =
+        "none";
+
+}
+
+
+/* =========================================================
+   ADMINISTRATION — OVERLAY CLICK
+========================================================= */
+
+function handleAdminOverlayClick(event) {
+
+    if (
+        event.target.id ===
+        "adminOverlay"
+    ) {
+
+        closeAdmin();
+
+    }
+
+}
+
+
+/* =========================================================
+   ADMINISTRATION — RENDER DASHBOARD
+========================================================= */
+
+function renderAdminDashboard() {
+
+    if (!adminAuthenticated) {
+
+        return;
+
+    }
+
+
+    const prayers =
+        loadPrayers();
+
+
+    const reports =
+        loadReports();
+
+
+    const flagged =
+        prayers.filter(
+            prayer =>
+                prayer.flagged
+        );
+
+
+    const blocked =
+        prayers.filter(
+            prayer =>
+                prayer.blocked
+        );
+
+
+    document.getElementById(
+        "adminTotal"
+    ).textContent =
+        prayers.length;
+
+
+    document.getElementById(
+        "adminFlagged"
+    ).textContent =
+        flagged.length;
+
+
+    document.getElementById(
+        "adminBlocked"
+    ).textContent =
+        blocked.length;
+
+
+    const list =
+        document.getElementById(
+            "adminPrayerList"
+        );
+
+
+    if (prayers.length === 0) {
+
+        list.innerHTML = `
+
+            <div class="admin-empty">
+
+                There are currently no prayer intentions
+                to moderate.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    const sorted =
+        [...prayers]
+            .sort(
+                (a,b) =>
+                    new Date(b.createdAt) -
+                    new Date(a.createdAt)
+            );
+
+
+    list.innerHTML =
+        sorted
+            .map(
+                prayer => {
+
+                    const prayerReports =
+                        reports.filter(
+                            report =>
+                                report.prayerId ===
+                                prayer.id
+                        );
+
+
+                    let badges = "";
+
+
+                    if (prayer.flagged) {
+
+                        badges += `
+
+                            <span class="admin-badge flag">
+                                Flagged
+                            </span>
+
+                        `;
+
+                    }
+
+
+                    if (prayer.blocked) {
+
+                        badges += `
+
+                            <span class="admin-badge block">
+                                Blocked
+                            </span>
+
+                        `;
+
+                    }
+
+
+                    if (prayerReports.length) {
+
+                        badges += `
+
+                            <span class="admin-badge report">
+
+                                ${prayerReports.length}
+                                Report${
+                                    prayerReports.length === 1
+                                        ? ""
+                                        : "s"
+                                }
+
+                            </span>
+
+                        `;
+
+                    }
+
+
+                    const reportsHTML =
+                        prayerReports.length
+                            ? `
+
+                                <div class="admin-report">
+
+                                    <strong>
+                                        Report reason:
+                                    </strong>
+
+                                    ${escapeHTML(
+                                        prayerReports[
+                                            prayerReports.length - 1
+                                        ].reason
+                                    )}
+
+                                </div>
+
+                              `
+                            : "";
+
+
+                    return `
+
+                        <div
+                            class="
+                                admin-prayer
+                                ${
+                                    prayer.flagged
+                                        ? "flagged"
+                                        : ""
+                                }
+                                ${
+                                    prayer.blocked
+                                        ? "blocked"
+                                        : ""
+                                }
+                            ">
+
+                            <div class="admin-prayer-top">
+
+                                <div class="admin-prayer-status">
+
+                                    ${
+                                        badges ||
+                                        `
+                                            <span
+                                                class="admin-badge report">
+                                                No flags
+                                            </span>
+                                        `
+                                    }
+
+                                </div>
+
+                                <span class="admin-prayer-time">
+
+                                    ${timeAgo(
+                                        prayer.createdAt
+                                    )}
+
+                                </span>
+
+                            </div>
+
+
+                            <div class="admin-prayer-text">
+
+                                ${escapeHTML(
+                                    prayer.text
+                                )}
+
+                            </div>
+
+
+                            ${reportsHTML}
+
+
+                            <div class="admin-actions">
+
+                                <button
+                                    class="admin-action"
+                                    onclick="toggleFlagPrayer('${escapeHTML(prayer.id)}')">
+
+                                    ${
+                                        prayer.flagged
+                                            ? "Unflag"
+                                            : "Flag"
+                                    }
+
+                                </button>
+
+
+                                <button
+                                    class="admin-action"
+                                    onclick="toggleBlockPrayer('${escapeHTML(prayer.id)}')">
+
+                                    ${
+                                        prayer.blocked
+                                            ? "Unblock"
+                                            : "Block"
+                                    }
+
+                                </button>
+
+
+                                <button
+                                    class="admin-action danger"
+                                    onclick="deletePrayer('${escapeHTML(prayer.id)}')">
+
+                                    Delete
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    `;
+
+                }
+            )
+            .join("");
+
+}
+
+
+/* =========================================================
+   ADMINISTRATION — FLAG
+========================================================= */
+
+function toggleFlagPrayer(id) {
+
+    if (!adminAuthenticated) {
+
+        return;
+
+    }
+
+
+    const prayers =
+        loadPrayers();
+
+
+    const updated =
+        prayers.map(
+            prayer => {
+
+                if (
+                    prayer.id !== id
+                ) {
+
+                    return prayer;
+
+                }
+
+
+                return {
+
+                    ...prayer,
+
+                    flagged:
+                        !prayer.flagged
+
+                };
+
+            }
+        );
+
+
+    savePrayers(updated);
+
+
+    renderPrayers();
+
+    renderAdminDashboard();
+
+}
+
+
+/* =========================================================
+   ADMINISTRATION — BLOCK
+========================================================= */
+
+function toggleBlockPrayer(id) {
+
+    if (!adminAuthenticated) {
+
+        return;
+
+    }
+
+
+    const prayers =
+        loadPrayers();
+
+
+    const prayer =
+        prayers.find(
+            item =>
+                item.id === id
+        );
+
+
+    if (!prayer) {
+
+        return;
+
+    }
+
+
+    const action =
+        prayer.blocked
+            ? "unblock"
+            : "block";
+
+
+    if (
+        action === "block"
+    ) {
+
+        const confirmed =
+            window.confirm(
+                "Block this prayer intention?\n\nIt will no longer appear on the public Prayer Wall."
+            );
+
+
+        if (!confirmed) {
+
+            return;
+
+        }
+
+    }
+
+
+    const updated =
+        prayers.map(
+            item => {
+
+                if (
+                    item.id !== id
+                ) {
+
+                    return item;
+
+                }
+
+
+                return {
+
+                    ...item,
+
+                    blocked:
+                        !item.blocked
+
+                };
+
+            }
+        );
+
+
+    savePrayers(updated);
+
+
+    renderPrayers();
+
+    renderAdminDashboard();
+
+}
+
+
+/* =========================================================
+   ADMINISTRATION — DELETE
+========================================================= */
+
+function deletePrayer(id) {
+
+    if (!adminAuthenticated) {
+
+        return;
+
+    }
+
+
+    const confirmed =
+        window.confirm(
+            "Permanently delete this prayer intention?\n\nThis cannot be undone."
+        );
+
+
+    if (!confirmed) {
+
+        return;
+
+    }
+
+
+    const prayers =
+        loadPrayers();
+
+
+    const updated =
+        prayers.filter(
+            prayer =>
+                prayer.id !== id
+        );
+
+
+    savePrayers(updated);
+
+
+    /*
+       Also remove associated local reports.
+    */
+
+    const reports =
+        loadReports();
+
+
+    const remainingReports =
+        reports.filter(
+            report =>
+                report.prayerId !== id
+        );
+
+
+    saveReports(
+        remainingReports
+    );
+
+
+    renderPrayers();
+
+    renderAdminDashboard();
 
 }
 
