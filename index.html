@@ -240,22 +240,6 @@ header {
     -webkit-backdrop-filter: blur(20px);
 }
 
-.hero-inner::after {
-    content: "✝";
-
-    position: absolute;
-
-    right: 38px;
-    bottom: -35px;
-
-    font-size: 190px;
-    font-weight: 200;
-
-    color: rgba(241,217,155,.055);
-
-    pointer-events: none;
-}
-
 .eyebrow {
     color: var(--gold-light);
 
@@ -867,7 +851,6 @@ footer strong {
 
         <div class="header-actions">
 
-            <!-- REAL PROFILE BUTTON -->
             <button
                 class="icon-button"
                 aria-label="Profile"
@@ -1162,7 +1145,38 @@ footer strong {
 
 </footer>
 
-<script>
+
+<script type="module">
+
+/* =========================================================
+   FIREBASE / FIRESTORE
+========================================================= */
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+
+import {
+    getFirestore,
+    collection,
+    query,
+    orderBy,
+    onSnapshot
+} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+
+
+const firebaseConfig = {
+    apiKey: "AIzaSyDEK03cCOFNwDNPasvBHRK70hJxv_R12Y",
+    authDomain: "catholic-youth-society.firebaseapp.com",
+    projectId: "catholic-youth-society",
+    storageBucket: "catholic-youth-society.firebasestorage.app",
+    messagingSenderId: "72928387427",
+    appId: "1:72928387427:web:e3662e1a2911293b40b356"
+};
+
+
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
+
 
 /* =========================================================
    CATHOLIC READINGS API
@@ -1264,7 +1278,7 @@ function formatDate(dateValue) {
 
 
 /* =========================================================
-   EVENTS
+   EVENTS — FIRESTORE
 ========================================================= */
 
 function escapeHTML(value) {
@@ -1302,37 +1316,10 @@ function formatEventDate(dateValue) {
 }
 
 
-function loadEvents() {
-
-    try {
-
-        const saved =
-            localStorage.getItem("cys_events");
-
-        if (!saved) {
-            return [];
-        }
-
-        const parsed = JSON.parse(saved);
-
-        return Array.isArray(parsed)
-            ? parsed
-            : [];
-
-    } catch (error) {
-
-        return [];
-
-    }
-}
-
-
-function renderFeaturedEvent() {
+function renderFeaturedEvent(events) {
 
     const container =
         document.getElementById("featuredEvent");
-
-    const events = loadEvents();
 
     const featured =
         events.find(event => event.featured === true);
@@ -1404,7 +1391,50 @@ function renderFeaturedEvent() {
         </div>
 
     `;
+}
 
+
+/* =========================================================
+   FIRESTORE LIVE EVENTS LISTENER
+========================================================= */
+
+function loadFeaturedEvents() {
+
+    const eventsQuery = query(
+        collection(db, "events"),
+        orderBy("date", "asc")
+    );
+
+    onSnapshot(
+        eventsQuery,
+
+        snapshot => {
+
+            const events = snapshot.docs.map(doc => ({
+                id: doc.id,
+                ...doc.data()
+            }));
+
+            renderFeaturedEvent(events);
+
+        },
+
+        error => {
+
+            console.error(
+                "Error loading Firestore events:",
+                error
+            );
+
+            document.getElementById("featuredEvent").innerHTML = `
+                <div class="event-empty">
+                    Unable to load featured events right now.<br>
+                    Please try again soon.
+                </div>
+            `;
+
+        }
+    );
 }
 
 
@@ -1418,7 +1448,7 @@ document.addEventListener(
 
         loadDailyReadings();
 
-        renderFeaturedEvent();
+        loadFeaturedEvents();
 
     }
 );
