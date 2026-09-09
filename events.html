@@ -1048,9 +1048,6 @@ footer strong {
 
         <div class="header-actions">
 
-
-            <!-- REAL PROFILE BUTTON -->
-
             <button
                 class="icon-button"
                 aria-label="Profile"
@@ -1260,7 +1257,7 @@ footer strong {
     </section>
 
 
-    <!-- SUBTLE ADMIN ACCESS ONLY HERE -->
+    <!-- SUBTLE ADMIN ACCESS -->
 
     <div
         class="admin-access"
@@ -1292,52 +1289,85 @@ footer strong {
 </footer>
 
 
-<script>
+<!-- =========================================================
+     FIREBASE / FIRESTORE
+========================================================= -->
+
+<script type="module">
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+
+import {
+    getFirestore,
+    collection,
+    addDoc,
+    query,
+    orderBy,
+    onSnapshot,
+    doc,
+    updateDoc,
+    deleteDoc,
+    serverTimestamp,
+    where,
+    getDocs
+}
+from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+
 
 /* =========================================================
-   EVENT STORAGE
+   FIREBASE CONFIGURATION
 ========================================================= */
 
-const STORAGE_KEY = "cys_events";
+const firebaseConfig = {
+
+    apiKey:
+        "AIzaSyDEK03cCOFNWDPasvBHRK70h2Jxv_R12Y",
+
+    authDomain:
+        "catholic-youth-society.firebaseapp.com",
+
+    projectId:
+        "catholic-youth-society",
+
+    storageBucket:
+        "catholic-youth-society.firebasestorage.app",
+
+    messagingSenderId:
+        "72928387427",
+
+    appId:
+        "1:72928387427:web:e3662e1a2911293b40b356"
+
+};
+
+
+const app =
+    initializeApp(firebaseConfig);
+
+
+const db =
+    getFirestore(app);
+
+
+/* =========================================================
+   EVENT STATE
+========================================================= */
+
+let events = [];
 
 let editingEventId = null;
 
 
-function loadEvents() {
+/* =========================================================
+   FIRESTORE REFERENCE
+========================================================= */
 
-    try {
-
-        const saved =
-            localStorage.getItem(STORAGE_KEY);
-
-        if (!saved) {
-            return [];
-        }
-
-        const events = JSON.parse(saved);
-
-        return Array.isArray(events)
-            ? events
-            : [];
-
-    } catch (error) {
-
-        console.error(error);
-
-        return [];
-
-    }
-}
-
-
-function saveEvents(events) {
-
-    localStorage.setItem(
-        STORAGE_KEY,
-        JSON.stringify(events)
+const eventsCollection =
+    collection(
+        db,
+        "events"
     );
-
-}
 
 
 /* =========================================================
@@ -1356,28 +1386,27 @@ function escapeHTML(value) {
 }
 
 
-function generateId() {
-
-    return Date.now().toString(36) +
-        Math.random()
-            .toString(36)
-            .substring(2, 9);
-
-}
-
-
 function formatEventDate(dateValue) {
 
     if (!dateValue) {
+
         return "Date TBA";
+
     }
+
 
     const date =
-        new Date(dateValue + "T12:00:00");
+        new Date(
+            dateValue + "T12:00:00"
+        );
+
 
     if (isNaN(date.getTime())) {
+
         return dateValue;
+
     }
+
 
     return date.toLocaleDateString(
         "en-US",
@@ -1393,15 +1422,10 @@ function formatEventDate(dateValue) {
 
 
 /* =========================================================
-   PUBLIC EVENT DISPLAY
+   SORT EVENTS
 ========================================================= */
 
-function renderEvents() {
-
-    const container =
-        document.getElementById("eventsList");
-
-    const events = loadEvents();
+function sortEvents() {
 
     events.sort(
         (a, b) => {
@@ -1422,6 +1446,97 @@ function renderEvents() {
 
         }
     );
+
+}
+
+
+/* =========================================================
+   FIRESTORE LIVE LISTENER
+========================================================= */
+
+function listenForEvents() {
+
+    const eventsQuery =
+        query(
+            eventsCollection,
+            orderBy("date", "asc")
+        );
+
+
+    onSnapshot(
+        eventsQuery,
+
+        snapshot => {
+
+            events =
+                snapshot.docs.map(
+                    documentSnapshot => ({
+
+                        id:
+                            documentSnapshot.id,
+
+                        ...documentSnapshot.data()
+
+                    })
+                );
+
+
+            sortEvents();
+
+            renderEvents();
+
+            renderAdminEvents();
+
+        },
+
+        error => {
+
+            console.error(
+                "Firestore events error:",
+                error
+            );
+
+
+            document.getElementById(
+                "eventsList"
+            ).innerHTML = `
+
+                <div class="empty-state">
+
+                    <div class="cross">
+                        ✝
+                    </div>
+
+                    <h2>
+                        Events temporarily unavailable
+                    </h2>
+
+                    <p>
+                        We are having trouble connecting
+                        to the CYS event service. Please
+                        try again shortly.
+                    </p>
+
+                </div>
+
+            `;
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   PUBLIC EVENT DISPLAY
+========================================================= */
+
+function renderEvents() {
+
+    const container =
+        document.getElementById(
+            "eventsList"
+        );
 
 
     if (events.length === 0) {
@@ -1448,6 +1563,7 @@ function renderEvents() {
         `;
 
         return;
+
     }
 
 
@@ -1455,7 +1571,10 @@ function renderEvents() {
         events.map(event => {
 
             const title =
-                escapeHTML(event.title);
+                escapeHTML(
+                    event.title
+                );
+
 
             const description =
                 escapeHTML(
@@ -1463,17 +1582,20 @@ function renderEvents() {
                     "Join Catholic Youth Society for this upcoming event."
                 );
 
+
             const location =
                 escapeHTML(
                     event.location ||
                     "Location TBA"
                 );
 
+
             const time =
                 escapeHTML(
                     event.time ||
                     "Time TBA"
                 );
+
 
             return `
 
@@ -1487,11 +1609,14 @@ function renderEvents() {
 
                         </div>
 
+
                         ${
                             event.featured
                             ? `
                                 <div class="featured-badge">
+
                                     Featured
+
                                 </div>
                             `
                             : ""
@@ -1501,7 +1626,9 @@ function renderEvents() {
 
 
                     <h2>
+
                         ${title}
+
                     </h2>
 
 
@@ -1519,7 +1646,9 @@ function renderEvents() {
 
 
                     <p>
+
                         ${description}
+
                     </p>
 
                 </article>
@@ -1542,8 +1671,11 @@ function showAdminLogin() {
             "Administrator access\n\nEnter the administrator password:"
         );
 
+
     if (password === null) {
+
         return;
+
     }
 
 
@@ -1554,6 +1686,7 @@ function showAdminLogin() {
         );
 
         return;
+
     }
 
 
@@ -1568,6 +1701,10 @@ function showAdminLogin() {
 }
 
 
+/* =========================================================
+   CHECK ADMIN ACCESS
+========================================================= */
+
 function checkAdminAccess() {
 
     const authenticated =
@@ -1576,7 +1713,9 @@ function checkAdminAccess() {
         );
 
 
-    if (authenticated === "true") {
+    if (
+        authenticated === "true"
+    ) {
 
         showAdminDashboard();
 
@@ -1585,16 +1724,25 @@ function checkAdminAccess() {
 }
 
 
+/* =========================================================
+   SHOW ADMIN DASHBOARD
+========================================================= */
+
 function showAdminDashboard() {
 
     document
         .getElementById("adminPanel")
         .classList.add("visible");
 
+
     renderAdminEvents();
 
 }
 
+
+/* =========================================================
+   LOG OUT
+========================================================= */
 
 function logoutAdmin() {
 
@@ -1602,9 +1750,11 @@ function logoutAdmin() {
         "cys_admin_authenticated"
     );
 
+
     document
         .getElementById("adminPanel")
         .classList.remove("visible");
+
 
     hideEventForm();
 
@@ -1615,67 +1765,131 @@ function logoutAdmin() {
    ADMIN EVENT FORM
 ========================================================= */
 
-function showEventForm(eventId = null) {
+function showEventForm(
+    eventId = null
+) {
 
-    editingEventId = eventId;
+    editingEventId =
+        eventId;
+
 
     const form =
-        document.getElementById("adminForm");
+        document.getElementById(
+            "adminForm"
+        );
 
-    form.classList.add("visible");
+
+    form.classList.add(
+        "visible"
+    );
 
 
     if (!eventId) {
 
-        document.getElementById("eventTitle").value = "";
-        document.getElementById("eventDate").value = "";
-        document.getElementById("eventTime").value = "";
-        document.getElementById("eventLocation").value = "";
-        document.getElementById("eventDescription").value = "";
-        document.getElementById("eventFeatured").checked = false;
+        document.getElementById(
+            "eventTitle"
+        ).value = "";
+
+
+        document.getElementById(
+            "eventDate"
+        ).value = "";
+
+
+        document.getElementById(
+            "eventTime"
+        ).value = "";
+
+
+        document.getElementById(
+            "eventLocation"
+        ).value = "";
+
+
+        document.getElementById(
+            "eventDescription"
+        ).value = "";
+
+
+        document.getElementById(
+            "eventFeatured"
+        ).checked = false;
+
 
         return;
+
     }
 
-
-    const events = loadEvents();
 
     const event =
-        events.find(item => item.id === eventId);
+        events.find(
+            item =>
+                item.id === eventId
+        );
+
 
     if (!event) {
+
         return;
+
     }
 
 
-    document.getElementById("eventTitle").value =
+    document.getElementById(
+        "eventTitle"
+    ).value =
         event.title || "";
 
-    document.getElementById("eventDate").value =
+
+    document.getElementById(
+        "eventDate"
+    ).value =
         event.date || "";
 
-    document.getElementById("eventTime").value =
+
+    document.getElementById(
+        "eventTime"
+    ).value =
         event.time || "";
 
-    document.getElementById("eventLocation").value =
+
+    document.getElementById(
+        "eventLocation"
+    ).value =
         event.location || "";
 
-    document.getElementById("eventDescription").value =
+
+    document.getElementById(
+        "eventDescription"
+    ).value =
         event.description || "";
 
-    document.getElementById("eventFeatured").checked =
+
+    document.getElementById(
+        "eventFeatured"
+    ).checked =
         event.featured === true;
 
 }
 
 
+/* =========================================================
+   HIDE EVENT FORM
+========================================================= */
+
 function hideEventForm() {
 
-    editingEventId = null;
+    editingEventId =
+        null;
+
 
     document
-        .getElementById("adminForm")
-        .classList.remove("visible");
+        .getElementById(
+            "adminForm"
+        )
+        .classList.remove(
+            "visible"
+        );
 
 }
 
@@ -1684,40 +1898,57 @@ function hideEventForm() {
    SAVE EVENT
 ========================================================= */
 
-function saveEvent() {
+async function saveEvent() {
 
     const title =
         document
-            .getElementById("eventTitle")
+            .getElementById(
+                "eventTitle"
+            )
             .value
             .trim();
+
 
     const date =
         document
-            .getElementById("eventDate")
+            .getElementById(
+                "eventDate"
+            )
             .value;
+
 
     const time =
         document
-            .getElementById("eventTime")
+            .getElementById(
+                "eventTime"
+            )
             .value
             .trim();
+
 
     const location =
         document
-            .getElementById("eventLocation")
+            .getElementById(
+                "eventLocation"
+            )
             .value
             .trim();
+
 
     const description =
         document
-            .getElementById("eventDescription")
+            .getElementById(
+                "eventDescription"
+            )
             .value
             .trim();
 
+
     const featured =
         document
-            .getElementById("eventFeatured")
+            .getElementById(
+                "eventFeatured"
+            )
             .checked;
 
 
@@ -1728,6 +1959,7 @@ function saveEvent() {
         );
 
         return;
+
     }
 
 
@@ -1738,97 +1970,210 @@ function saveEvent() {
         );
 
         return;
+
     }
 
 
-    let events =
-        loadEvents();
+    const saveButton =
+        document.querySelector(
+            '.form-buttons .small-button.gold'
+        );
 
 
-    if (editingEventId) {
+    const originalButtonText =
+        saveButton
+            ? saveButton.textContent
+            : "Save Event";
 
-        events =
-            events.map(event => {
 
-                if (event.id !== editingEventId) {
-                    return event;
-                }
+    if (saveButton) {
 
-                return {
-                    ...event,
+        saveButton.disabled =
+            true;
 
+        saveButton.textContent =
+            "Saving...";
+
+    }
+
+
+    try {
+
+        /*
+         * If this event is being edited,
+         * update the existing Firestore document.
+         */
+
+        if (editingEventId) {
+
+            const eventRef =
+                doc(
+                    db,
+                    "events",
+                    editingEventId
+                );
+
+
+            await updateDoc(
+                eventRef,
+                {
                     title,
                     date,
                     time,
                     location,
                     description,
-
                     featured
-                };
-
-            });
-
-    } else {
-
-        const newEvent = {
-
-            id: generateId(),
-
-            title,
-
-            date,
-
-            time,
-
-            location,
-
-            description,
-
-            featured,
-
-            createdAt:
-                new Date().toISOString()
-
-        };
+                }
+            );
 
 
-        events.push(newEvent);
+            /*
+             * If this event is featured,
+             * unfeature all other events.
+             */
+
+            if (featured) {
+
+                await unfeatureOtherEvents(
+                    editingEventId
+                );
+
+            }
+
+        }
+
+        /*
+         * Otherwise create a brand-new
+         * Firestore event.
+         */
+
+        else {
+
+            const newEventRef =
+                await addDoc(
+                    eventsCollection,
+                    {
+                        title,
+                        date,
+                        time,
+                        location,
+                        description,
+                        featured,
+                        createdAt:
+                            serverTimestamp()
+                    }
+                );
+
+
+            /*
+             * If the new event is featured,
+             * make every other event unfeatured.
+             */
+
+            if (featured) {
+
+                await unfeatureOtherEvents(
+                    newEventRef.id
+                );
+
+            }
+
+        }
+
+
+        hideEventForm();
+
+
+    } catch (error) {
+
+        console.error(
+            "Error saving event:",
+            error
+        );
+
+
+        alert(
+            "The event could not be saved.\n\n" +
+            "Please check your Firebase connection and Firestore Rules."
+        );
+
+    } finally {
+
+        if (saveButton) {
+
+            saveButton.disabled =
+                false;
+
+            saveButton.textContent =
+                originalButtonText;
+
+        }
 
     }
 
-
-    /*
-       Only one event can be featured.
-       If this event is featured,
-       every other event becomes unfeatured.
-    */
-
-    if (featured) {
-
-        const selectedId =
-            editingEventId ||
-            events[events.length - 1].id;
-
-        events =
-            events.map(event => ({
-
-                ...event,
-
-                featured:
-                    event.id === selectedId
-
-            }));
-
-    }
+}
 
 
-    saveEvents(events);
+/* =========================================================
+   UNFEATURE OTHER EVENTS
+========================================================= */
 
-    renderEvents();
+async function unfeatureOtherEvents(
+    selectedId
+) {
 
-    renderAdminEvents();
+    const snapshot =
+        await getDocs(
+            collection(
+                db,
+                "events"
+            )
+        );
 
-    hideEventForm();
+
+    const updates = [];
+
+
+    snapshot.forEach(
+        documentSnapshot => {
+
+            if (
+                documentSnapshot.id !==
+                selectedId
+            ) {
+
+                const data =
+                    documentSnapshot.data();
+
+
+                if (
+                    data.featured === true
+                ) {
+
+                    updates.push(
+                        updateDoc(
+                            doc(
+                                db,
+                                "events",
+                                documentSnapshot.id
+                            ),
+                            {
+                                featured: false
+                            }
+                        )
+                    );
+
+                }
+
+            }
+
+        }
+    );
+
+
+    await Promise.all(
+        updates
+    );
 
 }
 
@@ -1840,10 +2185,16 @@ function saveEvent() {
 function renderAdminEvents() {
 
     const container =
-        document.getElementById("adminEvents");
+        document.getElementById(
+            "adminEvents"
+        );
 
-    const events =
-        loadEvents();
+
+    if (!container) {
+
+        return;
+
+    }
 
 
     if (events.length === 0) {
@@ -1864,14 +2215,11 @@ function renderAdminEvents() {
         `;
 
         return;
+
     }
 
 
-    events.sort(
-        (a,b) =>
-            new Date(a.date) -
-            new Date(b.date)
-    );
+    sortEvents();
 
 
     container.innerHTML =
@@ -1884,12 +2232,19 @@ function renderAdminEvents() {
                     <div class="admin-event-info">
 
                         <strong>
-                            ${escapeHTML(event.title)}
+
+                            ${escapeHTML(
+                                event.title
+                            )}
+
                         </strong>
+
 
                         <span>
 
-                            ${formatEventDate(event.date)}
+                            ${formatEventDate(
+                                event.date
+                            )}
 
                             ${
                                 event.featured
@@ -1943,60 +2298,68 @@ function renderAdminEvents() {
 
 
 /* =========================================================
-   FEATURE EVENT
+   FEATURE / UNFEATURE EVENT
 ========================================================= */
 
-function toggleFeatured(id) {
-
-    let events =
-        loadEvents();
+async function toggleFeatured(
+    id
+) {
 
     const event =
-        events.find(item => item.id === id);
+        events.find(
+            item =>
+                item.id === id
+        );
+
 
     if (!event) {
+
         return;
+
     }
 
 
-    const makeFeatured =
-        !event.featured;
+    try {
+
+        const makeFeatured =
+            !event.featured;
 
 
-    events =
-        events.map(item => {
+        if (makeFeatured) {
 
-            if (makeFeatured) {
+            await unfeatureOtherEvents(
+                id
+            );
 
-                return {
-                    ...item,
-                    featured:
-                        item.id === id
-                };
+        }
 
+
+        await updateDoc(
+            doc(
+                db,
+                "events",
+                id
+            ),
+            {
+                featured:
+                    makeFeatured
             }
+        );
 
 
-            if (item.id === id) {
+    } catch (error) {
 
-                return {
-                    ...item,
-                    featured: false
-                };
-
-            }
+        console.error(
+            "Error changing featured event:",
+            error
+        );
 
 
-            return item;
+        alert(
+            "The featured event could not be changed."
+        );
 
-        });
-
-
-    saveEvents(events);
-
-    renderEvents();
-
-    renderAdminEvents();
+    }
 
 }
 
@@ -2005,16 +2368,21 @@ function toggleFeatured(id) {
    DELETE EVENT
 ========================================================= */
 
-function deleteEvent(id) {
-
-    const events =
-        loadEvents();
+async function deleteEvent(
+    id
+) {
 
     const event =
-        events.find(item => item.id === id);
+        events.find(
+            item =>
+                item.id === id
+        );
+
 
     if (!event) {
+
         return;
+
     }
 
 
@@ -2025,23 +2393,64 @@ function deleteEvent(id) {
 
 
     if (!confirmed) {
+
         return;
+
     }
 
 
-    const updated =
-        events.filter(
-            item => item.id !== id
+    try {
+
+        await deleteDoc(
+            doc(
+                db,
+                "events",
+                id
+            )
         );
 
 
-    saveEvents(updated);
+    } catch (error) {
 
-    renderEvents();
+        console.error(
+            "Error deleting event:",
+            error
+        );
 
-    renderAdminEvents();
+
+        alert(
+            "The event could not be deleted."
+        );
+
+    }
 
 }
+
+
+/* =========================================================
+   MAKE INLINE ONCLICK FUNCTIONS AVAILABLE
+========================================================= */
+
+window.showAdminLogin =
+    showAdminLogin;
+
+window.logoutAdmin =
+    logoutAdmin;
+
+window.showEventForm =
+    showEventForm;
+
+window.hideEventForm =
+    hideEventForm;
+
+window.saveEvent =
+    saveEvent;
+
+window.toggleFeatured =
+    toggleFeatured;
+
+window.deleteEvent =
+    deleteEvent;
 
 
 /* =========================================================
@@ -2052,9 +2461,9 @@ document.addEventListener(
     "DOMContentLoaded",
     function() {
 
-        renderEvents();
-
         checkAdminAccess();
+
+        listenForEvents();
 
     }
 );
