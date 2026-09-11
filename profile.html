@@ -849,266 +849,6 @@ section {
     margin-top:18px;
 }
 
-/* AUTH MODAL */
-
-.auth-overlay {
-    position:fixed;
-    inset:0;
-    z-index:1000;
-
-    display:none;
-    align-items:center;
-    justify-content:center;
-
-    padding:20px;
-
-    background:rgba(2,7,18,.72);
-
-    backdrop-filter:blur(20px);
-    -webkit-backdrop-filter:blur(20px);
-}
-
-.auth-overlay.open {
-    display:flex;
-}
-
-.auth-card {
-    width:min(430px,100%);
-    max-height:calc(100vh - 40px);
-    overflow-y:auto;
-
-    padding:27px;
-
-    border-radius:28px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(18,40,82,.96),
-            rgba(6,19,44,.97)
-        );
-
-    border:
-        1px solid rgba(255,255,255,.14);
-
-    box-shadow:
-        0 30px 100px rgba(0,0,0,.55),
-        inset 0 1px 0 rgba(255,255,255,.08);
-}
-
-.auth-top {
-    display:flex;
-    align-items:flex-start;
-    justify-content:space-between;
-    gap:15px;
-}
-
-.auth-eyebrow {
-    color:var(--gold-light);
-
-    font-size:9px;
-    font-weight:800;
-    letter-spacing:2px;
-    text-transform:uppercase;
-}
-
-.auth-card h2 {
-    margin-top:7px;
-
-    font-size:28px;
-
-    letter-spacing:-1px;
-}
-
-.auth-description {
-    margin-top:8px;
-
-    color:var(--muted);
-
-    font-size:11px;
-    line-height:1.55;
-}
-
-.auth-close {
-    width:34px;
-    height:34px;
-
-    flex-shrink:0;
-
-    border-radius:11px;
-
-    border:1px solid rgba(255,255,255,.11);
-
-    background:rgba(255,255,255,.06);
-
-    color:white;
-
-    cursor:pointer;
-
-    font-size:18px;
-}
-
-.auth-form {
-    margin-top:21px;
-}
-
-.field {
-    margin-top:13px;
-}
-
-.field label {
-    display:block;
-
-    margin-bottom:6px;
-
-    color:var(--muted);
-
-    font-size:9px;
-    font-weight:750;
-}
-
-.field input {
-    width:100%;
-
-    height:45px;
-
-    padding:0 13px;
-
-    border-radius:13px;
-
-    border:
-        1px solid rgba(255,255,255,.12);
-
-    outline:none;
-
-    background:
-        rgba(255,255,255,.06);
-
-    color:white;
-
-    font-size:12px;
-
-    transition:
-        border .2s ease,
-        background .2s ease;
-}
-
-.field input::placeholder {
-    color:rgba(255,255,255,.32);
-}
-
-.field input:focus {
-    border-color:rgba(241,217,155,.45);
-
-    background:
-        rgba(255,255,255,.085);
-}
-
-.auth-submit {
-    width:100%;
-
-    min-height:45px;
-
-    margin-top:18px;
-
-    border:0;
-
-    border-radius:13px;
-
-    cursor:pointer;
-
-    color:#211a0d;
-
-    font-size:10px;
-    font-weight:850;
-
-    background:
-        linear-gradient(
-            135deg,
-            var(--gold-light),
-            var(--gold)
-        );
-
-    box-shadow:
-        0 12px 30px rgba(215,182,109,.14);
-}
-
-.auth-submit:disabled {
-    opacity:.6;
-    cursor:wait;
-}
-
-.auth-switch {
-    margin-top:16px;
-
-    text-align:center;
-
-    color:var(--muted-2);
-
-    font-size:10px;
-}
-
-.auth-link {
-    border:0;
-
-    background:none;
-
-    color:var(--gold-light);
-
-    cursor:pointer;
-
-    font-weight:800;
-}
-
-.auth-forgot {
-    display:block;
-
-    margin:12px auto 0;
-
-    border:0;
-
-    background:none;
-
-    color:var(--gold-light);
-
-    cursor:pointer;
-
-    font-size:9px;
-    font-weight:750;
-}
-
-.auth-message {
-    display:none;
-
-    margin-top:13px;
-
-    padding:11px 12px;
-
-    border-radius:12px;
-
-    background:rgba(255,255,255,.055);
-
-    border:1px solid rgba(255,255,255,.09);
-
-    color:var(--muted);
-
-    font-size:9px;
-
-    line-height:1.5;
-}
-
-.auth-message.show {
-    display:block;
-}
-
-.auth-message.error {
-    color:#ffd2d2;
-
-    border-color:rgba(255,100,100,.2);
-
-    background:rgba(255,80,80,.07);
-}
-
 /* FOOTER */
 
 footer {
@@ -1325,39 +1065,37 @@ footer strong {
 
 <div class="header-inner">
 
-```
-<a href="index.html" class="brand">
+    <a href="index.html" class="brand">
 
-    <div class="brand-mark">
-        ✝
+        <div class="brand-mark">
+            ✝
+        </div>
+
+        <div class="brand-text">
+
+            <strong>
+                Catholic Youth Society
+            </strong>
+
+            <span>
+                Faith • Community • Friendship
+            </span>
+
+        </div>
+
+    </a>
+
+    <div class="header-actions">
+
+        <button
+            class="icon-button"
+            aria-label="Profile"
+            onclick="window.location.href='profile.html'"
+        >
+            👤
+        </button>
+
     </div>
-
-    <div class="brand-text">
-
-        <strong>
-            Catholic Youth Society
-        </strong>
-
-        <span>
-            Faith • Community • Friendship
-        </span>
-
-    </div>
-
-</a>
-
-<div class="header-actions">
-
-    <button
-        class="icon-button"
-        aria-label="Profile"
-        onclick="window.location.href='profile.html'"
-    >
-        👤
-    </button>
-
-</div>
-```
 
 </div>
 
@@ -1365,566 +1103,552 @@ footer strong {
 
 <main class="container">
 
+<!-- PROFILE -->
+
 <section class="profile-hero">
 
-<div class="account-status" id="accountStatus">
+<div class="account-status">
     ○ Not signed in
 </div>
 
 <div class="profile-main">
 
-```
-<div
-    class="avatar"
-    id="profileAvatar"
-    onclick="openAuth()"
-    aria-label="Profile"
->
-    👤
-</div>
-
-<div class="profile-info">
-
-    <div class="profile-eyebrow">
-        CYS Profile
+    <div
+        class="avatar"
+        onclick="showAccountMessage()"
+        aria-label="Profile photo"
+    >
+        👤
     </div>
 
-    <h1 id="profileTitle">
-        Your CYS Profile
-    </h1>
+    <div class="profile-info">
 
-    <p id="profileDescription">
-        Create an account to personalize your CYS
-        experience, connect with your community,
-        and keep track of your faith journey.
-    </p>
+        <div class="profile-eyebrow">
+            CYS Profile
+        </div>
 
-    <div class="profile-actions">
+        <h1>
+            Your CYS Profile
+        </h1>
 
-        <button
-            class="primary-button"
-            id="profileAuthButton"
-            onclick="openAuth()"
-        >
-            Create / Sign In
-        </button>
+        <p>
+            Create an account to personalize your CYS
+            experience, connect with your community,
+            and keep track of your faith journey.
+        </p>
 
-        <a
-            href="community.html"
-            class="secondary-button"
-        >
-            Explore Community
-        </a>
+        <div class="profile-actions">
+
+            <button
+                class="primary-button"
+                onclick="showAccountMessage()"
+            >
+                Create / Sign In
+            </button>
+
+            <a
+                href="community.html"
+                class="secondary-button"
+            >
+                Explore Community
+            </a>
+
+        </div>
 
     </div>
-
-</div>
-```
 
 </div>
 
 </section>
+
+<!-- STATS -->
 
 <div class="profile-stats">
 
 <div class="stat">
 
-```
-<strong id="prayerCount">
-    —
-</strong>
+    <strong>
+        —
+    </strong>
 
-<span>
-    Prayers Shared
-</span>
-```
+    <span>
+        Prayers Shared
+    </span>
 
 </div>
 
 <div class="stat">
 
-```
-<strong id="eventCount">
-    —
-</strong>
+    <strong>
+        —
+    </strong>
 
-<span>
-    Events
-</span>
-```
+    <span>
+        Events
+    </span>
 
 </div>
 
 </div>
+
+<!-- FAITH -->
 
 <section>
 
 <div class="section-heading">
 
-```
-<div>
-    <h2>
-        My Faith
-    </h2>
-</div>
+    <div>
+        <h2>
+            My Faith
+        </h2>
+    </div>
 
-<p>
-    Personalize your experience
-</p>
-```
+    <p>
+        Personalize your experience
+    </p>
 
 </div>
 
 <div class="faith-card">
 
-```
-<div class="faith-header">
+    <div class="faith-header">
 
-    <div class="faith-icon">
-        ✝
+        <div class="faith-icon">
+            ✝
+        </div>
+
+        <div>
+
+            <h3>
+                Faith Interests
+            </h3>
+
+            <p>
+                Select topics you'd like CYS to personalize
+                around once your account is connected.
+            </p>
+
+        </div>
+
     </div>
 
-    <div>
+    <div class="tag-list">
 
-        <h3>
-            Faith Interests
-        </h3>
+        <button class="tag" onclick="toggleInterest(this)">
+            Daily Prayer
+        </button>
 
-        <p>
-            Select topics you'd like CYS to personalize
-            around your faith journey.
-        </p>
+        <button class="tag" onclick="toggleInterest(this)">
+            Scripture
+        </button>
+
+        <button class="tag" onclick="toggleInterest(this)">
+            Mass
+        </button>
+
+        <button class="tag" onclick="toggleInterest(this)">
+            Saints
+        </button>
+
+        <button class="tag" onclick="toggleInterest(this)">
+            Eucharist
+        </button>
+
+        <button class="tag" onclick="toggleInterest(this)">
+            Catholic Teaching
+        </button>
+
+        <button class="tag" onclick="toggleInterest(this)">
+            Service
+        </button>
+
+        <button class="tag" onclick="toggleInterest(this)">
+            Apologetics
+        </button>
+
+        <button class="tag" onclick="toggleInterest(this)">
+            Vocations
+        </button>
+
+        <button class="tag" onclick="toggleInterest(this)">
+            Catholic Music
+        </button>
+
+        <button class="tag" onclick="toggleInterest(this)">
+            Catholic Culture
+        </button>
+
+        <button class="tag" onclick="toggleInterest(this)">
+            Faith & Life
+        </button>
 
     </div>
-
-</div>
-
-<div class="tag-list">
-
-    <button class="tag" onclick="toggleInterest(this)">
-        Daily Prayer
-    </button>
-
-    <button class="tag" onclick="toggleInterest(this)">
-        Scripture
-    </button>
-
-    <button class="tag" onclick="toggleInterest(this)">
-        Mass
-    </button>
-
-    <button class="tag" onclick="toggleInterest(this)">
-        Saints
-    </button>
-
-    <button class="tag" onclick="toggleInterest(this)">
-        Eucharist
-    </button>
-
-    <button class="tag" onclick="toggleInterest(this)">
-        Catholic Teaching
-    </button>
-
-    <button class="tag" onclick="toggleInterest(this)">
-        Service
-    </button>
-
-    <button class="tag" onclick="toggleInterest(this)">
-        Apologetics
-    </button>
-
-    <button class="tag" onclick="toggleInterest(this)">
-        Vocations
-    </button>
-
-    <button class="tag" onclick="toggleInterest(this)">
-        Catholic Music
-    </button>
-
-    <button class="tag" onclick="toggleInterest(this)">
-        Catholic Culture
-    </button>
-
-    <button class="tag" onclick="toggleInterest(this)">
-        Faith & Life
-    </button>
-
-</div>
-```
 
 </div>
 
 </section>
 
+<!-- ACTIVITY -->
+
 <section>
 
 <div class="section-heading">
 
-```
-<div>
-    <h2>
-        My Activity
-    </h2>
-</div>
+    <div>
+        <h2>
+            My Activity
+        </h2>
+    </div>
 
-<p>
-    Your CYS journey
-</p>
-```
+    <p>
+        Your CYS journey
+    </p>
 
 </div>
 
 <div class="activity-grid">
 
-```
-<a
-    href="faith.html"
-    class="activity-card"
->
+    <a
+        href="faith.html"
+        class="activity-card"
+    >
 
-    <div class="activity-icon">
-        📖
-    </div>
+        <div class="activity-icon">
+            📖
+        </div>
 
-    <h3>
-        Daily Faith
-    </h3>
+        <h3>
+            Daily Faith
+        </h3>
 
-    <p>
-        Explore Scripture, Catholic teaching,
-        prayer, saints, and the life of the Church.
-    </p>
+        <p>
+            Explore Scripture, Catholic teaching,
+            prayer, saints, and the life of the Church.
+        </p>
 
-</a>
+    </a>
 
-<a
-    href="events.html"
-    class="activity-card"
->
+    <a
+        href="events.html"
+        class="activity-card"
+    >
 
-    <div class="activity-icon">
-        ◫
-    </div>
+        <div class="activity-icon">
+            ◫
+        </div>
 
-    <h3>
-        My Events
-    </h3>
+        <h3>
+            My Events
+        </h3>
 
-    <p>
-        Events you save or join will appear here
-        once your CYS account is connected.
-    </p>
+        <p>
+            Events you save or join will appear here
+            once your CYS account is connected.
+        </p>
 
-</a>
+    </a>
 
-<a
-    href="community.html#prayer"
-    class="activity-card"
->
+    <a
+        href="community.html#prayer"
+        class="activity-card"
+    >
 
-    <div class="activity-icon">
-        🙏
-    </div>
+        <div class="activity-icon">
+            🙏
+        </div>
 
-    <h3>
-        Prayer Wall
-    </h3>
+        <h3>
+            Prayer Wall
+        </h3>
 
-    <p>
-        Share prayer intentions and pray with
-        the CYS community.
-    </p>
+        <p>
+            Share prayer intentions and pray with
+            the CYS community.
+        </p>
 
-</a>
+    </a>
 
-<a
-    href="community.html#service"
-    class="activity-card"
->
+    <a
+        href="community.html#service"
+        class="activity-card"
+    >
 
-    <div class="activity-icon">
-        ❤️
-    </div>
+        <div class="activity-icon">
+            ❤️
+        </div>
 
-    <h3>
-        Service
-    </h3>
+        <h3>
+            Service
+        </h3>
 
-    <p>
-        Discover ways to put your faith into
-        action and serve others.
-    </p>
+        <p>
+            Discover ways to put your faith into
+            action and serve others.
+        </p>
 
-</a>
-```
+    </a>
 
 </div>
 
 </section>
 
+<!-- EVENTS -->
+
 <section>
 
 <div class="section-heading">
 
-```
-<div>
-    <h2>
-        My Events
-    </h2>
-</div>
+    <div>
+        <h2>
+            My Events
+        </h2>
+    </div>
 
-<p>
-    Your upcoming experiences
-</p>
-```
+    <p>
+        Your upcoming experiences
+    </p>
 
 </div>
 
 <div class="event-grid">
 
-```
-<div class="event-card">
+    <div class="event-card">
 
-    <div class="profile-eyebrow">
-        Saved Events
+        <div class="profile-eyebrow">
+            Saved Events
+        </div>
+
+        <h3>
+            No saved events yet.
+        </h3>
+
+        <p>
+            When you save an event, it will appear
+            here for quick access.
+        </p>
+
+        <a
+            href="events.html"
+            class="event-link"
+        >
+            Explore Events →
+        </a>
+
     </div>
 
-    <h3>
-        No saved events yet.
-    </h3>
+    <div class="event-card">
 
-    <p>
-        When you save an event, it will appear
-        here for quick access.
-    </p>
+        <div class="profile-eyebrow">
+            Joined Events
+        </div>
 
-    <a
-        href="events.html"
-        class="event-link"
-    >
-        Explore Events →
-    </a>
+        <h3>
+            No joined events yet.
+        </h3>
 
-</div>
+        <p>
+            Events you join will appear here once
+            CYS accounts and event registration are enabled.
+        </p>
 
-<div class="event-card">
+        <a
+            href="events.html"
+            class="event-link"
+        >
+            View Events →
+        </a>
 
-    <div class="profile-eyebrow">
-        Joined Events
     </div>
-
-    <h3>
-        No joined events yet.
-    </h3>
-
-    <p>
-        Events you join will appear here once
-        CYS accounts and event registration are enabled.
-    </p>
-
-    <a
-        href="events.html"
-        class="event-link"
-    >
-        View Events →
-    </a>
-
-</div>
-```
 
 </div>
 
 </section>
+
+<!-- ACCOUNT SETTINGS -->
 
 <section>
 
 <div class="section-heading">
 
-```
-<div>
-    <h2>
-        Account
-    </h2>
-</div>
+    <div>
+        <h2>
+            Account
+        </h2>
+    </div>
 
-<p>
-    Manage your CYS experience
-</p>
-```
+    <p>
+        Manage your CYS experience
+    </p>
 
 </div>
 
 <div class="settings-card">
 
-```
-<div
-    class="setting-row"
-    onclick="openAuth()"
->
+    <div
+        class="setting-row"
+        onclick="showAccountMessage()"
+    >
 
-    <div class="setting-left">
+        <div class="setting-left">
 
-        <div class="setting-icon">
-            ✎
+            <div class="setting-icon">
+                ✎
+            </div>
+
+            <div>
+
+                <strong>
+                    Edit Profile
+                </strong>
+
+                <span>
+                    Add your profile information after signing in
+                </span>
+
+            </div>
+
         </div>
 
-        <div>
-
-            <strong id="editProfileTitle">
-                Edit Profile
-            </strong>
-
-            <span id="editProfileDescription">
-                Create an account to manage your profile
-            </span>
-
-        </div>
-
-    </div>
-
-    <div class="setting-arrow">
-        ›
-    </div>
-
-</div>
-
-<div
-    class="setting-row"
-    onclick="showPrivacyMessage()"
->
-
-    <div class="setting-left">
-
-        <div class="setting-icon">
-            🔒
-        </div>
-
-        <div>
-
-            <strong>
-                Privacy
-            </strong>
-
-            <span>
-                Manage what information you share
-            </span>
-
+        <div class="setting-arrow">
+            ›
         </div>
 
     </div>
 
-    <div class="setting-arrow">
-        ›
-    </div>
+    <div
+        class="setting-row"
+        onclick="showPrivacyMessage()"
+    >
 
-</div>
+        <div class="setting-left">
 
-<div
-    class="setting-row"
-    onclick="window.location.href='community.html'"
->
+            <div class="setting-icon">
+                🔒
+            </div>
 
-    <div class="setting-left">
+            <div>
 
-        <div class="setting-icon">
-            🛡️
-        </div>
+                <strong>
+                    Privacy
+                </strong>
 
-        <div>
+                <span>
+                    Manage what information you share
+                </span>
 
-            <strong>
-                Safety & Community
-            </strong>
-
-            <span>
-                CYS community standards and safety
-            </span>
+            </div>
 
         </div>
 
-    </div>
-
-    <div class="setting-arrow">
-        ›
-    </div>
-
-</div>
-
-<div
-    class="setting-row"
-    onclick="showAccountInformation()"
->
-
-    <div class="setting-left">
-
-        <div class="setting-icon">
-            ℹ️
-        </div>
-
-        <div>
-
-            <strong>
-                Account Information
-            </strong>
-
-            <span id="accountInformationDescription">
-                Sign in to view your account information
-            </span>
-
+        <div class="setting-arrow">
+            ›
         </div>
 
     </div>
 
-    <div class="setting-arrow">
-        ›
+    <div
+        class="setting-row"
+        onclick="window.location.href='community.html'"
+    >
+
+        <div class="setting-left">
+
+            <div class="setting-icon">
+                🛡️
+            </div>
+
+            <div>
+
+                <strong>
+                    Safety & Community
+                </strong>
+
+                <span>
+                    CYS community standards and safety
+                </span>
+
+            </div>
+
+        </div>
+
+        <div class="setting-arrow">
+            ›
+        </div>
+
     </div>
 
-</div>
-```
+    <div
+        class="setting-row"
+        onclick="showAccountMessage()"
+    >
+
+        <div class="setting-left">
+
+            <div class="setting-icon">
+                ℹ️
+            </div>
+
+            <div>
+
+                <strong>
+                    Account Information
+                </strong>
+
+                <span>
+                    Available after creating a CYS account
+                </span>
+
+            </div>
+
+        </div>
+
+        <div class="setting-arrow">
+            ›
+        </div>
+
+    </div>
 
 </div>
 
 </section>
 
+<!-- ACCOUNT CTA -->
+
 <section>
 
 <div class="account-card">
 
-```
-<div class="profile-eyebrow">
-    CYS ACCOUNT
-</div>
+    <div class="profile-eyebrow">
+        CYS ACCOUNT
+    </div>
 
-<h2 id="accountCardTitle">
-    Make CYS your own.
-</h2>
+    <h2>
+        Make CYS your own.
+    </h2>
 
-<p id="accountCardDescription">
-    Create a CYS account to save events,
-    personalize your faith experience,
-    manage your profile, and participate
-    in the CYS community.
-</p>
+    <p>
+        A CYS account will eventually let you save events,
+        personalize your faith experience, manage your profile,
+        and participate in the CYS community.
+    </p>
 
-<div class="account-actions">
+    <div class="account-actions">
 
-    <button
-        class="primary-button"
-        id="accountCardButton"
-        onclick="openAuth()"
-    >
-        Create / Sign In
-    </button>
+        <button
+            class="primary-button"
+            onclick="showAccountMessage()"
+        >
+            Create / Sign In
+        </button>
 
-    <a
-        href="cys.html"
-        class="secondary-button"
-    >
-        Learn About CYS
-    </a>
+        <a
+            href="cys.html"
+            class="secondary-button"
+        >
+            Learn About CYS
+        </a>
 
-</div>
-```
+    </div>
 
 </div>
 
@@ -1948,965 +1672,91 @@ footer strong {
 
 </footer>
 
-<!-- AUTH MODAL -->
+<script>
 
-<div
-    class="auth-overlay"
-    id="authOverlay"
-    onclick="closeAuthFromBackground(event)"
->
+const INTEREST_KEY = "cys_faith_interests";
 
-<div class="auth-card">
+function loadInterests() {
 
-```
-<div class="auth-top">
+    try {
 
-    <div>
+        const saved =
+            localStorage.getItem(INTEREST_KEY);
 
-        <div
-            class="auth-eyebrow"
-            id="authEyebrow"
-        >
-            CYS ACCOUNT
-        </div>
-
-        <h2 id="authTitle">
-            Create your account
-        </h2>
-
-        <p
-            class="auth-description"
-            id="authDescription"
-        >
-            Create your CYS account to personalize
-            your experience.
-        </p>
-
-    </div>
-
-    <button
-        class="auth-close"
-        onclick="closeAuth()"
-        aria-label="Close"
-    >
-        ×
-    </button>
-
-</div>
-
-<form
-    class="auth-form"
-    id="authForm"
-    onsubmit="handleAuthSubmit(event)"
->
-
-    <div
-        class="field"
-        id="nameField"
-    >
-
-        <label for="nameInput">
-            Full Name
-        </label>
-
-        <input
-            id="nameInput"
-            type="text"
-            autocomplete="name"
-            placeholder="Your name"
-        >
-
-    </div>
-
-    <div class="field">
-
-        <label for="emailInput">
-            Email
-        </label>
-
-        <input
-            id="emailInput"
-            type="email"
-            autocomplete="email"
-            placeholder="you@example.com"
-            required
-        >
-
-    </div>
-
-    <div class="field">
-
-        <label for="passwordInput">
-            Password
-        </label>
-
-        <input
-            id="passwordInput"
-            type="password"
-            autocomplete="new-password"
-            placeholder="At least 6 characters"
-            minlength="6"
-            required
-        >
-
-    </div>
-
-    <div
-        class="field"
-        id="confirmPasswordField"
-    >
-
-        <label for="confirmPasswordInput">
-            Confirm Password
-        </label>
-
-        <input
-            id="confirmPasswordInput"
-            type="password"
-            autocomplete="new-password"
-            placeholder="Enter your password again"
-            minlength="6"
-        >
-
-    </div>
-
-    <div
-        class="auth-message"
-        id="authMessage"
-    ></div>
-
-    <button
-        type="submit"
-        class="auth-submit"
-        id="authSubmit"
-    >
-        Create Account
-    </button>
-
-</form>
-
-<div class="auth-switch">
-
-    <span id="authSwitchText">
-        Already have an account?
-    </span>
-
-    <button
-        class="auth-link"
-        id="authSwitchButton"
-        onclick="toggleAuthMode()"
-    >
-        Sign In
-    </button>
-
-</div>
-
-<button
-    class="auth-forgot"
-    id="forgotPasswordButton"
-    onclick="resetPassword()"
->
-    Forgot your password?
-</button>
-```
-
-</div>
-
-</div>
-
-<script type="module">
-
-import { initializeApp }
-from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
-
-import {
-    getAuth,
-    createUserWithEmailAndPassword,
-    signInWithEmailAndPassword,
-    onAuthStateChanged,
-    signOut,
-    sendPasswordResetEmail,
-    updateProfile
-}
-from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
-
-import {
-    getFirestore,
-    doc,
-    setDoc,
-    getDoc,
-    updateDoc,
-    serverTimestamp
-}
-from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
-
-
-/* --------------------------------
-   FIREBASE CONFIGURATION
--------------------------------- */
-
-const firebaseConfig = {
-
-    apiKey:
-        "AIzaSyDEK03cCOFNwDNPasvBHRK70h2Jxv_R12Y",
-
-    authDomain:
-        "catholic-youth-society.firebaseapp.com",
-
-    projectId:
-        "catholic-youth-society",
-
-    storageBucket:
-        "catholic-youth-society.firebasestorage.app",
-
-    messagingSenderId:
-        "72928387427",
-
-    appId:
-        "1:72928387427:web:e3662e1a2911293b40b356"
-
-};
-
-
-/* --------------------------------
-   INITIALIZE FIREBASE
--------------------------------- */
-
-const app =
-    initializeApp(firebaseConfig);
-
-const auth =
-    getAuth(app);
-
-const db =
-    getFirestore(app);
-
-
-/* --------------------------------
-   AUTH STATE
--------------------------------- */
-
-let currentUser = null;
-let authMode = "signup";
-
-
-onAuthStateChanged(
-    auth,
-    async user => {
-
-        currentUser = user || null;
-
-        if (user) {
-
-            await loadUserProfile(user);
-
-        } else {
-
-            showSignedOutState();
-
+        if (!saved) {
+            return [];
         }
 
-    }
-);
-
-
-/* --------------------------------
-   AUTH MODAL
--------------------------------- */
-
-window.openAuth = function() {
-
-    if (currentUser) {
-
-        showSignedInMessage();
-
-        return;
-
-    }
-
-    authMode = "signup";
-
-    updateAuthModal();
-
-    document
-        .getElementById("authOverlay")
-        .classList.add("open");
-
-};
-
-
-window.closeAuth = function() {
-
-    document
-        .getElementById("authOverlay")
-        .classList.remove("open");
-
-};
-
-
-window.closeAuthFromBackground = function(event) {
-
-    if (
-        event.target ===
-        document.getElementById("authOverlay")
-    ) {
-
-        closeAuth();
-
-    }
-
-};
-
-
-window.toggleAuthMode = function() {
-
-    authMode =
-        authMode === "signup"
-            ? "signin"
-            : "signup";
-
-    updateAuthModal();
-
-};
-
-
-function updateAuthModal() {
-
-    const signup =
-        authMode === "signup";
-
-    document.getElementById("authTitle").textContent =
-        signup
-            ? "Create your account"
-            : "Welcome back";
-
-    document.getElementById("authDescription").textContent =
-        signup
-            ? "Create your CYS account to personalize your experience."
-            : "Sign in to continue to your CYS profile.";
-
-    document.getElementById("nameField").style.display =
-        signup
-            ? "block"
-            : "none";
-
-    document.getElementById("confirmPasswordField").style.display =
-        signup
-            ? "block"
-            : "none";
-
-    document.getElementById("passwordInput").autocomplete =
-        signup
-            ? "new-password"
-            : "current-password";
-
-    document.getElementById("authSubmit").textContent =
-        signup
-            ? "Create Account"
-            : "Sign In";
-
-    document.getElementById("authSwitchText").textContent =
-        signup
-            ? "Already have an account?"
-            : "Don't have an account?";
-
-    document.getElementById("authSwitchButton").textContent =
-        signup
-            ? "Sign In"
-            : "Create Account";
-
-    document.getElementById("forgotPasswordButton").style.display =
-        signup
-            ? "block"
-            : "block";
-
-    clearAuthMessage();
-
-}
-
-
-window.handleAuthSubmit = async function(event) {
-
-    event.preventDefault();
-
-    const email =
-        document
-            .getElementById("emailInput")
-            .value
-            .trim();
-
-    const password =
-        document
-            .getElementById("passwordInput")
-            .value;
-
-    const submitButton =
-        document.getElementById("authSubmit");
-
-    clearAuthMessage();
-
-    submitButton.disabled = true;
-
-    try {
-
-        if (authMode === "signup") {
-
-            const name =
-                document
-                    .getElementById("nameInput")
-                    .value
-                    .trim();
-
-            const confirmPassword =
-                document
-                    .getElementById("confirmPasswordInput")
-                    .value;
-
-            if (!name) {
-
-                throw new Error(
-                    "Please enter your name."
-                );
-
-            }
-
-            if (password !== confirmPassword) {
-
-                throw new Error(
-                    "The passwords do not match."
-                );
-
-            }
-
-            if (password.length < 6) {
-
-                throw new Error(
-                    "Your password must be at least 6 characters."
-                );
-
-            }
-
-
-            const credential =
-                await createUserWithEmailAndPassword(
-                    auth,
-                    email,
-                    password
-                );
-
-            const user =
-                credential.user;
-
-
-            await updateProfile(
-                user,
-                {
-                    displayName:name
-                }
-            );
-
-
-            await setDoc(
-                doc(
-                    db,
-                    "users",
-                    user.uid
-                ),
-                {
-
-                    displayName:name,
-
-                    email:user.email,
-
-                    uid:user.uid,
-
-                    faithInterests:[],
-
-                    createdAt:
-                        serverTimestamp(),
-
-                    updatedAt:
-                        serverTimestamp()
-
-                }
-            );
-
-
-            closeAuth();
-
-            document
-                .getElementById("authForm")
-                .reset();
-
-            showSuccessMessage(
-                "Your CYS account has been created."
-            );
-
-        } else {
-
-            await signInWithEmailAndPassword(
-                auth,
-                email,
-                password
-            );
-
-            closeAuth();
-
-            document
-                .getElementById("authForm")
-                .reset();
-
-        }
-
-    } catch (error) {
-
-        showAuthError(
-            getFriendlyAuthError(error)
-        );
-
-    } finally {
-
-        submitButton.disabled = false;
-
-    }
-
-};
-
-
-/* --------------------------------
-   PASSWORD RESET
--------------------------------- */
-
-window.resetPassword = async function() {
-
-    const email =
-        document
-            .getElementById("emailInput")
-            .value
-            .trim();
-
-    if (!email) {
-
-        showAuthError(
-            "Enter your email address first, then tap Forgot your password?"
-        );
-
-        return;
-
-    }
-
-    try {
-
-        await sendPasswordResetEmail(
-            auth,
-            email
-        );
-
-        showAuthSuccess(
-            "A password reset email has been sent to " +
-            email +
-            "."
-        );
-
-    } catch (error) {
-
-        showAuthError(
-            getFriendlyAuthError(error)
-        );
-
-    }
-
-};
-
-
-/* --------------------------------
-   FIRESTORE PROFILE
--------------------------------- */
-
-async function loadUserProfile(user) {
-
-    const userRef =
-        doc(
-            db,
-            "users",
-            user.uid
-        );
-
-    const snapshot =
-        await getDoc(userRef);
-
-    let profileData =
-        snapshot.exists()
-            ? snapshot.data()
-            : {};
-
-
-    if (!snapshot.exists()) {
-
-        await setDoc(
-            userRef,
-            {
-
-                displayName:
-                    user.displayName || "",
-
-                email:
-                    user.email || "",
-
-                uid:
-                    user.uid,
-
-                faithInterests:[],
-
-                createdAt:
-                    serverTimestamp(),
-
-                updatedAt:
-                    serverTimestamp()
-
-            }
-        );
-
-        profileData = {
-            displayName:
-                user.displayName || "",
-
-            email:
-                user.email || "",
-
-            uid:
-                user.uid,
-
-            faithInterests:[]
-        };
-
-    }
-
-
-    const name =
-        profileData.displayName ||
-        user.displayName ||
-        "CYS Member";
-
-
-    document
-        .getElementById("accountStatus")
-        .textContent =
-        "● Signed in";
-
-
-    document
-        .getElementById("profileTitle")
-        .textContent =
-        "Welcome, " + name;
-
-
-    document
-        .getElementById("profileDescription")
-        .textContent =
-        "Your CYS account is active. Manage your profile, faith interests, and CYS activity here.";
-
-
-    document
-        .getElementById("profileAuthButton")
-        .textContent =
-        "Sign Out";
-
-
-    document
-        .getElementById("profileAuthButton")
-        .onclick =
-        handleSignOut;
-
-
-    document
-        .getElementById("accountCardTitle")
-        .textContent =
-        "Your CYS account is ready.";
-
-
-    document
-        .getElementById("accountCardDescription")
-        .textContent =
-        "Your profile is connected to CYS. Your faith interests and account information are securely associated with your account.";
-
-
-    document
-        .getElementById("accountCardButton")
-        .textContent =
-        "Sign Out";
-
-
-    document
-        .getElementById("accountCardButton")
-        .onclick =
-        handleSignOut;
-
-
-    document
-        .getElementById("editProfileDescription")
-        .textContent =
-        "Manage your CYS profile";
-
-
-    document
-        .getElementById("accountInformationDescription")
-        .textContent =
-        user.email || "Account connected";
-
-
-    renderInterests(
-        Array.isArray(profileData.faithInterests)
-            ? profileData.faithInterests
-            : []
-    );
-
-
-    await loadPrayerCount(user.uid);
-
-}
-
-
-function showSignedOutState() {
-
-    document
-        .getElementById("accountStatus")
-        .textContent =
-        "○ Not signed in";
-
-
-    document
-        .getElementById("profileTitle")
-        .textContent =
-        "Your CYS Profile";
-
-
-    document
-        .getElementById("profileDescription")
-        .textContent =
-        "Create an account to personalize your CYS experience, connect with your community, and keep track of your faith journey.";
-
-
-    document
-        .getElementById("profileAuthButton")
-        .textContent =
-        "Create / Sign In";
-
-
-    document
-        .getElementById("profileAuthButton")
-        .onclick =
-        openAuth;
-
-
-    document
-        .getElementById("accountCardTitle")
-        .textContent =
-        "Make CYS your own.";
-
-
-    document
-        .getElementById("accountCardDescription")
-        .textContent =
-        "Create a CYS account to save events, personalize your faith experience, manage your profile, and participate in the CYS community.";
-
-
-    document
-        .getElementById("accountCardButton")
-        .textContent =
-        "Create / Sign In";
-
-
-    document
-        .getElementById("accountCardButton")
-        .onclick =
-        openAuth;
-
-
-    document
-        .getElementById("editProfileDescription")
-        .textContent =
-        "Create an account to manage your profile";
-
-
-    document
-        .getElementById("accountInformationDescription")
-        .textContent =
-        "Sign in to view your account information";
-
-
-    document
-        .getElementById("prayerCount")
-        .textContent =
-        "—";
-
-
-    document
-        .getElementById("eventCount")
-        .textContent =
-        "—";
-
-
-    renderInterests([]);
-
-}
-
-
-/* --------------------------------
-   SIGN OUT
--------------------------------- */
-
-async function handleSignOut() {
-
-    try {
-
-        await signOut(auth);
-
-        showSuccessMessage(
-            "You have been signed out of CYS."
-        );
+        const parsed =
+            JSON.parse(saved);
+
+        return Array.isArray(parsed)
+            ? parsed
+            : [];
 
     } catch {
 
-        alert(
-            "Unable to sign out right now. Please try again."
-        );
+        return [];
 
     }
 
 }
 
+function saveInterests(interests) {
 
-/* --------------------------------
-   ACCOUNT INFORMATION
--------------------------------- */
-
-window.showAccountInformation = function() {
-
-    if (!currentUser) {
-
-        openAuth();
-
-        return;
-
-    }
-
-    alert(
-        "CYS Account\n\n" +
-        "Email: " +
-        (currentUser.email || "Not available") +
-        "\n\nAccount ID: " +
-        currentUser.uid
+    localStorage.setItem(
+        INTEREST_KEY,
+        JSON.stringify(interests)
     );
 
-};
+}
 
-
-window.showPrivacyMessage = function() {
-
-    alert(
-        "Your CYS account information is stored using Firebase Authentication and Firestore. Privacy controls can be expanded as the CYS account system grows."
-    );
-
-};
-
-
-/* --------------------------------
-   FAITH INTERESTS
--------------------------------- */
-
-async function toggleInterest(button) {
-
-    if (!currentUser) {
-
-        openAuth();
-
-        return;
-
-    }
+function toggleInterest(button) {
 
     const interest =
         button.textContent.trim();
 
-    const userRef =
-        doc(
-            db,
-            "users",
-            currentUser.uid
-        );
-
-    const snapshot =
-        await getDoc(userRef);
-
-    const data =
-        snapshot.exists()
-            ? snapshot.data()
-            : {};
-
-    let interests =
-        Array.isArray(data.faithInterests)
-            ? [...data.faithInterests]
-            : [];
-
+    const interests =
+        loadInterests();
 
     if (interests.includes(interest)) {
 
-        interests =
+        const updated =
             interests.filter(
                 item => item !== interest
             );
 
-        button.classList.remove(
-            "selected"
-        );
+        saveInterests(updated);
+
+        button.classList.remove("selected");
 
     } else {
 
         interests.push(interest);
 
-        button.classList.add(
-            "selected"
-        );
+        saveInterests(interests);
+
+        button.classList.add("selected");
 
     }
 
-
-    await updateDoc(
-        userRef,
-        {
-
-            faithInterests:
-                interests,
-
-            updatedAt:
-                serverTimestamp()
-
-        }
-    );
-
 }
 
+function renderInterests() {
 
-function renderInterests(interests) {
+    const interests =
+        loadInterests();
 
     document
         .querySelectorAll(".tag")
         .forEach(button => {
 
-            button.classList.remove(
-                "selected"
-            );
-
             const name =
                 button.textContent.trim();
 
-            if (
-                interests.includes(name)
-            ) {
+            if (interests.includes(name)) {
 
-                button.classList.add(
-                    "selected"
-                );
+                button.classList.add("selected");
 
             }
 
@@ -2914,141 +1764,33 @@ function renderInterests(interests) {
 
 }
 
-
-/* --------------------------------
-   PRAYER COUNT
--------------------------------- */
-
-async function loadPrayerCount(uid) {
-
-    /*
-       We intentionally do not guess how your
-       existing prayer documents identify users.
-
-       Until the prayer wall is connected to
-       Firebase Authentication using the user's
-       UID, the profile shows — instead of
-       fabricated activity.
-    */
-
-    document
-        .getElementById("prayerCount")
-        .textContent =
-        "—";
-
-}
-
-
-/* --------------------------------
-   AUTH ERROR MESSAGES
--------------------------------- */
-
-function getFriendlyAuthError(error) {
-
-    switch (error.code) {
-
-        case "auth/email-already-in-use":
-            return "An account already exists with this email address.";
-
-        case "auth/invalid-email":
-            return "Please enter a valid email address.";
-
-        case "auth/weak-password":
-            return "Please choose a stronger password.";
-
-        case "auth/invalid-credential":
-        case "auth/wrong-password":
-        case "auth/user-not-found":
-            return "The email or password is incorrect.";
-
-        case "auth/too-many-requests":
-            return "Too many attempts. Please wait a little while and try again.";
-
-        case "auth/network-request-failed":
-            return "A network error occurred. Check your internet connection and try again.";
-
-        default:
-            return error.message ||
-                "Something went wrong. Please try again.";
-
-    }
-
-}
-
-
-function showAuthError(message) {
-
-    const element =
-        document.getElementById(
-            "authMessage"
-        );
-
-    element.textContent =
-        message;
-
-    element.classList.add(
-        "show",
-        "error"
-    );
-
-}
-
-
-function showAuthSuccess(message) {
-
-    const element =
-        document.getElementById(
-            "authMessage"
-        );
-
-    element.textContent =
-        message;
-
-    element.classList.add(
-        "show"
-    );
-
-    element.classList.remove(
-        "error"
-    );
-
-}
-
-
-function clearAuthMessage() {
-
-    const element =
-        document.getElementById(
-            "authMessage"
-        );
-
-    element.textContent =
-        "";
-
-    element.classList.remove(
-        "show",
-        "error"
-    );
-
-}
-
-
-function showSuccessMessage(message) {
-
-    alert(message);
-
-}
-
-
-function showSignedInMessage() {
+function showAccountMessage() {
 
     alert(
-        "You are already signed in to your CYS account."
+        "CYS accounts are not connected yet. This profile is ready for account integration."
     );
 
 }
+
+function showPrivacyMessage() {
+
+    alert(
+        "Privacy controls will become available when CYS accounts are connected."
+    );
+
+}
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        renderInterests();
+
+    }
+);
 
 </script>
 
 </body>
 </html>
+
