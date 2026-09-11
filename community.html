@@ -938,139 +938,6 @@ section {
 }
 
 /* =========================================================
-   GROUPS
-========================================================= */
-
-.groups-grid {
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:12px;
-}
-
-.group-card {
-    padding:23px;
-    border-radius:23px;
-
-    background:linear-gradient(
-        145deg,
-        rgba(255,255,255,.075),
-        rgba(255,255,255,.035)
-    );
-
-    border:1px solid var(--glass-border);
-}
-
-.group-symbol {
-    width:42px;
-    height:42px;
-    display:grid;
-    place-items:center;
-    border-radius:13px;
-    background:rgba(215,182,109,.1);
-    border:1px solid rgba(215,182,109,.15);
-    color:var(--gold-light);
-    font-size:18px;
-}
-
-.group-card h3 {
-    margin-top:17px;
-    font-size:17px;
-}
-
-.group-card p {
-    margin-top:7px;
-    color:var(--muted-2);
-    font-size:11px;
-    line-height:1.55;
-}
-
-.group-button {
-    display:inline-flex;
-    margin-top:17px;
-    padding:8px 11px;
-    border-radius:10px;
-    background:rgba(255,255,255,.055);
-    border:1px solid rgba(255,255,255,.075);
-    color:var(--gold-light);
-    font-size:9px;
-    font-weight:750;
-}
-
-/* =========================================================
-   CHAPTERS
-========================================================= */
-
-.chapter-card {
-    padding:27px;
-    border-radius:26px;
-
-    background:linear-gradient(
-        135deg,
-        rgba(42,77,143,.14),
-        rgba(255,255,255,.04)
-    );
-
-    border:1px solid rgba(255,255,255,.1);
-}
-
-.chapter-card h2 {
-    font-size:24px;
-}
-
-.chapter-card > p {
-    max-width:700px;
-    margin-top:9px;
-    color:var(--muted);
-    font-size:13px;
-    line-height:1.6;
-}
-
-.chapter-search {
-    display:flex;
-    gap:8px;
-    margin-top:20px;
-}
-
-.chapter-search input {
-    flex:1;
-    min-height:44px;
-    padding:0 13px;
-    border-radius:13px;
-    border:1px solid rgba(255,255,255,.1);
-    outline:none;
-    background:rgba(0,0,0,.16);
-    color:white;
-}
-
-.chapter-search button {
-    min-width:90px;
-    border:0;
-    border-radius:13px;
-    color:#211a0d;
-
-    background:linear-gradient(
-        135deg,
-        var(--gold-light),
-        var(--gold)
-    );
-
-    font-size:10px;
-    font-weight:800;
-    cursor:pointer;
-}
-
-.chapter-result {
-    display:none;
-    margin-top:12px;
-    padding:15px;
-    border-radius:15px;
-    background:rgba(0,0,0,.14);
-    color:var(--muted);
-    font-size:11px;
-    line-height:1.5;
-}
-
-/* =========================================================
    SERVICE
 ========================================================= */
 
@@ -1296,9 +1163,6 @@ footer strong {
         grid-template-columns:1fr;
     }
 
-    .groups-grid {
-        grid-template-columns:repeat(2,1fr);
-    }
 
 }
 
@@ -1359,17 +1223,8 @@ footer strong {
         font-size:21px;
     }
 
-    .hub-grid,
-    .groups-grid {
+    .hub-grid {
         grid-template-columns:1fr;
-    }
-
-    .chapter-search {
-        flex-direction:column;
-    }
-
-    .chapter-search button {
-        min-height:43px;
     }
 
     .admin-modal {
@@ -1451,10 +1306,6 @@ footer strong {
             🙏 Share a Prayer
         </a>
 
-        <a href="#groups" class="secondary-button">
-            Explore Groups
-        </a>
-
     </div>
 
 </section>
@@ -1528,40 +1379,6 @@ footer strong {
             <p>
                 Lift up your intentions and
                 pray for fellow CYS members.
-            </p>
-
-        </a>
-
-        <a href="#groups" class="hub-card">
-
-            <div class="hub-icon">
-                ◉
-            </div>
-
-            <h3>
-                Youth Groups
-            </h3>
-
-            <p>
-                Find communities built around
-                faith, interests, and formation.
-            </p>
-
-        </a>
-
-        <a href="#chapters" class="hub-card">
-
-            <div class="hub-icon">
-                📍
-            </div>
-
-            <h3>
-                Chapters
-            </h3>
-
-            <p>
-                Discover Catholic youth communities
-                near you.
             </p>
 
         </a>
@@ -3768,122 +3585,6 @@ async function deletePrayer(id) {
 
 
 /* =========================================================
-   GROUP JOIN
-========================================================= */
-
-function joinGroup(event,groupName) {
-
-    event.preventDefault();
-
-
-    const joined =
-        JSON.parse(
-            localStorage.getItem(
-                "cys_joined_groups"
-            ) || "[]"
-        );
-
-
-    if (!joined.includes(groupName)) {
-
-        joined.push(groupName);
-
-        localStorage.setItem(
-            "cys_joined_groups",
-            JSON.stringify(joined)
-        );
-
-        alert(
-            `You're interested in joining ${groupName}.`
-        );
-
-    } else {
-
-        alert(
-            `You're already connected to ${groupName}.`
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   CHAPTER SEARCH
-========================================================= */
-
-function findChapter() {
-
-    const input =
-        document.getElementById(
-            "chapterInput"
-        );
-
-
-    const result =
-        document.getElementById(
-            "chapterResult"
-        );
-
-
-    if (!input || !result) {
-
-        return;
-
-    }
-
-
-    const location =
-        input.value.trim();
-
-
-    if (!location) {
-
-        result.style.display =
-            "block";
-
-
-        result.textContent =
-            "Enter a city or state to search for a CYS community.";
-
-        return;
-
-    }
-
-
-    result.style.display =
-        "block";
-
-
-    result.innerHTML = `
-
-        <strong
-            style="
-                display:block;
-                color:var(--gold-light);
-                margin-bottom:5px;
-            ">
-
-            Searching CYS communities
-
-        </strong>
-
-        We're looking for Catholic youth
-        communities connected with
-        <strong>${escapeHTML(location)}</strong>.
-
-        <br><br>
-
-        Chapter discovery will become
-        fully connected when the CYS
-        community database is enabled.
-
-    `;
-
-}
-
-
-/* =========================================================
    MAKE FUNCTIONS AVAILABLE TO HTML onclick ATTRIBUTES
 ========================================================= */
 
@@ -3916,13 +3617,6 @@ window.toggleBlockPrayer =
 
 window.deletePrayer =
     deletePrayer;
-
-window.joinGroup =
-    joinGroup;
-
-window.findChapter =
-    findChapter;
-
 
 /* =========================================================
    INITIALIZE
