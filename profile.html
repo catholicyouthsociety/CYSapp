@@ -1708,7 +1708,7 @@ import {
 
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDEK03cCOFNwDNPasvBHRK70h2JxV_R12Y",
+    apiKey: "AIzaSyDEK03cCOFNwDNPasvBHRK70hJxV_R12Y",
     authDomain: "catholic-youth-society.firebaseapp.com",
     projectId: "catholic-youth-society",
     storageBucket: "catholic-youth-society.firebasestorage.app",
@@ -2032,77 +2032,25 @@ async function createAccount() {
     }
 
 
+    let credential;
+
+    /* ---------------------------------------------------------
+       FIREBASE AUTHENTICATION
+       --------------------------------------------------------- */
+
     try {
 
-        const credential =
+        credential =
             await createUserWithEmailAndPassword(
                 auth,
                 email.trim(),
                 password
             );
 
-
-        const user =
-            credential.user;
-
-
-        await updateProfile(
-            user,
-            {
-                displayName:
-                    name.trim()
-            }
-        );
-
-
-        const existingInterests =
-            loadLocalInterests();
-
-
-        await setDoc(
-            doc(
-                db,
-                "users",
-                user.uid
-            ),
-            {
-                uid: user.uid,
-                displayName: name.trim(),
-                email: user.email || email.trim(),
-                faithInterests: existingInterests,
-                createdAt: serverTimestamp()
-            },
-            {
-                merge: true
-            }
-        );
-
-
-        try {
-
-            await sendEmailVerification(user);
-
-        } catch (verificationError) {
-
-            console.error(
-                "Verification email error:",
-                verificationError
-            );
-
-        }
-
-
-        alert(
-            "Your CYS account has been created!\n\nYou are now signed in."
-        );
-
-
-        await loadUserProfile(user);
-
     } catch (error) {
 
         console.error(
-            "Create account error:",
+            "Firebase Authentication error:",
             error
         );
 
@@ -2133,14 +2081,165 @@ async function createAccount() {
         ) {
 
             message =
-                "That password is too weak.";
+                "That password is too weak. Please choose a stronger password.";
+
+        } else if (
+            error.code ===
+            "auth/operation-not-allowed"
+        ) {
+
+            message =
+                "Email and Password accounts are not enabled in Firebase yet.\n\nGo to Firebase Console → Authentication → Sign-in method → Email/Password and enable it.";
+
+        } else if (
+            error.code ===
+            "auth/network-request-failed"
+        ) {
+
+            message =
+                "Firebase could not connect to the internet. Please check your connection and try again.";
+
+        } else if (
+            error.code ===
+            "auth/invalid-api-key"
+        ) {
+
+            message =
+                "The Firebase API key is invalid. Please check the Firebase web app configuration.";
+
+        } else if (
+            error.code ===
+            "auth/app-not-authorized"
+        ) {
+
+            message =
+                "This website is not authorized to use this Firebase project.";
+
+        } else if (
+            error.code ===
+            "auth/too-many-requests"
+        ) {
+
+            message =
+                "Too many account attempts have been made. Please wait a little while and try again.";
+
+        } else {
+
+            message =
+                "Unable to create your account.\n\nFirebase error: " +
+                (error.code || "unknown error");
 
         }
 
 
         alert(message);
 
+        return;
     }
+
+
+    const user =
+        credential.user;
+
+
+    /* ---------------------------------------------------------
+       UPDATE FIREBASE AUTH PROFILE
+       --------------------------------------------------------- */
+
+    try {
+
+        await updateProfile(
+            user,
+            {
+                displayName:
+                    name.trim()
+            }
+        );
+
+    } catch (error) {
+
+        console.error(
+            "Profile display name error:",
+            error
+        );
+
+    }
+
+
+    /* ---------------------------------------------------------
+       FIRESTORE PROFILE
+       --------------------------------------------------------- */
+
+    const existingInterests =
+        loadLocalInterests();
+
+
+    try {
+
+        await setDoc(
+            doc(
+                db,
+                "users",
+                user.uid
+            ),
+            {
+                uid: user.uid,
+                displayName: name.trim(),
+                email: user.email || email.trim(),
+                faithInterests: existingInterests,
+                createdAt: serverTimestamp()
+            },
+            {
+                merge: true
+            }
+        );
+
+    } catch (error) {
+
+        console.error(
+            "Firestore profile error:",
+            error
+        );
+
+
+        alert(
+            "Your CYS account was created successfully, but your profile information could not be saved to the database yet.\n\nPlease make sure the Firestore rules include the /users/{userId} rule."
+        );
+
+        await loadUserProfile(user);
+
+        return;
+    }
+
+
+    /* ---------------------------------------------------------
+       EMAIL VERIFICATION
+       --------------------------------------------------------- */
+
+    try {
+
+        await sendEmailVerification(user);
+
+    } catch (verificationError) {
+
+        console.error(
+            "Verification email error:",
+            verificationError
+        );
+
+    }
+
+
+    /* ---------------------------------------------------------
+       SUCCESS
+       --------------------------------------------------------- */
+
+    alert(
+        "Your CYS account has been created!\n\nYou are now signed in."
+    );
+
+
+    await loadUserProfile(user);
 
 }
 
@@ -2221,6 +2320,36 @@ async function signIn() {
 
             message =
                 "Please enter a valid email address.";
+
+        } else if (
+            error.code ===
+            "auth/operation-not-allowed"
+        ) {
+
+            message =
+                "Email and Password sign-in is not enabled in Firebase yet.";
+
+        } else if (
+            error.code ===
+            "auth/network-request-failed"
+        ) {
+
+            message =
+                "Firebase could not connect to the internet. Please check your connection and try again.";
+
+        } else if (
+            error.code ===
+            "auth/too-many-requests"
+        ) {
+
+            message =
+                "Too many sign-in attempts have been made. Please wait a little while and try again.";
+
+        } else {
+
+            message =
+                "Unable to sign in.\n\nFirebase error: " +
+                (error.code || "unknown error");
 
         }
 
@@ -2416,6 +2545,12 @@ function showSignedOutState() {
 
 
     document.getElementById(
+        "accountButton"
+    ).onclick =
+        showAccountMessage;
+
+
+    document.getElementById(
         "accountCardTitle"
     ).textContent =
         "Make CYS your own.";
@@ -2431,6 +2566,12 @@ function showSignedOutState() {
         "accountCardButton"
     ).textContent =
         "Create / Sign In";
+
+
+    document.getElementById(
+        "accountCardButton"
+    ).onclick =
+        showAccountMessage;
 
 
     document.getElementById(
@@ -2568,7 +2709,8 @@ window.editProfile = async function() {
 
 
         alert(
-            "Unable to update your profile right now."
+            "Unable to update your profile right now.\n\nFirebase error: " +
+            (error.code || "unknown error")
         );
 
     }
@@ -2658,9 +2800,36 @@ window.resetPassword = async function() {
         );
 
 
-        alert(
-            "Unable to send the password reset email. Please check the email address and try again."
-        );
+        let message =
+            "Unable to send the password reset email.";
+
+
+        if (
+            error.code ===
+            "auth/invalid-email"
+        ) {
+
+            message =
+                "Please enter a valid email address.";
+
+        } else if (
+            error.code ===
+            "auth/user-not-found"
+        ) {
+
+            message =
+                "No CYS account was found with that email address.";
+
+        } else {
+
+            message +=
+                "\n\nFirebase error: " +
+                (error.code || "unknown error");
+
+        }
+
+
+        alert(message);
 
     }
 
