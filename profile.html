@@ -256,23 +256,6 @@ header {
     -webkit-backdrop-filter:blur(25px);
 }
 
-.profile-hero::after {
-    content:"✝";
-
-    position:absolute;
-
-    right:12px;
-    bottom:-78px;
-
-    font-size:270px;
-
-    font-weight:200;
-
-    color:rgba(241,217,155,.045);
-
-    pointer-events:none;
-}
-
 .profile-main {
     position:relative;
     z-index:2;
@@ -447,7 +430,7 @@ header {
 
 .profile-stats {
     display:grid;
-    grid-template-columns:repeat(3,1fr);
+    grid-template-columns:repeat(2,1fr);
     gap:10px;
     margin-top:14px;
 }
@@ -507,70 +490,6 @@ section {
 .section-heading p {
     color:var(--muted-2);
     font-size:10px;
-}
-
-/* EMPTY CARD */
-
-.empty-card {
-    padding:30px 24px;
-
-    text-align:center;
-
-    border-radius:25px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255,255,255,.075),
-            rgba(255,255,255,.035)
-        );
-
-    border:
-        1px solid var(--glass-border);
-}
-
-.empty-icon {
-    width:52px;
-    height:52px;
-
-    margin:0 auto;
-
-    display:grid;
-    place-items:center;
-
-    border-radius:16px;
-
-    background:
-        rgba(215,182,109,.09);
-
-    border:
-        1px solid rgba(215,182,109,.14);
-
-    color:var(--gold-light);
-
-    font-size:21px;
-}
-
-.empty-card h3 {
-    margin-top:15px;
-
-    font-size:17px;
-}
-
-.empty-card p {
-    max-width:530px;
-
-    margin:7px auto 0;
-
-    color:var(--muted-2);
-
-    font-size:11px;
-
-    line-height:1.6;
-}
-
-.empty-card .secondary-button {
-    margin-top:16px;
 }
 
 /* FAITH INTERESTS */
@@ -682,7 +601,7 @@ section {
     display:grid;
 
     grid-template-columns:
-        repeat(3,1fr);
+        repeat(2,1fr);
 
     gap:11px;
 }
@@ -731,37 +650,6 @@ section {
     font-size:10px;
 
     line-height:1.5;
-}
-
-/* GROUPS */
-
-.groups-card {
-    padding:23px;
-
-    border-radius:25px;
-
-    background:
-        rgba(255,255,255,.055);
-
-    border:
-        1px solid var(--glass-border);
-}
-
-.group-empty {
-    padding:18px;
-
-    text-align:center;
-
-    border-radius:17px;
-
-    background:
-        rgba(0,0,0,.11);
-
-    color:var(--muted-2);
-
-    font-size:11px;
-
-    line-height:1.55;
 }
 
 /* EVENTS */
@@ -1175,7 +1063,6 @@ footer strong {
 
 <header>
 
-
 <div class="header-inner">
 
     <a href="index.html" class="brand">
@@ -1212,7 +1099,6 @@ footer strong {
 
 </div>
 
-
 </header>
 
 <main class="container">
@@ -1220,7 +1106,6 @@ footer strong {
 <!-- PROFILE -->
 
 <section class="profile-hero">
-
 
 <div class="account-status">
     ○ Not signed in
@@ -1274,13 +1159,11 @@ footer strong {
 
 </div>
 
-
 </section>
 
 <!-- STATS -->
 
 <div class="profile-stats">
-
 
 <div class="stat">
 
@@ -1290,18 +1173,6 @@ footer strong {
 
     <span>
         Prayers Shared
-    </span>
-
-</div>
-
-<div class="stat">
-
-    <strong>
-        —
-    </strong>
-
-    <span>
-        Groups
     </span>
 
 </div>
@@ -1323,7 +1194,6 @@ footer strong {
 <!-- FAITH -->
 
 <section>
-
 
 <div class="section-heading">
 
@@ -1416,7 +1286,6 @@ footer strong {
 
 </div>
 
-
 </section>
 
 <!-- ACTIVITY -->
@@ -1459,7 +1328,6 @@ footer strong {
 
     </a>
 
-
     <a
         href="events.html"
         class="activity-card"
@@ -1480,7 +1348,6 @@ footer strong {
 
     </a>
 
-
     <a
         href="community.html#prayer"
         class="activity-card"
@@ -1500,49 +1367,6 @@ footer strong {
         </p>
 
     </a>
-
-
-    <a
-        href="community.html#groups"
-        class="activity-card"
-    >
-
-        <div class="activity-icon">
-            ◉
-        </div>
-
-        <h3>
-            My Groups
-        </h3>
-
-        <p>
-            Join Catholic communities centered around
-            faith, interests, and formation.
-        </p>
-
-    </a>
-
-
-    <a
-        href="community.html#chapters"
-        class="activity-card"
-    >
-
-        <div class="activity-icon">
-            📍
-        </div>
-
-        <h3>
-            My Chapter
-        </h3>
-
-        <p>
-            Connect with Catholic youth communities
-            near you.
-        </p>
-
-    </a>
-
 
     <a
         href="community.html#service"
@@ -1566,60 +1390,11 @@ footer strong {
 
 </div>
 
-
-</section>
-
-<!-- GROUPS -->
-
-<section>
-
-
-<div class="section-heading">
-
-    <div>
-        <h2>
-            My Groups
-        </h2>
-    </div>
-
-    <p>
-        Your communities
-    </p>
-
-</div>
-
-<div class="groups-card">
-
-    <div class="group-empty">
-
-        You haven't joined any CYS groups yet.
-
-        <br><br>
-
-        Explore the community to discover groups
-        centered around Catholic life, Scripture,
-        music, service, culture, and faith.
-
-        <br><br>
-
-        <a
-            href="community.html#groups"
-            class="primary-button"
-        >
-            Explore Groups
-        </a>
-
-    </div>
-
-</div>
-
-
 </section>
 
 <!-- EVENTS -->
 
 <section>
-
 
 <div class="section-heading">
 
@@ -1661,7 +1436,6 @@ footer strong {
 
     </div>
 
-
     <div class="event-card">
 
         <div class="profile-eyebrow">
@@ -1688,13 +1462,11 @@ footer strong {
 
 </div>
 
-
 </section>
 
 <!-- ACCOUNT SETTINGS -->
 
 <section>
-
 
 <div class="section-heading">
 
@@ -1711,7 +1483,6 @@ footer strong {
 </div>
 
 <div class="settings-card">
-
 
     <div
         class="setting-row"
@@ -1744,39 +1515,6 @@ footer strong {
 
     </div>
 
-
-    <div
-        class="setting-row"
-        onclick="window.location.href='notifications.html'"
-    >
-
-        <div class="setting-left">
-
-            <div class="setting-icon">
-                🔔
-            </div>
-
-            <div>
-
-                <strong>
-                    Notifications
-                </strong>
-
-                <span>
-                    Manage CYS notifications and reminders
-                </span>
-
-            </div>
-
-        </div>
-
-        <div class="setting-arrow">
-            ›
-        </div>
-
-    </div>
-
-
     <div
         class="setting-row"
         onclick="showPrivacyMessage()"
@@ -1808,7 +1546,6 @@ footer strong {
 
     </div>
 
-
     <div
         class="setting-row"
         onclick="window.location.href='community.html'"
@@ -1839,7 +1576,6 @@ footer strong {
         </div>
 
     </div>
-
 
     <div
         class="setting-row"
@@ -1874,13 +1610,11 @@ footer strong {
 
 </div>
 
-
 </section>
 
 <!-- ACCOUNT CTA -->
 
 <section>
-
 
 <div class="account-card">
 
@@ -1894,9 +1628,8 @@ footer strong {
 
     <p>
         A CYS account will eventually let you save events,
-        personalize your faith experience, join communities,
-        manage your profile, and participate in the CYS
-        community.
+        personalize your faith experience, manage your profile,
+        and participate in the CYS community.
     </p>
 
     <div class="account-actions">
@@ -1919,13 +1652,11 @@ footer strong {
 
 </div>
 
-
 </section>
 
 </main>
 
 <footer>
-
 
 <strong>
     Catholic Youth Society
@@ -1938,7 +1669,6 @@ footer strong {
 <div style="margin-top:12px;">
     © 2026 Catholic Youth Society
 </div>
-
 
 </footer>
 
@@ -2098,6 +1828,3 @@ document.addEventListener(
 
 </body>
 </html>
-
-
-This version has **zero fabricated member activity**. The only persistent data it can currently store is an interest that the actual visitor deliberately selects. Everything else is an honest empty state until we connect the backend.
