@@ -574,6 +574,8 @@ header {
 }
 
 
+/* EMPTY */
+
 .empty-state {
 
     padding: 55px 25px;
@@ -715,6 +717,9 @@ header {
         );
 }
 
+
+/* ADMIN FORM */
+
 .admin-form {
 
     display: none;
@@ -837,6 +842,9 @@ header {
     margin-top: 18px;
 }
 
+
+/* ADMIN EVENTS */
+
 .admin-events {
 
     display: grid;
@@ -912,6 +920,263 @@ header {
     font-size: 9px;
 
     cursor: pointer;
+}
+
+
+/* RSVP ADMIN MODAL */
+
+.rsvp-list {
+
+    display: grid;
+
+    gap: 9px;
+
+    margin-top: 18px;
+}
+
+.rsvp-person {
+
+    padding: 13px;
+
+    border-radius: 14px;
+
+    background:
+        rgba(255,255,255,.045);
+
+    border:
+        1px solid rgba(255,255,255,.075);
+}
+
+.rsvp-person strong {
+
+    display: block;
+
+    font-size: 12px;
+
+    color: white;
+}
+
+.rsvp-person .rsvp-email {
+
+    display: block;
+
+    margin-top: 4px;
+
+    color: var(--gold-light);
+
+    font-size: 11px;
+}
+
+.rsvp-person .rsvp-time {
+
+    display: block;
+
+    margin-top: 5px;
+
+    color: var(--muted-2);
+
+    font-size: 9px;
+}
+
+.rsvp-empty {
+
+    padding: 25px;
+
+    text-align: center;
+
+    color: var(--muted-2);
+
+    font-size: 12px;
+}
+
+
+/* MODALS */
+
+.modal-backdrop {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 200;
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+
+    background:
+        rgba(0,0,0,.62);
+
+    backdrop-filter:
+        blur(12px);
+
+    -webkit-backdrop-filter:
+        blur(12px);
+}
+
+.modal-backdrop.visible {
+
+    display: flex;
+}
+
+.modal {
+
+    width:
+        min(470px, 100%);
+
+    max-height:
+        calc(100vh - 40px);
+
+    overflow-y: auto;
+
+    padding: 25px;
+
+    border-radius: 27px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(17,38,78,.97),
+            rgba(7,20,45,.97)
+        );
+
+    border:
+        1px solid rgba(255,255,255,.13);
+
+    box-shadow:
+        0 30px 90px rgba(0,0,0,.55);
+
+    animation:
+        modalIn .22s ease;
+}
+
+@keyframes modalIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(12px) scale(.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+}
+
+.modal h2 {
+
+    font-size: 23px;
+
+    letter-spacing: -.5px;
+}
+
+.modal-subtitle {
+
+    margin-top: 7px;
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+    line-height: 1.55;
+}
+
+.modal-event-name {
+
+    margin-top: 13px;
+
+    padding: 11px 13px;
+
+    border-radius: 12px;
+
+    background:
+        rgba(215,182,109,.09);
+
+    border:
+        1px solid rgba(215,182,109,.16);
+
+    color: var(--gold-light);
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
+
+.modal-fields {
+
+    display: grid;
+
+    gap: 12px;
+
+    margin-top: 18px;
+}
+
+.modal-field {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+}
+
+.modal-field label {
+
+    color: var(--muted-2);
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: .7px;
+}
+
+.modal-field input {
+
+    width: 100%;
+
+    padding: 13px;
+
+    border-radius: 13px;
+
+    border:
+        1px solid rgba(255,255,255,.1);
+
+    background:
+        rgba(0,0,0,.18);
+
+    color: white;
+
+    outline: none;
+
+    font-size: 13px;
+}
+
+.modal-field input:focus {
+
+    border-color:
+        rgba(215,182,109,.55);
+}
+
+.modal-buttons {
+
+    display: flex;
+
+    gap: 8px;
+
+    margin-top: 19px;
+}
+
+.modal-buttons button {
+
+    flex: 1;
 }
 
 
@@ -1093,6 +1358,7 @@ footer strong {
 
         flex-direction: column;
     }
+
 }
 
 @media (max-width: 540px) {
@@ -1145,6 +1411,14 @@ footer strong {
         padding:
             0 10px;
     }
+
+    .modal {
+
+        padding: 21px;
+
+        border-radius: 23px;
+    }
+
 }
 
 </style>
@@ -1425,6 +1699,130 @@ footer strong {
 </footer>
 
 
+<!-- RSVP MODAL -->
+
+<div
+    id="rsvpModal"
+    class="modal-backdrop"
+    onclick="closeRSVPModal(event)">
+
+    <div class="modal">
+
+        <h2>
+            RSVP for this event
+        </h2>
+
+        <p class="modal-subtitle">
+            Enter your name and email so CYS can keep track of who's attending.
+        </p>
+
+        <div
+            id="rsvpEventName"
+            class="modal-event-name">
+        </div>
+
+
+        <div class="modal-fields">
+
+            <div class="modal-field">
+
+                <label>
+                    Full Name
+                </label>
+
+                <input
+                    id="rsvpName"
+                    type="text"
+                    autocomplete="name"
+                    placeholder="Your full name">
+
+            </div>
+
+
+            <div class="modal-field">
+
+                <label>
+                    Email Address
+                </label>
+
+                <input
+                    id="rsvpEmail"
+                    type="email"
+                    autocomplete="email"
+                    placeholder="you@example.com">
+
+            </div>
+
+        </div>
+
+
+        <div class="modal-buttons">
+
+            <button
+                class="small-button"
+                onclick="closeRSVPModal()">
+
+                Cancel
+
+            </button>
+
+            <button
+                id="confirmRSVPButton"
+                class="small-button gold"
+                onclick="submitRSVP()">
+
+                Confirm RSVP
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ADMIN RSVP MODAL -->
+
+<div
+    id="adminRSVPModal"
+    class="modal-backdrop"
+    onclick="closeAdminRSVPModal(event)">
+
+    <div class="modal">
+
+        <h2>
+            Event RSVPs
+        </h2>
+
+        <p
+            id="adminRSVPEventName"
+            class="modal-subtitle">
+        </p>
+
+        <div
+            id="adminRSVPList"
+            class="rsvp-list">
+
+        </div>
+
+        <div class="modal-buttons">
+
+            <button
+                class="small-button gold"
+                onclick="closeAdminRSVPModal()">
+
+                Done
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
 <!-- =========================================================
      FIREBASE / FIRESTORE
 ========================================================= -->
@@ -1452,7 +1850,8 @@ import {
     deleteDoc,
     setDoc,
     serverTimestamp,
-    getDocs
+    getDocs,
+    where
 }
 from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 
@@ -1511,8 +1910,12 @@ let authReady = false;
 let savedEventIds =
     new Set();
 
-let rsvpEventIds =
-    new Set();
+
+let currentRSVPEventId =
+    null;
+
+let currentAdminRSVPEventId =
+    null;
 
 
 /* =========================================================
@@ -1573,6 +1976,43 @@ function formatEventDate(dateValue) {
             year: "numeric"
         }
     );
+
+}
+
+
+function formatRSVPTime(timestamp) {
+
+    if (!timestamp) {
+
+        return "RSVP time unavailable";
+
+    }
+
+
+    try {
+
+        const date =
+            timestamp.toDate
+                ? timestamp.toDate()
+                : new Date(timestamp);
+
+
+        return date.toLocaleString(
+            "en-US",
+            {
+                month: "short",
+                day: "numeric",
+                year: "numeric",
+                hour: "numeric",
+                minute: "2-digit"
+            }
+        );
+
+    } catch (error) {
+
+        return "RSVP time unavailable";
+
+    }
 
 }
 
@@ -1651,15 +2091,12 @@ function waitForAuth() {
 
 
 /* =========================================================
-   LOAD USER EVENT STATE
+   LOAD SAVED EVENT STATE
 ========================================================= */
 
 async function loadUserEventState() {
 
     savedEventIds =
-        new Set();
-
-    rsvpEventIds =
         new Set();
 
 
@@ -1689,22 +2126,6 @@ async function loadUserEventState() {
             );
 
 
-        const rsvpSnapshot =
-            await getDocs(
-                collection(
-                    db,
-                    "users",
-                    userId,
-                    "rsvps"
-                )
-            );
-
-
-        /*
-         * Make sure the account hasn't changed
-         * while these Firestore requests were running.
-         */
-
         if (
             !currentUser ||
             currentUser.uid !== userId
@@ -1726,24 +2147,13 @@ async function loadUserEventState() {
         );
 
 
-        rsvpSnapshot.forEach(
-            documentSnapshot => {
-
-                rsvpEventIds.add(
-                    documentSnapshot.id
-                );
-
-            }
-        );
-
-
         renderEvents();
 
 
     } catch (error) {
 
         console.error(
-            "Error loading saved events and RSVPs:",
+            "Error loading saved events:",
             error
         );
 
@@ -1762,11 +2172,6 @@ async function loadUserEventState() {
 async function toggleSaveEvent(
     eventId
 ) {
-
-    /*
-     * Wait for Firebase Auth to finish
-     * restoring the existing login session.
-     */
 
     const user =
         await waitForAuth();
@@ -1872,115 +2277,301 @@ async function toggleSaveEvent(
 
 
 /* =========================================================
-   RSVP / REMOVE RSVP
+   OPEN RSVP FORM
 ========================================================= */
 
-async function toggleRSVP(
+function openRSVPModal(
     eventId
 ) {
 
-    /*
-     * Wait for Firebase Auth to finish
-     * restoring the existing login session.
-     */
-
-    const user =
-        await waitForAuth();
-
-
-    if (!user) {
-
-        alert(
-            "Please sign in to your CYS account to RSVP for events."
+    const event =
+        events.find(
+            item =>
+                item.id === eventId
         );
 
-        window.location.href =
-            "profile.html";
+
+    if (!event) {
 
         return;
 
     }
 
 
-    currentUser =
-        user;
+    currentRSVPEventId =
+        eventId;
 
 
-    const button =
-        document.querySelector(
-            `.rsvp-event-button[data-event-id="${eventId}"]`
-        );
+    document.getElementById(
+        "rsvpEventName"
+    ).textContent =
+        event.title || "CYS Event";
 
 
-    if (button) {
+    document.getElementById(
+        "rsvpName"
+    ).value = "";
 
-        button.disabled =
-            true;
+
+    document.getElementById(
+        "rsvpEmail"
+    ).value = "";
+
+
+    document.getElementById(
+        "confirmRSVPButton"
+    ).disabled = false;
+
+
+    document.getElementById(
+        "confirmRSVPButton"
+    ).textContent =
+        "Confirm RSVP";
+
+
+    document.getElementById(
+        "rsvpModal"
+    ).classList.add(
+        "visible"
+    );
+
+
+    setTimeout(
+        () => {
+
+            document.getElementById(
+                "rsvpName"
+            ).focus();
+
+        },
+        100
+    );
+
+}
+
+
+/* =========================================================
+   CLOSE RSVP FORM
+========================================================= */
+
+function closeRSVPModal(
+    event
+) {
+
+    if (
+        event &&
+        event.target !== event.currentTarget
+    ) {
+
+        return;
 
     }
 
 
-    const ref =
-        doc(
-            db,
-            "users",
-            user.uid,
-            "rsvps",
-            eventId
+    currentRSVPEventId =
+        null;
+
+
+    document.getElementById(
+        "rsvpModal"
+    ).classList.remove(
+        "visible"
+    );
+
+}
+
+
+/* =========================================================
+   SUBMIT RSVP
+========================================================= */
+
+async function submitRSVP() {
+
+    if (!currentRSVPEventId) {
+
+        return;
+
+    }
+
+
+    const event =
+        events.find(
+            item =>
+                item.id === currentRSVPEventId
         );
+
+
+    if (!event) {
+
+        return;
+
+    }
+
+
+    const name =
+        document.getElementById(
+            "rsvpName"
+        ).value.trim();
+
+
+    const email =
+        document.getElementById(
+            "rsvpEmail"
+        ).value.trim()
+        .toLowerCase();
+
+
+    if (!name) {
+
+        alert(
+            "Please enter your full name."
+        );
+
+        return;
+
+    }
+
+
+    if (!email) {
+
+        alert(
+            "Please enter your email address."
+        );
+
+        return;
+
+    }
+
+
+    const emailPattern =
+        /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+
+    if (
+        !emailPattern.test(email)
+    ) {
+
+        alert(
+            "Please enter a valid email address."
+        );
+
+        return;
+
+    }
+
+
+    const button =
+        document.getElementById(
+            "confirmRSVPButton"
+        );
+
+
+    button.disabled =
+        true;
+
+    button.textContent =
+        "Submitting...";
 
 
     try {
 
+        /*
+         * Check whether this email has already
+         * RSVP'd for this event.
+         */
+
+        const rsvpCollection =
+            collection(
+                db,
+                "events",
+                event.id,
+                "rsvps"
+            );
+
+
+        const existingQuery =
+            query(
+                rsvpCollection,
+                where(
+                    "email",
+                    "==",
+                    email
+                )
+            );
+
+
+        const existingSnapshot =
+            await getDocs(
+                existingQuery
+            );
+
+
         if (
-            rsvpEventIds.has(eventId)
+            !existingSnapshot.empty
         ) {
 
-            await deleteDoc(
-                ref
+            alert(
+                "This email has already RSVP'd for this event."
             );
 
-            rsvpEventIds.delete(
-                eventId
-            );
+            button.disabled =
+                false;
 
-        } else {
+            button.textContent =
+                "Confirm RSVP";
 
-            await setDoc(
-                ref,
-                {
-                    eventId:
-                        eventId,
-
-                    joinedAt:
-                        serverTimestamp()
-                }
-            );
-
-            rsvpEventIds.add(
-                eventId
-            );
+            return;
 
         }
 
 
-        renderEvents();
+        await addDoc(
+            rsvpCollection,
+            {
+                name:
+                    name,
+
+                email:
+                    email,
+
+                eventId:
+                    event.id,
+
+                eventTitle:
+                    event.title || "",
+
+                createdAt:
+                    serverTimestamp()
+            }
+        );
+
+
+        closeRSVPModal();
+
+
+        alert(
+            "You're RSVP'd! We look forward to seeing you."
+        );
 
 
     } catch (error) {
 
         console.error(
-            "Error updating RSVP:",
+            "Error submitting RSVP:",
             error
         );
 
 
         alert(
-            "Your RSVP could not be updated. Please try again."
+            "Your RSVP could not be submitted. Please try again."
         );
 
 
-        renderEvents();
+        button.disabled =
+            false;
+
+        button.textContent =
+            "Confirm RSVP";
 
     }
 
@@ -1988,7 +2579,7 @@ async function toggleRSVP(
 
 
 /* =========================================================
-   FIRESTORE LIVE LISTENER
+   FIRESTORE LIVE EVENT LISTENER
 ========================================================= */
 
 function listenForEvents() {
@@ -2147,12 +2738,6 @@ function renderEvents() {
                 );
 
 
-            const isRSVPed =
-                rsvpEventIds.has(
-                    event.id
-                );
-
-
             return `
 
                 <article class="public-event">
@@ -2211,15 +2796,11 @@ function renderEvents() {
                     <div class="event-actions">
 
                         <button
-                            class="event-action rsvp rsvp-event-button ${isRSVPed ? "active" : ""}"
+                            class="event-action rsvp rsvp-event-button"
                             data-event-id="${escapeHTML(event.id)}"
-                            onclick="toggleRSVP('${escapeHTML(event.id)}')">
+                            onclick="openRSVPModal('${escapeHTML(event.id)}')">
 
-                            ${
-                                isRSVPed
-                                ? "✓ You're Going"
-                                : "✓ RSVP"
-                            }
+                            ✓ RSVP
 
                         </button>
 
@@ -2329,7 +2910,7 @@ function showAdminDashboard() {
 
 
 /* =========================================================
-   LOG OUT
+   LOG OUT ADMIN
 ========================================================= */
 
 function logoutAdmin() {
@@ -2828,6 +3409,14 @@ function renderAdminEvents() {
                     <div class="admin-event-buttons">
 
                         <button
+                            onclick="showAdminRSVPs('${event.id}')">
+
+                            RSVPs
+
+                        </button>
+
+
+                        <button
                             onclick="showEventForm('${event.id}')">
 
                             Edit
@@ -2861,6 +3450,206 @@ function renderAdminEvents() {
             `;
 
         }).join("");
+
+}
+
+
+/* =========================================================
+   SHOW ADMIN RSVPS
+========================================================= */
+
+async function showAdminRSVPs(
+    eventId
+) {
+
+    const event =
+        events.find(
+            item =>
+                item.id === eventId
+        );
+
+
+    if (!event) {
+
+        return;
+
+    }
+
+
+    currentAdminRSVPEventId =
+        eventId;
+
+
+    document.getElementById(
+        "adminRSVPEventName"
+    ).textContent =
+        event.title || "Event";
+
+
+    const list =
+        document.getElementById(
+            "adminRSVPList"
+        );
+
+
+    list.innerHTML = `
+
+        <div class="rsvp-empty">
+            Loading RSVPs...
+        </div>
+
+    `;
+
+
+    document.getElementById(
+        "adminRSVPModal"
+    ).classList.add(
+        "visible"
+    );
+
+
+    try {
+
+        const snapshot =
+            await getDocs(
+                collection(
+                    db,
+                    "events",
+                    eventId,
+                    "rsvps"
+                )
+            );
+
+
+        if (
+            snapshot.empty
+        ) {
+
+            list.innerHTML = `
+
+                <div class="rsvp-empty">
+                    No one has RSVP'd for this event yet.
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        const rsvps =
+            snapshot.docs
+                .map(
+                    documentSnapshot => ({
+                        id:
+                            documentSnapshot.id,
+
+                        ...documentSnapshot.data()
+
+                    })
+                )
+                .sort(
+                    (a, b) => {
+
+                        const timeA =
+                            a.createdAt?.toMillis
+                                ? a.createdAt.toMillis()
+                                : 0;
+
+                        const timeB =
+                            b.createdAt?.toMillis
+                                ? b.createdAt.toMillis()
+                                : 0;
+
+                        return timeB - timeA;
+
+                    }
+                );
+
+
+        list.innerHTML =
+            rsvps.map(
+                rsvp => `
+
+                    <div class="rsvp-person">
+
+                        <strong>
+                            ${escapeHTML(rsvp.name)}
+                        </strong>
+
+                        <span class="rsvp-email">
+                            ${escapeHTML(rsvp.email)}
+                        </span>
+
+                        <span class="rsvp-time">
+                            RSVP'd ${escapeHTML(
+                                formatRSVPTime(
+                                    rsvp.createdAt
+                                )
+                            )}
+                        </span>
+
+                    </div>
+
+                `
+            ).join("");
+
+
+    } catch (error) {
+
+        console.error(
+            "Error loading RSVPs:",
+            error
+        );
+
+
+        list.innerHTML = `
+
+            <div class="rsvp-empty">
+
+                RSVPs could not be loaded.
+
+                <br><br>
+
+                Please check your Firestore Rules.
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =========================================================
+   CLOSE ADMIN RSVP MODAL
+========================================================= */
+
+function closeAdminRSVPModal(
+    event
+) {
+
+    if (
+        event &&
+        event.target !== event.currentTarget
+    ) {
+
+        return;
+
+    }
+
+
+    currentAdminRSVPEventId =
+        null;
+
+
+    document.getElementById(
+        "adminRSVPModal"
+    ).classList.remove(
+        "visible"
+    );
 
 }
 
@@ -2996,7 +3785,7 @@ async function deleteEvent(
 
 
 /* =========================================================
-   MAKE INLINE ONCLICK FUNCTIONS AVAILABLE
+   MAKE INLINE FUNCTIONS AVAILABLE
 ========================================================= */
 
 window.showAdminLogin =
@@ -3023,8 +3812,20 @@ window.deleteEvent =
 window.toggleSaveEvent =
     toggleSaveEvent;
 
-window.toggleRSVP =
-    toggleRSVP;
+window.openRSVPModal =
+    openRSVPModal;
+
+window.closeRSVPModal =
+    closeRSVPModal;
+
+window.submitRSVP =
+    submitRSVP;
+
+window.showAdminRSVPs =
+    showAdminRSVPs;
+
+window.closeAdminRSVPModal =
+    closeAdminRSVPModal;
 
 
 /* =========================================================
