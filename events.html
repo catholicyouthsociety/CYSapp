@@ -125,6 +125,7 @@ select {
     font: inherit;
 }
 
+
 /* HEADER */
 
 header {
@@ -453,6 +454,125 @@ header {
 
     line-height: 1.65;
 }
+
+
+/* EVENT ACTIONS */
+
+.event-actions {
+
+    display: flex;
+
+    gap: 9px;
+
+    margin-top: 20px;
+
+    flex-wrap: wrap;
+}
+
+.event-action {
+
+    min-height: 40px;
+
+    padding:
+        0 15px;
+
+    border-radius: 12px;
+
+    border:
+        1px solid rgba(255,255,255,.11);
+
+    background:
+        rgba(255,255,255,.055);
+
+    color: rgba(255,255,255,.86);
+
+    cursor: pointer;
+
+    font-size: 11px;
+
+    font-weight: 750;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 7px;
+
+    transition:
+        background .2s ease,
+        border-color .2s ease,
+        transform .2s ease,
+        color .2s ease;
+}
+
+.event-action:hover {
+
+    background:
+        rgba(255,255,255,.1);
+
+    border-color:
+        rgba(255,255,255,.17);
+}
+
+.event-action:active {
+
+    transform: scale(.96);
+}
+
+.event-action.rsvp {
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(241,217,155,.2),
+            rgba(215,182,109,.11)
+        );
+
+    border-color:
+        rgba(215,182,109,.3);
+
+    color:
+        var(--gold-light);
+}
+
+.event-action.rsvp.active {
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--gold-light),
+            var(--gold)
+        );
+
+    border-color:
+        rgba(241,217,155,.7);
+
+    color:
+        #201a0d;
+}
+
+.event-action.save.active {
+
+    background:
+        rgba(255,255,255,.12);
+
+    border-color:
+        rgba(241,217,155,.35);
+
+    color:
+        var(--gold-light);
+}
+
+.event-action:disabled {
+
+    opacity: .6;
+
+    cursor:
+        wait;
+}
+
 
 .empty-state {
 
@@ -1009,6 +1129,22 @@ footer strong {
 
         padding: 21px;
     }
+
+    .event-actions {
+
+        display: grid;
+
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+    .event-action {
+
+        width: 100%;
+
+        padding:
+            0 10px;
+    }
 }
 
 </style>
@@ -1299,6 +1435,12 @@ import { initializeApp }
 from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
 
 import {
+    getAuth,
+    onAuthStateChanged
+}
+from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+
+import {
     getFirestore,
     collection,
     addDoc,
@@ -1308,8 +1450,8 @@ import {
     doc,
     updateDoc,
     deleteDoc,
+    setDoc,
     serverTimestamp,
-    where,
     getDocs
 }
 from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
@@ -1350,6 +1492,10 @@ const db =
     getFirestore(app);
 
 
+const auth =
+    getAuth(app);
+
+
 /* =========================================================
    EVENT STATE
 ========================================================= */
@@ -1357,6 +1503,14 @@ const db =
 let events = [];
 
 let editingEventId = null;
+
+let currentUser = null;
+
+let savedEventIds =
+    new Set();
+
+let rsvpEventIds =
+    new Set();
 
 
 /* =========================================================
@@ -1451,6 +1605,315 @@ function sortEvents() {
 
 
 /* =========================================================
+   LOAD USER EVENT STATE
+========================================================= */
+
+async function loadUserEventState() {
+
+    savedEventIds =
+        new Set();
+
+    rsvpEventIds =
+        new Set();
+
+
+    if (!currentUser) {
+
+        renderEvents();
+
+        return;
+
+    }
+
+
+    const userId =
+        currentUser.uid;
+
+
+    try {
+
+        const savedSnapshot =
+            await getDocs(
+                collection(
+                    db,
+                    "users",
+                    userId,
+                    "savedEvents"
+                )
+            );
+
+
+        const rsvpSnapshot =
+            await getDocs(
+                collection(
+                    db,
+                    "users",
+                    userId,
+                    "rsvps"
+                )
+            );
+
+
+        /*
+         * Make sure the account hasn't changed
+         * while these Firestore requests were running.
+         */
+
+        if (
+            !currentUser ||
+            currentUser.uid !== userId
+        ) {
+
+            return;
+
+        }
+
+
+        savedSnapshot.forEach(
+            documentSnapshot => {
+
+                savedEventIds.add(
+                    documentSnapshot.id
+                );
+
+            }
+        );
+
+
+        rsvpSnapshot.forEach(
+            documentSnapshot => {
+
+                rsvpEventIds.add(
+                    documentSnapshot.id
+                );
+
+            }
+        );
+
+
+        renderEvents();
+
+
+    } catch (error) {
+
+        console.error(
+            "Error loading saved events and RSVPs:",
+            error
+        );
+
+
+        renderEvents();
+
+    }
+
+}
+
+
+/* =========================================================
+   SAVE / UNSAVE EVENT
+========================================================= */
+
+async function toggleSaveEvent(
+    eventId
+) {
+
+    if (!currentUser) {
+
+        alert(
+            "Please sign in to your CYS account to save events."
+        );
+
+        window.location.href =
+            "profile.html";
+
+        return;
+
+    }
+
+
+    const button =
+        document.querySelector(
+            `.save-event-button[data-event-id="${eventId}"]`
+        );
+
+
+    if (button) {
+
+        button.disabled = true;
+
+    }
+
+
+    const ref =
+        doc(
+            db,
+            "users",
+            currentUser.uid,
+            "savedEvents",
+            eventId
+        );
+
+
+    try {
+
+        if (
+            savedEventIds.has(eventId)
+        ) {
+
+            await deleteDoc(
+                ref
+            );
+
+            savedEventIds.delete(
+                eventId
+            );
+
+        } else {
+
+            await setDoc(
+                ref,
+                {
+                    eventId:
+                        eventId,
+
+                    savedAt:
+                        serverTimestamp()
+                }
+            );
+
+            savedEventIds.add(
+                eventId
+            );
+
+        }
+
+
+        renderEvents();
+
+
+    } catch (error) {
+
+        console.error(
+            "Error saving event:",
+            error
+        );
+
+
+        alert(
+            "The event could not be saved. Please try again."
+        );
+
+
+        renderEvents();
+
+    }
+
+}
+
+
+/* =========================================================
+   RSVP / REMOVE RSVP
+========================================================= */
+
+async function toggleRSVP(
+    eventId
+) {
+
+    if (!currentUser) {
+
+        alert(
+            "Please sign in to your CYS account to RSVP for events."
+        );
+
+        window.location.href =
+            "profile.html";
+
+        return;
+
+    }
+
+
+    const button =
+        document.querySelector(
+            `.rsvp-event-button[data-event-id="${eventId}"]`
+        );
+
+
+    if (button) {
+
+        button.disabled = true;
+
+    }
+
+
+    const ref =
+        doc(
+            db,
+            "users",
+            currentUser.uid,
+            "rsvps",
+            eventId
+        );
+
+
+    try {
+
+        if (
+            rsvpEventIds.has(eventId)
+        ) {
+
+            await deleteDoc(
+                ref
+            );
+
+            rsvpEventIds.delete(
+                eventId
+            );
+
+        } else {
+
+            await setDoc(
+                ref,
+                {
+                    eventId:
+                        eventId,
+
+                    joinedAt:
+                        serverTimestamp()
+                }
+            );
+
+            rsvpEventIds.add(
+                eventId
+            );
+
+        }
+
+
+        renderEvents();
+
+
+    } catch (error) {
+
+        console.error(
+            "Error updating RSVP:",
+            error
+        );
+
+
+        alert(
+            "Your RSVP could not be updated. Please try again."
+        );
+
+
+        renderEvents();
+
+    }
+
+}
+
+
+/* =========================================================
    FIRESTORE LIVE LISTENER
 ========================================================= */
 
@@ -1539,6 +2002,13 @@ function renderEvents() {
         );
 
 
+    if (!container) {
+
+        return;
+
+    }
+
+
     if (events.length === 0) {
 
         container.innerHTML = `
@@ -1597,6 +2067,18 @@ function renderEvents() {
                 );
 
 
+            const isSaved =
+                savedEventIds.has(
+                    event.id
+                );
+
+
+            const isRSVPed =
+                rsvpEventIds.has(
+                    event.id
+                );
+
+
             return `
 
                 <article class="public-event">
@@ -1650,6 +2132,38 @@ function renderEvents() {
                         ${description}
 
                     </p>
+
+
+                    <div class="event-actions">
+
+                        <button
+                            class="event-action rsvp rsvp-event-button ${isRSVPed ? "active" : ""}"
+                            data-event-id="${escapeHTML(event.id)}"
+                            onclick="toggleRSVP('${escapeHTML(event.id)}')">
+
+                            ${
+                                isRSVPed
+                                ? "✓ You're Going"
+                                : "✓ RSVP"
+                            }
+
+                        </button>
+
+
+                        <button
+                            class="event-action save save-event-button ${isSaved ? "active" : ""}"
+                            data-event-id="${escapeHTML(event.id)}"
+                            onclick="toggleSaveEvent('${escapeHTML(event.id)}')">
+
+                            ${
+                                isSaved
+                                ? "★ Saved"
+                                : "☆ Save"
+                            }
+
+                        </button>
+
+                    </div>
 
                 </article>
 
@@ -2451,6 +2965,30 @@ window.toggleFeatured =
 
 window.deleteEvent =
     deleteEvent;
+
+window.toggleSaveEvent =
+    toggleSaveEvent;
+
+window.toggleRSVP =
+    toggleRSVP;
+
+
+/* =========================================================
+   AUTH STATE
+========================================================= */
+
+onAuthStateChanged(
+    auth,
+    async user => {
+
+        currentUser =
+            user;
+
+
+        await loadUserEventState();
+
+    }
+);
 
 
 /* =========================================================
