@@ -1506,6 +1506,8 @@ let editingEventId = null;
 
 let currentUser = null;
 
+let authReady = false;
+
 let savedEventIds =
     new Set();
 
@@ -1597,6 +1599,50 @@ function sortEvents() {
                 );
 
             return dateA - dateB;
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   WAIT FOR FIREBASE AUTH
+========================================================= */
+
+function waitForAuth() {
+
+    if (authReady) {
+
+        return Promise.resolve(
+            currentUser
+        );
+
+    }
+
+
+    return new Promise(
+        resolve => {
+
+            const unsubscribe =
+                onAuthStateChanged(
+                    auth,
+                    user => {
+
+                        currentUser =
+                            user;
+
+                        authReady =
+                            true;
+
+                        unsubscribe();
+
+                        resolve(
+                            user
+                        );
+
+                    }
+                );
 
         }
     );
@@ -1717,7 +1763,16 @@ async function toggleSaveEvent(
     eventId
 ) {
 
-    if (!currentUser) {
+    /*
+     * Wait for Firebase Auth to finish
+     * restoring the existing login session.
+     */
+
+    const user =
+        await waitForAuth();
+
+
+    if (!user) {
 
         alert(
             "Please sign in to your CYS account to save events."
@@ -1731,6 +1786,10 @@ async function toggleSaveEvent(
     }
 
 
+    currentUser =
+        user;
+
+
     const button =
         document.querySelector(
             `.save-event-button[data-event-id="${eventId}"]`
@@ -1739,7 +1798,8 @@ async function toggleSaveEvent(
 
     if (button) {
 
-        button.disabled = true;
+        button.disabled =
+            true;
 
     }
 
@@ -1748,7 +1808,7 @@ async function toggleSaveEvent(
         doc(
             db,
             "users",
-            currentUser.uid,
+            user.uid,
             "savedEvents",
             eventId
         );
@@ -1819,7 +1879,16 @@ async function toggleRSVP(
     eventId
 ) {
 
-    if (!currentUser) {
+    /*
+     * Wait for Firebase Auth to finish
+     * restoring the existing login session.
+     */
+
+    const user =
+        await waitForAuth();
+
+
+    if (!user) {
 
         alert(
             "Please sign in to your CYS account to RSVP for events."
@@ -1833,6 +1902,10 @@ async function toggleRSVP(
     }
 
 
+    currentUser =
+        user;
+
+
     const button =
         document.querySelector(
             `.rsvp-event-button[data-event-id="${eventId}"]`
@@ -1841,7 +1914,8 @@ async function toggleRSVP(
 
     if (button) {
 
-        button.disabled = true;
+        button.disabled =
+            true;
 
     }
 
@@ -1850,7 +1924,7 @@ async function toggleRSVP(
         doc(
             db,
             "users",
-            currentUser.uid,
+            user.uid,
             "rsvps",
             eventId
         );
@@ -2513,11 +2587,6 @@ async function saveEvent() {
 
     try {
 
-        /*
-         * If this event is being edited,
-         * update the existing Firestore document.
-         */
-
         if (editingEventId) {
 
             const eventRef =
@@ -2541,11 +2610,6 @@ async function saveEvent() {
             );
 
 
-            /*
-             * If this event is featured,
-             * unfeature all other events.
-             */
-
             if (featured) {
 
                 await unfeatureOtherEvents(
@@ -2555,11 +2619,6 @@ async function saveEvent() {
             }
 
         }
-
-        /*
-         * Otherwise create a brand-new
-         * Firestore event.
-         */
 
         else {
 
@@ -2578,11 +2637,6 @@ async function saveEvent() {
                     }
                 );
 
-
-            /*
-             * If the new event is featured,
-             * make every other event unfeatured.
-             */
 
             if (featured) {
 
@@ -2984,6 +3038,8 @@ onAuthStateChanged(
         currentUser =
             user;
 
+        authReady =
+            true;
 
         await loadUserEventState();
 
