@@ -1,24 +1,25 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 
 <meta charset="UTF-8">
 
 <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+ name="viewport"
+ content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
 <meta
-    name="theme-color"
-    content="#06132c">
+ name="theme-color"
+ content="#06132c">
 
 <meta
-    name="apple-mobile-web-app-capable"
-    content="yes">
+ name="apple-mobile-web-app-capable"
+ content="yes">
 
 <meta
-    name="apple-mobile-web-app-status-bar-style"
-    content="black-translucent">
+ name="apple-mobile-web-app-status-bar-style"
+ content="black-translucent">
 
 <title>CYS Events</title>
 
@@ -551,18 +552,6 @@ header {
 
     color:
         #201a0d;
-}
-
-.event-action.save.active {
-
-    background:
-        rgba(255,255,255,.12);
-
-    border-color:
-        rgba(241,217,155,.35);
-
-    color:
-        var(--gold-light);
 }
 
 .event-action:disabled {
@@ -1401,7 +1390,7 @@ footer strong {
         display: grid;
 
         grid-template-columns:
-            1fr 1fr;
+            1fr;
     }
 
     .event-action {
@@ -1422,282 +1411,283 @@ footer strong {
 }
 
 </style>
+
 </head>
 
 <body>
-
 
 <!-- HEADER -->
 
 <header>
 
-    <div class="header-inner">
+```
+<div class="header-inner">
 
-        <a
-            href="index.html"
-            class="brand">
+    <a
+        href="index.html"
+        class="brand">
 
-            <div class="brand-mark">
-                ✝
-            </div>
+        <div class="brand-mark">
+            ✝
+        </div>
 
-            <div class="brand-text">
+        <div class="brand-text">
 
-                <strong>
-                    Catholic Youth Society
-                </strong>
+            <strong>
+                Catholic Youth Society
+            </strong>
 
-                <span>
-                    Faith • Community • Friendship
-                </span>
+            <span>
+                Faith • Community • Friendship
+            </span>
 
-            </div>
+        </div>
 
-        </a>
+    </a>
 
 
-        <div class="header-actions">
+    <div class="header-actions">
+
+        <button
+            class="icon-button"
+            aria-label="Profile"
+            onclick="window.location.href='profile.html'">
+            👤
+        </button>
+
+    </div>
+
+</div>
+```
+
+</header>
+
+<main class="container">
+
+```
+<!-- PAGE HEADER -->
+
+<div class="page-heading">
+
+    <div class="eyebrow">
+        Catholic Youth Society
+    </div>
+
+    <h1>
+        Events
+    </h1>
+
+    <p>
+        Gather with Catholic youth from across the
+        country for prayer, friendship, formation,
+        and moments centered on Christ.
+    </p>
+
+</div>
+
+
+<!-- PUBLIC EVENTS -->
+
+<div
+    id="eventsList"
+    class="events-list">
+
+</div>
+
+
+<!-- ADMIN DASHBOARD -->
+
+<section
+    id="adminPanel"
+    class="admin-panel">
+
+    <div class="admin-heading">
+
+        <div>
+
+            <h2>
+                CYS Administration
+            </h2>
+
+            <p>
+                Manage the events displayed throughout the CYS app.
+            </p>
+
+        </div>
+
+        <div class="admin-actions">
 
             <button
-                class="icon-button"
-                aria-label="Profile"
-                onclick="window.location.href='profile.html'">
-                👤
+                class="small-button gold"
+                onclick="showEventForm()">
+                + Add Event
+            </button>
+
+            <button
+                class="small-button"
+                onclick="logoutAdmin()">
+                Log Out
             </button>
 
         </div>
 
     </div>
 
-</header>
 
-
-<main class="container">
-
-
-    <!-- PAGE HEADER -->
-
-    <div class="page-heading">
-
-        <div class="eyebrow">
-            Catholic Youth Society
-        </div>
-
-        <h1>
-            Events
-        </h1>
-
-        <p>
-            Gather with Catholic youth from across the
-            country for prayer, friendship, formation,
-            and moments centered on Christ.
-        </p>
-
-    </div>
-
-
-    <!-- PUBLIC EVENTS -->
+    <!-- EVENT FORM -->
 
     <div
-        id="eventsList"
-        class="events-list">
+        id="adminForm"
+        class="admin-form">
 
-    </div>
+        <div class="form-grid">
 
+            <div class="field full">
 
-    <!-- ADMIN DASHBOARD -->
-
-    <section
-        id="adminPanel"
-        class="admin-panel">
-
-        <div class="admin-heading">
-
-            <div>
-
-                <h2>
-                    CYS Administration
-                </h2>
-
-                <p>
-                    Manage the events displayed throughout the CYS app.
-                </p>
-
-            </div>
-
-            <div class="admin-actions">
-
-                <button
-                    class="small-button gold"
-                    onclick="showEventForm()">
-                    + Add Event
-                </button>
-
-                <button
-                    class="small-button"
-                    onclick="logoutAdmin()">
-                    Log Out
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- EVENT FORM -->
-
-        <div
-            id="adminForm"
-            class="admin-form">
-
-            <div class="form-grid">
-
-                <div class="field full">
-
-                    <label>
-                        Event Title
-                    </label>
-
-                    <input
-                        id="eventTitle"
-                        type="text"
-                        placeholder="Event title">
-
-                </div>
-
-
-                <div class="field">
-
-                    <label>
-                        Date
-                    </label>
-
-                    <input
-                        id="eventDate"
-                        type="date">
-
-                </div>
-
-
-                <div class="field">
-
-                    <label>
-                        Time
-                    </label>
-
-                    <input
-                        id="eventTime"
-                        type="text"
-                        placeholder="7:00 PM">
-
-                </div>
-
-
-                <div class="field full">
-
-                    <label>
-                        Location
-                    </label>
-
-                    <input
-                        id="eventLocation"
-                        type="text"
-                        placeholder="Online / Zoom / Baltimore, MD">
-
-                </div>
-
-
-                <div class="field full">
-
-                    <label>
-                        Description
-                    </label>
-
-                    <textarea
-                        id="eventDescription"
-                        placeholder="Tell CYS members about this event..."></textarea>
-
-                </div>
-
-            </div>
-
-
-            <label class="checkbox-field">
+                <label>
+                    Event Title
+                </label>
 
                 <input
-                    id="eventFeatured"
-                    type="checkbox">
+                    id="eventTitle"
+                    type="text"
+                    placeholder="Event title">
 
-                Make this the featured event on the CYS homepage
-
-            </label>
+            </div>
 
 
-            <div class="form-buttons">
+            <div class="field">
 
-                <button
-                    class="small-button gold"
-                    onclick="saveEvent()">
+                <label>
+                    Date
+                </label>
 
-                    Save Event
+                <input
+                    id="eventDate"
+                    type="date">
 
-                </button>
+            </div>
 
-                <button
-                    class="small-button"
-                    onclick="hideEventForm()">
 
-                    Cancel
+            <div class="field">
 
-                </button>
+                <label>
+                    Time
+                </label>
+
+                <input
+                    id="eventTime"
+                    type="text"
+                    placeholder="7:00 PM">
+
+            </div>
+
+
+            <div class="field full">
+
+                <label>
+                    Location
+                </label>
+
+                <input
+                    id="eventLocation"
+                    type="text"
+                    placeholder="Online / Zoom / Baltimore, MD">
+
+            </div>
+
+
+            <div class="field full">
+
+                <label>
+                    Description
+                </label>
+
+                <textarea
+                    id="eventDescription"
+                    placeholder="Tell CYS members about this event..."></textarea>
 
             </div>
 
         </div>
 
 
-        <!-- ADMIN EVENT LIST -->
+        <label class="checkbox-field">
 
-        <div
-            id="adminEvents"
-            class="admin-events">
+            <input
+                id="eventFeatured"
+                type="checkbox">
+
+            Make this the featured event on the CYS homepage
+
+        </label>
+
+
+        <div class="form-buttons">
+
+            <button
+                class="small-button gold"
+                onclick="saveEvent()">
+
+                Save Event
+
+            </button>
+
+            <button
+                class="small-button"
+                onclick="hideEventForm()">
+
+                Cancel
+
+            </button>
 
         </div>
 
-    </section>
+    </div>
 
 
-    <!-- SUBTLE ADMIN ACCESS -->
+    <!-- ADMIN EVENT LIST -->
 
     <div
-        class="admin-access"
-        onclick="showAdminLogin()"
-        aria-label="Administrator access">
-
-        Administration
+        id="adminEvents"
+        class="admin-events">
 
     </div>
 
+</section>
+
+
+<!-- SUBTLE ADMIN ACCESS -->
+
+<div
+    class="admin-access"
+    onclick="showAdminLogin()"
+    aria-label="Administrator access">
+
+    Administration
+
+</div>
+```
 
 </main>
 
-
 <footer>
 
-    <strong>
-        Catholic Youth Society
-    </strong>
+```
+<strong>
+    Catholic Youth Society
+</strong>
 
-    <div style="margin-top:7px;">
-        A National Virtual Catholic Youth Group
-    </div>
+<div style="margin-top:7px;">
+    A National Virtual Catholic Youth Group
+</div>
 
-    <div style="margin-top:12px;">
-        © 2026 Catholic Youth Society
-    </div>
+<div style="margin-top:12px;">
+    © 2026 Catholic Youth Society
+</div>
+```
 
 </footer>
-
 
 <!-- RSVP MODAL -->
 
@@ -1706,81 +1696,82 @@ footer strong {
     class="modal-backdrop"
     onclick="closeRSVPModal(event)">
 
-    <div class="modal">
+```
+<div class="modal">
 
-        <h2>
-            RSVP for this event
-        </h2>
+    <h2>
+        RSVP for this event
+    </h2>
 
-        <p class="modal-subtitle">
-            Enter your name and email so CYS can keep track of who's attending.
-        </p>
+    <p class="modal-subtitle">
+        Enter your name and email so CYS can keep track of who's attending.
+    </p>
 
-        <div
-            id="rsvpEventName"
-            class="modal-event-name">
-        </div>
-
-
-        <div class="modal-fields">
-
-            <div class="modal-field">
-
-                <label>
-                    Full Name
-                </label>
-
-                <input
-                    id="rsvpName"
-                    type="text"
-                    autocomplete="name"
-                    placeholder="Your full name">
-
-            </div>
+    <div
+        id="rsvpEventName"
+        class="modal-event-name">
+    </div>
 
 
-            <div class="modal-field">
+    <div class="modal-fields">
 
-                <label>
-                    Email Address
-                </label>
+        <div class="modal-field">
 
-                <input
-                    id="rsvpEmail"
-                    type="email"
-                    autocomplete="email"
-                    placeholder="you@example.com">
+            <label>
+                Full Name
+            </label>
 
-            </div>
+            <input
+                id="rsvpName"
+                type="text"
+                autocomplete="name"
+                placeholder="Your full name">
 
         </div>
 
 
-        <div class="modal-buttons">
+        <div class="modal-field">
 
-            <button
-                class="small-button"
-                onclick="closeRSVPModal()">
+            <label>
+                Email Address
+            </label>
 
-                Cancel
-
-            </button>
-
-            <button
-                id="confirmRSVPButton"
-                class="small-button gold"
-                onclick="submitRSVP()">
-
-                Confirm RSVP
-
-            </button>
+            <input
+                id="rsvpEmail"
+                type="email"
+                autocomplete="email"
+                placeholder="you@example.com">
 
         </div>
 
     </div>
 
-</div>
 
+    <div class="modal-buttons">
+
+        <button
+            class="small-button"
+            onclick="closeRSVPModal()">
+
+            Cancel
+
+        </button>
+
+        <button
+            id="confirmRSVPButton"
+            class="small-button gold"
+            onclick="submitRSVP()">
+
+            Confirm RSVP
+
+        </button>
+
+    </div>
+
+</div>
+```
+
+</div>
 
 <!-- ADMIN RSVP MODAL -->
 
@@ -1789,39 +1780,40 @@ footer strong {
     class="modal-backdrop"
     onclick="closeAdminRSVPModal(event)">
 
-    <div class="modal">
+```
+<div class="modal">
 
-        <h2>
-            Event RSVPs
-        </h2>
+    <h2>
+        Event RSVPs
+    </h2>
 
-        <p
-            id="adminRSVPEventName"
-            class="modal-subtitle">
-        </p>
+    <p
+        id="adminRSVPEventName"
+        class="modal-subtitle">
+    </p>
 
-        <div
-            id="adminRSVPList"
-            class="rsvp-list">
+    <div
+        id="adminRSVPList"
+        class="rsvp-list">
 
-        </div>
+    </div>
 
-        <div class="modal-buttons">
+    <div class="modal-buttons">
 
-            <button
-                class="small-button gold"
-                onclick="closeAdminRSVPModal()">
+        <button
+            class="small-button gold"
+            onclick="closeAdminRSVPModal()">
 
-                Done
+            Done
 
-            </button>
-
-        </div>
+        </button>
 
     </div>
 
 </div>
+```
 
+</div>
 
 <!-- =========================================================
      FIREBASE / FIRESTORE
@@ -1833,12 +1825,6 @@ import { initializeApp }
 from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
 
 import {
-    getAuth,
-    onAuthStateChanged
-}
-from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
-
-import {
     getFirestore,
     collection,
     addDoc,
@@ -1848,7 +1834,6 @@ import {
     doc,
     updateDoc,
     deleteDoc,
-    setDoc,
     serverTimestamp,
     getDocs,
     where
@@ -1891,10 +1876,6 @@ const db =
     getFirestore(app);
 
 
-const auth =
-    getAuth(app);
-
-
 /* =========================================================
    EVENT STATE
 ========================================================= */
@@ -1902,14 +1883,6 @@ const auth =
 let events = [];
 
 let editingEventId = null;
-
-let currentUser = null;
-
-let authReady = false;
-
-let savedEventIds =
-    new Set();
-
 
 let currentRSVPEventId =
     null;
@@ -2042,236 +2015,6 @@ function sortEvents() {
 
         }
     );
-
-}
-
-
-/* =========================================================
-   WAIT FOR FIREBASE AUTH
-========================================================= */
-
-function waitForAuth() {
-
-    if (authReady) {
-
-        return Promise.resolve(
-            currentUser
-        );
-
-    }
-
-
-    return new Promise(
-        resolve => {
-
-            const unsubscribe =
-                onAuthStateChanged(
-                    auth,
-                    user => {
-
-                        currentUser =
-                            user;
-
-                        authReady =
-                            true;
-
-                        unsubscribe();
-
-                        resolve(
-                            user
-                        );
-
-                    }
-                );
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   LOAD SAVED EVENT STATE
-========================================================= */
-
-async function loadUserEventState() {
-
-    savedEventIds =
-        new Set();
-
-
-    if (!currentUser) {
-
-        renderEvents();
-
-        return;
-
-    }
-
-
-    const userId =
-        currentUser.uid;
-
-
-    try {
-
-        const savedSnapshot =
-            await getDocs(
-                collection(
-                    db,
-                    "users",
-                    userId,
-                    "savedEvents"
-                )
-            );
-
-
-        if (
-            !currentUser ||
-            currentUser.uid !== userId
-        ) {
-
-            return;
-
-        }
-
-
-        savedSnapshot.forEach(
-            documentSnapshot => {
-
-                savedEventIds.add(
-                    documentSnapshot.id
-                );
-
-            }
-        );
-
-
-        renderEvents();
-
-
-    } catch (error) {
-
-        console.error(
-            "Error loading saved events:",
-            error
-        );
-
-
-        renderEvents();
-
-    }
-
-}
-
-
-/* =========================================================
-   SAVE / UNSAVE EVENT
-========================================================= */
-
-async function toggleSaveEvent(
-    eventId
-) {
-
-    const user =
-        await waitForAuth();
-
-
-    if (!user) {
-
-        alert(
-            "Please sign in to your CYS account to save events."
-        );
-
-        window.location.href =
-            "profile.html";
-
-        return;
-
-    }
-
-
-    currentUser =
-        user;
-
-
-    const button =
-        document.querySelector(
-            `.save-event-button[data-event-id="${eventId}"]`
-        );
-
-
-    if (button) {
-
-        button.disabled =
-            true;
-
-    }
-
-
-    const ref =
-        doc(
-            db,
-            "users",
-            user.uid,
-            "savedEvents",
-            eventId
-        );
-
-
-    try {
-
-        if (
-            savedEventIds.has(eventId)
-        ) {
-
-            await deleteDoc(
-                ref
-            );
-
-            savedEventIds.delete(
-                eventId
-            );
-
-        } else {
-
-            await setDoc(
-                ref,
-                {
-                    eventId:
-                        eventId,
-
-                    savedAt:
-                        serverTimestamp()
-                }
-            );
-
-            savedEventIds.add(
-                eventId
-            );
-
-        }
-
-
-        renderEvents();
-
-
-    } catch (error) {
-
-        console.error(
-            "Error saving event:",
-            error
-        );
-
-
-        alert(
-            "The event could not be saved. Please try again."
-        );
-
-
-        renderEvents();
-
-    }
 
 }
 
@@ -2476,8 +2219,14 @@ async function submitRSVP() {
     try {
 
         /*
-         * Check whether this email has already
-         * RSVP'd for this event.
+         * RSVP DATA IS STORED IN FIRESTORE:
+         *
+         * events
+         *   └── event ID
+         *       └── rsvps
+         *           └── RSVP ID
+         *
+         * No CYS account is required.
          */
 
         const rsvpCollection =
@@ -2488,6 +2237,11 @@ async function submitRSVP() {
                 "rsvps"
             );
 
+
+        /*
+         * Prevent the same email from
+         * RSVP'ing to the same event twice.
+         */
 
         const existingQuery =
             query(
@@ -2524,6 +2278,10 @@ async function submitRSVP() {
 
         }
 
+
+        /*
+         * Create the RSVP document.
+         */
 
         await addDoc(
             rsvpCollection,
@@ -2732,12 +2490,6 @@ function renderEvents() {
                 );
 
 
-            const isSaved =
-                savedEventIds.has(
-                    event.id
-                );
-
-
             return `
 
                 <article class="public-event">
@@ -2801,20 +2553,6 @@ function renderEvents() {
                             onclick="openRSVPModal('${escapeHTML(event.id)}')">
 
                             ✓ RSVP
-
-                        </button>
-
-
-                        <button
-                            class="event-action save save-event-button ${isSaved ? "active" : ""}"
-                            data-event-id="${escapeHTML(event.id)}"
-                            onclick="toggleSaveEvent('${escapeHTML(event.id)}')">
-
-                            ${
-                                isSaved
-                                ? "★ Saved"
-                                : "☆ Save"
-                            }
 
                         </button>
 
@@ -3409,7 +3147,7 @@ function renderAdminEvents() {
                     <div class="admin-event-buttons">
 
                         <button
-                            onclick="showAdminRSVPs('${event.id}')">
+                            onclick="showAdminRSVPs('${escapeHTML(event.id)}')">
 
                             RSVPs
 
@@ -3417,7 +3155,7 @@ function renderAdminEvents() {
 
 
                         <button
-                            onclick="showEventForm('${event.id}')">
+                            onclick="showEventForm('${escapeHTML(event.id)}')">
 
                             Edit
 
@@ -3425,7 +3163,7 @@ function renderAdminEvents() {
 
 
                         <button
-                            onclick="toggleFeatured('${event.id}')">
+                            onclick="toggleFeatured('${escapeHTML(event.id)}')">
 
                             ${
                                 event.featured
@@ -3437,7 +3175,7 @@ function renderAdminEvents() {
 
 
                         <button
-                            onclick="deleteEvent('${event.id}')">
+                            onclick="deleteEvent('${escapeHTML(event.id)}')">
 
                             Delete
 
@@ -3542,6 +3280,7 @@ async function showAdminRSVPs(
             snapshot.docs
                 .map(
                     documentSnapshot => ({
+
                         id:
                             documentSnapshot.id,
 
@@ -3809,9 +3548,6 @@ window.toggleFeatured =
 window.deleteEvent =
     deleteEvent;
 
-window.toggleSaveEvent =
-    toggleSaveEvent;
-
 window.openRSVPModal =
     openRSVPModal;
 
@@ -3826,26 +3562,6 @@ window.showAdminRSVPs =
 
 window.closeAdminRSVPModal =
     closeAdminRSVPModal;
-
-
-/* =========================================================
-   AUTH STATE
-========================================================= */
-
-onAuthStateChanged(
-    auth,
-    async user => {
-
-        currentUser =
-            user;
-
-        authReady =
-            true;
-
-        await loadUserEventState();
-
-    }
-);
 
 
 /* =========================================================
