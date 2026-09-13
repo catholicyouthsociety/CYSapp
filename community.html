@@ -1893,10 +1893,13 @@ import {
     query,
     orderBy,
     onSnapshot,
-    serverTimestamp,
-    getDocs,
-    where
+    serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+
+import {
+    getAuth,
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
 
 
 /* =========================================================
@@ -1936,6 +1939,9 @@ const app =
 const db =
     getFirestore(app);
 
+const auth =
+    getAuth(app);
+
 
 /* =========================================================
    FIRESTORE COLLECTIONS
@@ -1952,6 +1958,350 @@ const reportsCollection =
         db,
         "prayerReports"
     );
+
+
+/* =========================================================
+   CURRENT LINKED ACCOUNT
+========================================================= */
+
+/*
+   This stores the currently linked Firebase account.
+
+   If a Firebase account is signed in and has a
+   displayName, that name can be used on the Prayer Wall
+   whenever "Share anonymously" is turned OFF.
+*/
+
+let currentUser =
+    null;
+
+let currentProfileName =
+    "";
+
+
+/* =========================================================
+   GET PROFILE NAME
+========================================================= */
+
+function getStoredProfileName() {
+
+    /*
+       First check Firebase Authentication.
+
+       This is the preferred source because the account
+       can follow the user between devices.
+    */
+
+    if (
+        currentUser &&
+        currentUser.displayName &&
+        currentUser.displayName.trim()
+    ) {
+
+        return currentUser.displayName.trim();
+
+    }
+
+
+    /*
+       Fallbacks for profile pages that may currently
+       store the profile locally.
+
+       These do NOT expose email addresses.
+    */
+
+    const possibleKeys = [
+
+        "cys_profile",
+        "cysProfile",
+        "profile",
+        "userProfile",
+        "cys_user",
+        "cysUser",
+        "user"
+
+    ];
+
+
+    for (
+        const key of possibleKeys
+    ) {
+
+        try {
+
+            const stored =
+                localStorage.getItem(key);
+
+
+            if (!stored) {
+
+                continue;
+
+            }
+
+
+            /*
+               JSON profile object
+            */
+
+            try {
+
+                const parsed =
+                    JSON.parse(stored);
+
+
+                if (
+                    parsed &&
+                    typeof parsed === "object"
+                ) {
+
+                    const possibleNames = [
+
+                        parsed.displayName,
+                        parsed.name,
+                        parsed.fullName,
+                        parsed.username,
+                        parsed.firstName &&
+                        parsed.lastName
+                            ? `${parsed.firstName} ${parsed.lastName}`
+                            : "",
+                        parsed.firstName
+
+                    ];
+
+
+                    for (
+                        const name
+                        of possibleNames
+                    ) {
+
+                        if (
+                            typeof name === "string" &&
+                            name.trim()
+                        ) {
+
+                            return name.trim();
+
+                        }
+
+                    }
+
+                }
+
+            } catch {
+
+                /*
+                   If the value isn't JSON,
+                   treat the value itself as a
+                   possible profile name.
+                */
+
+                if (
+                    typeof stored === "string" &&
+                    stored.trim() &&
+                    stored.length < 100
+                ) {
+
+                    return stored.trim();
+
+                }
+
+            }
+
+        } catch (error) {
+
+            console.warn(
+                "Could not read profile storage:",
+                error
+            );
+
+        }
+
+    }
+
+
+    /*
+       Additional individual localStorage fields
+       sometimes used by profile pages.
+    */
+
+    const individualKeys = [
+
+        "cys_displayName",
+        "cys_name",
+        "displayName",
+        "profileName",
+        "userName",
+        "username"
+
+    ];
+
+
+    for (
+        const key of individualKeys
+    ) {
+
+        try {
+
+            const value =
+                localStorage.getItem(key);
+
+
+            if (
+                value &&
+                value.trim() &&
+                value.length < 100
+            ) {
+
+                return value.trim();
+
+            }
+
+        } catch {
+
+            /* Ignore storage errors. */
+
+        }
+
+    }
+
+
+    return "";
+
+}
+
+
+/* =========================================================
+   FIREBASE AUTH STATE
+========================================================= */
+
+onAuthStateChanged(
+
+    auth,
+
+    user => {
+
+        currentUser =
+            user || null;
+
+
+        currentProfileName =
+            getStoredProfileName();
+
+
+        console.log(
+            "CYS account state:",
+            currentUser
+                ? "Linked account"
+                : "No Firebase account",
+            currentProfileName
+                ? "Profile name available"
+                : "No profile name available"
+        );
+
+    },
+
+    error => {
+
+        console.error(
+            "Firebase authentication state error:",
+            error
+        );
+
+
+        currentUser =
+            null;
+
+
+        currentProfileName =
+            getStoredProfileName();
+
+    }
+
+);
+
+
+/* =========================================================
+   GET CURRENT DISPLAY NAME
+========================================================= */
+
+function getCurrentDisplayName() {
+
+    /*
+       Refresh the stored profile name in case
+       the profile page has updated localStorage.
+    */
+
+    const storedName =
+        getStoredProfileName();
+
+
+    if (
+        storedName &&
+        storedName.trim()
+    ) {
+
+        return storedName.trim();
+
+    }
+
+
+    if (
+        currentProfileName &&
+        currentProfileName.trim()
+    ) {
+
+        return currentProfileName.trim();
+
+    }
+
+
+    return "";
+
+}
+
+
+/* =========================================================
+   GET PRAYER AUTHOR LABEL
+========================================================= */
+
+function getPrayerAuthorLabel(prayer) {
+
+    /*
+       Anonymous always takes priority.
+
+       Even if a name was stored accidentally or exists
+       on the account, an anonymous prayer will NEVER
+       publicly display that name.
+    */
+
+    if (
+        prayer.anonymous === true
+    ) {
+
+        return "Anonymous CYS Member";
+
+    }
+
+
+    /*
+       Older prayers may not have displayName.
+    */
+
+    if (
+        prayer.displayName &&
+        typeof prayer.displayName === "string" &&
+        prayer.displayName.trim()
+    ) {
+
+        return prayer.displayName.trim();
+
+    }
+
+
+    return "CYS Member";
+
+}
 
 
 /* =========================================================
@@ -1974,20 +2324,6 @@ const EMAILJS_TEMPLATE_ID =
 
 const ADMIN_ACCESS_CODE =
     "722005";
-
-
-/*
-   IMPORTANT:
-
-   This code is still only a client-side gate.
-
-   The password can be discovered by inspecting
-   the website source.
-
-   We will later replace this with Firebase
-   Authentication so moderators have real
-   server-side permissions.
-*/
 
 
 let adminAuthenticated =
@@ -2148,15 +2484,6 @@ function firestorePrayer(documentSnapshot) {
 /* =========================================================
    LOCAL CACHE OF FIRESTORE PRAYERS
 ========================================================= */
-
-/*
-   This is NOT localStorage.
-
-   It is only an in-memory copy used to make the
-   interface respond quickly.
-
-   Firestore remains the actual source of truth.
-*/
 
 let prayersCache = [];
 
@@ -2379,6 +2706,12 @@ function renderPrayers() {
             .map(
                 prayer => {
 
+                    const author =
+                        getPrayerAuthorLabel(
+                            prayer
+                        );
+
+
                     return `
 
                         <div
@@ -2393,11 +2726,7 @@ function renderPrayers() {
 
                                 <span class="prayer-anonymous">
 
-                                    ${
-                                        prayer.anonymous
-                                            ? "Anonymous CYS Member"
-                                            : "CYS Member"
-                                    }
+                                    ${escapeHTML(author)}
 
                                 </span>
 
@@ -2512,31 +2841,77 @@ async function postPrayer() {
 
     try {
 
+        /*
+           Only retrieve the user's name when the prayer
+           is NOT anonymous.
+
+           Anonymous prayers will not store a public
+           display name.
+        */
+
+        let displayName =
+            "";
+
+
+        if (!anonymous) {
+
+            displayName =
+                getCurrentDisplayName();
+
+        }
+
+
+        /*
+           Build the Firestore prayer object.
+        */
+
+        const prayerData = {
+
+            text:
+                text,
+
+            anonymous:
+                anonymous,
+
+            prayers:
+                0,
+
+            flagged:
+                false,
+
+            blocked:
+                false,
+
+            createdAt:
+                serverTimestamp()
+
+        };
+
+
+        /*
+           Save the profile name only when the user
+           chose NOT to be anonymous.
+
+           This means the Prayer Wall can show the same
+           name to everyone on every device.
+        */
+
+        if (
+            !anonymous &&
+            displayName
+        ) {
+
+            prayerData.displayName =
+                displayName;
+
+        }
+
+
         await addDoc(
 
             prayersCollection,
 
-            {
-
-                text:
-                    text,
-
-                anonymous:
-                    anonymous,
-
-                prayers:
-                    0,
-
-                flagged:
-                    false,
-
-                blocked:
-                    false,
-
-                createdAt:
-                    serverTimestamp()
-
-            }
+            prayerData
 
         );
 
@@ -2742,10 +3117,6 @@ async function reportPrayer(id) {
 
     try {
 
-        /*
-           Store the report centrally in Firestore.
-        */
-
         await addDoc(
 
             reportsCollection,
@@ -2771,11 +3142,6 @@ async function reportPrayer(id) {
 
         );
 
-
-        /*
-           Also send the report through your
-           existing EmailJS system.
-        */
 
         let emailSent =
             false;
@@ -3245,6 +3611,12 @@ function renderAdminDashboard() {
                             : "";
 
 
+                    const adminAuthor =
+                        getPrayerAuthorLabel(
+                            prayer
+                        );
+
+
                     return `
 
                         <div
@@ -3285,6 +3657,18 @@ function renderAdminDashboard() {
                                     )}
 
                                 </span>
+
+                            </div>
+
+                            <div
+                                style="
+                                    margin-top:8px;
+                                    color:var(--gold-light);
+                                    font-size:9px;
+                                    font-weight:750;
+                                ">
+
+                                ${escapeHTML(adminAuthor)}
 
                             </div>
 
@@ -3524,10 +3908,6 @@ async function deletePrayer(id) {
 
     try {
 
-        /*
-           Delete the prayer from Firestore.
-        */
-
         await deleteDoc(
 
             doc(
@@ -3538,11 +3918,6 @@ async function deletePrayer(id) {
 
         );
 
-
-        /*
-           Delete all reports associated
-           with this prayer.
-        */
 
         const relatedReports =
             reportsCache.filter(
@@ -3618,6 +3993,7 @@ window.toggleBlockPrayer =
 window.deletePrayer =
     deletePrayer;
 
+
 /* =========================================================
    INITIALIZE
 ========================================================= */
@@ -3625,6 +4001,14 @@ window.deletePrayer =
 document.addEventListener(
     "DOMContentLoaded",
     () => {
+
+        /*
+           Refresh the profile name when this page loads.
+        */
+
+        currentProfileName =
+            getStoredProfileName();
+
 
         console.log(
             "CYS Prayer Wall connected to Firebase Firestore."
