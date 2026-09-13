@@ -658,7 +658,7 @@ section {
     display:grid;
 
     grid-template-columns:
-        repeat(2,1fr);
+        repeat(1,1fr);
 
     gap:11px;
 }
@@ -1004,10 +1004,6 @@ footer strong {
         letter-spacing:-1.5px;
     }
 
-    .event-grid {
-        grid-template-columns:1fr;
-    }
-
 }
 
 @media(max-width:540px) {
@@ -1065,37 +1061,39 @@ footer strong {
 
 <div class="header-inner">
 
-    <a href="index.html" class="brand">
+```
+<a href="index.html" class="brand">
 
-        <div class="brand-mark">
-            ✝
-        </div>
+    <div class="brand-mark">
+        ✝
+    </div>
 
-        <div class="brand-text">
+    <div class="brand-text">
 
-            <strong>
-                Catholic Youth Society
-            </strong>
+        <strong>
+            Catholic Youth Society
+        </strong>
 
-            <span>
-                Faith • Community • Friendship
-            </span>
-
-        </div>
-
-    </a>
-
-    <div class="header-actions">
-
-        <button
-            class="icon-button"
-            aria-label="Profile"
-            onclick="window.location.href='profile.html'"
-        >
-            👤
-        </button>
+        <span>
+            Faith • Community • Friendship
+        </span>
 
     </div>
+
+</a>
+
+<div class="header-actions">
+
+    <button
+        class="icon-button"
+        aria-label="Profile"
+        onclick="window.location.href='profile.html'"
+    >
+        👤
+    </button>
+
+</div>
+```
 
 </div>
 
@@ -1113,50 +1111,52 @@ footer strong {
 
 <div class="profile-main">
 
-    <div
-        class="avatar"
-        onclick="showAccountMessage()"
-        aria-label="Profile photo"
-    >
-        👤
+```
+<div
+    class="avatar"
+    onclick="showAccountMessage()"
+    aria-label="Profile photo"
+>
+    👤
+</div>
+
+<div class="profile-info">
+
+    <div class="profile-eyebrow">
+        CYS Profile
     </div>
 
-    <div class="profile-info">
+    <h1 id="profileTitle">
+        Your CYS Profile
+    </h1>
 
-        <div class="profile-eyebrow">
-            CYS Profile
-        </div>
+    <p id="profileDescription">
+        Create an account to personalize your CYS
+        experience, connect with your community,
+        and keep track of your faith journey.
+    </p>
 
-        <h1 id="profileTitle">
-            Your CYS Profile
-        </h1>
+    <div class="profile-actions">
 
-        <p id="profileDescription">
-            Create an account to personalize your CYS
-            experience, connect with your community,
-            and keep track of your faith journey.
-        </p>
+        <button
+            class="primary-button"
+            id="accountButton"
+            onclick="showAccountMessage()"
+        >
+            Create / Sign In
+        </button>
 
-        <div class="profile-actions">
-
-            <button
-                class="primary-button"
-                id="accountButton"
-                onclick="showAccountMessage()"
-            >
-                Create / Sign In
-            </button>
-
-            <a
-                href="community.html"
-                class="secondary-button"
-            >
-                Explore Community
-            </a>
-
-        </div>
+        <a
+            href="community.html"
+            class="secondary-button"
+        >
+            Explore Community
+        </a>
 
     </div>
+
+</div>
+```
 
 </div>
 
@@ -1168,25 +1168,29 @@ footer strong {
 
 <div class="stat">
 
-    <strong id="prayerCount">
-        —
-    </strong>
+```
+<strong id="prayerCount">
+    —
+</strong>
 
-    <span>
-        Prayers Shared
-    </span>
+<span>
+    Prayers Shared
+</span>
+```
 
 </div>
 
 <div class="stat">
 
-    <strong id="eventCount">
-        —
-    </strong>
+```
+<strong id="eventCount">
+    —
+</strong>
 
-    <span>
-        Events
-    </span>
+<span>
+    Events
+</span>
+```
 
 </div>
 
@@ -1198,92 +1202,96 @@ footer strong {
 
 <div class="section-heading">
 
-    <div>
-        <h2>
-            My Faith
-        </h2>
-    </div>
+```
+<div>
+    <h2>
+        My Faith
+    </h2>
+</div>
 
-    <p>
-        Personalize your experience
-    </p>
+<p>
+    Personalize your experience
+</p>
+```
 
 </div>
 
 <div class="faith-card">
 
-    <div class="faith-header">
+```
+<div class="faith-header">
 
-        <div class="faith-icon">
-            ✝
-        </div>
+    <div class="faith-icon">
+        ✝
+    </div>
 
-        <div>
+    <div>
 
-            <h3>
-                Faith Interests
-            </h3>
+        <h3>
+            Faith Interests
+        </h3>
 
-            <p id="faithDescription">
-                Select topics you'd like CYS to personalize
-                around once your account is connected.
-            </p>
-
-        </div>
+        <p id="faithDescription">
+            Select topics you'd like CYS to personalize
+            around once your account is connected.
+        </p>
 
     </div>
 
-    <div class="tag-list">
+</div>
 
-        <button class="tag" onclick="toggleInterest(this)">
-            Daily Prayer
-        </button>
+<div class="tag-list">
 
-        <button class="tag" onclick="toggleInterest(this)">
-            Scripture
-        </button>
+    <button class="tag" onclick="toggleInterest(this)">
+        Daily Prayer
+    </button>
 
-        <button class="tag" onclick="toggleInterest(this)">
-            Mass
-        </button>
+    <button class="tag" onclick="toggleInterest(this)">
+        Scripture
+    </button>
 
-        <button class="tag" onclick="toggleInterest(this)">
-            Saints
-        </button>
+    <button class="tag" onclick="toggleInterest(this)">
+        Mass
+    </button>
 
-        <button class="tag" onclick="toggleInterest(this)">
-            Eucharist
-        </button>
+    <button class="tag" onclick="toggleInterest(this)">
+        Saints
+    </button>
 
-        <button class="tag" onclick="toggleInterest(this)">
-            Catholic Teaching
-        </button>
+    <button class="tag" onclick="toggleInterest(this)">
+        Eucharist
+    </button>
 
-        <button class="tag" onclick="toggleInterest(this)">
-            Service
-        </button>
+    <button class="tag" onclick="toggleInterest(this)">
+        Catholic Teaching
+    </button>
 
-        <button class="tag" onclick="toggleInterest(this)">
-            Apologetics
-        </button>
+    <button class="tag" onclick="toggleInterest(this)">
+        Service
+    </button>
 
-        <button class="tag" onclick="toggleInterest(this)">
-            Vocations
-        </button>
+    <button class="tag" onclick="toggleInterest(this)">
+        Apologetics
+    </button>
 
-        <button class="tag" onclick="toggleInterest(this)">
-            Catholic Music
-        </button>
+    <button class="tag" onclick="toggleInterest(this)">
+        Vocations
+    </button>
 
-        <button class="tag" onclick="toggleInterest(this)">
-            Catholic Culture
-        </button>
+    <button class="tag" onclick="toggleInterest(this)">
+        Catholic Music
+    </button>
 
-        <button class="tag" onclick="toggleInterest(this)">
-            Faith & Life
-        </button>
+    <button class="tag" onclick="toggleInterest(this)">
+        Catholic Culture
+    </button>
 
-    </div>
+    <button class="tag" onclick="toggleInterest(this)">
+        Faith & Life
+    </button>
+
+</div>
+```
 
 </div>
 
@@ -1295,99 +1303,103 @@ footer strong {
 
 <div class="section-heading">
 
-    <div>
-        <h2>
-            My Activity
-        </h2>
-    </div>
+```
+<div>
+    <h2>
+        My Activity
+    </h2>
+</div>
 
-    <p>
-        Your CYS journey
-    </p>
+<p>
+    Your CYS journey
+</p>
+```
 
 </div>
 
 <div class="activity-grid">
 
-    <a
-        href="faith.html"
-        class="activity-card"
-    >
+```
+<a
+    href="faith.html"
+    class="activity-card"
+>
 
-        <div class="activity-icon">
-            📖
-        </div>
+    <div class="activity-icon">
+        📖
+    </div>
 
-        <h3>
-            Daily Faith
-        </h3>
+    <h3>
+        Daily Faith
+    </h3>
 
-        <p>
-            Explore Scripture, Catholic teaching,
-            prayer, saints, and the life of the Church.
-        </p>
+    <p>
+        Explore Scripture, Catholic teaching,
+        prayer, saints, and the life of the Church.
+    </p>
 
-    </a>
+</a>
 
-    <a
-        href="events.html"
-        class="activity-card"
-    >
+<a
+    href="events.html"
+    class="activity-card"
+>
 
-        <div class="activity-icon">
-            ◫
-        </div>
+    <div class="activity-icon">
+        ◫
+    </div>
 
-        <h3>
-            My Events
-        </h3>
+    <h3>
+        My Events
+    </h3>
 
-        <p>
-            Events you save or join will appear here
-            once your CYS account is connected.
-        </p>
+    <p>
+        Events you save or join will appear here
+        once your CYS account is connected.
+    </p>
 
-    </a>
+</a>
 
-    <a
-        href="community.html#prayer"
-        class="activity-card"
-    >
+<a
+    href="community.html#prayer"
+    class="activity-card"
+>
 
-        <div class="activity-icon">
-            🙏
-        </div>
+    <div class="activity-icon">
+        🙏
+    </div>
 
-        <h3>
-            Prayer Wall
-        </h3>
+    <h3>
+        Prayer Wall
+    </h3>
 
-        <p>
-            Share prayer intentions and pray with
-            the CYS community.
-        </p>
+    <p>
+        Share prayer intentions and pray with
+        the CYS community.
+    </p>
 
-    </a>
+</a>
 
-    <a
-        href="community.html#service"
-        class="activity-card"
-    >
+<a
+    href="community.html#service"
+    class="activity-card"
+>
 
-        <div class="activity-icon">
-            ❤️
-        </div>
+    <div class="activity-icon">
+        ❤️
+    </div>
 
-        <h3>
-            Service
-        </h3>
+    <h3>
+        Service
+    </h3>
 
-        <p>
-            Discover ways to put your faith into
-            action and serve others.
-        </p>
+    <p>
+        Discover ways to put your faith into
+        action and serve others.
+    </p>
 
-    </a>
+</a>
+```
 
 </div>
 
@@ -1399,67 +1411,47 @@ footer strong {
 
 <div class="section-heading">
 
-    <div>
-        <h2>
-            My Events
-        </h2>
-    </div>
+```
+<div>
+    <h2>
+        My Events
+    </h2>
+</div>
 
-    <p>
-        Your upcoming experiences
-    </p>
+<p>
+    Your upcoming experiences
+</p>
+```
 
 </div>
 
 <div class="event-grid">
 
-    <div class="event-card">
+```
+<div class="event-card">
 
-        <div class="profile-eyebrow">
-            Saved Events
-        </div>
-
-        <h3>
-            No saved events yet.
-        </h3>
-
-        <p>
-            When you save an event, it will appear
-            here for quick access.
-        </p>
-
-        <a
-            href="events.html"
-            class="event-link"
-        >
-            Explore Events →
-        </a>
-
+    <div class="profile-eyebrow">
+        Joined Events
     </div>
 
-    <div class="event-card">
+    <h3>
+        No joined events yet.
+    </h3>
 
-        <div class="profile-eyebrow">
-            Joined Events
-        </div>
+    <p>
+        Events you join will appear here once
+        CYS event registration is available.
+    </p>
 
-        <h3>
-            No joined events yet.
-        </h3>
+    <a
+        href="events.html"
+        class="event-link"
+    >
+        View Events →
+    </a>
 
-        <p>
-            Events you join will appear here once
-            CYS accounts and event registration are enabled.
-        </p>
-
-        <a
-            href="events.html"
-            class="event-link"
-        >
-            View Events →
-        </a>
-
-    </div>
+</div>
+```
 
 </div>
 
@@ -1471,143 +1463,147 @@ footer strong {
 
 <div class="section-heading">
 
-    <div>
-        <h2>
-            Account
-        </h2>
-    </div>
+```
+<div>
+    <h2>
+        Account
+    </h2>
+</div>
 
-    <p>
-        Manage your CYS experience
-    </p>
+<p>
+    Manage your CYS experience
+</p>
+```
 
 </div>
 
 <div class="settings-card">
 
-    <div
-        class="setting-row"
-        onclick="editProfile()"
-    >
+```
+<div
+    class="setting-row"
+    onclick="editProfile()"
+>
 
-        <div class="setting-left">
+    <div class="setting-left">
 
-            <div class="setting-icon">
-                ✎
-            </div>
-
-            <div>
-
-                <strong>
-                    Edit Profile
-                </strong>
-
-                <span id="editProfileText">
-                    Add your profile information after signing in
-                </span>
-
-            </div>
-
+        <div class="setting-icon">
+            ✎
         </div>
 
-        <div class="setting-arrow">
-            ›
+        <div>
+
+            <strong>
+                Edit Profile
+            </strong>
+
+            <span id="editProfileText">
+                Add your profile information after signing in
+            </span>
+
         </div>
 
     </div>
 
-    <div
-        class="setting-row"
-        onclick="showPrivacyMessage()"
-    >
+    <div class="setting-arrow">
+        ›
+    </div>
 
-        <div class="setting-left">
+</div>
 
-            <div class="setting-icon">
-                🔒
-            </div>
+<div
+    class="setting-row"
+    onclick="showPrivacyMessage()"
+>
 
-            <div>
+    <div class="setting-left">
 
-                <strong>
-                    Privacy
-                </strong>
-
-                <span>
-                    Manage what information you share
-                </span>
-
-            </div>
-
+        <div class="setting-icon">
+            🔒
         </div>
 
-        <div class="setting-arrow">
-            ›
+        <div>
+
+            <strong>
+                Privacy
+            </strong>
+
+            <span>
+                Manage what information you share
+            </span>
+
         </div>
 
     </div>
 
-    <div
-        class="setting-row"
-        onclick="window.location.href='community.html'"
-    >
+    <div class="setting-arrow">
+        ›
+    </div>
 
-        <div class="setting-left">
+</div>
 
-            <div class="setting-icon">
-                🛡️
-            </div>
+<div
+    class="setting-row"
+    onclick="window.location.href='community.html'"
+>
 
-            <div>
+    <div class="setting-left">
 
-                <strong>
-                    Safety & Community
-                </strong>
-
-                <span>
-                    CYS community standards and safety
-                </span>
-
-            </div>
-
+        <div class="setting-icon">
+            🛡️
         </div>
 
-        <div class="setting-arrow">
-            ›
+        <div>
+
+            <strong>
+                Safety & Community
+            </strong>
+
+            <span>
+                CYS community standards and safety
+            </span>
+
         </div>
 
     </div>
 
-    <div
-        class="setting-row"
-        onclick="showAccountInformation()"
-    >
+    <div class="setting-arrow">
+        ›
+    </div>
 
-        <div class="setting-left">
+</div>
 
-            <div class="setting-icon">
-                ℹ️
-            </div>
+<div
+    class="setting-row"
+    onclick="showAccountInformation()"
+>
 
-            <div>
+    <div class="setting-left">
 
-                <strong>
-                    Account Information
-                </strong>
-
-                <span id="accountInformationText">
-                    Available after creating a CYS account
-                </span>
-
-            </div>
-
+        <div class="setting-icon">
+            ℹ️
         </div>
 
-        <div class="setting-arrow">
-            ›
+        <div>
+
+            <strong>
+                Account Information
+            </strong>
+
+            <span id="accountInformationText">
+                Available after creating a CYS account
+            </span>
+
         </div>
 
     </div>
+
+    <div class="setting-arrow">
+        ›
+    </div>
+
+</div>
+```
 
 </div>
 
@@ -1619,38 +1615,40 @@ footer strong {
 
 <div class="account-card">
 
-    <div class="profile-eyebrow">
-        CYS ACCOUNT
-    </div>
+```
+<div class="profile-eyebrow">
+    CYS ACCOUNT
+</div>
 
-    <h2 id="accountCardTitle">
-        Make CYS your own.
-    </h2>
+<h2 id="accountCardTitle">
+    Make CYS your own.
+</h2>
 
-    <p id="accountCardText">
-        A CYS account will eventually let you save events,
-        personalize your faith experience, manage your profile,
-        and participate in the CYS community.
-    </p>
+<p id="accountCardText">
+    A CYS account will eventually let you save events,
+    personalize your faith experience, manage your profile,
+    and participate in the CYS community.
+</p>
 
-    <div class="account-actions">
+<div class="account-actions">
 
-        <button
-            class="primary-button"
-            id="accountCardButton"
-            onclick="showAccountMessage()"
-        >
-            Create / Sign In
-        </button>
+    <button
+        class="primary-button"
+        id="accountCardButton"
+        onclick="showAccountMessage()"
+    >
+        Create / Sign In
+    </button>
 
-        <a
-            href="cys.html"
-            class="secondary-button"
-        >
-            Learn About CYS
-        </a>
+    <a
+        href="cys.html"
+        class="secondary-button"
+    >
+        Learn About CYS
+    </a>
 
-    </div>
+</div>
+```
 
 </div>
 
@@ -1673,7 +1671,6 @@ footer strong {
 </div>
 
 </footer>
-
 
 <script type="module">
 
@@ -2240,6 +2237,7 @@ async function createAccount() {
 
 
     await loadUserProfile(user);
+
 
 }
 
