@@ -28,6 +28,45 @@
 
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
+<!-- =========================================================
+     ONESIGNAL WEB PUSH
+========================================================= -->
+
+<script
+    src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js"
+    defer>
+</script>
+
+<script>
+
+window.OneSignalDeferred =
+    window.OneSignalDeferred || [];
+
+OneSignalDeferred.push(
+    async function(OneSignal) {
+
+        await OneSignal.init({
+
+            appId:
+                "8da2dd41-d8e7-4118-947a-4fda86cd26fc",
+
+            safari_web_id:
+                "web.onesignal.auto.3fd215f3-eebf-45ec-a840-b342bc8d8df9",
+
+            notifyButton: {
+
+                enable:
+                    true
+
+            }
+
+        });
+
+    }
+);
+
+</script>
+
 <style>
 
 :root {
@@ -1964,14 +2003,6 @@ const reportsCollection =
    CURRENT LINKED ACCOUNT
 ========================================================= */
 
-/*
-   This stores the currently linked Firebase account.
-
-   If a Firebase account is signed in and has a
-   displayName, that name can be used on the Prayer Wall
-   whenever "Share anonymously" is turned OFF.
-*/
-
 let currentUser =
     null;
 
@@ -1985,13 +2016,6 @@ let currentProfileName =
 
 function getStoredProfileName() {
 
-    /*
-       First check Firebase Authentication.
-
-       This is the preferred source because the account
-       can follow the user between devices.
-    */
-
     if (
         currentUser &&
         currentUser.displayName &&
@@ -2001,14 +2025,6 @@ function getStoredProfileName() {
         return currentUser.displayName.trim();
 
     }
-
-
-    /*
-       Fallbacks for profile pages that may currently
-       store the profile locally.
-
-       These do NOT expose email addresses.
-    */
 
     const possibleKeys = [
 
@@ -2039,10 +2055,6 @@ function getStoredProfileName() {
 
             }
 
-
-            /*
-               JSON profile object
-            */
 
             try {
 
@@ -2090,12 +2102,6 @@ function getStoredProfileName() {
 
             } catch {
 
-                /*
-                   If the value isn't JSON,
-                   treat the value itself as a
-                   possible profile name.
-                */
-
                 if (
                     typeof stored === "string" &&
                     stored.trim() &&
@@ -2119,11 +2125,6 @@ function getStoredProfileName() {
 
     }
 
-
-    /*
-       Additional individual localStorage fields
-       sometimes used by profile pages.
-    */
 
     const individualKeys = [
 
@@ -2158,8 +2159,6 @@ function getStoredProfileName() {
             }
 
         } catch {
-
-            /* Ignore storage errors. */
 
         }
 
@@ -2227,11 +2226,6 @@ onAuthStateChanged(
 
 function getCurrentDisplayName() {
 
-    /*
-       Refresh the stored profile name in case
-       the profile page has updated localStorage.
-    */
-
     const storedName =
         getStoredProfileName();
 
@@ -2267,14 +2261,6 @@ function getCurrentDisplayName() {
 
 function getPrayerAuthorLabel(prayer) {
 
-    /*
-       Anonymous always takes priority.
-
-       Even if a name was stored accidentally or exists
-       on the account, an anonymous prayer will NEVER
-       publicly display that name.
-    */
-
     if (
         prayer.anonymous === true
     ) {
@@ -2283,10 +2269,6 @@ function getPrayerAuthorLabel(prayer) {
 
     }
 
-
-    /*
-       Older prayers may not have displayName.
-    */
 
     if (
         prayer.displayName &&
@@ -2841,14 +2823,6 @@ async function postPrayer() {
 
     try {
 
-        /*
-           Only retrieve the user's name when the prayer
-           is NOT anonymous.
-
-           Anonymous prayers will not store a public
-           display name.
-        */
-
         let displayName =
             "";
 
@@ -2860,10 +2834,6 @@ async function postPrayer() {
 
         }
 
-
-        /*
-           Build the Firestore prayer object.
-        */
 
         const prayerData = {
 
@@ -2888,14 +2858,6 @@ async function postPrayer() {
         };
 
 
-        /*
-           Save the profile name only when the user
-           chose NOT to be anonymous.
-
-           This means the Prayer Wall can show the same
-           name to everyone on every device.
-        */
-
         if (
             !anonymous &&
             displayName
@@ -2914,6 +2876,51 @@ async function postPrayer() {
             prayerData
 
         );
+
+
+        /* =====================================================
+           SEND ONESIGNAL NOTIFICATION
+           
+           The prayer itself is NOT sent to OneSignal.
+           The Cloudflare Worker sends a generic notification
+           to all subscribed users.
+        ===================================================== */
+
+        try {
+
+            await fetch(
+                "https://white-resonance-a9e4cys-prayer-notifications.xambrogio918.workers.dev/",
+                {
+                    method:
+                        "POST",
+
+                    headers: {
+
+                        "Content-Type":
+                            "application/json"
+
+                    },
+
+                    body:
+                        JSON.stringify({})
+
+                }
+            );
+
+        } catch (notificationError) {
+
+            /*
+               The prayer has already been saved successfully.
+               If the notification fails, don't prevent the
+               prayer from being posted.
+            */
+
+            console.error(
+                "Prayer notification failed:",
+                notificationError
+            );
+
+        }
 
 
         input.value =
@@ -4001,10 +4008,6 @@ window.deletePrayer =
 document.addEventListener(
     "DOMContentLoaded",
     () => {
-
-        /*
-           Refresh the profile name when this page loads.
-        */
 
         currentProfileName =
             getStoredProfileName();
