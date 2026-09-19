@@ -2,11 +2,11 @@ const CACHE_NAME = 'CYSapp';
 const ASSETS = [
   './',
   './index.html',
-  './about.html',
+  './faith.html',
   './events.html',
-  './chapter.html',
-  './get-involved.html',
-  './contact.html'
+  './community.html',
+  './profile.html',
+  './more.html'
 ];
 
 self.addEventListener('install', (event) => {
