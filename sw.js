@@ -7,6 +7,7 @@ const ASSETS = [
   './community.html',
   './profile.html',
   './more.html'
+  './cys.html
 ];
 
 self.addEventListener('install', (event) => {
